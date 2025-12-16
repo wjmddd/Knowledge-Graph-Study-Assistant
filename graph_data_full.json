@@ -1605,6 +1605,211 @@
       "name": "SPEC CPU2000 测试程序集",
       "language": "C",
       "content": "一套全面的CPU性能测试程序集，覆盖多种应用场景，包括编译器、数据库、图形处理等。"
+    },
+    {
+      "id": "concept_algorithm",
+      "label": "Concept",
+      "name": "算法",
+      "alias": [
+        "algorithm"
+      ],
+      "definition": "对问题求解过程的流程化描述，确保步骤有限且清晰"
+    },
+    {
+      "id": "concept_program",
+      "label": "Concept",
+      "name": "程序",
+      "alias": [
+        "program"
+      ],
+      "definition": "用编程语言描述的、可被计算机执行的指令序列"
+    },
+    {
+      "id": "concept_high_level_language",
+      "label": "Concept",
+      "name": "高级语言",
+      "alias": [
+        "high-level language"
+      ],
+      "definition": "与机器结构关联较小、具有较好可读性的编程语言，通常为机器无关语言"
+    },
+    {
+      "id": "concept_low_level_language",
+      "label": "Concept",
+      "name": "低级语言",
+      "alias": [
+        "low-level language"
+      ],
+      "definition": "与底层计算机结构密切相关、接近硬件的编程语言，也称机器级语言"
+    },
+    {
+      "id": "concept_machine_language",
+      "label": "Concept",
+      "name": "机器语言",
+      "alias": [
+        "machine language"
+      ],
+      "definition": "使用二进制编码表示的机器指令集合，是计算机硬件唯一能直接理解的语言"
+    },
+    {
+      "id": "concept_assembly_language",
+      "label": "Concept",
+      "name": "汇编语言",
+      "alias": [
+        "assembly language"
+      ],
+      "definition": "机器语言的符号表示形式，通过英文助记符与二进制代码建立对应关系，便于程序员编写和阅读"
+    },
+    {
+      "id": "concept_translator",
+      "label": "Concept",
+      "name": "翻译程序",
+      "alias": [
+        "translator"
+      ],
+      "definition": "将一种编程语言表示的程序转换为另一种等价语言程序的软件"
+    },
+    {
+      "id": "concept_assembler",
+      "label": "Concept",
+      "name": "汇编程序",
+      "alias": [
+        "assembler"
+      ],
+      "definition": "将汇编语言源程序翻译成机器语言目标程序的翻译程序"
+    },
+    {
+      "id": "concept_interpreter",
+      "label": "Concept",
+      "name": "解释程序",
+      "alias": [
+        "interpreter"
+      ],
+      "definition": "按语句顺序逐条翻译并立即执行源程序的翻译程序"
+    },
+    {
+      "id": "concept_compiler",
+      "label": "Concept",
+      "name": "编译程序",
+      "alias": [
+        "compiler"
+      ],
+      "definition": "将高级语言源程序翻译成汇编语言或机器语言目标程序的翻译程序"
+    },
+    {
+      "id": "concept_virtual_machine",
+      "label": "Concept",
+      "name": "虚拟机",
+      "alias": [
+        "virtual machine"
+      ],
+      "definition": "由操作系统提供的对底层硬件的抽象，构成一个供程序员使用的逻辑计算环境"
+    },
+    {
+      "id": "concept_instruction_set_architecture",
+      "label": "Concept",
+      "name": "指令集体系结构",
+      "alias": [
+        "Instruction Set Architecture",
+        "ISA",
+        "architecture"
+      ],
+      "definition": "软件与硬件之间的接口定义，规定了计算机可执行的所有指令及其操作方式、地址空间、寄存器等"
+    },
+    {
+      "id": "concept_microarchitecture",
+      "label": "Concept",
+      "name": "微体系结构",
+      "alias": [
+        "microarchitecture"
+      ],
+      "definition": "指令集体系结构的具体实现组织，属于硬件内部设计层面，软件不可感知"
+    },
+    {
+      "id": "concept_logic_circuit",
+      "label": "Concept",
+      "name": "逻辑电路",
+      "alias": [
+        "logic circuit"
+      ],
+      "definition": "实现微体系结构中功能部件的基本电子电路单元"
+    },
+    {
+      "id": "concept_device_technology",
+      "label": "Concept",
+      "name": "器件技术",
+      "alias": [
+        "device technology"
+      ],
+      "definition": "用于实现基本逻辑电路的物理制造技术，如CMOS、NMOS等"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "处理器"
+    },
+    {
+      "id": "hw_alu",
+      "label": "Hardware",
+      "name": "ALU",
+      "hw_type": "组合逻辑电路"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_bus",
+      "label": "Hardware",
+      "name": "总线",
+      "hw_type": "通信通道"
+    },
+    {
+      "id": "inst_add",
+      "label": "Instruction",
+      "name": "add",
+      "syntax": "add S, D"
+    },
+    {
+      "id": "inst_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq S, D"
+    },
+    {
+      "id": "inst_jmp",
+      "label": "Instruction",
+      "name": "jmp",
+      "syntax": "jmp label"
+    },
+    {
+      "id": "code_hello_world_c",
+      "label": "CodeSnippet",
+      "name": "Hello World 示例（C语言）",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "code_add_asm",
+      "label": "CodeSnippet",
+      "name": "加法运算示例（汇编语言）",
+      "language": "Assembly",
+      "content": "movq $1, %rax\naddq $2, %rax\n"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中倾向于重复访问最近使用过的数据或指令，是缓存设计的重要依据"
+    },
+    {
+      "id": "principle_abstraction",
+      "label": "Principle",
+      "name": "抽象层次转换",
+      "description": "从自然语言到机器语言的转换需经过多个抽象层，每层提供不同粒度的抽象以简化复杂性"
     }
   ],
   "relationships": [
@@ -4510,6 +4715,252 @@
       "source_id": "code_spec_cpu2000",
       "target_id": "code_spec_web99",
       "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_algorithm",
+      "target_id": "concept_program",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_high_level_language",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_high_level_language",
+      "target_id": "concept_compiler",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compiler",
+      "target_id": "concept_assembly_language",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly_language",
+      "target_id": "concept_assembler",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembler",
+      "target_id": "concept_machine_language",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_language",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_interpreter",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interpreter",
+      "target_id": "concept_machine_language",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_translator",
+      "type": "DEPENDED_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_translator",
+      "target_id": "concept_compiler",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_translator",
+      "target_id": "concept_interpreter",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_translator",
+      "target_id": "concept_assembler",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_virtual_machine",
+      "target_id": "hw_cpu",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_virtual_machine",
+      "target_id": "hw_memory",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_virtual_machine",
+      "target_id": "hw_bus",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_set_architecture",
+      "target_id": "concept_machine_language",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_set_architecture",
+      "target_id": "hw_cpu",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_microarchitecture",
+      "target_id": "concept_logic_circuit",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_logic_circuit",
+      "target_id": "concept_device_technology",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_language",
+      "target_id": "inst_add",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_language",
+      "target_id": "inst_movq",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_language",
+      "target_id": "inst_jmp",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_algorithm",
+      "target_id": "principle_locality",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "principle_abstraction",
+      "type": "EXEMPLIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_high_level_language",
+      "target_id": "concept_low_level_language",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_language",
+      "target_id": "concept_assembly_language",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compiler",
+      "target_id": "concept_interpreter",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_microarchitecture",
+      "target_id": "concept_instruction_set_architecture",
+      "type": "DISTINGUISHED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_language",
+      "target_id": "code_hello_world_c",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly_language",
+      "target_id": "code_add_asm",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "code_hello_world_c",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_algorithm",
+      "target_id": "concept_program",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_compiler",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compiler",
+      "target_id": "concept_assembly_language",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly_language",
+      "target_id": "concept_assembler",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembler",
+      "target_id": "concept_machine_language",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_language",
+      "target_id": "hw_cpu",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_set_architecture",
+      "target_id": "concept_microarchitecture",
+      "type": "DEFINED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_microarchitecture",
+      "target_id": "concept_logic_circuit",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_logic_circuit",
+      "target_id": "concept_device_technology",
+      "type": "PRECEDES",
       "properties": {}
     }
   ]
