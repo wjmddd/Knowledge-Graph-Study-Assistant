@@ -53,7 +53,13 @@ class RelationType(str, Enum):
     OPERATES_ON = "OPERATES_ON"     # 指令操作: movq OPERATES_ON 寄存器
     EXAMPLE_OF = "EXAMPLE_OF"       # 举例关系: 代码片段 EXAMPLE_OF 缓冲区溢出
     
-    # H. 兜底关系
+    # H. 执行与运行关系 (LLM 高频使用)
+    EXECUTES = "EXECUTES"           # 执行关系: CPU EXECUTES 指令
+    RUNS_ON = "RUNS_ON"             # 运行于: 程序 RUNS_ON 操作系统
+    DEFINES = "DEFINES"             # 定义关系: ISA DEFINES 指令格式
+    DERIVED_FROM = "DERIVED_FROM"   # 派生关系: 程序 DERIVED_FROM 算法
+    
+    # I. 兜底关系
     RELATED_TO = "RELATED_TO"       # 通用关联 (仅当以上都不适用时使用)
 
 # ==========================================
@@ -69,7 +75,7 @@ class GraphRelationship(BaseModel):
     """对应 2.2 的关系定义"""
     source_id: str = Field(..., description="起始节点ID，必须与某个节点的 id 匹配")
     target_id: str = Field(..., description="目标节点ID，必须与某个节点的 id 匹配")
-    type: RelationType = Field(..., description="关系类型")
+    type: str = Field(..., description="关系类型，推荐使用 RelationType 中定义的类型，也可自定义")
     properties: dict = Field(default_factory=dict, description="关系的额外属性，如 weight")
 
 # ==========================================

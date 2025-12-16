@@ -23,9 +23,9 @@ CLIENT_CONFIG = {
     # "model": "deepseek-chat"
     
     # === 方案2: SiliconFlow 免费模型 ===
-    "api_key": "sk-hvddzbgdsripcadgvqozwnhsyfkedgbbqaqlcagawltfxnxd",
-    "base_url": "https://api.siliconflow.cn/v1",
-    "model": "Qwen/Qwen3-VL-32B-Instruct"  # 免费
+    "api_key": "sk-pGezF366dyAXhRktmeRXkWs4XEQ8h5TH8xUb9vyDl2pSFP0I",
+    "base_url": "https://sg.uiuiapi.com/v1",
+    "model": "qwen3-30b-a3b-instruct-2507"  
 }
 
 INPUT_FILE = "第一章.md"
@@ -143,7 +143,7 @@ ID 必须使用格式: `{类型前缀}_{英文名小写}`
 - Principle → principle_xxx，如 principle_moore_law
 
 ## 关系类型 (type) - 针对《计算机系统基础》优化
-只能使用以下关系类型：
+推荐使用以下关系类型（也可根据语义自定义）：
 
 ### 分类与组成
 - IS_A: 分类关系，A 是 B 的一种 (如: SRAM IS_A 存储器)
@@ -169,6 +169,12 @@ ID 必须使用格式: `{类型前缀}_{英文名小写}`
 ### 指令与示例
 - OPERATES_ON: 指令操作概念 (如: movq OPERATES_ON 寄存器)
 - EXAMPLE_OF: 举例关系 (如: hello.c EXAMPLE_OF C语言程序)
+
+### 执行与运行
+- EXECUTES: 执行关系 (如: CPU EXECUTES 机器指令)
+- RUNS_ON: 运行于关系 (如: 应用程序 RUNS_ON 操作系统)
+- DEFINES: 定义关系 (如: ISA DEFINES 指令格式)
+- DERIVED_FROM: 派生关系 (如: 程序 DERIVED_FROM 算法)
 
 ### 兜底
 - RELATED_TO: 通用关联（仅当以上都不适用时使用）
