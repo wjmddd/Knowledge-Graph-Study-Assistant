@@ -1,0 +1,29 @@
+# 核心依赖
+openai>=1.0.0
+instructor>=1.0.0
+pydantic>=2.0.0
+
+# 环境配置
+python-dotenv>=1.0.0
+
+# PDF 解析 (可选)
+pdfplumber>=0.10.0
+
+# 图数据库 (可选)
+neo4j>=5.0.0
+
+# 向量数据库 (可选)
+chromadb>=0.4.0
+
+# Agent 框架 (可选)
+langchain>=0.1.0
+langchain-openai>=0.0.5
+
+# Web 界面 (可选)
+streamlit>=1.30.0
+fastapi>=0.100.0
+uvicorn>=0.20.0
+
+# 向量化 (可选)
+sentence-transformers>=2.2.0
+
