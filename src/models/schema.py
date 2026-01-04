@@ -1,6 +1,6 @@
 """
 知识图谱数据模型
-直接从原 model/model.py 复制，保持完全一致
+包含文档结构层和知识语义层两层设计
 """
 
 from typing import List, Optional, Union, Literal, Annotated
@@ -14,13 +14,13 @@ from enum import Enum
 
 class NodeType(str, Enum):
     """对应 2.1 核心节点设计"""
-    # A. 文档结构层
+    # A. 文档结构层 (自动生成，用于 RAG 检索和溯源)
     COURSE = "Course"
     CHAPTER = "Chapter"
     SECTION = "Section"
     TEXT_CHUNK = "TextChunk"
     
-    # B. 知识语义层
+    # B. 知识语义层 (LLM 提取)
     CONCEPT = "Concept"
     HARDWARE = "Hardware"
     INSTRUCTION = "Instruction"
@@ -129,6 +129,36 @@ class PrincipleNode(GraphNode):
     description: Optional[str] = Field(default=None, description="原理描述")
 
 
+# --- A. 文档结构层节点 (自动生成，用于 RAG) ---
+
+class CourseNode(GraphNode):
+    """课程节点 - 最顶层"""
+    label: Literal[NodeType.COURSE] = NodeType.COURSE
+    name: str = Field(..., description="课程名称，如 '计算机系统基础'")
+
+
+class ChapterNode(GraphNode):
+    """章节点"""
+    label: Literal[NodeType.CHAPTER] = NodeType.CHAPTER
+    title: str = Field(..., description="章标题，如 '计算机系统概述'")
+    number: int = Field(..., description="章序号，如 1")
+
+
+class SectionNode(GraphNode):
+    """小节节点"""
+    label: Literal[NodeType.SECTION] = NodeType.SECTION
+    title: str = Field(..., description="节标题，如 '计算机基本工作原理'")
+    number: str = Field(..., description="节序号，如 '1.2'")
+
+
+class TextChunkNode(GraphNode):
+    """文本块节点 - 用于 RAG 检索和溯源"""
+    label: Literal[NodeType.TEXT_CHUNK] = NodeType.TEXT_CHUNK
+    content: str = Field(..., description="文本块内容")
+    chunk_index: int = Field(..., description="在文档中的顺序索引")
+    char_count: int = Field(default=0, description="字符数")
+
+
 # ==========================================
 # 4. 统一数据容器 (用于 LLM 输出)
 # ==========================================
@@ -140,6 +170,58 @@ KnowledgeNode = Annotated[
 
 
 class ExtractionResult(BaseModel):
-    """用于接收 LLM 从文本中提取的结构化数据"""
+    """用于接收 LLM 从文本中提取的结构化数据（知识语义层）"""
     nodes: List[KnowledgeNode] = Field(default_factory=list, description="节点列表")
     relationships: List[GraphRelationship] = Field(default_factory=list, description="关系列表")
+
+
+# ==========================================
+# 5. 完整知识图谱容器 (包含两层)
+# ==========================================
+
+# 所有节点类型的联合（用于完整图谱）
+AllNodeTypes = Union[
+    # 文档结构层
+    CourseNode, ChapterNode, SectionNode, TextChunkNode,
+    # 知识语义层
+    ConceptNode, HardwareNode, InstructionNode, CodeSnippetNode, PrincipleNode
+]
+
+
+class FullKnowledgeGraph(BaseModel):
+    """
+    完整的知识图谱数据结构
+    包含文档结构层 + 知识语义层
+    """
+    # 文档结构层
+    course: Optional[CourseNode] = None
+    chapters: List[ChapterNode] = Field(default_factory=list)
+    sections: List[SectionNode] = Field(default_factory=list)
+    text_chunks: List[TextChunkNode] = Field(default_factory=list)
+    
+    # 知识语义层 (LLM 提取)
+    knowledge_nodes: List[KnowledgeNode] = Field(default_factory=list)
+    
+    # 所有关系 (包含 CONTAINS 和 MENTIONS)
+    relationships: List[GraphRelationship] = Field(default_factory=list)
+    
+    def to_flat_dict(self) -> dict:
+        """
+        转换为扁平化的字典格式，方便导入 Neo4j
+        """
+        all_nodes = []
+        
+        # 添加文档结构层节点
+        if self.course:
+            all_nodes.append(self.course.model_dump())
+        all_nodes.extend([c.model_dump() for c in self.chapters])
+        all_nodes.extend([s.model_dump() for s in self.sections])
+        all_nodes.extend([t.model_dump() for t in self.text_chunks])
+        
+        # 添加知识语义层节点
+        all_nodes.extend([n.model_dump() for n in self.knowledge_nodes])
+        
+        return {
+            "nodes": all_nodes,
+            "relationships": [r.model_dump() for r in self.relationships]
+        }

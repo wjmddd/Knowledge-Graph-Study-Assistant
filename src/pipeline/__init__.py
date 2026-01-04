@@ -1,2 +1,3 @@
 from .parser import ContextChunk, parse_markdown_with_context
 from .extractor import process_single_chunk
+from .document_builder import build_document_structure, create_mentions_relationships

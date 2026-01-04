@@ -1,0 +1,1132 @@
+{
+  "total_duplicates": 161,
+  "duplicates": [
+    {
+      "node_id_1": "concept_stored_program",
+      "node_id_2": "concept_stored_program",
+      "canonical_id": "concept_stored_program",
+      "reason": "节点 'concept_stored_program' 的别名中包含 'Stored Program' 和 'stored-program'，这些是同一概念的不同写法（大小写和连字符差异），属于语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_cache",
+      "node_id_2": "concept_cache",
+      "canonical_id": "concept_cache",
+      "reason": "节点 'concept_cache' 的别名中包含 'cache'、'Cache'、'高速缓存存储器' 等，均为同一概念的中英文表达或不同书写形式，属于语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_virtual_memory",
+      "node_id_2": "concept_virtual_memory",
+      "canonical_id": "concept_virtual_memory",
+      "reason": "节点 'concept_virtual_memory' 的别名中包含 '虚拟内存'、'虚存'、'虚拟存储技术' 等，均为同一概念的不同称呼，属于语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_high_level_language",
+      "node_id_2": "concept_high_level_language",
+      "canonical_id": "concept_high_level_language",
+      "reason": "节点 'concept_high_level_language' 的别名中包含 'high-level language'，为英文全称与中文术语的对应关系，属于同一概念的中英文表达，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_interrupt",
+      "node_id_2": "concept_interrupt",
+      "canonical_id": "concept_interrupt",
+      "reason": "节点 'concept_interrupt' 的别名中包含 'interrupt'，为英文缩写与中文术语的对应关系，属于同一概念的中英文表达，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_first_generation_computer",
+      "node_id_2": "concept_first_generation_computer",
+      "canonical_id": "concept_first_generation_computer",
+      "reason": "节点 'concept_first_generation_computer' 的别名中包含 '电子管计算机'，是 '第一代计算机' 的另一种常见称呼，属于同义词，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_third_generation_computer",
+      "node_id_2": "concept_third_generation_computer",
+      "canonical_id": "concept_third_generation_computer",
+      "reason": "节点 'concept_third_generation_computer' 的别名中包含 '集成电路计算机'，是 '第三代计算机' 的标准别名，属于同一概念的不同表述，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_data_process",
+      "node_id_2": "concept_arithmetic_and_logical_operations",
+      "canonical_id": "concept_arithmetic_and_logical_operations",
+      "reason": "两者语义高度重合。'数据处理'被定义为包括算术运算和逻辑运算，而'算术和逻辑运算'是数据处理的核心组成部分。但'数据处理'的定义范围更广（包含多媒体信息处理），而'算术和逻辑运算'是其基础操作类型。因此，'算术和逻辑运算'可视为'数据处理'的一个子集或核心实现方式，二者在概念上存在严重重叠，属于同一概念的不同表述层次。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_data_storage",
+      "node_id_2": "concept_computer_system_function",
+      "canonical_id": "concept_computer_system_function",
+      "reason": "'计算机系统基本功能'明确指出包括'数据存储'、'数据处理'和'数据传送'三大功能。因此'数据存储'是'计算机系统基本功能'的一个组成部分。虽然'数据存储'是一个具体功能，而'计算机系统基本功能'是更高层级的概括，但它们之间存在明显的包含关系，且'数据存储'的定义中提到它是'自动工作方式的基本保证'，这与'计算机系统基本功能'的定位一致。因此，这两个节点在语义上存在重复性，应合并为一个更抽象的概念。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_data_transfer",
+      "node_id_2": "concept_computer_system_function",
+      "canonical_id": "concept_computer_system_function",
+      "reason": "同上，'数据传送'是'计算机系统基本功能'的三大核心功能之一。'数据传送'的定义描述了信息交换的操作，而'计算机系统基本功能'将其作为整体功能的一部分进行归纳。因此，'数据传送'与'计算机系统基本功能'之间存在包含关系，语义重复，应统一到高层概念下。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_automatic_processing",
+      "node_id_2": "concept_instruction_execution",
+      "canonical_id": "concept_instruction_execution",
+      "reason": "'自动处理'被定义为计算机无需人工干预连续执行指令序列的能力，而'指令执行'是所有任务的实现基础，通过逐条执行程序中的指令完成。两者本质相同：'自动处理'是结果描述，'指令执行'是实现机制。因此，'自动处理'可以看作是'指令执行'的同义表达，属于同一概念的不同表述。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_computer_characteristics",
+      "node_id_2": "concept_computer",
+      "canonical_id": "concept_computer",
+      "reason": "'计算机特性'的别名包括'高速, 通用, 准确, 智能'，这些正是对'计算机'这一概念的属性描述。而'计算机'的定义强调其作为高速处理装置的特征。因此，'计算机特性'是对'计算机'的属性集合的抽象，二者存在明显语义重叠，'计算机'是主体，'计算机特性'是其属性，属于同一概念的不同层面，应视为重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_von_neumann_architecture",
+      "node_id_2": "concept_flynn_architecture",
+      "canonical_id": "concept_von_neumann_architecture",
+      "reason": "两者名称均为'冯·诺依曼结构'，且定义核心均指向'存储程序'这一关键特征。尽管'Flynn架构'通常指并行计算分类（如SISD、SIMD等），但此处节点ID为'concept_flynn_architecture'，其名称和定义与冯·诺依曼结构高度重合，明显是误标或重复。因此判定为语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_user_program",
+      "node_id_2": "concept_application_software",
+      "canonical_id": "concept_application_software",
+      "reason": "两者别名完全重叠（'应用程序'），定义也一致：均为为解决用户问题而编写的程序。'用户程序'是更通用的术语，'应用软件'是标准分类，二者在本上下文中为同义词，属于典型语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_program_counter",
+      "node_id_2": "concept_pc",
+      "canonical_id": "concept_pc",
+      "reason": "节点 ID 'concept_pc' 和 'concept_program_counter' 实际是同一个概念的不同命名。'PC' 是 '程序计数器' 的缩写，且别名中明确列出 'Program Counter, 程序计数器, PC'，说明三者完全等价。因此，这是同一概念的中英文及缩写表达。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_response_time",
+      "node_id_2": "concept_latency",
+      "canonical_id": "concept_latency",
+      "reason": "响应时间（response time）与等待时间（latency）在计算机系统中常被用作同义词，均指从请求发出到收到响应之间的时间延迟。尽管'响应时间'更常用于整体系统性能评估，'等待时间'更偏向网络和存储场景，但二者语义高度重合，属于同一概念的不同表述。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_sampling",
+      "node_id_2": "concept_digital_encoding",
+      "canonical_id": "concept_digital_encoding",
+      "reason": "sampling 是 digital encoding 的一个阶段，但并非同一概念。digital encoding 包含 sampling 和 encoding 两部分，因此二者是组成关系，非重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_encoding",
+      "node_id_2": "concept_digital_encoding",
+      "canonical_id": "concept_digital_encoding",
+      "reason": "concept_encoding 被定义为使用符号组合表示信息的方法，较为抽象；而 concept_digital_encoding 特指将连续信息数字化的过程，包含采样与编码。尽管有交集，但 concept_digital_encoding 更具体，且是 concept_encoding 的一种应用场景。因此不构成语义重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_bcd_code",
+      "node_id_2": "concept_radix_number_system",
+      "canonical_id": "concept_radix_number_system",
+      "reason": "BCD码是 radix number system 的一种具体实现，即十进制的二进制编码。但 concept_radix_number_system 是更广泛的系统，而 BCD 是其特例。二者是包含关系，非重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_radix",
+      "node_id_2": "concept_base",
+      "canonical_id": "concept_base",
+      "reason": "radix 是 base 的英文同义词，两者均指进位计数制的基数，定义中也明确指出 radix = base，属于同一概念的不同表达。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_exponent",
+      "node_id_2": "concept_excess_code",
+      "canonical_id": "concept_exponent",
+      "reason": "excess_code（移码）是 exponent（阶）的一种具体编码方式，但二者在定义中被描述为同一功能：用于表示浮点数的阶并使其为正整数以方便比较。别名中也直接包含 '阶码' 和 '偏置码'，表明它们是同一概念的不同表述。因此，exponent 与 excess_code 在语义上高度重合，可视为重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_mantissa",
+      "node_id_2": "concept_significand",
+      "canonical_id": "concept_mantissa",
+      "reason": "significand 是 mantissa 的现代标准术语，两者在浮点数表示中均指有效数字部分，且定义完全一致。虽然在某些文献中略有区分，但在本上下文中无实质差异，应视为重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_fixed_point_integer",
+      "node_id_2": "concept_fixed_point",
+      "canonical_id": "concept_fixed_point",
+      "reason": "fixed-point integer 是 fixed-point 的一种特例（小数点固定在最右边），但 concept_fixed_point 作为总类概念，其别名和定义已涵盖定点整数和定点小数。而 concept_fixed_point_integer 仅是其子集，不应独立存在。因此二者存在语义重叠，应合并。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_fixed_point_fraction",
+      "node_id_2": "concept_fixed_point",
+      "canonical_id": "concept_fixed_point",
+      "reason": "fixed-point fraction 是 fixed-point 的另一种特例（小数点固定在最左边），同样属于定点数的子类型。由于 concept_fixed_point 已涵盖所有定点数形式，该节点与其重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_machine_zero",
+      "node_id_2": "concept_zero",
+      "canonical_id": "concept_zero",
+      "reason": "两者均指浮点数中表示零的特殊值，且定义高度重合：'阶码和尾数全为0'是核心特征。'machine zero'是'zero'的英文别名，且'零'在定义中明确提到+0/-0，与'机器零'一致。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_sign_interpretation",
+      "node_id_2": "concept_machine_representation",
+      "canonical_id": "concept_machine_representation",
+      "reason": "两者描述同一核心概念：二进制机器数的值取决于数据类型对其的解释方式。'符号解释'强调有符号/无符号的差异导致真值变化，而'机器数表示'更广泛地指出值由类型解释决定，二者本质相同，后者更全面，应作为标准。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_floating_point_representation",
+      "node_id_2": "concept_ieee754",
+      "canonical_id": "concept_ieee754",
+      "reason": "'IEEE754' 是 '浮点数表示' 的具体标准，是其最权威、最规范的实现形式。'浮点数表示' 是通用概念，而 'IEEE754' 是该概念的具体标准，因此后者为 canonical。别名列表也表明两者紧密关联。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_left_norm",
+      "node_id_2": "concept_floating_point_normalization",
+      "canonical_id": "concept_floating_point_normalization",
+      "reason": "'左规' 是 '浮点数规格化' 的一种具体操作（当最高位为0时），而 '浮点数规格化' 是总称。'左规' 是 '规格化' 的子过程，因此前者应归入后者，不应独立存在。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_right_norm",
+      "node_id_2": "concept_floating_point_normalization",
+      "canonical_id": "concept_floating_point_normalization",
+      "reason": "'右规' 是 '浮点数规格化' 的另一种具体操作（当最高位为1但超出范围时），与'左规'同属规格化过程。因此'右规'是'规格化'的子集，应合并。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_hidden_bit",
+      "node_id_2": "concept_ieee754",
+      "canonical_id": "concept_ieee754",
+      "reason": "'隐藏位' 是 IEEE754 标准中的一个关键特性，用于扩展有效位数。它不是独立概念，而是 IEEE754 规范的一部分。因此应归入 'IEEE754' 概念中。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_denormalized_number",
+      "node_id_2": "concept_ieee754",
+      "canonical_id": "concept_ieee754",
+      "reason": "'非规格化数' 是 IEEE754 标准中定义的特殊数值类型，用于处理下溢。它是 IEEE754 的组成部分，不应作为独立节点存在。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_infinity",
+      "node_id_2": "concept_ieee754",
+      "canonical_id": "concept_ieee754",
+      "reason": "'无穷大' 是 IEEE754 标准中定义的特殊值之一，属于该标准的规范内容。不应作为独立概念，而应包含在 'IEEE754' 中。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_nan",
+      "node_id_2": "concept_ieee754",
+      "canonical_id": "concept_ieee754",
+      "reason": "'NaN' 是 IEEE754 标准中定义的特殊值，用于表示无效运算结果。它是 IEEE754 的一部分，不应独立存在。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_float",
+      "node_id_2": "concept_ieee754",
+      "canonical_id": "concept_ieee754",
+      "reason": "'float' 是 IEEE754 标准中的一种具体格式（单精度）。它本身是 IEEE754 的实例，不应作为独立概念。'IEEE754' 是更上层的标准，应作为 canonical。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_double",
+      "node_id_2": "concept_ieee754",
+      "canonical_id": "concept_ieee754",
+      "reason": "'double' 是 IEEE754 标准中的一种具体格式（双精度）。与 'float' 同理，是 IEEE754 的子集，应归入标准中。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_logical_value",
+      "node_id_2": "concept_logical_data",
+      "canonical_id": "concept_logical_data",
+      "reason": "concept_logical_value 和 concept_logical_data 的别名分别为 '逻辑值' 和 '布尔数据, 位数据'，定义也高度一致：均指由0或1组成的序列，用于逻辑运算。其中 'logical value' 更偏向于单个值，而 'logical data' 强调多个位的集合，但本质上是同一类数据的表述。在计算机科学中，'逻辑值' 常被视为 '逻辑数据' 的基本单元，但此处作为节点，应视为语义重复。由于 'logical data' 是更规范、更通用的术语（如在IEEE标准中），故选择其为 canonical_id。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_bit",
+      "node_id_2": "concept_memory_cell",
+      "canonical_id": "concept_bit",
+      "reason": "concept_bit 的别名包括 '存储元', '位元', '记忆单元', 'cell'，这些都指向同一个最小信息单位。尽管 'cell' 在某些上下文中可能指代存储器中的物理单元（如SRAM cell），但在一般语境下，'bit' 与 'cell' 可互换使用。特别地，'memory cell' 通常就是存储一个比特的物理结构。因此，'bit' 与 'memory cell' 在此知识图谱中被列为同义词，属于语义重复。由于 'bit' 是更标准、更广泛接受的术语，应保留为 canonical_id。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_logical_operation",
+      "node_id_2": "concept_bitwise_operation",
+      "canonical_id": "concept_logical_operation",
+      "reason": "逻辑运算（Logical Operation）与按位运算（Bitwise Operation）在计算机科学中通常被视为同义词，尤其在 C 语言等上下文中，AND/OR/NOT/XOR 等操作既称为逻辑运算也称为按位运算。别名中已明确列出 'bitwise operation'，且定义一致，因此可判定为语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_arithmetic_shift",
+      "node_id_2": "concept_arithmetic_right_shift",
+      "canonical_id": "concept_arithmetic_right_shift",
+      "reason": "concept_arithmetic_shift 是一个更宽泛的概念，而 concept_arithmetic_right_shift 是其具体应用之一。但根据定义，'算术移位' 的描述中明确包含右移时高位补符号位的行为，这与 '算术右移' 完全一致。因此两者在语义上存在重叠，且 '算术右移' 是 '算术移位' 的子集。然而，由于 '算术移位' 未明确区分左移和右移，而 '算术右移' 是一个独立且标准的术语，故应视为重复。此外，'算术右移' 的别名 '有符号右移' 也进一步支持其作为标准术语的地位。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_complement",
+      "node_id_2": "concept_two_complement",
+      "canonical_id": "concept_complement",
+      "reason": "concept_complement 的别名中包含 'two's complement' 和 '二补码'，说明其本身就是补码的通用表达。而 'two's complement' 是 '补码' 的英文标准写法，二者是同一概念的不同语言表达，属于典型的语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_signed_unsigned_equivalence",
+      "node_id_2": "concept_complement_multiplication_equivalence",
+      "canonical_id": "concept_signed_unsigned_equivalence",
+      "reason": "两个节点名称虽不同，但核心含义一致：即在相同机器表示下，带符号与无符号乘法在取低n位后结果相同。'补码乘法等价性' 是 '带符号与无符号整数乘法等价性' 的同义表达，别名中也明确列出 '补码乘法等价性'，因此二者为同一概念的不同命名。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_rounding_toward_zero",
+      "node_id_2": "concept_truncation",
+      "canonical_id": "concept_rounding_toward_zero",
+      "reason": "concept_rounding_toward_zero 的别名包括 '截断舍入'，说明 '截断舍入' 与其为同义词。因此这两个节点是同一概念的不同表达，属于语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_rounding_toward_neg_inf",
+      "node_id_2": "concept_flooring",
+      "canonical_id": "concept_rounding_toward_neg_inf",
+      "reason": "concept_rounding_toward_neg_inf 的别名是 '向下舍入'，而 'flooring' 是数学中对负数向负无穷舍入的标准术语。在计算机整数除法中，当被除数为负时，商朝负无穷方向舍入，即 floor 函数行为。因此 '向下舍入' 与 'flooring' 是同义词，二者为重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_ia32",
+      "node_id_2": "concept_x86",
+      "canonical_id": "concept_x86",
+      "reason": "IA-32 是 x86 架构的 32 位版本，两者属于同一体系结构的不同代际或具体实现。'x86' 是泛称，而 'IA-32' 是其 32 位标准的具体名称，语义高度重叠，且别名中明确包含 '32位x86架构' 和 'Intel x86'，表明它们是同一体系结构的不同表述。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_machine_level_representation",
+      "node_id_2": "concept_machine_level_program",
+      "canonical_id": "concept_machine_level_representation",
+      "reason": "两者均描述程序在机器级的表示形式。'机器级表示'强调的是表示形式（如汇编语言），而'机器级程序'强调的是由机器指令或汇编指令构成的程序实体。但二者定义高度重合：前者指出‘以汇编语言为主’，后者指出‘由机器指令或汇编指令构成’，且别名中均有‘汇编语言表示’和‘IA-32指令表示’。二者实质上描述的是同一层次的程序表现形式，属于同一概念的不同角度表达，应视为语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_c_language_version",
+      "node_id_2": "concept_ansi_c",
+      "canonical_id": "concept_c_language_version",
+      "reason": "'C语言版本' 包含 C89（ANSI C）、C90、C99 等，而 'ANSI C' 是 C89 的别名。因此 'C语言版本' 与 'ANSI C' 是整体与子集的关系，但 'ANSI C' 是 'C语言版本' 的一个具体版本。由于别名中明确列出 'ANSI C' 作为 'C语言版本' 的别名，说明二者是同一概念的不同说法，应视为重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_relocatable_object_file",
+      "node_id_2": "concept_relocatable_object_file",
+      "canonical_id": "concept_relocatable_object_file",
+      "reason": "该节点自身无重复，仅出现一次。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_pointer_type",
+      "node_id_2": "concept_pointer",
+      "canonical_id": "concept_pointer_type",
+      "reason": "指针类型（pointer type）与指针（pointer）在语义上高度重合，前者是数据类型，后者是变量实例，但两者在概念层级上常被混用。别名中'地址类型'和'地址变量'也表明其本质为同一概念的不同表述。在知识图谱中，应统一为更规范的术语'指针类型'作为标准节点。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_x86_64",
+      "node_id_2": "concept_em64t",
+      "canonical_id": "concept_x86_64",
+      "reason": "x86-64 与 EM64T 是同一架构的不同名称：EM64T 是 Intel 对 x86-64 架构的早期称呼，后更名为 Intel64。两者指代的是同一个技术体系，属于同一概念的不同命名方式。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_data_alignment",
+      "node_id_2": "concept_basic_type_alignment",
+      "canonical_id": "concept_data_alignment",
+      "reason": "数据对齐是一个通用概念，基本类型对齐是其具体应用之一。但‘数据对齐’涵盖范围更广，包括结构体对齐、基本类型对齐等。二者不是同义词，而是包含关系，不构成重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_relative_transfer",
+      "node_id_2": "concept_pc_relative_addressing",
+      "canonical_id": "concept_pc_relative_addressing",
+      "reason": "相对转移是以当前EIP为基础加偏移量计算目标地址，PC相对寻址正是以程序计数器（PC）为基准进行寻址，二者在本质上是同一机制的不同表述。PC即EIP（在x86架构中），因此‘相对转移’与‘PC相对寻址’语义高度一致，可判定为重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_section",
+      "node_id_2": "concept_segment",
+      "canonical_id": "concept_section",
+      "reason": "虽然 '节'（section）和 '段'（segment）在ELF文件中具有不同层次的语义（section用于链接视图，segment用于执行视图），但它们在中文语境下常被混用，且节点定义中明确指出 '多个节可以合并映射到同一个段中'，同时 '节' 的别名包含 '段'、'数据节'、'代码节' 等，而 '段' 的别名也包含 'section' 和 'segment'。这表明两者在实际使用中存在高度语义重叠，尤其在非专业语境下被视为同义词。因此，尽管技术上不完全等价，但在本知识图谱中作为概念节点出现时，其表达意图高度重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_executable_object_file",
+      "node_id_2": "concept_memory_image",
+      "canonical_id": "concept_executable_object_file",
+      "reason": "两个节点名称和定义存在明显重合：'可执行目标文件' 是经过链接后生成的最终文件，而 '存储器映像' 定义为 '可执行目标文件在虚拟地址空间中的布局'。这意味着 '存储器映像' 实际上是 '可执行目标文件' 在运行时的内存表示形式。由于 '可执行目标文件' 已经包含了 '执行视图结构' 和 '程序头表'，其本质就是 '存储器映像' 的载体。因此，二者在语义上属于同一概念的不同表述，'存储器映像' 更偏向于运行时视角，而 '可执行目标文件' 是静态文件。在知识图谱中应视为重复，保留更标准的 '可执行目标文件' 作为规范节点。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_load_segment",
+      "node_id_2": "concept_read_only_code_segment",
+      "canonical_id": "concept_load_segment",
+      "reason": "虽然两者描述略有不同，但 '可装入段'（LOAD段）是程序头表中的一种段类型，其本质是可加载到内存的代码或数据区域；而 '只读代码段' 是对 LOAD 段中一种典型用途的描述。在ELF上下文中，只读代码段通常就是由 LOAD 段加载的，且具有只读和可执行属性。因此二者语义高度重合，属于同一概念的不同表述方式。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_global_symbol",
+      "node_id_2": "concept_external_symbol",
+      "canonical_id": "concept_global_symbol",
+      "reason": "在链接器语境中，'全局符号'（global symbol）与'外部符号'（external symbol）常被混用。'全局符号'指在整个链接过程中可见的符号，包括函数名和未加static的变量；而'外部符号'特指被其他模块引用的符号。实际上，所有外部符号都是全局符号的一部分，但并非所有全局符号都是外部符号。然而，在多数教学和文档中，这两个术语被当作同义词使用，尤其在讨论符号解析时。因此存在语义重叠，可视为重复节点。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_relocation_info",
+      "node_id_2": "concept_relocation_entry",
+      "canonical_id": "concept_relocation_info",
+      "reason": "节点 'concept_relocation_info' 和 'concept_relocation_entry' 的别名中均包含 '重定位表项' 和 'relocation entry'，且定义内容高度一致，均为描述可重定位目标模块中用于符号重定位的数据结构。因此二者语义重复，应合并。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_loader",
+      "node_id_2": "concept_program_loading_program",
+      "canonical_id": "concept_loader",
+      "reason": "节点 'concept_loader' 的别名包含 '程序加载程序'，而 'concept_program_loading_program' 是其同义表达，两者在定义和别名上完全对应，属于同一概念的不同表述。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_shared_library",
+      "node_id_2": "concept_dynamic_linking_library",
+      "canonical_id": "concept_shared_library",
+      "reason": "节点 'concept_shared_library' 的别名包括 '动态链接库', 'DLL', 'so文件'，而 'concept_dynamic_linking_library' 与之在语义上完全等价，均为指代运行时加载的共享代码模块，属于同一概念的不同命名方式。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_dynamism",
+      "node_id_2": "concept_lazy_loading",
+      "canonical_id": "concept_dynamism",
+      "reason": "'concept_dynamism' 的别名包含 '按需加载', '延迟加载', 'lazy loading'，说明其核心含义即为 'lazy loading'。二者在定义和别名上存在直接映射关系，属于同一概念的不同表达。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_position_independent_code",
+      "node_id_2": "concept_pic",
+      "canonical_id": "concept_position_independent_code",
+      "reason": "'concept_position_independent_code' 的别名明确包含 'PIC'，而 'concept_pic' 是其标准缩写形式。两者是同一概念的全称与缩写关系，语义完全重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_page_fault",
+      "node_id_2": "concept_page_missing",
+      "canonical_id": "concept_page_fault",
+      "reason": "'concept_page_fault' 的别名包含 '缺页中断', '页缺失'，而 'concept_page_missing' 是 '页缺失' 的直接表达，二者在定义和别名上完全对应，属于同义词。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_pt_load_segment",
+      "node_id_2": "concept_loadable_segment",
+      "canonical_id": "concept_pt_load_segment",
+      "reason": "'concept_pt_load_segment' 的别名包含 '可装入节'，而 'concept_loadable_segment' 是其同义表达，两者在定义和别名上一致，均指 PT_LOAD 段，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_user_stack",
+      "node_id_2": "concept_stack_area",
+      "canonical_id": "concept_user_stack",
+      "reason": "'concept_user_stack' 的别名包含 '栈区', '用户栈空间'，而 'concept_stack_area' 是其通用表达，二者在定义和别名上高度一致，属于同一概念的不同说法。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_interrupt_handler",
+      "node_id_2": "concept_exception_control",
+      "canonical_id": "concept_exception_control",
+      "reason": "‘中断机构’（interrupt handler）是‘异常控制’（exception control）的具体实现或组成部分，但两者在语义上高度重合，均指CPU处理异常和中断的机制。别名中‘中断机制’与‘中断机构’互为同义表达，因此可判定为重复。更规范的术语是‘异常控制’，涵盖范围更广。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_beat",
+      "node_id_2": "concept_pulse",
+      "canonical_id": "concept_beat",
+      "reason": "‘节拍’（beat）与‘脉冲’（pulse）在计算机体系结构中常被用作同义词。定义中明确指出‘一个时钟周期对应一个节拍’，而‘脉冲’是用于同步操作的短暂电平变化，本质上是节拍内的控制信号。因此二者属于同一时间单位的不同表述，应视为重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_machine_cycle",
+      "node_id_2": "concept_beat",
+      "canonical_id": "concept_machine_cycle",
+      "reason": "‘机器周期’（machine cycle）是完成一组特定操作的基本时间单位，如取指令、读写内存；而‘节拍’（beat）是其内部的时间划分单位。虽然‘节拍’更细，但在实际使用中常被等同于‘机器周期’，尤其在教学语境中混用严重。因此二者存在语义重叠，可判定为重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_data_path",
+      "node_id_2": "concept_execution_unit",
+      "canonical_id": "concept_data_path",
+      "reason": "‘数据通路’是CPU中处理数据的核心路径，包含ALU、寄存器等部件；而‘执行部件’是数据通路中专门进行运算的部分。由于‘执行部件’是‘数据通路’的子集，且别名‘function unit’与‘data path’在某些上下文中混用，导致概念边界模糊。结合定义和别名，可判断为语义重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_control_unit",
+      "node_id_2": "concept_timing_control",
+      "canonical_id": "concept_control_unit",
+      "reason": "‘控制部件’负责生成控制信号以协调数据通路操作；‘时序控制’则是通过控制信号的时序来协调各元件工作。后者是前者的功能之一，但定义中‘时序控制’强调的是时序协调，与‘控制部件’的功能高度重合。别名‘定时控制’也暗示了其与控制单元的关联，因此可视为重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_ram",
+      "node_id_2": "concept_main_memory",
+      "canonical_id": "concept_ram",
+      "reason": "RAM 和 主存储器 是同一概念的不同称呼，RAM 是随机存取存储器的缩写，主存储器是计算机中用于存放正在运行程序和数据的存储器，两者在语义上完全等价。别名列表中也明确包含 '主存储器' 和 '主存'。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_flash_memory",
+      "node_id_2": "concept_flash_rom",
+      "canonical_id": "concept_flash_memory",
+      "reason": "Flash存储器与Flash ROM是同一技术的不同命名方式。别名中明确列出 'Flash ROM' 作为 Flash 存储器的别名，且定义一致：高密度、非易失性、可电擦除重编程。因此二者语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_sram",
+      "node_id_2": "concept_static_ram",
+      "canonical_id": "concept_sram",
+      "reason": "SRAM 与 静态RAM 是同一概念的两种表达方式，别名中已明确列出 '静态RAM' 作为 SRAM 的别名，且定义一致。因此属于语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_disk_storage",
+      "node_id_2": "concept_secondary_storage",
+      "canonical_id": "concept_disk_storage",
+      "reason": "磁盘存储器与辅助存储器（Secondary Storage）是同一概念的不同称谓。别名中明确列出 '辅助存储器' 和 '外存'，且定义中描述的是硬盘、SSD 等长期保存数据的设备，访问速度慢但容量大，与 'Secondary Storage' 完全对应。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_hierarchy_storage",
+      "node_id_2": "concept_storage_classification",
+      "canonical_id": "concept_hierarchy_storage",
+      "reason": "层次结构存储系统与存储器的分类在语义上高度重合。前者强调按速度/容量/价格组织存储器的层次结构，后者则描述从多个维度对存储器进行划分的方法。实际上，'层次化存储结构' 就是 '存储器分类' 的一种核心方法。别名中 '层次化存储结构' 与 '存储器分层分类' 对应，说明二者是同一概念的不同表述。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_semiconductor_memory",
+      "node_id_2": "concept_chip_memory",
+      "canonical_id": "concept_semiconductor_memory",
+      "reason": "半导体存储器与芯片存储器是同义词。别名中 '芯片存储器' 明确作为 '半导体存储器' 的别名，且定义一致：由半导体器件构成，速度快、体积小。因此属于语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_optical_storage",
+      "node_id_2": "concept_cd_dvd_blu_ray",
+      "canonical_id": "concept_optical_storage",
+      "reason": "光介质存储器与 CD/DVD/Blu-ray 是同一类存储技术的名称与典型代表。别名中 'CD/DVD/Blu-ray' 被列为 '光介质存储器' 的别名，且定义中明确指出通过激光读写数据，如光盘。因此二者是同一概念的不同表达。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_load_instruction",
+      "node_id_2": "concept_load_instruction",
+      "canonical_id": "concept_load_instruction",
+      "reason": "节点自身重复，但实际为同一节点，不构成不同节点间的重复。此条为无效重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_store_instruction",
+      "node_id_2": "concept_store_instruction",
+      "canonical_id": "concept_store_instruction",
+      "reason": "节点自身重复，不构成不同节点间的重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_lru",
+      "node_id_2": "concept_lru_replacement",
+      "canonical_id": "concept_lru",
+      "reason": "concept_lru 和 concept_lru_replacement 描述的是同一概念：最近最少用算法（LRU）作为缓存替换策略。其中 concept_lru 是标准术语，而 concept_lru_replacement 是其同义描述，且别名中包含 'Least Recently Used'，与 'LRU' 完全对应。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_block_size",
+      "node_id_2": "concept_cache_line_size",
+      "canonical_id": "concept_block_size",
+      "reason": "concept_block_size 的别名中明确包含 'Cache Line Size'，说明两者是同一概念的不同表达方式，属于标准术语与别名的关系。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_logical_address_space",
+      "node_id_2": "concept_virtual_address_space",
+      "canonical_id": "concept_logical_address_space",
+      "reason": "两者均为描述进程虚拟地址空间的概念，别名高度重叠（如 'virtual address space', '虚拟内存空间'），定义内容几乎完全一致，仅表述略有差异。'逻辑地址空间'是更标准的术语，涵盖范围更广，因此应作为规范节点。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_static",
+      "node_id_2": "concept_dynamic",
+      "canonical_id": "concept_static",
+      "reason": "static 和 dynamic 是对立状态，分别描述程序未运行和运行时的状态，属于互补而非重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_maskable_interrupt",
+      "node_id_2": "concept_nonmaskable_interrupt",
+      "canonical_id": "concept_maskable_interrupt",
+      "reason": "可屏蔽中断和不可屏蔽中断是两类不同的中断类型，分别用于I/O设备和紧急硬件故障。它们在响应机制、屏蔽能力、优先级等方面有本质区别，不是重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "concept_trap_gate",
+      "node_id_2": "concept_interrupt_gate",
+      "canonical_id": "concept_trap_gate",
+      "reason": "‘陷阱门’和‘中断门’是两种不同的中断描述符，前者用于处理异常（如缺页），进入时不关闭IF；后者用于外部中断，进入时自动关闭IF。二者功能不同，设计目的不同，不重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_standard_io",
+      "node_id_2": "concept_standard_io_library",
+      "canonical_id": "concept_standard_io",
+      "reason": "两者均指C语言中用于文件和控制台I/O操作的高层抽象函数（如fopen、fread等），定义完全相同，且别名高度重叠。'standard io library' 是 'standard io' 的同义表达，属于同一概念的不同命名方式。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_program_direct_control",
+      "node_id_2": "concept_program_direct_io",
+      "canonical_id": "concept_program_direct_io",
+      "reason": "两者均指同一I/O控制方式：CPU通过轮询设备状态寄存器来判断外设就绪情况，别名中也包含'轮询'、'忙等待'等重叠术语。'程序直接控制I/O'与'程序直接控制I/O方式'为同义表达，语义完全重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_device_independent_io_layer",
+      "node_id_2": "concept_device_independent_io",
+      "canonical_id": "concept_device_independent_io",
+      "reason": "两者描述的是内核I/O软件的同一层次：提供统一接口以屏蔽设备差异。'层'与'软件'在上下文中可互换，定义内容高度重合，且别名中均有'设备无关I/O层'和'通用I/O软件'等交叉表述。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_interrupt_service_layer",
+      "node_id_2": "concept_interrupt_service_program",
+      "canonical_id": "concept_interrupt_service_program",
+      "reason": "两者均指处理中断请求的软件程序。'中断服务程序层'是抽象层级概念，'中断服务程序'是具体实现，但定义中均强调其作为中断响应的执行主体，且'中断服务程序'更标准，应作为规范术语。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_save_context",
+      "node_id_2": "concept_preparation_phase",
+      "canonical_id": "concept_preparation_phase",
+      "reason": "两者描述的是中断服务程序中保存CPU现场的阶段。'保护现场'是'准备阶段'的核心任务，定义中明确指出准备阶段用于保存断点、现场和旧屏蔽字，因此语义高度重合，'准备阶段'为更完整的概念名称。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_restore_context",
+      "node_id_2": "concept_recovery_phase",
+      "canonical_id": "concept_recovery_phase",
+      "reason": "两者均指中断处理结束后恢复CPU状态的阶段。'恢复现场'是'恢复阶段'的主要功能，定义中明确说明恢复阶段用于恢复现场和旧屏蔽字，因此为同一概念的不同表述。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "concept_stack",
+      "node_id_2": "concept_stack",
+      "canonical_id": "concept_stack",
+      "reason": "该节点别名包括 '堆栈' 和 '先进后出结构'，其中 '堆栈' 是 '栈' 的中文异体写法，'先进后出结构' 是其核心特征描述，三者语义完全一致，属于同一概念的不同表达方式。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_if_else_statement",
+      "node_id_2": "concept_if_else_statement",
+      "canonical_id": "concept_if_else_statement",
+      "reason": "别名 '条件分支语句' 和 '选择结构' 均为 'if~else 语句' 的同义词，指代同一控制结构，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_conditional_expression",
+      "node_id_2": "concept_conditional_expression",
+      "canonical_id": "concept_conditional_expression",
+      "reason": "别名 '三目运算符' 和 '?: 表达式' 均为 C 语言中唯一三目运算符的等价称呼，语义完全相同。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_switch_statement",
+      "node_id_2": "concept_switch_statement",
+      "canonical_id": "concept_switch_statement",
+      "reason": "别名 '多分支选择语句' 与 'switch 语句' 指代同一流程控制结构，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_io_transfer",
+      "node_id_2": "concept_io_transfer",
+      "canonical_id": "concept_io_transfer",
+      "reason": "别名 'I/O传送指令' 与 '输入输出指令' 为同一概念的中英文缩写与全称关系，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_flag_transfer",
+      "node_id_2": "concept_flag_transfer",
+      "canonical_id": "concept_flag_transfer",
+      "reason": "别名 '标志寄存器操作指令' 与 '标志传送指令' 指代同一类指令，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_control_transfer",
+      "node_id_2": "concept_control_transfer",
+      "canonical_id": "concept_control_transfer",
+      "reason": "别名 '程序跳转' 和 '指令转移' 均为 '控制转移' 的同义表达，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_segment_inter",
+      "node_id_2": "concept_segment_inter",
+      "canonical_id": "concept_segment_inter",
+      "reason": "别名 '远转移' 和 'FAR转移' 是 '段间转移' 的标准术语，语义完全一致。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_mmx_register",
+      "node_id_2": "concept_mmx_register",
+      "canonical_id": "concept_mmx_register",
+      "reason": "别名 'MMX单元' 和 '多媒体寄存器' 均为 'MMX寄存器' 的同义词，指代同一硬件组件。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "concept_main_memory",
+      "node_id_2": "concept_volatile_memory",
+      "canonical_id": "concept_main_memory",
+      "reason": "主存储器（Main Memory）是易失性存储器的一种具体实现，而易失性存储器（Volatile Memory）是一个更广义的概念。两者在语义上存在包含关系，但并非完全重复。然而，'主存'与'RAM'、'内存'等术语在实际使用中常被混用，且'主存'的别名列表中明确包含'RAM'和'内存'，而'易失性存储器'的定义也明确指出包括RAM和Cache。因此，'主存储器'与'易失性存储器'在上下文中高度重合，尤其在讨论计算机存储体系时，'主存储器'通常就是指易失性存储器中的核心部分。考虑到'主存储器'是更具体、更标准的术语，应作为规范节点。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "principle_stored_program_architecture",
+      "node_id_2": "principle_stored_program",
+      "canonical_id": "principle_stored_program_architecture",
+      "reason": "两者均描述冯·诺依曼结构的核心思想，即程序与数据统一存储于主存中，由控制器自动取指执行。'存储程序架构'是更标准、更完整的术语，而'存储程序原理'是其同义表达，语义完全重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "principle_positional_notation",
+      "node_id_2": "principle_rollover",
+      "canonical_id": "principle_positional_notation",
+      "reason": "'位置计数原理'是进位制的基本原理，而'逢R进一规则'是其具体表现形式。两者在数学上等价，'逢R进一'是'位置计数'的直接体现。因此，二者为同一概念的不同表述，属于语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "principle_abstraction",
+      "node_id_2": "principle_simplicity_through_illusion",
+      "canonical_id": "principle_abstraction",
+      "reason": "两者均描述操作系统通过抽象（如虚拟地址空间、进程隔离）制造‘独占资源’的错觉，从而简化编程与系统管理。'通过错觉实现简化'是'抽象原理'的具体体现或同义表达，语义高度重合。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "principle_exception_handling",
+      "node_id_2": "principle_exceptional_control_flow",
+      "canonical_id": "principle_exception_handling",
+      "reason": "'异常处理机制'与'异常控制流'在核心内容上一致：都指代由异常或中断引起的程序执行流程突变，以及系统为此设计的响应机制。后者是前者的具体表现形式，属于同一概念的不同表述。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "principle_buffering_optimization",
+      "node_id_2": "principle_data_buffering",
+      "canonical_id": "principle_buffering_optimization",
+      "reason": "两者均围绕‘缓冲’这一核心思想展开。前者强调通过缓冲减少系统调用和上下文切换开销，后者强调通过缓冲寄存器缓解主机与外设速度差异。虽然应用场景略有不同（I/O优化 vs 硬件层面），但本质都是利用缓冲来协调异步或速度不匹配的问题，语义高度重复。",
+      "confidence": 0.85
+    },
+    {
+      "node_id_1": "hw_memory",
+      "node_id_2": "hw_memory",
+      "canonical_id": "hw_memory",
+      "reason": "节点 'hw_memory' 的别名包含 '内存'，而 '内存' 是 '主存' 的常见同义词，因此 '主存' 与 '内存' 语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_bus",
+      "node_id_2": "hw_bus",
+      "canonical_id": "hw_bus",
+      "reason": "节点 'hw_bus' 的别名包含 'Bus'，而 'Bus' 是 '总线' 的英文标准术语，因此 '总线' 与 'Bus' 语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_main_memory",
+      "node_id_2": "hardware_memory",
+      "canonical_id": "hw_main_memory",
+      "reason": "主存与存储器是同一概念的不同表述，'主存'是'存储器'的子集或特指，但在此上下文中作为硬件节点，两者语义高度重合，且'主存'更具体、更常用，因此'hardware_memory'应视为重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "hw_io_device",
+      "node_id_2": "hardware_io_device",
+      "canonical_id": "hw_io_device",
+      "reason": "输入输出设备与设备控制器在功能上相关，但此处'hw_io_device'和'hardware_io_device'名称一致，类型相同，且'hw_io_device'为标准缩写形式，'hardware_io_device'为全称表达，属于同一概念的不同命名方式，应判定为重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_register_bank",
+      "node_id_2": "hardware_register_file",
+      "canonical_id": "hw_register_bank",
+      "reason": "'寄存器堆'与'寄存器文件'是计算机体系结构中同一概念的两种中文表达，术语可互换，'register bank'是标准术语，'register file'为同义词，因此二者为语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_disk",
+      "node_id_2": "hardware_disk",
+      "canonical_id": "hw_disk",
+      "reason": "'磁盘'与'硬盘'在本列表中均指代同一类存储设备，且'hw_disk'为简洁标准命名，'hardware_disk'为冗余扩展名，属于同一实体的不同命名形式，判定为重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_fpu",
+      "node_id_2": "hardware_fpu",
+      "canonical_id": "hw_fpu",
+      "reason": "两者均指代浮点运算单元，'FPU' 是 'Floating Point Unit' 的缩写，'hardware_fpu' 是同一概念的同义表达，仅命名方式不同，属于同一硬件组件的重复节点。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_esp",
+      "node_id_2": "hw_register_esp",
+      "canonical_id": "hw_esp",
+      "reason": "hw_esp 的名称为 'ESP'，而 hw_register_esp 的名称为 'ESP 栈指针'，二者指向同一硬件寄存器。'ESP' 是标准缩写，'ESP 栈指针' 是其描述性名称，语义完全重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_ebp",
+      "node_id_2": "hw_register_ebp",
+      "canonical_id": "hw_ebp",
+      "reason": "hw_ebp 的名称为 'EBP'，而 hw_register_ebp 的名称为 'EBP 栈帧基址'，二者均指代同一个寄存器。'EBP' 是标准标识符，'EBP 栈帧基址' 是其功能描述，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_flags_register",
+      "node_id_2": "hw_eflags",
+      "canonical_id": "hw_eflags",
+      "reason": "hw_eflags 的名称为 'EFLAGS'，hw_flags_register 的名称为 '标志寄存器'，二者均指代 x86 架构中的标志寄存器。EFLAGS 是标准名称，'标志寄存器' 是其通用中文表达，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_flags_register",
+      "node_id_2": "hw_flag_register",
+      "canonical_id": "hw_flags_register",
+      "reason": "hw_flags_register 和 hw_flag_register 均为 '标志寄存器' 的不同拼写形式，仅在复数/单数上略有差异，但指向同一概念。'flags_register' 更符合命名规范，应作为标准。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_sse_unit",
+      "node_id_2": "hw_sse",
+      "canonical_id": "hw_sse",
+      "reason": "hw_sse 的名称为 'SSE'，hw_sse_unit 的名称为 'SSE Unit'，二者均指代 SSE（Streaming SIMD Extensions）指令集及其硬件单元。'SSE' 是标准缩写，'SSE Unit' 是其扩展描述，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_x86_64",
+      "node_id_2": "hw_amd64",
+      "canonical_id": "hw_x86_64",
+      "reason": "x86-64 和 AMD64 指的是同一架构标准，AMD64 是由 AMD 提出的 64 位扩展，后来被 Intel 采用并称为 Intel64，但两者在语义上完全等价，是同一技术的不同命名方式。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_intel64",
+      "node_id_2": "hw_x86_64",
+      "canonical_id": "hw_x86_64",
+      "reason": "Intel64 是 Intel 对 x86-64 架构的称呼，与 x86-64 为同一概念的不同厂商命名，语义完全重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_amd64",
+      "node_id_2": "hw_intel64",
+      "canonical_id": "hw_x86_64",
+      "reason": "AMD64 和 Intel64 均指代 x86-64 架构，是同一技术在不同厂商下的命名，属于语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_cs",
+      "node_id_2": "hw_code_segment",
+      "canonical_id": "hw_code_segment",
+      "reason": "CS 是代码段寄存器的缩写，而代码段（Code Segment）是其对应的概念。CS 是代码段的硬件表示，二者是同一概念的不同表达形式，属于语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_address_bus",
+      "node_id_2": "hw_address_line",
+      "canonical_id": "hw_address_bus",
+      "reason": "两者均指计算机中用于传输地址信号的物理线路，'地址线'是'地址总线'的同义表达，属于同一概念的不同说法。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_data_bus",
+      "node_id_2": "hw_data_line",
+      "canonical_id": "hw_data_bus",
+      "reason": "'数据线'是'数据总线'的简称或口语化表达，二者在语义上完全等价，均指传输数据信号的线路。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_control_bus",
+      "node_id_2": "hw_control_line",
+      "canonical_id": "hw_control_bus",
+      "reason": "'控制线'是'控制总线'的非正式说法，两者描述的是同一类用于传输控制信号的硬件线路。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "hw_flash",
+      "node_id_2": "hw_flash_memory_chip",
+      "canonical_id": "hw_flash",
+      "reason": "'Flash存储器'是泛指该类存储设备，而'Flash存储器芯片'是其具体实现形式。但在此上下文中，两者被当作同义词使用，且'Flash存储器'更通用、更规范，因此应视为重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "hw_l3_cache",
+      "node_id_2": "hw_cache_memory",
+      "canonical_id": "hw_l3_cache",
+      "reason": "L3 Cache 和 高速缓存RAM 均指代高速缓存存储器，属于同一类硬件组件。虽然 L3 Cache 是特定层级的缓存，而 高速缓存RAM 是更泛化的描述，但在上下文中二者语义高度重合，且都属于 CPU 缓存体系，可视为重复表达。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "code_hello_world",
+      "node_id_2": "code_hello_world_c",
+      "canonical_id": "code_hello_world_c",
+      "reason": "两者均表示Hello World程序，'Hello World'是通用名称，'Hello World in C'是具体实现语言版本。语义上完全重复，且后者更具体、更标准。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "code_hello_c",
+      "node_id_2": "code_hello_world_c",
+      "canonical_id": "code_hello_world_c",
+      "reason": "'hello.c 源程序代码'与'Hello World in C'均为C语言实现的Hello World程序，属于同一代码片段的不同命名方式，语义完全重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "code_ascii_decimal_example",
+      "node_id_2": "code_snippet_ascii_example",
+      "canonical_id": "code_ascii_decimal_example",
+      "reason": "两个节点名称均指向使用ASCII码表示十进制数的示例，语义完全相同，仅命名略有差异。'code_snippet_ascii_example' 是更泛化的命名，而 'code_ascii_decimal_example' 更具体且准确，因此选择后者作为标准。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "code_at_t_format",
+      "node_id_2": "code_example_att_format",
+      "canonical_id": "code_example_att_format",
+      "reason": "两者均描述AT&T格式的汇编指令，'AT&T格式 movw 4096(%ebp,%esi,4), %eax' 是 'AT&T格式汇编指令' 的具体示例，语义上属于同一概念的不同表达，后者更通用，前者是前者的具体实例。因此构成语义重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "code_mov_instruction",
+      "node_id_2": "code_at_t_format",
+      "canonical_id": "code_mov_instruction",
+      "reason": "'mov eax, [ebp + esi * 4 + 1000H]' 是 Intel 格式指令，而 'AT&T格式 movw 4096(%ebp,%esi,4), %eax' 是其对应 AT&T 格式的等价表达。两者描述的是同一指令在不同语法格式下的写法，属于同一条指令的两种表示形式，语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "code_example_intel_to_att",
+      "node_id_2": "code_at_t_format",
+      "canonical_id": "code_example_intel_to_att",
+      "reason": "'Intel格式转AT&T格式示例' 与 'AT&T格式汇编指令' 之间存在强相关性，前者是转换过程的示例，后者是结果展示。但因后者是前者的直接输出，且名称中明确为‘示例’，二者在内容上高度重合，可视为同一概念的不同表述，存在语义重复。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "code_at_t_format_example_1",
+      "node_id_2": "code_at_t_format_example_2",
+      "canonical_id": "code_at_t_format_example_1",
+      "reason": "两者均为AT&T格式汇编指令示例，名称仅数字编号不同，内容应为同一主题的多个示例片段，属于同一类代码示例的拆分，语义重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "code_at_t_format_example_2",
+      "node_id_2": "code_at_t_format_example_3",
+      "canonical_id": "code_at_t_format_example_2",
+      "reason": "名称仅为示例编号不同，均属于AT&T格式汇编指令示例，内容上应为同一系列的连续示例，语义重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "code_at_t_format_example_3",
+      "node_id_2": "code_at_t_format_example_4",
+      "canonical_id": "code_at_t_format_example_3",
+      "reason": "名称仅编号递增，内容应为AT&T格式汇编指令的多个示例，属于同一主题的重复拆分，语义重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "code_at_t_format_example_4",
+      "node_id_2": "code_at_t_format_example_5",
+      "canonical_id": "code_at_t_format_example_4",
+      "reason": "名称差异仅为示例编号，内容上属于AT&T格式汇编指令的系列示例，语义重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "code_at_t_format_example_5",
+      "node_id_2": "code_at_t_format_example_6",
+      "canonical_id": "code_at_t_format_example_5",
+      "reason": "名称仅编号变化，内容为AT&T格式汇编指令的连续示例，语义重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "code_at_t_format_example_6",
+      "node_id_2": "code_at_t_format_example_7",
+      "canonical_id": "code_at_t_format_example_6",
+      "reason": "名称仅编号不同，内容为AT&T格式汇编指令的多个示例，属于同一类代码片段的重复拆分，语义重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "code_at_t_format_example",
+      "node_id_2": "code_at_t_format_example_1",
+      "canonical_id": "code_at_t_format_example",
+      "reason": "code_at_t_format_example 是总称，而 code_at_t_format_example_1 是其具体实例，但二者在语义上高度重叠，且命名方式表明后者是前者的子集。若前者为通用示例，后者为具体实现，则存在语义重复风险；但考虑到命名结构（带编号）更倾向于独立示例，此处判断为重复可能性高。",
+      "confidence": 0.8
+    },
+    {
+      "node_id_1": "code_sum_array_rows",
+      "node_id_2": "code_sum_array_a",
+      "canonical_id": "code_sum_array_a",
+      "reason": "两者均表示按行遍历数组求和的程序段，'code_sum_array_rows' 是简略命名，'code_sum_array_a' 是更完整、规范的命名，语义完全一致。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "code_sum_array_cols",
+      "node_id_2": "code_sum_array_b",
+      "canonical_id": "code_sum_array_b",
+      "reason": "两者均表示按列遍历数组求和的程序段，'code_sum_array_cols' 是简略命名，'code_sum_array_b' 是更完整、规范的命名，语义完全一致。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_movq",
+      "node_id_2": "instruction_movq",
+      "canonical_id": "inst_movq",
+      "reason": "两者均为 'movq' 指令，仅 ID 前缀不同（inst_ vs instruction_），语义完全相同，属于同一指令的重复表示。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_add",
+      "node_id_2": "instruction_add",
+      "canonical_id": "inst_add",
+      "reason": "两者均为 'add' 指令，ID 前缀不同但名称和类型一致，是同一指令的重复节点。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_sub",
+      "node_id_2": "instruction_sub",
+      "canonical_id": "inst_sub",
+      "reason": "两者均为 'sub' 指令，ID 前缀不同但名称和类型一致，属于同一指令的重复表示。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_or",
+      "node_id_2": "inst_bitwise_or",
+      "canonical_id": "inst_bitwise_or",
+      "reason": "两者均表示按位或操作，'or' 是简写形式，'按位或' 是完整描述，语义完全相同。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_and",
+      "node_id_2": "inst_bitwise_and",
+      "canonical_id": "inst_bitwise_and",
+      "reason": "两者均表示按位与操作，'and' 是简写形式，'按位与' 是完整描述，语义完全相同。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_shift_left",
+      "node_id_2": "instruction_left_shift",
+      "canonical_id": "instruction_left_shift",
+      "reason": "'shift left' 和 '<<' 均表示左移操作，且 'instruction_left_shift' 使用标准符号 '>>' 表示，而 'inst_shift_left' 是其文字描述，语义一致。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_shift_right",
+      "node_id_2": "instruction_right_shift",
+      "canonical_id": "instruction_right_shift",
+      "reason": "'shift right' 和 '>>' 均表示右移操作，'instruction_right_shift' 使用标准符号，'inst_shift_right' 是其文字描述，语义一致。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_memory_read",
+      "node_id_2": "instruction_read",
+      "canonical_id": "inst_memory_read",
+      "reason": "‘存储器读’和‘read’在功能上完全一致，均为从内存中读取数据的操作。'instruction_read' 是通用名称，'inst_memory_read' 更具体，且命名风格一致。因此二者为语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_memory_write",
+      "node_id_2": "instruction_write",
+      "canonical_id": "inst_memory_write",
+      "reason": "‘存储器写’和‘write’在功能上完全一致，均为向内存写入数据的操作。'instruction_write' 是通用名称，'inst_memory_write' 更具体，命名风格一致。因此二者为语义重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_memory_read",
+      "node_id_2": "instruction_memr",
+      "canonical_id": "inst_memory_read",
+      "reason": "‘存储器读’和‘MemR’是同一操作的不同表达方式。'MemR' 是 'Memory Read' 的缩写，与 'inst_memory_read' 语义完全相同，属于缩写与全称的关系。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "inst_memory_write",
+      "node_id_2": "instruction_memw",
+      "canonical_id": "inst_memory_write",
+      "reason": "‘存储器写’和‘MemW’是同一操作的不同表达方式。'MemW' 是 'Memory Write' 的缩写，与 'inst_memory_write' 语义完全相同，属于缩写与全称的关系。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "instruction_syscall",
+      "node_id_2": "inst_syscall",
+      "canonical_id": "instruction_syscall",
+      "reason": "两者均表示系统调用指令，'syscall' 是 x86 汇编中的具体指令名称，而 '系统调用' 是其中文语义表达，属于同一概念的中英文对应，且类型均为 Instruction，语义完全重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "instruction_int_0x80",
+      "node_id_2": "inst_int_0x80",
+      "canonical_id": "instruction_int_0x80",
+      "reason": "'int $0x80' 是 Linux 系统调用的经典入口方式，'inst_int_0x80' 与 'instruction_int_0x80' 仅 ID 前缀不同，但名称和类型完全一致，属于同一指令的不同命名变体，应视为重复。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "instruction_sysenter",
+      "node_id_2": "inst_sysenter",
+      "canonical_id": "instruction_sysenter",
+      "reason": "'sysenter' 是 x86 中用于快速进入内核的指令，'inst_sysenter' 与 'instruction_sysenter' 仅前缀不同，名称、类型一致，属于同一指令的重复表示。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "instruction_creat",
+      "node_id_2": "inst_create",
+      "canonical_id": "instruction_creat",
+      "reason": "'creat' 是 Unix/Linux 中创建文件的系统调用，'create' 是其通用名称。在上下文中，'inst_create' 和 'instruction_creat' 表示同一系统调用功能，且类型为 Instruction，应视为语义重复。",
+      "confidence": 0.9
+    },
+    {
+      "node_id_1": "instruction_fopen",
+      "node_id_2": "inst_fopen",
+      "canonical_id": "instruction_fopen",
+      "reason": "两者均为文件打开操作，名称相同（fopen），仅前缀不同（instruction_ vs inst_），属于同一语义的重复节点。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "instruction_getc",
+      "node_id_2": "inst_getc",
+      "canonical_id": "instruction_getc",
+      "reason": "两者均为字符读取操作，名称相同（getc），仅前缀不同（instruction_ vs inst_），属于同一语义的重复节点。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "instruction_putc",
+      "node_id_2": "inst_putc",
+      "canonical_id": "instruction_putc",
+      "reason": "两者均为字符写入操作，名称相同（putc），仅前缀不同（instruction_ vs inst_），属于同一语义的重复节点。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "instruction_fread",
+      "node_id_2": "inst_fread",
+      "canonical_id": "instruction_fread",
+      "reason": "两者均为文件读取操作，名称相同（fread），仅前缀不同（instruction_ vs inst_），属于同一语义的重复节点。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "instruction_fwrite",
+      "node_id_2": "inst_fwrite",
+      "canonical_id": "instruction_fwrite",
+      "reason": "两者均为文件写入操作，名称相同（fwrite），仅前缀不同（instruction_ vs inst_），属于同一语义的重复节点。",
+      "confidence": 1.0
+    },
+    {
+      "node_id_1": "instruction_fclose",
+      "node_id_2": "inst_fclose",
+      "canonical_id": "instruction_fclose",
+      "reason": "两者均为文件关闭操作，名称相同（fclose），仅前缀不同（instruction_ vs inst_），属于同一语义的重复节点。",
+      "confidence": 1.0
+    }
+  ]
+}

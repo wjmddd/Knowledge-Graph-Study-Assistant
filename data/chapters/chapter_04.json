@@ -1,0 +1,5401 @@
+{
+  "metadata": {
+    "chapter_name": "第四章",
+    "chapter_number": 4,
+    "chunk_count": 20,
+    "node_count": 290,
+    "relationship_count": 516
+  },
+  "nodes": [
+    {
+      "id": "concept_linking",
+      "label": "Concept",
+      "name": "程序的链接",
+      "alias": [],
+      "definition": "将一个程序的所有关联模块对应的目标代码文件结合在一起，以形成一个可执行文件的过程。"
+    },
+    {
+      "id": "concept_static_linking",
+      "label": "Concept",
+      "name": "静态链接",
+      "alias": [],
+      "definition": "在程序编译阶段将所有目标文件和库文件合并成一个可执行文件的过程。"
+    },
+    {
+      "id": "concept_object_file",
+      "label": "Concept",
+      "name": "目标代码文件",
+      "alias": [],
+      "definition": "由源程序经过编译或汇编后生成的中间文件，包含指令、数据和符号信息。"
+    },
+    {
+      "id": "concept_executable_file",
+      "label": "Concept",
+      "name": "可执行文件",
+      "alias": [],
+      "definition": "经过链接后形成的、可被加载到存储器中直接执行的程序文件。"
+    },
+    {
+      "id": "concept_symbol_table",
+      "label": "Concept",
+      "name": "符号表",
+      "alias": [],
+      "definition": "目标文件中记录函数名、变量名及其地址信息的数据结构。"
+    },
+    {
+      "id": "concept_relocation",
+      "label": "Concept",
+      "name": "重定位",
+      "alias": [],
+      "definition": "在链接过程中调整目标代码中地址引用，使其适应最终可执行文件的内存布局。"
+    },
+    {
+      "id": "concept_memory_image",
+      "label": "Concept",
+      "name": "存储器映像",
+      "alias": [],
+      "definition": "可执行文件在内存中的组织结构，包括代码段、数据段、堆、栈等区域。"
+    },
+    {
+      "id": "concept_dynamic_linking",
+      "label": "Concept",
+      "name": "动态链接",
+      "alias": [],
+      "definition": "在程序运行时才进行符号解析和链接的过程，支持共享库的使用。"
+    },
+    {
+      "id": "hw_linker",
+      "label": "Hardware",
+      "name": "链接器",
+      "hw_type": "软件工具"
+    },
+    {
+      "id": "inst_link",
+      "label": "Instruction",
+      "name": "link",
+      "syntax": "link [options] file1.o file2.o ..."
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中对内存访问表现出时间局部性和空间局部性，是缓存设计的基础。"
+    },
+    {
+      "id": "concept_preprocessing",
+      "label": "Concept",
+      "name": "预处理",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_compilation",
+      "label": "Concept",
+      "name": "编译",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_assembly",
+      "label": "Concept",
+      "name": "汇编",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_linking",
+      "label": "Concept",
+      "name": "链接",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_relocatable_object_file",
+      "label": "Concept",
+      "name": "可重定位目标文件",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_executable_object_file",
+      "label": "Concept",
+      "name": "可执行目标文件",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "hw_gcc",
+      "label": "Hardware",
+      "name": "GCC",
+      "hw_type": "编译器"
+    },
+    {
+      "id": "hw_visual_c",
+      "label": "Hardware",
+      "name": "VC",
+      "hw_type": "编译器"
+    },
+    {
+      "id": "code_gcc_obj",
+      "label": "CodeSnippet",
+      "name": "GCC生成的可重定位目标文件",
+      "language": "C",
+      "content": ".o"
+    },
+    {
+      "id": "code_vc_obj",
+      "label": "CodeSnippet",
+      "name": "VC生成的可重定位目标文件",
+      "language": "C",
+      "content": ".obj"
+    },
+    {
+      "id": "concept_preprocessing",
+      "label": "Concept",
+      "name": "预处理",
+      "alias": [],
+      "definition": "C语言程序处理的第一步，由cpp工具完成，主要处理头文件包含、宏定义扩展、条件编译等"
+    },
+    {
+      "id": "concept_compilation",
+      "label": "Concept",
+      "name": "编译",
+      "alias": [],
+      "definition": "将C语言源程序翻译为汇编语言代码的过程，包括词法分析、语法分析、代码优化和存储分配"
+    },
+    {
+      "id": "concept_assembly",
+      "label": "Concept",
+      "name": "汇编",
+      "alias": [],
+      "definition": "将汇编语言代码转换为机器语言代码的过程，生成可重定位目标文件"
+    },
+    {
+      "id": "hw_cpp",
+      "label": "Hardware",
+      "name": "cpp",
+      "hw_type": "预处理器"
+    },
+    {
+      "id": "hw_ccl",
+      "label": "Hardware",
+      "name": "ccl",
+      "hw_type": "编译器"
+    },
+    {
+      "id": "hw_as",
+      "label": "Hardware",
+      "name": "as",
+      "hw_type": "汇编器"
+    },
+    {
+      "id": "inst_gcc_e",
+      "label": "Instruction",
+      "name": "gcc -E",
+      "syntax": "gcc -E <source> -o <output>"
+    },
+    {
+      "id": "inst_cpp",
+      "label": "Instruction",
+      "name": "cpp",
+      "syntax": "cpp <source> -o <output>"
+    },
+    {
+      "id": "inst_gcc_s",
+      "label": "Instruction",
+      "name": "gcc -S",
+      "syntax": "gcc -S <source> -o <output>"
+    },
+    {
+      "id": "inst_ccl",
+      "label": "Instruction",
+      "name": "ccl",
+      "syntax": "ccl <source> -o <output>"
+    },
+    {
+      "id": "inst_gcc_c",
+      "label": "Instruction",
+      "name": "gcc -c",
+      "syntax": "gcc -c <source> -o <output>"
+    },
+    {
+      "id": "inst_as",
+      "label": "Instruction",
+      "name": "as",
+      "syntax": "as <source> -o <output>"
+    },
+    {
+      "id": "code_main_c",
+      "label": "CodeSnippet",
+      "name": "main.c",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "code_main_i",
+      "label": "CodeSnippet",
+      "name": "main.i",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "code_main_s",
+      "label": "CodeSnippet",
+      "name": "main.s",
+      "language": "Assembly",
+      "content": ".file \"main.c\"\n.text\n.globl main\n.type main, @function\nmain:\n    pushq %rbp\n    movq %rsp, %rbp\n    movl $0, %eax\n    popq %rbp\n    ret"
+    },
+    {
+      "id": "code_main_o",
+      "label": "CodeSnippet",
+      "name": "main.o",
+      "language": "Machine Code",
+      "content": "[二进制机器码，不可读]"
+    },
+    {
+      "id": "principle_stepwise_processing",
+      "label": "Principle",
+      "name": "分步处理原则",
+      "description": "程序处理过程可分解为多个阶段（预处理、编译、汇编），每个阶段由专用工具完成，便于调试与维护"
+    },
+    {
+      "id": "concept_linking",
+      "label": "Concept",
+      "name": "链接",
+      "alias": [
+        "静态链接",
+        "目标文件链接"
+      ],
+      "definition": "将多个可重定位目标文件组合成一个可执行文件的过程，主要完成符号解析和重定位任务。"
+    },
+    {
+      "id": "concept_relocatable_object_file",
+      "label": "Concept",
+      "name": "可重定位目标文件",
+      "alias": [
+        "重定位目标文件",
+        "模块目标文件"
+      ],
+      "definition": "由单个源文件编译生成的二进制文件，代码和数据从地址0开始，包含节（section）如.text、.data、.bss等，需通过链接器合并为可执行文件。"
+    },
+    {
+      "id": "concept_executable_object_file",
+      "label": "Concept",
+      "name": "可执行目标文件",
+      "alias": [
+        "可执行文件",
+        "最终目标文件"
+      ],
+      "definition": "由多个可重定位目标文件链接后生成的二进制文件，代码和数据位于操作系统规定的虚拟地址空间中，可以直接加载运行。"
+    },
+    {
+      "id": "concept_symbol_resolution",
+      "label": "Concept",
+      "name": "符号解析",
+      "alias": [
+        "符号绑定",
+        "符号关联"
+      ],
+      "definition": "在链接阶段将每个符号引用与一个确定的符号定义建立关联的过程，例如将main.o中对add的引用与test.o中add的定义匹配。"
+    },
+    {
+      "id": "concept_relocation",
+      "label": "Concept",
+      "name": "重定位",
+      "alias": [
+        "地址重分配",
+        "位置调整"
+      ],
+      "definition": "链接器将不同模块的节合并，并根据操作系统虚拟地址空间重新确定代码和数据的起始地址，同时更新指令中对符号的引用地址。"
+    },
+    {
+      "id": "concept_section",
+      "label": "Concept",
+      "name": "节",
+      "alias": [
+        "段",
+        "代码节",
+        "数据节"
+      ],
+      "definition": "目标文件中按功能划分的二进制区域，如.code（.text）、.rodata、.data、.bss等，用于组织代码、只读数据、已初始化数据和未初始化数据。"
+    },
+    {
+      "id": "concept_symbol_table",
+      "label": "Concept",
+      "name": "符号表",
+      "alias": [
+        "符号信息表",
+        "符号数据库"
+      ],
+      "definition": "可重定位目标文件中存储所有符号（变量名、函数名）及其属性（名称、位置、大小）的结构化数组，用于链接时进行符号解析。"
+    },
+    {
+      "id": "hw_linker",
+      "label": "Hardware",
+      "name": "链接器",
+      "hw_type": "软件工具"
+    },
+    {
+      "id": "inst_gcc",
+      "label": "Instruction",
+      "name": "gcc",
+      "syntax": "gcc -o output_file input_files..."
+    },
+    {
+      "id": "inst_ld",
+      "label": "Instruction",
+      "name": "ld",
+      "syntax": "ld -o output_file input_files..."
+    },
+    {
+      "id": "inst_objdump_d",
+      "label": "Instruction",
+      "name": "objdump -d",
+      "syntax": "objdump -d filename"
+    },
+    {
+      "id": "code_test_o_disassembly",
+      "label": "CodeSnippet",
+      "name": "test.o 反汇编输出",
+      "language": "asm",
+      "content": "0000000 < add >:\n0: 55 push %ebp\n1: 89 e5 mov %esp, %ebp\n3: 83 ec 10 sub $0x10, %esp\n6: 8b 45 0c mov 0xc(%ebp), %eax\n9: 8b 55 08 mov 0x8(%ebp), %edx\nc: 8d 04 02 lea (%edx, %eax, 1), %eax\nf: 89 45 fc mov %eax, -0x4(%ebp)\n12: 8b 45 fc mov -0x4(%ebp), %eax\n15: c9 leave\n16: c3 ret"
+    },
+    {
+      "id": "code_test_disassembly",
+      "label": "CodeSnippet",
+      "name": "test 反汇编输出",
+      "language": "asm",
+      "content": "080483d4 <add>:\n80483d4: 55 push %ebp\n80483d5: 89 e5 mov %esp, %ebp\n80483d7: 83 ec 10 sub $0x10, %esp\n80483da: 8b 45 0c mov 0xc(%ebp), %eax\n80483dd: 8b 55 08 mov 0x8(%ebp), %edx\n80483e0: 8d 04 02 lea (%edx, %eax, 1), %eax\n80483e3: 89 45 fc mov %eax, -0x4(%ebp)\n80483e6: 8b 45 fc mov -0x4(%ebp), %eax\n80483e9: c9 leave\n80483ea: c3 ret"
+    },
+    {
+      "id": "principle_modularity",
+      "label": "Principle",
+      "name": "模块化",
+      "description": "程序被划分为多个独立模块，便于分工协作开发，支持公共函数库的复用，是链接的重要优势之一。"
+    },
+    {
+      "id": "principle_efficiency",
+      "label": "Principle",
+      "name": "效率高",
+      "description": "通过分模块编译和链接，仅需重新编译修改部分，提升开发效率；运行时只需加载调用的函数代码，节省内存空间。"
+    },
+    {
+      "id": "concept_object_code",
+      "label": "Concept",
+      "name": "目标代码",
+      "alias": [],
+      "definition": "指编译器或汇编器处理源代码后所生成的机器语言目标代码。"
+    },
+    {
+      "id": "concept_object_file",
+      "label": "Concept",
+      "name": "目标文件",
+      "alias": [],
+      "definition": "指存放目标代码的文件。"
+    },
+    {
+      "id": "concept_elf_format",
+      "label": "Concept",
+      "name": "ELF目标文件格式",
+      "alias": [
+        "Executable and Linkable Format"
+      ],
+      "definition": "一种标准的二进制文件格式，用于可执行文件、可重定位目标文件和共享库，广泛应用于现代UNIX系统如Linux和BSD。"
+    },
+    {
+      "id": "concept_relocatable_object_file",
+      "label": "Concept",
+      "name": "可重定位目标文件",
+      "alias": [
+        "Relocatable Object File"
+      ],
+      "definition": "由编译器生成的中间目标文件，包含机器代码、数据以及重定位信息，需经过链接过程才能生成可执行文件。"
+    },
+    {
+      "id": "concept_executable_object_file",
+      "label": "Concept",
+      "name": "可执行目标文件",
+      "alias": [
+        "Executable Object File"
+      ],
+      "definition": "经过链接后生成的最终目标文件，可以直接被操作系统加载并执行，包含程序头表和执行视图结构。"
+    },
+    {
+      "id": "concept_section",
+      "label": "Concept",
+      "name": "节（Section）",
+      "alias": [
+        "Section"
+      ],
+      "definition": "ELF文件中具有相同特征的最小可处理信息单位，用于描述不同类型的数据或代码，如.text、.data、.bss等。"
+    },
+    {
+      "id": "concept_segment",
+      "label": "Concept",
+      "name": "段（Segment）",
+      "alias": [
+        "Segment"
+      ],
+      "definition": "在执行视图中，表示内存映像中的一个连续区域，多个节可以合并映射到同一个段中，如可读可写数据段。"
+    },
+    {
+      "id": "concept_linking_view",
+      "label": "Concept",
+      "name": "链接视图",
+      "alias": [
+        "Linking View"
+      ],
+      "definition": "ELF文件的一种组织视角，主要由节（section）构成，用于支持链接器进行符号解析和重定位操作。"
+    },
+    {
+      "id": "concept_execution_view",
+      "label": "Concept",
+      "name": "执行视图",
+      "alias": [
+        "Execution View"
+      ],
+      "definition": "ELF文件的另一种组织视角，主要由段（segment）构成，描述了如何将文件内容映射到进程的虚拟地址空间中。"
+    },
+    {
+      "id": "concept_program_header_table",
+      "label": "Concept",
+      "name": "程序头表",
+      "alias": [
+        "Program Header Table"
+      ],
+      "definition": "包含在可执行目标文件中的数据结构，指示系统如何创建进程的存储器映像，决定各段在内存中的加载方式。"
+    },
+    {
+      "id": "concept_section_header_table",
+      "label": "Concept",
+      "name": "节头表",
+      "alias": [
+        "Section Header Table"
+      ],
+      "definition": "包含在可重定位目标文件中的数据结构，记录每个节的名称、大小、偏移量等信息，供链接器使用。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在运行时倾向于访问最近使用过的数据或指令，是缓存设计的重要理论基础。"
+    },
+    {
+      "id": "inst_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq src, dst"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "Hello World 程序",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "concept_relocatable_object_file",
+      "label": "Concept",
+      "name": "可重定位目标文件",
+      "alias": [],
+      "definition": "一种包含代码和数据部分的目标文件，可以与其他可重定位目标文件链接，生成可执行文件、共享库或其他可重定位文件。"
+    },
+    {
+      "id": "concept_elf_format",
+      "label": "Concept",
+      "name": "ELF格式",
+      "alias": [
+        "Executable and Linkable Format"
+      ],
+      "definition": "一种用于可执行文件、可重定位目标文件和共享库的标准文件格式，广泛应用于类Unix系统中。"
+    },
+    {
+      "id": "hw_elf_header",
+      "label": "Hardware",
+      "name": "ELF头",
+      "hw_type": "文件结构"
+    },
+    {
+      "id": "hw_section_header_table",
+      "label": "Hardware",
+      "name": "节头表",
+      "hw_type": "文件结构"
+    },
+    {
+      "id": "hw_text_section",
+      "label": "Hardware",
+      "name": ".text节",
+      "hw_type": "节"
+    },
+    {
+      "id": "hw_rodata_section",
+      "label": "Hardware",
+      "name": ".rodata节",
+      "hw_type": "节"
+    },
+    {
+      "id": "hw_data_section",
+      "label": "Hardware",
+      "name": ".data节",
+      "hw_type": "节"
+    },
+    {
+      "id": "hw_bss_section",
+      "label": "Hardware",
+      "name": ".bss节",
+      "hw_type": "节"
+    },
+    {
+      "id": "hw_symtab_section",
+      "label": "Hardware",
+      "name": ".symtab节",
+      "hw_type": "节"
+    },
+    {
+      "id": "hw_rel_text_section",
+      "label": "Hardware",
+      "name": ".rel.text节",
+      "hw_type": "节"
+    },
+    {
+      "id": "hw_rel_data_section",
+      "label": "Hardware",
+      "name": ".rel.data节",
+      "hw_type": "节"
+    },
+    {
+      "id": "hw_debug_section",
+      "label": "Hardware",
+      "name": ".debug节",
+      "hw_type": "节"
+    },
+    {
+      "id": "hw_line_section",
+      "label": "Hardware",
+      "name": ".line节",
+      "hw_type": "节"
+    },
+    {
+      "id": "hw_strtab_section",
+      "label": "Hardware",
+      "name": ".strtab节",
+      "hw_type": "节"
+    },
+    {
+      "id": "principle_space_efficiency",
+      "label": "Principle",
+      "name": "空间利用率优化原理",
+      "description": "通过区分已初始化与未初始化的全局变量，避免在目标文件中为未初始化变量分配实际磁盘空间，从而提高存储空间利用率。"
+    },
+    {
+      "id": "code_elf_header_struct_32bit",
+      "label": "CodeSnippet",
+      "name": "32位ELF头数据结构定义",
+      "language": "C",
+      "content": "define EI_NIDENT 16\ntypedef struct {\nunsigned char e_identities[EI_NIDENT];\nElf32_Half e_type;\nElf32_Half e_machine;\nElf32Word e_version;\nElf32_Addr e_entry;\nElf32_Off e_phoff;\nElf32_Off e_shoff;\nElf32_Word e_flags;\nElf32_Half e_ehsize;\nElf32_Half e_phentsize;\nElf32_Half e_phnum;\nElf32_Half e_shentsize;\nElf32_Half e_shnum;\nElf32_Half e_shstrndx;\n} Elf32_Ehdr;"
+    },
+    {
+      "id": "concept_executable_object_file",
+      "label": "Concept",
+      "name": "可执行目标文件",
+      "alias": [],
+      "definition": "由链接器将若干个相互关联的可重定位目标文件组合生成，其代码和数据地址按操作系统规定的存储器映像确定，并经过重定位处理，映射到运行时的虚拟存储空间中。"
+    },
+    {
+      "id": "concept_relocatable_object_file",
+      "label": "Concept",
+      "name": "可重定位目标文件",
+      "alias": [],
+      "definition": "包含代码和数据，其地址相对于起始地址0定义，需通过链接器重定位后才能生成可执行文件。"
+    },
+    {
+      "id": "concept_elf_header",
+      "label": "Concept",
+      "name": "ELF头",
+      "alias": [],
+      "definition": "ELF文件格式的起始部分，描述文件的基本信息，如类型、入口点、程序头表位置等。"
+    },
+    {
+      "id": "concept_program_header_table",
+      "label": "Concept",
+      "name": "程序头表",
+      "alias": [
+        "段头表"
+      ],
+      "definition": "描述可执行目标文件中各个连续片段（段）在文件中的偏移、虚拟地址、物理地址、大小及权限等映射关系的结构数组。"
+    },
+    {
+      "id": "concept_section_header_table",
+      "label": "Concept",
+      "name": "节头表",
+      "alias": [],
+      "definition": "描述文件中各个节（section）的属性，如名称、偏移、大小、类型等信息的结构数组。"
+    },
+    {
+      "id": "concept_text_section",
+      "label": "Concept",
+      "name": ".text 节",
+      "alias": [],
+      "definition": "存放程序的可执行指令代码的节，通常为只读。"
+    },
+    {
+      "id": "concept_rodata_section",
+      "label": "Concept",
+      "name": ".rodata 节",
+      "alias": [],
+      "definition": "存放只读数据的节，如字符串常量、const变量等。"
+    },
+    {
+      "id": "concept_data_section",
+      "label": "Concept",
+      "name": ".data 节",
+      "alias": [],
+      "definition": "存放已初始化的全局或静态变量的数据节，占用磁盘空间且在内存中分配相应空间。"
+    },
+    {
+      "id": "concept_bss_section",
+      "label": "Concept",
+      "name": ".bss 节",
+      "alias": [],
+      "definition": "存放未初始化的全局或静态变量的数据节，在文件中不占磁盘空间，但在内存中需分配空间并初始化为0。"
+    },
+    {
+      "id": "concept_init_section",
+      "label": "Concept",
+      "name": "init 节",
+      "alias": [],
+      "definition": "用于可执行目标文件开始执行时进行初始化工作的函数所在的节。"
+    },
+    {
+      "id": "concept_relocation_section",
+      "label": "Concept",
+      "name": ".rel 节",
+      "alias": [],
+      "definition": "用于记录需要重定位的信息的节，存在于可重定位目标文件中，但在可执行目标文件中被移除。"
+    },
+    {
+      "id": "concept_load_segment",
+      "label": "Concept",
+      "name": "可装入段",
+      "alias": [
+        "LOAD段"
+      ],
+      "definition": "程序头表中的一种段类型，表示该段可以被加载到内存中执行，对应于一个连续的代码或数据区域。"
+    },
+    {
+      "id": "concept_dynamic_segment",
+      "label": "Concept",
+      "name": "动态节",
+      "alias": [
+        "PT_DYNAMIC"
+      ],
+      "definition": "程序头表中用于描述动态链接相关信息的特殊段类型。"
+    },
+    {
+      "id": "concept_interpreter_segment",
+      "label": "Concept",
+      "name": "解释程序节",
+      "alias": [
+        "PT_INTERP"
+      ],
+      "definition": "程序头表中用于指定动态链接器路径的特殊段类型。"
+    },
+    {
+      "id": "concept_virtual_address",
+      "label": "Concept",
+      "name": "虚拟地址",
+      "alias": [],
+      "definition": "程序运行时使用的逻辑地址，由操作系统通过分页机制映射到物理地址。"
+    },
+    {
+      "id": "concept_physical_address",
+      "label": "Concept",
+      "name": "物理地址",
+      "alias": [],
+      "definition": "实际内存硬件中对应的地址，由操作系统根据情况动态分配。"
+    },
+    {
+      "id": "concept_memory_alignment",
+      "label": "Concept",
+      "name": "对齐方式",
+      "alias": [],
+      "definition": "内存中数据存储位置必须满足的模数约束，通常与页面大小相关，如4KB页面对应 $2^{12}$ 对齐。"
+    },
+    {
+      "id": "concept_read_only_code_segment",
+      "label": "Concept",
+      "name": "只读代码段",
+      "alias": [],
+      "definition": "具有只读和可执行权限的内存段，用于存放程序代码。"
+    },
+    {
+      "id": "concept_read_write_data_segment",
+      "label": "Concept",
+      "name": "可读写数据段",
+      "alias": [],
+      "definition": "具有可读可写权限的内存段，用于存放已初始化的全局/静态变量。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_page_size",
+      "label": "Hardware",
+      "name": "页面大小",
+      "hw_type": "内存管理单元参数"
+    },
+    {
+      "id": "inst_elf_entry",
+      "label": "Instruction",
+      "name": "e_entry",
+      "syntax": "ELF头字段：系统将控制权转移的起始虚拟地址"
+    },
+    {
+      "id": "inst_p_type",
+      "label": "Instruction",
+      "name": "p_type",
+      "syntax": "程序头表项字段：描述段类型（如PT_LOAD, PT_DYNAMIC）"
+    },
+    {
+      "id": "inst_p_offset",
+      "label": "Instruction",
+      "name": "p_offset",
+      "syntax": "程序头表项字段：本段首字节在文件中的偏移地址"
+    },
+    {
+      "id": "inst_p_vaddr",
+      "label": "Instruction",
+      "name": "p_vaddr",
+      "syntax": "程序头表项字段：本段首字节的虚拟地址"
+    },
+    {
+      "id": "inst_p_paddr",
+      "label": "Instruction",
+      "name": "p_paddr",
+      "syntax": "程序头表项字段：本段首字节的物理地址"
+    },
+    {
+      "id": "inst_p_filesz",
+      "label": "Instruction",
+      "name": "p_filesz",
+      "syntax": "程序头表项字段：本段在文件中所占字节数"
+    },
+    {
+      "id": "inst_p_memsz",
+      "label": "Instruction",
+      "name": "p_memsz",
+      "syntax": "程序头表项字段：本段在存储器中所占字节数"
+    },
+    {
+      "id": "inst_p_flags",
+      "label": "Instruction",
+      "name": "p_flags",
+      "syntax": "程序头表项字段：存取权限（如RE、RW）"
+    },
+    {
+      "id": "inst_p_align",
+      "label": "Instruction",
+      "name": "p_align",
+      "syntax": "程序头表项字段：对齐方式，模数为2的正整数幂"
+    },
+    {
+      "id": "code_elf32_phdr_struct",
+      "label": "CodeSnippet",
+      "name": "ELF32_Phdr 结构体定义",
+      "language": "C",
+      "content": "typedef struct{ Elf32Word p_type; Elf32_Off p_offset; Elf32_Addr p_vaddr; Elf32_Addr p_paddr; Elf32 WORD p_filesz; Elf32_Word p_memsz; Elf32_Word p_flags; Elf32_Word p_align; }Elf32_Phdr;"
+    },
+    {
+      "id": "concept_symbol_table",
+      "label": "Concept",
+      "name": "符号表",
+      "alias": [
+        "symbol table"
+      ],
+      "definition": "目标文件中包含的用于记录程序模块中定义和引用的所有符号信息的数据结构，通常由 .symtab 节存储。"
+    },
+    {
+      "id": "concept_global_symbol",
+      "label": "Concept",
+      "name": "全局符号",
+      "alias": [
+        "global symbol"
+      ],
+      "definition": "在某个模块中定义并被其他模块引用的符号，包括非静态函数名和未加 static 属性的全局变量名。这类符号在整个链接过程中可见。"
+    },
+    {
+      "id": "concept_external_symbol",
+      "label": "Concept",
+      "name": "外部符号",
+      "alias": [
+        "external symbol"
+      ],
+      "definition": "由其他模块定义、但在当前模块中被引用的符号，如外部函数或外部变量。链接器需在其他目标文件中解析其定义。"
+    },
+    {
+      "id": "concept_local_symbol",
+      "label": "Concept",
+      "name": "本地符号",
+      "alias": [
+        "local symbol"
+      ],
+      "definition": "在模块内部定义并在该模块内引用的符号，如带 static 属性的函数或变量。它们不被其他模块可见，且在静态数据区分配空间。"
+    },
+    {
+      "id": "concept_static_local_variable",
+      "label": "Concept",
+      "name": "静态局部变量",
+      "alias": [
+        "static local variable"
+      ],
+      "definition": "在函数内部定义并带有 static 属性的变量，其生命周期贯穿整个程序运行期，存储在静态数据区（.data 或 .bss），而非栈上。"
+    },
+    {
+      "id": "concept_auto_variable",
+      "label": "Concept",
+      "name": "自动变量",
+      "alias": [
+        "auto variable"
+      ],
+      "definition": "在函数内部定义的非静态局部变量，存储在栈上，具有动态生命周期，不被记录在符号表中。"
+    },
+    {
+      "id": "concept_relocatable_object_file",
+      "label": "Concept",
+      "name": "可重定位目标文件",
+      "alias": [
+        "relocatable object file"
+      ],
+      "definition": "编译后生成的中间目标文件，包含代码、数据和符号表，尚未完成地址绑定，需通过链接器进行重定位。"
+    },
+    {
+      "id": "concept_executable_object_file",
+      "label": "Concept",
+      "name": "可执行目标文件",
+      "alias": [
+        "executable object file"
+      ],
+      "definition": "链接完成后生成的最终可执行文件，包含完整的虚拟地址空间布局，可以直接加载运行。"
+    },
+    {
+      "id": "concept_shared_object_file",
+      "label": "Concept",
+      "name": "共享目标文件",
+      "alias": [
+        "shared object file"
+      ],
+      "definition": "一种可在多个程序间共享的动态库文件，支持延迟绑定和运行时加载，也包含符号表和重定位信息。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "内存",
+      "hw_type": "存储设备"
+    },
+    {
+      "id": "inst_readelf",
+      "label": "Instruction",
+      "name": "readelf",
+      "syntax": "readelf -s <file>"
+    },
+    {
+      "id": "code_main_c",
+      "label": "CodeSnippet",
+      "name": "main.c 源码",
+      "language": "C",
+      "content": "void swap(void);\n\nint buf[2] = {1,2};\n\nint main()\n{\n    swap();\n    return 0;\n}"
+    },
+    {
+      "id": "code_swap_c",
+      "label": "CodeSnippet",
+      "name": "swap.c 源码",
+      "language": "C",
+      "content": "extern int buf[];\n\nint *bufp0 = &buf[0];\nstatic int *bufpl;\n\nvoid swap()\n{\n    int temp;\n    bufp1 = &buf[1];\n    temp = *bufp0;\n    *bufp0 = *bufp1;\n    *bufp1 = temp;\n}"
+    },
+    {
+      "id": "code_elf_sym_struct",
+      "label": "CodeSnippet",
+      "name": "ELF 符号表结构定义",
+      "language": "C",
+      "content": "typedef struct {\n    Elf32Word st_name;\n    Elf32_Addr st_value;\n    Elf32_Word st_size;\n    unsigned char st_info;\n    unsigned char st_other;\n    Elf32_Half st_shndx;\n} Elf32_Sym;"
+    },
+    {
+      "id": "principle_symbol_resolution",
+      "label": "Principle",
+      "name": "符号解析原理",
+      "description": "链接器在生成可执行文件时必须完成符号解析，即确定每个符号的定义位置，依赖于符号表中的信息。"
+    },
+    {
+      "id": "principle_static_storage",
+      "label": "Principle",
+      "name": "静态存储原理",
+      "description": "带有 static 属性的变量在编译时分配空间，位于 .data 或 .bss 节中，生命周期与程序相同，不随函数调用而创建/销毁。"
+    },
+    {
+      "id": "concept_symbol_resolution",
+      "label": "Concept",
+      "name": "符号解析",
+      "alias": [],
+      "definition": "将每个模块中引用的符号与某个目标模块中的定义符号建立关联的过程，是链接阶段的关键步骤。"
+    },
+    {
+      "id": "concept_global_symbol",
+      "label": "Concept",
+      "name": "全局符号",
+      "alias": [],
+      "definition": "在多个模块间共享的符号，包括函数名和已初始化/未初始化的全局变量。"
+    },
+    {
+      "id": "concept_local_symbol",
+      "label": "Concept",
+      "name": "本地符号",
+      "alias": [],
+      "definition": "仅在一个模块内可见的符号，如局部变量或使用 static 声明的变量。"
+    },
+    {
+      "id": "concept_strong_symbol",
+      "label": "Concept",
+      "name": "强符号",
+      "alias": [],
+      "definition": "函数名和已初始化的全局变量，具有唯一定义要求。"
+    },
+    {
+      "id": "concept_weak_symbol",
+      "label": "Concept",
+      "name": "弱符号",
+      "alias": [],
+      "definition": "未初始化的全局变量，允许多次定义，链接时按规则选择一个作为最终定义。"
+    },
+    {
+      "id": "concept_relocation",
+      "label": "Concept",
+      "name": "重定位",
+      "alias": [],
+      "definition": "在链接阶段将符号的地址从相对地址转换为绝对地址的过程。"
+    },
+    {
+      "id": "concept_static_library",
+      "label": "Concept",
+      "name": "静态库",
+      "alias": [],
+      "definition": "由多个目标文件打包而成的库文件，链接时只拷贝用到的目标模块。"
+    },
+    {
+      "id": "hw_linker",
+      "label": "Hardware",
+      "name": "链接器",
+      "hw_type": "软件组件"
+    },
+    {
+      "id": "inst_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq source, destination"
+    },
+    {
+      "id": "inst_call",
+      "label": "Instruction",
+      "name": "call",
+      "syntax": "call function"
+    },
+    {
+      "id": "code_main_c",
+      "label": "CodeSnippet",
+      "name": "main.c 文件代码",
+      "language": "C",
+      "content": "#include<stdio.h>\nint y = 100;\nint z;\nvoid p1(void);\nint main()\n{\n    z = 1000;\n    p1();\n    printf(\"y=%d, z=%d\\n\", y, z);\n    return 0;\n}"
+    },
+    {
+      "id": "code_p1_c",
+      "label": "CodeSnippet",
+      "name": "p1.c 文件代码",
+      "language": "C",
+      "content": "int y;\nint z;\nvoid p1()\n{\n    y = 200;\n    z = 2000;\n}"
+    },
+    {
+      "id": "code_main_d_x",
+      "label": "CodeSnippet",
+      "name": "main.c (d 和 x) 文件代码",
+      "language": "C",
+      "content": "#include<stdio.h>\nint d = 100;\nint x = 200;\nvoid p1(void);\nint main()\n{\n    p1();\n    printf(\"d=%d, x=%d\\n\", d, x);\n    return 0;\n}"
+    },
+    {
+      "id": "code_p1_d",
+      "label": "CodeSnippet",
+      "name": "p1.c (d) 文件代码",
+      "language": "C",
+      "content": "double d;\n\nvoid p1()\n{\n    d = 1.0;\n}"
+    },
+    {
+      "id": "principle_strong_weak_rules",
+      "label": "Principle",
+      "name": "强弱符号处理规则",
+      "description": "链接器根据三条规则处理多重定义符号：1. 强符号不能重复定义；2. 强符号优先于弱符号；3. 多个弱符号任选其一。"
+    },
+    {
+      "id": "code_myproc1_c",
+      "label": "CodeSnippet",
+      "name": "myproc1.c 源文件",
+      "language": "C",
+      "content": "#include<stdio.h>\nvoid myfunc1()\n{printf(\"%s\",\"This is myfunc1 from mylib!\\n\");}"
+    },
+    {
+      "id": "code_myproc2_c",
+      "label": "CodeSnippet",
+      "name": "myproc2.c 源文件",
+      "language": "C",
+      "content": "#include<stdio.h>\nvoid myfunc2()\n{\nprintf(\"%s\", \"This is myfunc2 from mylib!\\n\");\n}"
+    },
+    {
+      "id": "code_main_c",
+      "label": "CodeSnippet",
+      "name": "main.c 程序",
+      "language": "C",
+      "content": "void myfunc1(viod);\nint main()\n{\nmyfunc1();\nreturn 0;\n}"
+    },
+    {
+      "id": "code_gcc_compile",
+      "label": "CodeSnippet",
+      "name": "编译命令",
+      "language": "shell",
+      "content": "gcc -c myproc1.c myproc2.c"
+    },
+    {
+      "id": "code_ar_command",
+      "label": "CodeSnippet",
+      "name": "生成静态库命令",
+      "language": "shell",
+      "content": "ar rcs mylib.a myproc1.o myproc2.o"
+    },
+    {
+      "id": "code_gcc_link_static",
+      "label": "CodeSnippet",
+      "name": "静态链接命令（正确顺序）",
+      "language": "shell",
+      "content": "gcc -static -o myproc main.o ./mylib.a"
+    },
+    {
+      "id": "code_gcc_link_wrong_order",
+      "label": "CodeSnippet",
+      "name": "静态链接命令（错误顺序）",
+      "language": "shell",
+      "content": "gcc -static -o myproc ./mylib.a main.o"
+    },
+    {
+      "id": "code_multiple_libs_correct",
+      "label": "CodeSnippet",
+      "name": "多个静态库链接命令（正确顺序）",
+      "language": "batch",
+      "content": "gcc -static -o myfunc func.o libx.a liby.a libz.a\ngcc -static -o myfunc func.o liby.a libx.a libz.a\ngcc -static -o myfunc func.o libx.a libz.a liby.a"
+    },
+    {
+      "id": "code_repeated_lib",
+      "label": "CodeSnippet",
+      "name": "重复引用静态库命令",
+      "language": "batch",
+      "content": "gcc -static -o myfunc func.o libx.a liby.a libx.a"
+    },
+    {
+      "id": "concept_static_library",
+      "label": "Concept",
+      "name": "静态库",
+      "alias": [
+        "存档档案",
+        "archive"
+      ],
+      "definition": "一种在链接阶段被完整复制到可执行文件中的库文件，通常以 .a 后缀命名，包含一组目标模块的集合。"
+    },
+    {
+      "id": "concept_archive_format",
+      "label": "Concept",
+      "name": "存档档案格式",
+      "alias": [
+        "archive format"
+      ],
+      "definition": "用于存储多个目标文件的特殊文件格式，是静态库的基础结构，由 ar 工具管理。"
+    },
+    {
+      "id": "concept_symbol_resolution",
+      "label": "Concept",
+      "name": "符号解析",
+      "alias": [
+        "symbol resolution"
+      ],
+      "definition": "链接器在链接过程中将未解析符号（U）与定义符号（D）进行匹配的过程，决定哪些目标模块被加入最终可执行文件。"
+    },
+    {
+      "id": "concept_unresolved_symbols",
+      "label": "Concept",
+      "name": "未解析符号",
+      "alias": [
+        "unresolved symbols"
+      ],
+      "definition": "在当前输入文件中被引用但尚未在任何已处理的目标模块或库中找到定义的符号。"
+    },
+    {
+      "id": "concept_defined_symbols",
+      "label": "Concept",
+      "name": "已定义符号",
+      "alias": [
+        "defined symbols"
+      ],
+      "definition": "在某个目标模块或库中已经明确声明并实现的符号。"
+    },
+    {
+      "id": "concept_input_file_list",
+      "label": "Concept",
+      "name": "输入文件列表",
+      "alias": [
+        "input file list"
+      ],
+      "definition": "链接器处理的文件序列，包括可重定位目标文件和静态库文件，其顺序影响符号解析结果。"
+    },
+    {
+      "id": "concept_linker_iteration",
+      "label": "Concept",
+      "name": "链接器迭代过程",
+      "alias": [
+        "linker iteration"
+      ],
+      "definition": "链接器对静态库进行多次扫描，直到未解析符号集合不再变化，确保所有可能的符号匹配都被尝试。"
+    },
+    {
+      "id": "concept_default_library",
+      "label": "Concept",
+      "name": "默认库",
+      "alias": [
+        "default library"
+      ],
+      "definition": "链接器自动添加的库，如 libc.a，用于提供标准函数支持，无需显式指定。"
+    },
+    {
+      "id": "principle_link_order_dependency",
+      "label": "Principle",
+      "name": "链接顺序依赖原则",
+      "description": "静态库的链接顺序会影响符号解析结果；若一个库依赖另一个库，则被依赖的库必须出现在命令行中更靠后的位置。"
+    },
+    {
+      "id": "principle_library_repetition",
+      "label": "Principle",
+      "name": "静态库重复引用原则",
+      "description": "当两个静态库相互引用时，可通过在命令行中重复出现该库名来解决循环依赖问题。"
+    },
+    {
+      "id": "hw_linker",
+      "label": "Hardware",
+      "name": "链接器",
+      "hw_type": "软件组件"
+    },
+    {
+      "id": "hw_ar_tool",
+      "label": "Hardware",
+      "name": "AR工具",
+      "hw_type": "命令行工具"
+    },
+    {
+      "id": "inst_gcc",
+      "label": "Instruction",
+      "name": "gcc",
+      "syntax": "gcc [options] files..."
+    },
+    {
+      "id": "inst_gcc_c",
+      "label": "Instruction",
+      "name": "gcc -c",
+      "syntax": "gcc -c <source_file>"
+    },
+    {
+      "id": "inst_ar_rcs",
+      "label": "Instruction",
+      "name": "ar rcs",
+      "syntax": "ar rcs <archive_file> <object_files>"
+    },
+    {
+      "id": "inst_gcc_static",
+      "label": "Instruction",
+      "name": "gcc -static",
+      "syntax": "gcc -static -o <output> <input_files>"
+    },
+    {
+      "id": "inst_printf",
+      "label": "Instruction",
+      "name": "printf",
+      "syntax": "printf(format, ...)"
+    },
+    {
+      "id": "inst_atoi",
+      "label": "Instruction",
+      "name": "atoi",
+      "syntax": "int atoi(const char* str)"
+    },
+    {
+      "id": "inst_strcpy",
+      "label": "Instruction",
+      "name": "strcpy",
+      "syntax": "char* strcpy(char* dest, const char* src)"
+    },
+    {
+      "id": "inst_sin",
+      "label": "Instruction",
+      "name": "sin",
+      "syntax": "double sin(double x)"
+    },
+    {
+      "id": "inst_cos",
+      "label": "Instruction",
+      "name": "cos",
+      "syntax": "double cos(double x)"
+    },
+    {
+      "id": "inst_sqrt",
+      "label": "Instruction",
+      "name": "sqrt",
+      "syntax": "double sqrt(double x)"
+    },
+    {
+      "id": "inst_malloc",
+      "label": "Instruction",
+      "name": "malloc",
+      "syntax": "void* malloc(size_t size)"
+    },
+    {
+      "id": "inst_free",
+      "label": "Instruction",
+      "name": "free",
+      "syntax": "void free(void* ptr)"
+    },
+    {
+      "id": "inst_crit0_o",
+      "label": "Instruction",
+      "name": "crit0.o",
+      "syntax": "Initialization module for C programs"
+    },
+    {
+      "id": "concept_relocation",
+      "label": "Concept",
+      "name": "重定位",
+      "alias": [
+        "地址重定位",
+        "链接时重定位"
+      ],
+      "definition": "在符号解析的基础上，将所有关联的目标模块合并，并确定运行时每个定义符号在虚拟地址空间中的地址，同时修正引用符号的地址。"
+    },
+    {
+      "id": "hw_virtual_address_space",
+      "label": "Hardware",
+      "name": "虚拟地址空间",
+      "hw_type": "内存管理结构"
+    },
+    {
+      "id": "code_main_o",
+      "label": "CodeSnippet",
+      "name": "main.o 可重定位目标文件示例",
+      "language": "C",
+      "content": "call myproc1\n# 临时地址占位符（编译时）"
+    },
+    {
+      "id": "code_executable",
+      "label": "CodeSnippet",
+      "name": "可执行目标文件中重定位后的指令",
+      "language": "Assembly",
+      "content": "call 0x400500\n# 正确的函数地址（链接时）"
+    },
+    {
+      "id": "inst_call",
+      "label": "Instruction",
+      "name": "call",
+      "syntax": "call <target>"
+    },
+    {
+      "id": "hw_linker",
+      "label": "Hardware",
+      "name": "链接器",
+      "hw_type": "系统软件组件"
+    },
+    {
+      "id": "hw_section",
+      "label": "Hardware",
+      "name": "节",
+      "hw_type": "目标文件组织单元"
+    },
+    {
+      "id": "hw_data_section",
+      "label": "Hardware",
+      "name": ".data节",
+      "hw_type": "代码节"
+    },
+    {
+      "id": "hw_text_section",
+      "label": "Hardware",
+      "name": ".text节",
+      "hw_type": "代码节"
+    },
+    {
+      "id": "hw_relocation_section",
+      "label": "Hardware",
+      "name": "重定位节",
+      "hw_type": "目标文件元数据"
+    },
+    {
+      "id": "code_rel_text",
+      "label": "CodeSnippet",
+      "name": ".rel.text 重定位信息示例",
+      "language": "Binary",
+      "content": "偏移: 0x10, 类型: R_X86_64_PLT32, 符号索引: 5"
+    },
+    {
+      "id": "code_rel_data",
+      "label": "CodeSnippet",
+      "name": ".rel.data 重定位信息示例",
+      "language": "Binary",
+      "content": "偏移: 0x20, 类型: R_X86_64_64, 符号索引: 3"
+    },
+    {
+      "id": "concept_relocation_info",
+      "label": "Concept",
+      "name": "重定位信息",
+      "alias": [
+        "重定位表项",
+        "relocation entry"
+      ],
+      "definition": "在可重定位目标模块中，用于描述符号重定位所需信息的数据结构，包括重定位位置偏移和符号索引及重定位类型。"
+    },
+    {
+      "id": "concept_relocation_type",
+      "label": "Concept",
+      "name": "重定位类型",
+      "alias": [
+        "relocation type"
+      ],
+      "definition": "指定如何根据符号的地址对引用进行修正的规则，与特定处理器架构相关。"
+    },
+    {
+      "id": "hw_ia32",
+      "label": "Hardware",
+      "name": "IA-32处理器",
+      "hw_type": "CPU架构"
+    },
+    {
+      "id": "code_relocation_struct",
+      "label": "CodeSnippet",
+      "name": "重定位表项数据结构定义",
+      "language": "C",
+      "content": "typedef struct { Elf32_Addr r_offset; Elf32Word r_info; } Elf32_Rel;"
+    },
+    {
+      "id": "code_relocation_macros",
+      "label": "CodeSnippet",
+      "name": "重定位信息宏定义",
+      "language": "C",
+      "content": "#define ELF32_R_SYM(info) ((info) >> 8)\n#define ELF32_R_TYPE(info) ((unsigned char)(info))\n#define ELF32_R_INFO(sym, type) (((sym) << 8) + (unsigned char)(type))"
+    },
+    {
+      "id": "inst_call",
+      "label": "Instruction",
+      "name": "call",
+      "syntax": "call target"
+    },
+    {
+      "id": "inst_r_386_pc32",
+      "label": "Instruction",
+      "name": "R_386_PC32",
+      "syntax": "R_386_PC32"
+    },
+    {
+      "id": "inst_r_386_32",
+      "label": "Instruction",
+      "name": "R_386_32",
+      "syntax": "R_386_32"
+    },
+    {
+      "id": "principle_relative_addressing",
+      "label": "Principle",
+      "name": "相对寻址原理",
+      "description": "通过程序计数器（PC）与偏移量相加来计算有效地址，常用于跳转和调用指令。"
+    },
+    {
+      "id": "principle_absolute_addressing",
+      "label": "Principle",
+      "name": "绝对寻址原理",
+      "description": "直接使用重定位后的32位地址作为有效地址，不依赖于程序计数器。"
+    },
+    {
+      "id": "concept_relocation_process",
+      "label": "Concept",
+      "name": "重定位过程",
+      "alias": [],
+      "definition": "在链接阶段，根据重定位表项对目标文件中的符号引用进行地址修正的过程，包括PC相对地址和绝对地址两种方式。"
+    },
+    {
+      "id": "concept_r386_pc32",
+      "label": "Concept",
+      "name": "R_386_PC32重定位方式",
+      "alias": [],
+      "definition": "一种基于程序计数器（PC）相对地址的重定位方式，用于计算跳转或调用指令的目标地址偏移量。"
+    },
+    {
+      "id": "concept_r386_32",
+      "label": "Concept",
+      "name": "R_386_32重定位方式",
+      "alias": [],
+      "definition": "一种绝对地址重定位方式，将符号的运行时地址直接写入目标位置。"
+    },
+    {
+      "id": "hw_text_section",
+      "label": "Hardware",
+      "name": ".text节",
+      "hw_type": "可执行代码段"
+    },
+    {
+      "id": "hw_data_section",
+      "label": "Hardware",
+      "name": ".data节",
+      "hw_type": "已初始化数据段"
+    },
+    {
+      "id": "hw_rel_text_section",
+      "label": "Hardware",
+      "name": ".rel.text节",
+      "hw_type": "重定位信息段"
+    },
+    {
+      "id": "hw_rel_data_section",
+      "label": "Hardware",
+      "name": ".rel.data节",
+      "hw_type": "重定位信息段"
+    },
+    {
+      "id": "inst_call",
+      "label": "Instruction",
+      "name": "call",
+      "syntax": "call <target>"
+    },
+    {
+      "id": "inst_mov",
+      "label": "Instruction",
+      "name": "mov",
+      "syntax": "mov <src>, <dst>"
+    },
+    {
+      "id": "principle_pc_relative_addressing",
+      "label": "Principle",
+      "name": "PC相对寻址原理",
+      "description": "转移目标地址 = PC + 偏移量，其中PC为下一条指令地址，常用于位置无关代码中。"
+    },
+    {
+      "id": "principle_absolute_addressing",
+      "label": "Principle",
+      "name": "绝对寻址原理",
+      "description": "直接使用符号的运行时物理地址作为目标地址，适用于全局变量等静态引用。"
+    },
+    {
+      "id": "code_main_o_text_rel",
+      "label": "CodeSnippet",
+      "name": "main.o .text 和 .rel.text 反汇编内容",
+      "language": "asm",
+      "content": "08048380 <main>:\n8048380: 55 push %ebp\n8048381: 89 e5 mov %esp, %ebp\n8048383: 83 e4 f0 and $0xffffff0,%esp\n8048386: e8 09 00 00 00 call 8048394 <swap>\n804838b: b8 00 00 00 00 mov $0x0,%eax\n8048390: c9 leave\n8048391: c3 ret\n8048392: 90 nop\n8048393: 90 nop\n08048394 <swap>:\n8048394: 55 push %ebp\n8048395: 89 e5 mov %esp, %ebp\n8048397: 83 ec 10 sub $0x10,%esp"
+    },
+    {
+      "id": "code_swap_o_data_rel",
+      "label": "CodeSnippet",
+      "name": "swap.o .data 和 .rel.data 反汇编内容",
+      "language": "asm",
+      "content": "Disassembly of section .data: 00000000 <bufp0>： 0: 00 00 00 00 0: R_386_32 buf"
+    },
+    {
+      "id": "code_executable_data_section",
+      "label": "CodeSnippet",
+      "name": "可执行文件 .data 节内容",
+      "language": "txt",
+      "content": "Disassembly of section .data: 08049620 <buf>： 8049620: 01 00 00 00 02 00 00 00 08 08\n08049628 <bufp0>： 8049628: 20 96 04 08"
+    },
+    {
+      "id": "concept_execve_system_call",
+      "label": "Concept",
+      "name": "execve系统调用",
+      "alias": [
+        "execve调用",
+        "程序加载入口"
+      ],
+      "definition": "UNIX系统中用于启动可执行文件的系统调用，会触发加载器运行以完成程序加载。"
+    },
+    {
+      "id": "concept_loader",
+      "label": "Concept",
+      "name": "加载器",
+      "alias": [
+        "loader",
+        "程序加载程序"
+      ],
+      "definition": "操作系统中常驻内存的程序，负责将可执行目标文件映射到虚拟地址空间并启动执行。"
+    },
+    {
+      "id": "concept_program_header_table",
+      "label": "Concept",
+      "name": "程序头表",
+      "alias": [
+        "program header table",
+        "ELF程序头"
+      ],
+      "definition": "可执行目标文件中记录各段信息的数据结构，包含段类型、虚拟地址、长度、权限等。"
+    },
+    {
+      "id": "concept_virtual_memory_image",
+      "label": "Concept",
+      "name": "虚拟存储器映像",
+      "alias": [
+        "存储器映像",
+        "运行时映像"
+      ],
+      "definition": "可执行目标文件在虚拟地址空间中的布局，包括代码段、数据段、堆、栈等区域的映射关系。"
+    },
+    {
+      "id": "concept_pt_load_segment",
+      "label": "Concept",
+      "name": "可装入段（PT_LOAD）",
+      "alias": [
+        "PT_LOAD",
+        "可装入节"
+      ],
+      "definition": "程序头表中表示可被加载到内存的段类型，如只读代码段和可读写数据段。"
+    },
+    {
+      "id": "concept_readonly_code_segment",
+      "label": "Concept",
+      "name": "只读代码段",
+      "alias": [
+        "只读段",
+        ".text节",
+        ".init节",
+        ".rodata节"
+      ],
+      "definition": "存放程序可执行代码的只读区域，通常从虚拟地址0x08048000开始。"
+    },
+    {
+      "id": "concept_read_write_data_segment",
+      "label": "Concept",
+      "name": "可读写数据段",
+      "alias": [
+        "读/写段",
+        ".data节",
+        ".bss节"
+      ],
+      "definition": "存放全局变量和静态变量的可读写区域，映射在只读段之后，按4KB对齐。"
+    },
+    {
+      "id": "concept_heap",
+      "label": "Concept",
+      "name": "运行时堆",
+      "alias": [
+        "堆区",
+        "动态分配区"
+      ],
+      "definition": "程序运行时通过malloc等函数动态分配内存的区域，位于可读写数据段后方，向高地址增长。"
+    },
+    {
+      "id": "concept_user_stack",
+      "label": "Concept",
+      "name": "用户栈",
+      "alias": [
+        "栈区",
+        "用户栈空间"
+      ],
+      "definition": "程序运行时用于函数调用、局部变量存储的区域，从用户空间最大地址向低地址方向增长。"
+    },
+    {
+      "id": "concept_shared_library_region",
+      "label": "Concept",
+      "name": "共享库区域",
+      "alias": [
+        "共享库空间",
+        "共享库预留区"
+      ],
+      "definition": "位于堆与栈之间的保留区域，用于加载共享库目标代码。"
+    },
+    {
+      "id": "concept_kernel_area",
+      "label": "Concept",
+      "name": "内核虚拟存储区",
+      "alias": [
+        "内核区",
+        "操作系统内核空间"
+      ],
+      "definition": "位于用户栈上方的高地址区域，用于存放操作系统内核代码和数据。"
+    },
+    {
+      "id": "concept_page_table",
+      "label": "Concept",
+      "name": "页表",
+      "alias": [
+        "page table",
+        "分页表"
+      ],
+      "definition": "将虚拟地址映射到物理地址的数据结构，由加载器初始化，支持按需加载。"
+    },
+    {
+      "id": "concept_page_fault",
+      "label": "Concept",
+      "name": "缺页异常",
+      "alias": [
+        "page fault",
+        "缺页中断"
+      ],
+      "definition": "当程序访问未加载到主存的页面时触发的异常，导致操作系统从磁盘加载对应内容。"
+    },
+    {
+      "id": "concept_lazy_loading",
+      "label": "Concept",
+      "name": "延迟加载",
+      "alias": [
+        "按需加载",
+        "lazy loading"
+      ],
+      "definition": "程序加载时不立即加载全部内容，仅建立页表项，待实际访问时才从磁盘加载。"
+    },
+    {
+      "id": "principle_unified_virtual_address_space",
+      "label": "Principle",
+      "name": "统一虚拟地址空间",
+      "description": "所有可执行文件都映射到相同的虚拟地址空间布局，简化链接器重定位和加载过程。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_main_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_disk",
+      "label": "Hardware",
+      "name": "磁盘",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "code_execve_example",
+      "label": "CodeSnippet",
+      "name": "execve系统调用示例",
+      "language": "C",
+      "content": "#include <unistd.h>\nint main() {\n    execve(\"/bin/sh\", NULL, NULL);\n    return 0;\n}"
+    },
+    {
+      "id": "concept_shared_object_file",
+      "label": "Concept",
+      "name": "共享目标文件",
+      "alias": [
+        "共享库文件",
+        "共享对象文件"
+      ],
+      "definition": "一种特殊的可重定位目标文件，包含代码、数据、重定位信息和符号表，可在可执行文件装入或运行时被动态加载并自动链接。"
+    },
+    {
+      "id": "concept_dynamic_link",
+      "label": "Concept",
+      "name": "动态链接",
+      "alias": [
+        "动态链接过程"
+      ],
+      "definition": "在可执行文件装入或运行时，将共享目标文件动态加载到内存并完成链接的过程。"
+    },
+    {
+      "id": "hw_dynamic_linker",
+      "label": "Hardware",
+      "name": "动态链接器",
+      "hw_type": "系统软件组件"
+    },
+    {
+      "id": "code_so_suffix",
+      "label": "CodeSnippet",
+      "name": "UNIX共享库后缀",
+      "language": "text",
+      "content": ".so"
+    },
+    {
+      "id": "code_dll_suffix",
+      "label": "CodeSnippet",
+      "name": "Windows动态链接库后缀",
+      "language": "text",
+      "content": ".dll"
+    },
+    {
+      "id": "principle_dynamic_loading",
+      "label": "Principle",
+      "name": "动态加载原理",
+      "description": "程序在运行时按需加载共享库，提高内存利用率和模块化程度。"
+    },
+    {
+      "id": "concept_shared_library",
+      "label": "Concept",
+      "name": "共享库",
+      "alias": [
+        "动态链接库",
+        "DLL",
+        "so文件"
+      ],
+      "definition": "一种在程序运行时才被加载和链接的库文件，允许多个应用程序共享同一份代码和数据副本。"
+    },
+    {
+      "id": "concept_dynamic_linking",
+      "label": "Concept",
+      "name": "动态链接",
+      "alias": [
+        "运行时链接",
+        "延迟绑定"
+      ],
+      "definition": "在程序加载或执行时才将共享库中的符号解析并链接到程序中，支持共享性和动态性。"
+    },
+    {
+      "id": "concept_static_linking",
+      "label": "Concept",
+      "name": "静态链接",
+      "alias": [
+        "编译时链接"
+      ],
+      "definition": "在编译阶段将库代码直接嵌入可执行文件中，生成的程序不依赖外部库文件。"
+    },
+    {
+      "id": "concept_sharing",
+      "label": "Concept",
+      "name": "共享性",
+      "alias": [
+        "内存共享",
+        "单副本机制"
+      ],
+      "definition": "多个进程可以共享同一份共享库代码和数据，内存中仅保留一个副本，节省主存资源。"
+    },
+    {
+      "id": "concept_dynamism",
+      "label": "Concept",
+      "name": "动态性",
+      "alias": [
+        "按需加载",
+        "运行时更新"
+      ],
+      "definition": "共享库在程序加载或执行时才被加载到内存，支持无需重新链接即可使用最新版本。"
+    },
+    {
+      "id": "hw_main_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "内存"
+    },
+    {
+      "id": "inst_printf",
+      "label": "Instruction",
+      "name": "printf",
+      "syntax": "printf(format, ...)"
+    },
+    {
+      "id": "code_libc_so",
+      "label": "CodeSnippet",
+      "name": "libc.so 中的 printf 模块",
+      "language": "C",
+      "content": "/* 示例：动态共享库 libc.so 中的 printf 函数实现 */\nvoid printf(const char* format, ...) {\n    // 实现输出逻辑\n    // 调用底层系统调用输出\n}"
+    },
+    {
+      "id": "code_libc_a",
+      "label": "CodeSnippet",
+      "name": "libc.a 中的 printf 模块",
+      "language": "C",
+      "content": "/* 示例：静态库 libc.a 中的 printf 函数实现 */\nvoid printf(const char* format, ...) {\n    // 实现输出逻辑\n    // 调用底层系统调用输出\n}"
+    },
+    {
+      "id": "concept_dynamic_linking",
+      "label": "Concept",
+      "name": "动态链接",
+      "alias": [
+        "加载时动态链接"
+      ],
+      "definition": "在程序运行时才完成外部函数调用的地址绑定和代码合并的过程，依赖于动态链接器和共享库文件。"
+    },
+    {
+      "id": "concept_static_linking",
+      "label": "Concept",
+      "name": "静态链接",
+      "alias": [
+        "编译时链接"
+      ],
+      "definition": "在编译阶段将所有外部函数和库代码直接合并到可执行文件中，生成的可执行文件不依赖外部共享库。"
+    },
+    {
+      "id": "concept_shared_library",
+      "label": "Concept",
+      "name": "共享库",
+      "alias": [
+        "动态共享库",
+        "动态库"
+      ],
+      "definition": "一种可在多个程序间共享的可执行目标文件，通常以 .so 为后缀，在类 UNIX 系统中用于实现动态链接。"
+    },
+    {
+      "id": "concept_position_independent_code",
+      "label": "Concept",
+      "name": "与位置无关的代码",
+      "alias": [
+        "PIC",
+        "位置无关代码"
+      ],
+      "definition": "一种编译生成的代码，其指令中不包含绝对地址引用，可以在任意内存地址被加载和执行，支持共享库的灵活加载。"
+    },
+    {
+      "id": "concept_program_header_table",
+      "label": "Concept",
+      "name": "程序头表",
+      "alias": [
+        "ELF 程序头",
+        "段表"
+      ],
+      "definition": "ELF 可执行文件中的一个结构，描述了文件中各个段（segment）在内存中的加载方式，包括类型、偏移、大小等信息。"
+    },
+    {
+      "id": "concept_interpreter_section",
+      "label": "Concept",
+      "name": ".interp 节",
+      "alias": [
+        "解释器节",
+        "动态链接器路径节"
+      ],
+      "definition": "ELF 文件中一个特殊的节，用于存储动态链接器的路径名，由程序头表中的 PT_INTERP 段引用，用于控制权转移。"
+    },
+    {
+      "id": "hw_loader",
+      "label": "Hardware",
+      "name": "加载器",
+      "hw_type": "操作系统组件"
+    },
+    {
+      "id": "hw_dynamic_linker",
+      "label": "Hardware",
+      "name": "动态链接器",
+      "hw_type": "操作系统组件"
+    },
+    {
+      "id": "inst_gcc",
+      "label": "Instruction",
+      "name": "gcc",
+      "syntax": "gcc [options] source_files"
+    },
+    {
+      "id": "code_main_c",
+      "label": "CodeSnippet",
+      "name": "main.c 程序示例",
+      "language": "C",
+      "content": "void myfunc1(viod);\nint main()\n{\nmyfunc1();\nreturn 0;\n}"
+    },
+    {
+      "id": "code_compile_shared_lib",
+      "label": "CodeSnippet",
+      "name": "生成共享库命令",
+      "language": "Batch",
+      "content": "gcc -shared -fPIC -o mylib.so myproc1.c myproc2.c"
+    },
+    {
+      "id": "code_link_executable",
+      "label": "CodeSnippet",
+      "name": "动态链接生成可执行文件命令",
+      "language": "Batch",
+      "content": "gcc -o myproc main.c ./mylib.so"
+    },
+    {
+      "id": "principle_control_transfer",
+      "label": "Principle",
+      "name": "控制权转移机制",
+      "description": "通过 ELF 文件中的 .interp 节和程序头表中的 PT_INTERP 段，实现从加载器到动态链接器的控制权转移。"
+    },
+    {
+      "id": "code_main_c",
+      "label": "CodeSnippet",
+      "name": "main.c 示例代码",
+      "language": "C",
+      "content": "#include<stdio.h>\n#include <dlfcn.h>\nint main()\n{\nvoid *handle;\nvoid (*myfunc1)();\nchar *error;\n\n/*动态装入包含函数myfunc1(的共享库文件*/\nhandle = dlopen(\"/mylib.so\", RTLD_LAZY);\nif (!handle) {\nfprintf(stderr, \"%s\\n\", derror());\nexit(1);\n}\n\n/*获得一个指向函数myfunc1(的指针myfunc1*/\nmyfunc1 = dlsym(handle, \"myfunc1\");\nif ((error = derror()) != NULL) {\nfprintf(stderr, \"%s\\n\", error);\nexit(1);\n}\n\n/*现在可以像调用其他函数一样调用函数myfunc1（）*/\nmyfunc1();\n\n/*关闭（卸载）共享库文件*/\nif (dclose(handle) < 0) {\nfprintf(stderr, \"%s\\n\", derror());\nexit(1);\n}\nreturn 0;\n}"
+    },
+    {
+      "id": "concept_runtime_dynamic_linking",
+      "label": "Concept",
+      "name": "运行时动态链接",
+      "alias": [
+        "动态链接在运行时",
+        "延迟链接"
+      ],
+      "definition": "程序在运行过程中通过动态链接器接口加载和解析共享库中的符号，而非在程序启动时完成链接。"
+    },
+    {
+      "id": "concept_shared_library",
+      "label": "Concept",
+      "name": "共享库",
+      "alias": [
+        "动态库",
+        "so文件"
+      ],
+      "definition": "一种可在多个程序间共享的可执行代码模块，通常以 .so 为扩展名，在运行时被加载到内存中。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "inst_dlopen",
+      "label": "Instruction",
+      "name": "dlopen",
+      "syntax": "void* dlopen(const char* filename, int flag);"
+    },
+    {
+      "id": "inst_dlsym",
+      "label": "Instruction",
+      "name": "dlsym",
+      "syntax": "void* dlsym(void* handle, const char* symbol);"
+    },
+    {
+      "id": "inst_dlerror",
+      "label": "Instruction",
+      "name": "dlerror",
+      "syntax": "char* dlerror();"
+    },
+    {
+      "id": "inst_dlclose",
+      "label": "Instruction",
+      "name": "dlclose",
+      "syntax": "int dlclose(void* handle);"
+    },
+    {
+      "id": "principle_lazy_binding",
+      "label": "Principle",
+      "name": "延迟绑定",
+      "description": "将符号解析推迟到实际调用函数时进行，以提高程序启动速度并支持按需加载。"
+    },
+    {
+      "id": "concept_linker",
+      "label": "Concept",
+      "name": "链接器",
+      "alias": [
+        "linker"
+      ],
+      "definition": "位于编译器、指令集体系结构和操作系统的交叉点，负责处理目标文件的符号解析与重定位，实现程序的最终链接。"
+    },
+    {
+      "id": "concept_static_linking",
+      "label": "Concept",
+      "name": "静态链接",
+      "alias": [
+        "static linking"
+      ],
+      "definition": "将多个可重定位目标模块中相同类型的节合并，生成完全链接的可执行目标文件，所有符号引用在虚拟地址空间中具有确定的最终地址。"
+    },
+    {
+      "id": "concept_dynamic_linking",
+      "label": "Concept",
+      "name": "动态链接",
+      "alias": [
+        "dynamic linking"
+      ],
+      "definition": "可执行目标文件部分链接，符号引用未完全确定，需在加载或执行时通过共享库进行重定位。"
+    },
+    {
+      "id": "concept_symbol_resolution",
+      "label": "Concept",
+      "name": "符号解析",
+      "alias": [
+        "symbol resolution"
+      ],
+      "definition": "将符号的引用与符号的定义关联起来的过程，是链接过程的关键步骤之一。"
+    },
+    {
+      "id": "concept_relocation",
+      "label": "Concept",
+      "name": "重定位",
+      "alias": [
+        "relocation"
+      ],
+      "definition": "根据代码和数据在虚拟地址空间中的位置，确定每个符号的最终存储地址，并修改引用处的地址。"
+    },
+    {
+      "id": "concept_shared_library",
+      "label": "Concept",
+      "name": "共享库",
+      "alias": [
+        "shared library",
+        "shared object"
+      ],
+      "definition": "一种特殊的可重定位目标文件，可在多个程序间共享，支持动态链接。"
+    },
+    {
+      "id": "concept_virtual_memory_management",
+      "label": "Concept",
+      "name": "虚拟存储管理",
+      "alias": [
+        "virtual memory management"
+      ],
+      "definition": "通过页表机制将程序的虚拟地址映射到物理内存，实现内存隔离与扩展。"
+    },
+    {
+      "id": "concept_elf_format",
+      "label": "Concept",
+      "name": "ELF目标文件格式",
+      "alias": [
+        "ELF format"
+      ],
+      "definition": "用于Unix-like系统的目标文件格式，包含链接视图（可重定位）和执行视图（可执行）两种视图。"
+    },
+    {
+      "id": "concept_section",
+      "label": "Concept",
+      "name": "节",
+      "alias": [
+        "section"
+      ],
+      "definition": "目标文件中用于组织代码和数据的逻辑单元，如 .text、.data 等。"
+    },
+    {
+      "id": "concept_segment",
+      "label": "Concept",
+      "name": "段",
+      "alias": [
+        "segment"
+      ],
+      "definition": "由多个节组成的逻辑块，用于程序执行时的内存布局，如代码段、数据段。"
+    },
+    {
+      "id": "hw_loader",
+      "label": "Hardware",
+      "name": "加载器",
+      "hw_type": "系统软件组件"
+    },
+    {
+      "id": "hw_page_table",
+      "label": "Hardware",
+      "name": "页表",
+      "hw_type": "内存管理硬件结构"
+    },
+    {
+      "id": "inst_load",
+      "label": "Instruction",
+      "name": "load",
+      "syntax": "load address, register"
+    },
+    {
+      "id": "inst_store",
+      "label": "Instruction",
+      "name": "store",
+      "syntax": "store register, address"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "Hello World 程序示例",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_object_file",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_executable_file",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "hw_linker",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_linking",
+      "target_id": "concept_linking",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_object_file",
+      "target_id": "concept_symbol_table",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "concept_linking",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_memory_image",
+      "target_id": "concept_executable_file",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_linking",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "principle_locality",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_linker",
+      "target_id": "inst_link",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_file",
+      "target_id": "concept_memory_image",
+      "type": "HAS_LAYOUT",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_linking",
+      "target_id": "concept_relocation",
+      "type": "INVOLVES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_relocation",
+      "type": "INVOLVES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_symbol_table",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_object_file",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "concept_compilation",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "concept_assembly",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "concept_linking",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "concept_relocatable_object_file",
+      "type": "PRODUCES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "concept_relocatable_object_file",
+      "type": "PRODUCES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "concept_relocatable_object_file",
+      "type": "PRODUCES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_executable_object_file",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_gcc",
+      "target_id": "code_gcc_obj",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_visual_c",
+      "target_id": "code_vc_obj",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "code_gcc_obj",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "code_vc_obj",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_executable_object_file",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "hw_cpp",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "inst_gcc_e",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "inst_cpp",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "hw_ccl",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "inst_gcc_s",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "inst_ccl",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "hw_as",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "inst_gcc_c",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "inst_as",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "concept_preprocessing",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "code_main_i",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_i",
+      "target_id": "concept_compilation",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "code_main_s",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_s",
+      "target_id": "concept_assembly",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "code_main_o",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "concept_compilation",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "concept_assembly",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "principle_stepwise_processing",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "principle_stepwise_processing",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "principle_stepwise_processing",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "code_main_i",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_i",
+      "target_id": "code_main_s",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_s",
+      "target_id": "code_main_o",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_gcc_e",
+      "target_id": "inst_cpp",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_gcc_s",
+      "target_id": "inst_ccl",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_gcc_c",
+      "target_id": "inst_as",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "code_main_i",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "code_main_s",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "code_main_o",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_relocatable_object_file",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_executable_object_file",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_symbol_resolution",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_relocation",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_section",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_section",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_symbol_table",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "concept_executable_object_file",
+      "type": "APPLIES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "concept_relocatable_object_file",
+      "type": "MODIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_gcc",
+      "target_id": "concept_linking",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_ld",
+      "target_id": "concept_linking",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_objdump_d",
+      "target_id": "concept_relocatable_object_file",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_objdump_d",
+      "target_id": "concept_executable_object_file",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_test_o_disassembly",
+      "target_id": "concept_relocatable_object_file",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_test_disassembly",
+      "target_id": "concept_executable_object_file",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "principle_modularity",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "principle_efficiency",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_executable_object_file",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_executable_object_file",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_linking",
+      "type": "INPUT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_executable_object_file",
+      "type": "OUTPUT_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_table",
+      "target_id": "concept_symbol_resolution",
+      "type": "PROVIDES_DATA_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "IS_PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_section",
+      "target_id": "concept_executable_object_file",
+      "type": "IS_PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_object_code",
+      "target_id": "concept_object_file",
+      "type": "STORES_IN",
+      "properties": {
+        "description": "目标代码被存储在目标文件中。"
+      }
+    },
+    {
+      "source_id": "concept_object_code",
+      "target_id": "concept_object_file",
+      "type": "DERIVED_FROM",
+      "properties": {
+        "description": "目标文件中的内容来源于目标代码。"
+      }
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "concept_relocatable_object_file",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "concept_executable_object_file",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_linking_view",
+      "type": "CORRESPONDS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_execution_view",
+      "type": "CORRESPONDS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "concept_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "concept_segment",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_section",
+      "target_id": "concept_linking_view",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_segment",
+      "target_id": "concept_execution_view",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_program_header_table",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_section_header_table",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_section_header_table",
+      "target_id": "concept_relocatable_object_file",
+      "type": "REQUIRED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "concept_executable_object_file",
+      "type": "REQUIRED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_section",
+      "target_id": "concept_elf_format",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_segment",
+      "target_id": "concept_elf_format",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "hw_cpu",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "hw_memory",
+      "type": "LOADS_INTO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "principle_locality",
+      "type": "OPTIMIZES_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_movq",
+      "target_id": "concept_elf_format",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_hello_world",
+      "target_id": "concept_relocatable_object_file",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_hello_world",
+      "target_id": "concept_executable_object_file",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_section",
+      "target_id": "concept_segment",
+      "type": "MAPPED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_section",
+      "target_id": "concept_elf_format",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_segment",
+      "target_id": "concept_elf_format",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "concept_section",
+      "type": "DIVIDES_INTO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "concept_segment",
+      "type": "DIVIDES_INTO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_elf_format",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_elf_header",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_section_header_table",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_text_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_rodata_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_data_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_bss_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_symtab_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_rel_text_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_rel_data_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_debug_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_line_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "hw_strtab_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_elf_header",
+      "target_id": "code_elf_header_struct_32bit",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_text_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_rodata_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_data_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_bss_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_symtab_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_rel_text_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_rel_data_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_debug_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_line_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_strtab_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_bss_section",
+      "target_id": "principle_space_efficiency",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_bss_section",
+      "target_id": "concept_relocatable_object_file",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_text_section",
+      "target_id": "hw_rel_text_section",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_data_section",
+      "target_id": "hw_rel_data_section",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_elf_header",
+      "target_id": "hw_section_header_table",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_text_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_rodata_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_data_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_bss_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_symtab_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_rel_text_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_rel_data_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_debug_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_line_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_strtab_section",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_elf_header",
+      "target_id": "hw_elf_header",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_text_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_rodata_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_data_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_bss_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_symtab_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_rel_text_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_rel_data_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_debug_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_line_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_strtab_section",
+      "target_id": "hw_elf_header",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_elf_header",
+      "target_id": "hw_section_header_table",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_text_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_rodata_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_data_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_bss_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_symtab_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_rel_text_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_rel_data_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_debug_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_line_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_section_header_table",
+      "target_id": "hw_strtab_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_relocatable_object_file",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "difference": "可执行文件中地址已重定位，而可重定位文件中地址仍为相对0；可执行文件无重定位节，有程序头表。"
+      }
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_elf_header",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_program_header_table",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_section_header_table",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_text_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_rodata_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_data_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_bss_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_init_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_load_segment",
+      "type": "USES",
+      "properties": {
+        "usage": "程序头表中每个LOAD段描述一个可装入的内存段"
+      }
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_dynamic_segment",
+      "type": "USES",
+      "properties": {
+        "usage": "程序头表中PT_DYNAMIC段用于动态链接"
+      }
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_interpreter_segment",
+      "type": "USES",
+      "properties": {
+        "usage": "程序头表中PT_INTERP段指定动态链接器路径"
+      }
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_relocation_section",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "note": "可重定位文件中包含 .rel 节用于重定位"
+      }
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_relocation_section",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "note": "可执行文件不再需要 .rel 节，因为重定位已完成"
+      }
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_virtual_address",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_physical_address",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "concept_memory_alignment",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_load_segment",
+      "target_id": "concept_read_only_code_segment",
+      "type": "EQUIVALENT_TO",
+      "properties": {
+        "condition": "当 p_flags = RE 且 p_type = PT_LOAD 时"
+      }
+    },
+    {
+      "source_id": "concept_load_segment",
+      "target_id": "concept_read_write_data_segment",
+      "type": "EQUIVALENT_TO",
+      "properties": {
+        "condition": "当 p_flags = RW 且 p_type = PT_LOAD 时"
+      }
+    },
+    {
+      "source_id": "concept_data_section",
+      "target_id": "concept_bss_section",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "difference": ".data 在文件中占空间，.bss 不占空间但内存中需分配并初始化为0"
+      }
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "inst_p_type",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "inst_p_offset",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "inst_p_vaddr",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "inst_p_paddr",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "inst_p_filesz",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "inst_p_memsz",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "inst_p_flags",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "inst_p_align",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "inst_elf_entry",
+      "type": "USES",
+      "properties": {
+        "purpose": "指定程序入口点（第一条指令地址）"
+      }
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "code_elf32_phdr_struct",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "context": "32位系统中程序头表表项的数据结构定义"
+      }
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "concept_executable_object_file",
+      "type": "PRECEDES",
+      "properties": {
+        "order": "程序头表位于节头表之前"
+      }
+    },
+    {
+      "source_id": "concept_elf_header",
+      "target_id": "concept_executable_object_file",
+      "type": "PRECEDES",
+      "properties": {
+        "order": "ELF头是可执行目标文件的第一个部分"
+      }
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "hw_cpu",
+      "type": "RUNS_ON",
+      "properties": {
+        "platform": "32位系统"
+      }
+    },
+    {
+      "source_id": "concept_executable_object_file",
+      "target_id": "hw_memory",
+      "type": "EXECUTES_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_memory_alignment",
+      "target_id": "hw_page_size",
+      "type": "RELATED_TO",
+      "properties": {
+        "relation": "对齐方式通常与页面大小一致，如4KB对应 $2^{12}$"
+      }
+    },
+    {
+      "source_id": "concept_virtual_address",
+      "target_id": "concept_executable_object_file",
+      "type": "CONVERTS_TO",
+      "properties": {
+        "process": "通过链接器和加载器完成从相对地址到虚拟地址的转换"
+      }
+    },
+    {
+      "source_id": "concept_physical_address",
+      "target_id": "concept_executable_object_file",
+      "type": "CONVERTS_TO",
+      "properties": {
+        "process": "由操作系统在运行时动态分配，映射到实际内存"
+      }
+    },
+    {
+      "source_id": "concept_symbol_table",
+      "target_id": "concept_global_symbol",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_table",
+      "target_id": "concept_external_symbol",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_table",
+      "target_id": "concept_local_symbol",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_local_symbol",
+      "target_id": "concept_static_local_variable",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_local_variable",
+      "target_id": "hw_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_local_variable",
+      "target_id": "concept_relocatable_object_file",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_auto_variable",
+      "target_id": "hw_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_auto_variable",
+      "target_id": "concept_symbol_table",
+      "type": "EXCLUDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_global_symbol",
+      "target_id": "concept_relocatable_object_file",
+      "type": "PRESENT_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_external_symbol",
+      "target_id": "concept_relocatable_object_file",
+      "type": "PRESENT_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_local_symbol",
+      "target_id": "concept_relocatable_object_file",
+      "type": "PRESENT_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_table",
+      "target_id": "concept_relocatable_object_file",
+      "type": "STORED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_table",
+      "target_id": "concept_executable_object_file",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_table",
+      "target_id": "concept_shared_object_file",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_symbol_table",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "hw_cpu",
+      "type": "EXECUTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_readelf",
+      "target_id": "concept_symbol_table",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_readelf",
+      "target_id": "concept_relocatable_object_file",
+      "type": "USED_TO_INSPECT",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "concept_global_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "concept_external_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_swap_c",
+      "target_id": "concept_global_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_swap_c",
+      "target_id": "concept_external_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_swap_c",
+      "target_id": "concept_local_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_swap_c",
+      "target_id": "concept_static_local_variable",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_elf_sym_struct",
+      "target_id": "concept_symbol_table",
+      "type": "DEFINES_STRUCTURE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_local_variable",
+      "target_id": "principle_static_storage",
+      "type": "ILLUSTRATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_auto_variable",
+      "target_id": "principle_static_storage",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_executable_object_file",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocatable_object_file",
+      "target_id": "concept_shared_object_file",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_global_symbol",
+      "target_id": "concept_local_symbol",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_external_symbol",
+      "target_id": "concept_local_symbol",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_external_symbol",
+      "target_id": "concept_global_symbol",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_table",
+      "target_id": "principle_symbol_resolution",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_global_symbol",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_local_symbol",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_relocation",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_global_symbol",
+      "target_id": "concept_strong_symbol",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_global_symbol",
+      "target_id": "concept_weak_symbol",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_strong_symbol",
+      "target_id": "inst_movq",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_weak_symbol",
+      "target_id": "inst_call",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_library",
+      "target_id": "hw_linker",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_linker",
+      "target_id": "concept_symbol_resolution",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_strong_symbol",
+      "target_id": "principle_strong_weak_rules",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_weak_symbol",
+      "target_id": "principle_strong_weak_rules",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_strong_weak_rules",
+      "target_id": "concept_symbol_resolution",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "concept_global_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_p1_c",
+      "target_id": "concept_global_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_d_x",
+      "target_id": "concept_global_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_p1_d",
+      "target_id": "concept_global_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "concept_strong_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_p1_c",
+      "target_id": "concept_weak_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_d_x",
+      "target_id": "concept_strong_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_p1_d",
+      "target_id": "concept_weak_symbol",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_strong_symbol",
+      "target_id": "concept_relocation",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_weak_symbol",
+      "target_id": "concept_relocation",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_strong_symbol",
+      "target_id": "principle_strong_weak_rules",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_weak_symbol",
+      "target_id": "principle_strong_weak_rules",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_static_library",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_library",
+      "target_id": "concept_relocation",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_linker",
+      "target_id": "concept_static_library",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_local_symbol",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_strong_symbol",
+      "target_id": "concept_weak_symbol",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_strong_weak_rules",
+      "target_id": "concept_relocation",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_myproc1_c",
+      "target_id": "inst_myfunc1",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_myproc2_c",
+      "target_id": "inst_myfunc2",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "inst_myfunc1",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_gcc_compile",
+      "target_id": "inst_gcc_c",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_ar_command",
+      "target_id": "inst_ar_rcs",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_gcc_link_static",
+      "target_id": "inst_gcc_static",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_gcc_link_wrong_order",
+      "target_id": "inst_gcc_static",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_multiple_libs_correct",
+      "target_id": "inst_gcc_static",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_repeated_lib",
+      "target_id": "inst_gcc_static",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_library",
+      "target_id": "concept_archive_format",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_library",
+      "target_id": "hw_ar_tool",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_library",
+      "target_id": "inst_gcc_static",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_archive_format",
+      "target_id": "hw_ar_tool",
+      "type": "USED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_unresolved_symbols",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_defined_symbols",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_input_file_list",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_linker_iteration",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linker_iteration",
+      "target_id": "concept_unresolved_symbols",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linker_iteration",
+      "target_id": "concept_defined_symbols",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_input_file_list",
+      "target_id": "principle_link_order_dependency",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_link_order_dependency",
+      "target_id": "concept_static_library",
+      "type": "APPLIES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_library_repetition",
+      "target_id": "concept_static_library",
+      "type": "APPLIES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_library_repetition",
+      "target_id": "concept_linker_iteration",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_printf",
+      "target_id": "concept_static_library",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_atoi",
+      "target_id": "concept_static_library",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_strcpy",
+      "target_id": "concept_static_library",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_sin",
+      "target_id": "concept_static_library",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_cos",
+      "target_id": "concept_static_library",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_sqrt",
+      "target_id": "concept_static_library",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_malloc",
+      "target_id": "concept_static_library",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_free",
+      "target_id": "concept_static_library",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_crit0_o",
+      "target_id": "concept_static_library",
+      "type": "DEFINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_default_library",
+      "target_id": "concept_static_library",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_default_library",
+      "target_id": "inst_libc_a",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libc_a",
+      "target_id": "concept_static_library",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libm_a",
+      "target_id": "concept_static_library",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libc_a",
+      "target_id": "inst_printf",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libc_a",
+      "target_id": "inst_atoi",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libc_a",
+      "target_id": "inst_strcpy",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libm_a",
+      "target_id": "inst_sin",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libm_a",
+      "target_id": "inst_cos",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libm_a",
+      "target_id": "inst_sqrt",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libc_a",
+      "target_id": "inst_malloc",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libc_a",
+      "target_id": "inst_free",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_libc_a",
+      "target_id": "inst_crit0_o",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_gcc_link_static",
+      "target_id": "concept_static_library",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_gcc_link_wrong_order",
+      "target_id": "principle_link_order_dependency",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "code_multiple_libs_correct",
+      "target_id": "principle_link_order_dependency",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_repeated_lib",
+      "target_id": "principle_library_repetition",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_library",
+      "target_id": "hw_linker",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_ar_tool",
+      "target_id": "concept_archive_format",
+      "type": "CREATES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_gcc_c",
+      "target_id": "concept_static_library",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_ar_rcs",
+      "target_id": "concept_static_library",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_gcc_static",
+      "target_id": "concept_static_library",
+      "type": "LINKS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_gcc_static",
+      "target_id": "concept_default_library",
+      "type": "INCLUDES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_gcc_static",
+      "target_id": "concept_input_file_list",
+      "type": "PROCESSING",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_library",
+      "target_id": "code_myproc1_c",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_library",
+      "target_id": "code_myproc2_c",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_library",
+      "target_id": "code_main_c",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "hw_linker",
+      "type": "USES",
+      "properties": {
+        "description": "链接器负责执行重定位过程"
+      }
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "hw_virtual_address_space",
+      "type": "OPERATES_ON",
+      "properties": {
+        "description": "重定位确定符号在虚拟地址空间中的地址"
+      }
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "hw_section",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "description": "重定位涉及对多个节的合并与分配"
+      }
+    },
+    {
+      "source_id": "hw_text_section",
+      "target_id": "concept_relocation",
+      "type": "CONVERTS_TO",
+      "properties": {
+        "description": ".text节在重定位后生成最终的可执行代码"
+      }
+    },
+    {
+      "source_id": "hw_data_section",
+      "target_id": "concept_relocation",
+      "type": "CONVERTS_TO",
+      "properties": {
+        "description": ".data节在重定位后确定全局变量的存储位置"
+      }
+    },
+    {
+      "source_id": "code_main_o",
+      "target_id": "inst_call",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": "main.o 中包含使用临时地址的call指令"
+      }
+    },
+    {
+      "source_id": "code_executable",
+      "target_id": "inst_call",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": "可执行文件中call指令已重定位为正确地址"
+      }
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "hw_relocation_section",
+      "type": "USES",
+      "properties": {
+        "description": "重定位依赖于重定位节中保存的信息"
+      }
+    },
+    {
+      "source_id": "hw_relocation_section",
+      "target_id": "code_rel_text",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": ".rel.text 节包含代码段的重定位信息"
+      }
+    },
+    {
+      "source_id": "hw_relocation_section",
+      "target_id": "code_rel_data",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": ".rel.data 节包含数据段的重定位信息"
+      }
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "hw_data_section",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "重定位发生在.data节合并之后"
+      }
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "hw_text_section",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "重定位发生在.text节合并之后"
+      }
+    },
+    {
+      "source_id": "inst_call",
+      "target_id": "concept_relocation",
+      "type": "OPERATES_ON",
+      "properties": {
+        "description": "call指令在重定位阶段被修正"
+      }
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "code_main_o",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "description": "重定位依赖于编译器生成的可重定位目标文件"
+      }
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "code_executable",
+      "type": "CONVERTS_TO",
+      "properties": {
+        "description": "重定位过程将main.o转换为可执行文件中的正确指令"
+      }
+    },
+    {
+      "source_id": "hw_linker",
+      "target_id": "concept_relocation",
+      "type": "EXECUTES",
+      "properties": {
+        "description": "链接器执行重定位操作"
+      }
+    },
+    {
+      "source_id": "hw_relocation_section",
+      "target_id": "concept_relocation",
+      "type": "PROVIDES",
+      "properties": {
+        "description": "重定位节提供重定位所需的信息"
+      }
+    },
+    {
+      "source_id": "concept_relocation_info",
+      "target_id": "code_relocation_struct",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_info",
+      "target_id": "hw_ia32",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_info",
+      "target_id": "concept_relocation_type",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_type",
+      "target_id": "inst_r_386_pc32",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_type",
+      "target_id": "inst_r_386_32",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_r_386_pc32",
+      "target_id": "principle_relative_addressing",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_r_386_32",
+      "target_id": "principle_absolute_addressing",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_relative_addressing",
+      "target_id": "inst_call",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_info",
+      "target_id": "code_relocation_macros",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_type",
+      "target_id": "code_relocation_macros",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_info",
+      "target_id": "hw_ia32",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_info",
+      "target_id": "concept_relocation_type",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_relative_addressing",
+      "target_id": "principle_absolute_addressing",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "code_relocation_struct",
+      "target_id": "concept_relocation_info",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_relocation_macros",
+      "target_id": "concept_relocation_type",
+      "type": "EXTRACTS_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_call",
+      "target_id": "inst_r_386_pc32",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_info",
+      "target_id": "inst_r_386_pc32",
+      "type": "APPLIES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_info",
+      "target_id": "inst_r_386_32",
+      "type": "APPLIES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_info",
+      "target_id": "code_relocation_struct",
+      "type": "HAS_FIELD",
+      "properties": {}
+    },
+    {
+      "source_id": "code_relocation_struct",
+      "target_id": "concept_relocation_type",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "code_relocation_macros",
+      "target_id": "concept_relocation_type",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "hw_text_section",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "hw_data_section",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "hw_rel_text_section",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "hw_rel_data_section",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "concept_r386_pc32",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "concept_r386_32",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_r386_pc32",
+      "target_id": "inst_call",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_r386_pc32",
+      "target_id": "principle_pc_relative_addressing",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_r386_32",
+      "target_id": "inst_mov",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_r386_32",
+      "target_id": "principle_absolute_addressing",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_r386_pc32",
+      "target_id": "concept_r386_32",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_pc_relative_addressing",
+      "target_id": "principle_absolute_addressing",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_text_section",
+      "target_id": "code_main_o_text_rel",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_data_section",
+      "target_id": "code_swap_o_data_rel",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_data_section",
+      "target_id": "code_executable_data_section",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "code_main_o_text_rel",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "code_swap_o_data_rel",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "code_executable_data_section",
+      "type": "GENERATED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_call",
+      "target_id": "code_main_o_text_rel",
+      "type": "CONTAINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_mov",
+      "target_id": "code_executable_data_section",
+      "type": "CONTAINED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_text_section",
+      "target_id": "hw_rel_text_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_data_section",
+      "target_id": "hw_rel_data_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_r386_pc32",
+      "target_id": "hw_text_section",
+      "type": "APPLIED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_r386_32",
+      "target_id": "hw_data_section",
+      "type": "APPLIED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "hw_text_section",
+      "type": "MODIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation_process",
+      "target_id": "hw_data_section",
+      "type": "MODIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_execve_system_call",
+      "target_id": "concept_loader",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "execve系统调用是加载器启动的前置步骤"
+      }
+    },
+    {
+      "source_id": "concept_loader",
+      "target_id": "concept_program_header_table",
+      "type": "USES",
+      "properties": {
+        "description": "加载器根据程序头表的信息进行段映射"
+      }
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "concept_readonly_code_segment",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "description": "程序头表中包含只读代码段的映射信息"
+      }
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "concept_read_write_data_segment",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "description": "程序头表中包含可读写数据段的映射信息"
+      }
+    },
+    {
+      "source_id": "concept_readonly_code_segment",
+      "target_id": "concept_virtual_memory_image",
+      "type": "IS_A",
+      "properties": {
+        "description": "只读代码段是虚拟存储器映像的一部分"
+      }
+    },
+    {
+      "source_id": "concept_read_write_data_segment",
+      "target_id": "concept_virtual_memory_image",
+      "type": "IS_A",
+      "properties": {
+        "description": "可读写数据段是虚拟存储器映像的一部分"
+      }
+    },
+    {
+      "source_id": "concept_heap",
+      "target_id": "concept_virtual_memory_image",
+      "type": "IS_A",
+      "properties": {
+        "description": "运行时堆是虚拟存储器映像的一部分"
+      }
+    },
+    {
+      "source_id": "concept_user_stack",
+      "target_id": "concept_virtual_memory_image",
+      "type": "IS_A",
+      "properties": {
+        "description": "用户栈是虚拟存储器映像的一部分"
+      }
+    },
+    {
+      "source_id": "concept_shared_library_region",
+      "target_id": "concept_virtual_memory_image",
+      "type": "IS_A",
+      "properties": {
+        "description": "共享库区域是虚拟存储器映像的一部分"
+      }
+    },
+    {
+      "source_id": "concept_kernel_area",
+      "target_id": "concept_virtual_memory_image",
+      "type": "IS_A",
+      "properties": {
+        "description": "内核虚拟存储区是虚拟存储器映像的一部分"
+      }
+    },
+    {
+      "source_id": "concept_readonly_code_segment",
+      "target_id": "hw_disk",
+      "type": "STORES_ON",
+      "properties": {
+        "description": "只读代码段最初存储在磁盘上"
+      }
+    },
+    {
+      "source_id": "concept_read_write_data_segment",
+      "target_id": "hw_disk",
+      "type": "STORES_ON",
+      "properties": {
+        "description": "可读写数据段最初存储在磁盘上"
+      }
+    },
+    {
+      "source_id": "concept_readonly_code_segment",
+      "target_id": "hw_main_memory",
+      "type": "CONVERTS_TO",
+      "properties": {
+        "description": "只读代码段在运行时被加载到主存"
+      }
+    },
+    {
+      "source_id": "concept_read_write_data_segment",
+      "target_id": "hw_main_memory",
+      "type": "CONVERTS_TO",
+      "properties": {
+        "description": "可读写数据段在运行时被加载到主存"
+      }
+    },
+    {
+      "source_id": "concept_page_table",
+      "target_id": "concept_virtual_memory_image",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "description": "页表实现虚拟存储器映像的地址转换"
+      }
+    },
+    {
+      "source_id": "concept_page_fault",
+      "target_id": "concept_page_table",
+      "type": "TRIGGERS",
+      "properties": {
+        "description": "缺页异常由页表中无效页引起"
+      }
+    },
+    {
+      "source_id": "concept_lazy_loading",
+      "target_id": "concept_page_table",
+      "type": "OPTIMIZES",
+      "properties": {
+        "description": "延迟加载通过页表机制优化内存使用"
+      }
+    },
+    {
+      "source_id": "concept_execve_system_call",
+      "target_id": "code_execve_example",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": "execve系统调用的一个典型C语言示例"
+      }
+    },
+    {
+      "source_id": "principle_unified_virtual_address_space",
+      "target_id": "concept_readonly_code_segment",
+      "type": "ENABLES",
+      "properties": {
+        "description": "统一虚拟地址空间使得只读段始终映射到固定起始地址"
+      }
+    },
+    {
+      "source_id": "principle_unified_virtual_address_space",
+      "target_id": "concept_read_write_data_segment",
+      "type": "ENABLES",
+      "properties": {
+        "description": "统一虚拟地址空间使得数据段可统一重定位"
+      }
+    },
+    {
+      "source_id": "principle_unified_virtual_address_space",
+      "target_id": "concept_loader",
+      "type": "SUPPORTS",
+      "properties": {
+        "description": "统一虚拟地址空间简化了加载器的设计"
+      }
+    },
+    {
+      "source_id": "principle_unified_virtual_address_space",
+      "target_id": "concept_program_header_table",
+      "type": "SUPPORTS",
+      "properties": {
+        "description": "统一虚拟地址空间使程序头表能统一描述映射"
+      }
+    },
+    {
+      "source_id": "concept_readonly_code_segment",
+      "target_id": "concept_pt_load_segment",
+      "type": "IS_A",
+      "properties": {
+        "description": "只读代码段属于PT_LOAD类型的可装入段"
+      }
+    },
+    {
+      "source_id": "concept_read_write_data_segment",
+      "target_id": "concept_pt_load_segment",
+      "type": "IS_A",
+      "properties": {
+        "description": "可读写数据段属于PT_LOAD类型的可装入段"
+      }
+    },
+    {
+      "source_id": "concept_heap",
+      "target_id": "concept_read_write_data_segment",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "堆区位于可读写数据段之后"
+      }
+    },
+    {
+      "source_id": "concept_user_stack",
+      "target_id": "concept_heap",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "用户栈从高地址向低地址增长，位于堆之后"
+      }
+    },
+    {
+      "source_id": "concept_shared_library_region",
+      "target_id": "concept_heap",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "description": "共享库区域位于堆与栈之间，而堆与栈分别向高/低地址扩展"
+      }
+    },
+    {
+      "source_id": "concept_kernel_area",
+      "target_id": "concept_user_stack",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "description": "内核区位于用户栈之上，为操作系统专用"
+      }
+    },
+    {
+      "source_id": "concept_page_table",
+      "target_id": "hw_cpu",
+      "type": "USES",
+      "properties": {
+        "description": "CPU通过页表进行虚拟地址到物理地址的转换"
+      }
+    },
+    {
+      "source_id": "concept_page_fault",
+      "target_id": "hw_disk",
+      "type": "CAUSES",
+      "properties": {
+        "description": "缺页异常触发从磁盘加载数据"
+      }
+    },
+    {
+      "source_id": "concept_lazy_loading",
+      "target_id": "concept_page_fault",
+      "type": "RELIES_ON",
+      "properties": {
+        "description": "延迟加载依赖于缺页异常机制"
+      }
+    },
+    {
+      "source_id": "concept_shared_object_file",
+      "target_id": "concept_dynamic_link",
+      "type": "USES",
+      "properties": {
+        "description": "共享目标文件是动态链接过程中被加载的对象"
+      }
+    },
+    {
+      "source_id": "concept_dynamic_link",
+      "target_id": "hw_dynamic_linker",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "description": "动态链接由动态链接器程序实现"
+      }
+    },
+    {
+      "source_id": "concept_shared_object_file",
+      "target_id": "code_so_suffix",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "platform": "UNIX"
+      }
+    },
+    {
+      "source_id": "concept_shared_object_file",
+      "target_id": "code_dll_suffix",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "platform": "Windows"
+      }
+    },
+    {
+      "source_id": "concept_dynamic_link",
+      "target_id": "principle_dynamic_loading",
+      "type": "OPTIMIZES",
+      "properties": {
+        "benefit": "提升内存使用效率与模块化设计"
+      }
+    },
+    {
+      "source_id": "concept_shared_object_file",
+      "target_id": "concept_relocatable_object_file",
+      "type": "IS_A",
+      "properties": {
+        "description": "共享目标文件是一种特殊的可重定位目标文件"
+      }
+    },
+    {
+      "source_id": "concept_dynamic_link",
+      "target_id": "concept_executable_object_file",
+      "type": "PRECEDES",
+      "properties": {
+        "stage": "运行时阶段"
+      }
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_sharing",
+      "type": "HAS_PROPERTY",
+      "properties": {
+        "description": "动态链接具备共享性，即多个程序共享同一份库代码副本"
+      }
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_dynamism",
+      "type": "HAS_PROPERTY",
+      "properties": {
+        "description": "动态链接具备动态性，即库在运行时按需加载"
+      }
+    },
+    {
+      "source_id": "concept_static_linking",
+      "target_id": "concept_sharing",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "reason": "静态链接会为每个程序复制一份库代码，导致内存中存在多个副本"
+      }
+    },
+    {
+      "source_id": "concept_static_linking",
+      "target_id": "concept_dynamism",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "reason": "静态链接在编译时完成，无法动态更新；而动态链接可在运行时加载最新版本"
+      }
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "hw_main_memory",
+      "type": "OPTIMIZES",
+      "properties": {
+        "effect": "减少主存占用，通过共享单一副本避免重复存储"
+      }
+    },
+    {
+      "source_id": "concept_sharing",
+      "target_id": "hw_main_memory",
+      "type": "REDUCES_USAGE_OF",
+      "properties": {
+        "description": "共享性使得多个程序共用同一份代码，降低主存使用量"
+      }
+    },
+    {
+      "source_id": "concept_dynamism",
+      "target_id": "concept_dynamic_linking",
+      "type": "IS_A",
+      "properties": {
+        "description": "动态性是动态链接的核心特性之一"
+      }
+    },
+    {
+      "source_id": "concept_static_linking",
+      "target_id": "concept_dynamic_linking",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "description": "两者在链接时机、内存使用和更新方式上存在根本差异"
+      }
+    },
+    {
+      "source_id": "inst_printf",
+      "target_id": "concept_shared_library",
+      "type": "USED_IN",
+      "properties": {
+        "context": "printf 是共享库 libc.so 中的重要函数，被多个程序动态引用"
+      }
+    },
+    {
+      "source_id": "code_libc_so",
+      "target_id": "concept_shared_library",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": "libc.so 是典型的动态共享库文件"
+      }
+    },
+    {
+      "source_id": "code_libc_a",
+      "target_id": "concept_static_linking",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": "libc.a 是典型的静态库文件"
+      }
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_static_linking",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "aspect": "链接时间与内存效率"
+      }
+    },
+    {
+      "source_id": "concept_dynamism",
+      "target_id": "concept_static_linking",
+      "type": "CAUSES",
+      "properties": {
+        "effect": "静态库需要重新链接才能更新，而动态库无需重新链接即可使用新版本"
+      }
+    },
+    {
+      "source_id": "concept_sharing",
+      "target_id": "concept_static_linking",
+      "type": "CAUSES",
+      "properties": {
+        "effect": "静态链接导致多个副本占用主存，造成资源浪费"
+      }
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "code_libc_so",
+      "type": "USES",
+      "properties": {
+        "description": "动态链接机制用于加载和解析 libc.so 中的符号"
+      }
+    },
+    {
+      "source_id": "concept_static_linking",
+      "target_id": "code_libc_a",
+      "type": "USES",
+      "properties": {
+        "description": "静态链接将 libc.a 中的代码直接嵌入可执行文件"
+      }
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_shared_library",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "hw_dynamic_linker",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_linking",
+      "target_id": "concept_shared_library",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_position_independent_code",
+      "target_id": "concept_shared_library",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_shared_library",
+      "target_id": "inst_gcc",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_compile_shared_lib",
+      "target_id": "inst_gcc",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_link_executable",
+      "target_id": "inst_gcc",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_header_table",
+      "target_id": "concept_interpreter_section",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interpreter_section",
+      "target_id": "hw_dynamic_linker",
+      "type": "DEFINES_PATH_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_loader",
+      "target_id": "hw_dynamic_linker",
+      "type": "TRANSFERS_CONTROL_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "principle_control_transfer",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "concept_dynamic_linking",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_position_independent_code",
+      "type": "REQUIRES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_shared_library",
+      "target_id": "concept_static_linking",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_dynamic_linker",
+      "target_id": "concept_shared_library",
+      "type": "LOADS",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_loader",
+      "target_id": "concept_program_header_table",
+      "type": "READS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interpreter_section",
+      "target_id": "concept_program_header_table",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_compile_shared_lib",
+      "target_id": "code_main_c",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_link_executable",
+      "target_id": "code_compile_shared_lib",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_static_linking",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "concept_runtime_dynamic_linking",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_runtime_dynamic_linking",
+      "target_id": "concept_shared_library",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_runtime_dynamic_linking",
+      "target_id": "inst_dlopen",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_runtime_dynamic_linking",
+      "target_id": "inst_dlsym",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_runtime_dynamic_linking",
+      "target_id": "inst_dlclose",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_runtime_dynamic_linking",
+      "target_id": "inst_dlerror",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlopen",
+      "target_id": "concept_shared_library",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlsym",
+      "target_id": "concept_shared_library",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlclose",
+      "target_id": "concept_shared_library",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlopen",
+      "target_id": "principle_lazy_binding",
+      "type": "IMPLEMENTS",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_lazy_binding",
+      "target_id": "concept_runtime_dynamic_linking",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlopen",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlsym",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlclose",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlerror",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_shared_library",
+      "target_id": "hw_cpu",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "inst_dlopen",
+      "type": "CALLS",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "inst_dlsym",
+      "type": "CALLS",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "inst_dlclose",
+      "type": "CALLS",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_c",
+      "target_id": "inst_dlerror",
+      "type": "CALLS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlopen",
+      "target_id": "inst_dlsym",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlsym",
+      "target_id": "inst_dlclose",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_dlsym",
+      "target_id": "code_main_c",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_shared_library",
+      "target_id": "code_main_c",
+      "type": "USED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_runtime_dynamic_linking",
+      "target_id": "code_main_c",
+      "type": "DEMONSTRATED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linker",
+      "target_id": "concept_static_linking",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linker",
+      "target_id": "concept_dynamic_linking",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linker",
+      "target_id": "concept_symbol_resolution",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linker",
+      "target_id": "concept_relocation",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static_linking",
+      "target_id": "concept_executable_object_file",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_shared_library",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_shared_library",
+      "target_id": "concept_relocation",
+      "type": "REQUIRES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "concept_linking_view",
+      "type": "HAS_VIEW",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "concept_execution_view",
+      "type": "HAS_VIEW",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking_view",
+      "target_id": "concept_section_header_table",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_execution_view",
+      "target_id": "concept_program_header_table",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_execution_view",
+      "target_id": "concept_segment",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_segment",
+      "target_id": "concept_section",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_loader",
+      "target_id": "concept_virtual_memory_management",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_loader",
+      "target_id": "hw_page_table",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_virtual_memory_management",
+      "target_id": "hw_page_table",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "inst_load",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_relocation",
+      "target_id": "inst_store",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_shared_library",
+      "target_id": "concept_static_linking",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dynamic_linking",
+      "target_id": "concept_static_linking",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_weak_symbol",
+      "type": "INVOLVES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_symbol_resolution",
+      "target_id": "concept_strong_symbol",
+      "type": "INVOLVES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_elf_format",
+      "target_id": "concept_linker",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "code_hello_world",
+      "target_id": "concept_static_linking",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_hello_world",
+      "target_id": "concept_dynamic_linking",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    }
+  ]
+}

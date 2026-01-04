@@ -1,0 +1,12 @@
+.idea
+.filebeat
+.docs
+*.log
+*.pyc
+*.html
+*.xml
+data/__pycache__/__init__.cpython-313.pyc
+reports
+kepler-results
+__pycache__/
+venv

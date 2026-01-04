@@ -1,0 +1,5663 @@
+{
+  "metadata": {
+    "chapter_name": "第一章",
+    "chapter_number": 1,
+    "chunk_count": 22,
+    "node_count": 306,
+    "relationship_count": 555
+  },
+  "nodes": [
+    {
+      "id": "concept_computer_system",
+      "label": "Concept",
+      "name": "计算机系统",
+      "alias": [
+        "计算机系统结构",
+        "计算系统"
+      ],
+      "definition": "由硬件和软件协同工作的完整系统，能够执行程序并处理数据。"
+    },
+    {
+      "id": "concept_program_development_and_execution",
+      "label": "Concept",
+      "name": "程序开发与执行",
+      "alias": [
+        "程序生命周期",
+        "程序运行过程"
+      ],
+      "definition": "从源代码编写到机器指令在硬件上执行的全过程，包括编译、链接、加载和运行等阶段。"
+    },
+    {
+      "id": "concept_computer_hierarchy",
+      "label": "Concept",
+      "name": "计算机系统层次结构",
+      "alias": [
+        "系统分层",
+        "层次化架构"
+      ],
+      "definition": "将计算机系统划分为多个抽象层次，如应用层、操作系统层、指令集架构层、微架构层和硬件层，以简化设计与理解。"
+    },
+    {
+      "id": "concept_computer_performance",
+      "label": "Concept",
+      "name": "计算机性能评价",
+      "alias": [
+        "性能指标",
+        "系统性能评估"
+      ],
+      "definition": "衡量计算机系统效率的指标，包括吞吐量、响应时间、时钟频率、CPI（每条指令周期数）等。"
+    },
+    {
+      "id": "concept_computer_history",
+      "label": "Concept",
+      "name": "计算机发展历程",
+      "alias": [
+        "计算机发展史",
+        "计算技术演进"
+      ],
+      "definition": "从机械计算装置到现代电子计算机的演变过程，涵盖冯·诺依曼结构、集成电路、摩尔定律等关键里程碑。"
+    },
+    {
+      "id": "principle_moore_law",
+      "label": "Principle",
+      "name": "摩尔定律",
+      "description": "集成电路上可容纳的晶体管数量约每两年翻一番，推动了计算机性能的指数级增长。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_bus",
+      "label": "Hardware",
+      "name": "总线",
+      "hw_type": "通信通道"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "Hello World 程序",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "concept_electronic_computer",
+      "label": "Concept",
+      "name": "电子计算机",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_eniac",
+      "label": "Concept",
+      "name": "ENIAC",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_vacuum_tube",
+      "label": "Concept",
+      "name": "真空管",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_computing_power",
+      "label": "Concept",
+      "name": "计算能力",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_war_time_computation",
+      "label": "Concept",
+      "name": "战争时期计算需求",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_information_era",
+      "label": "Concept",
+      "name": "信息化时代",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "hw_eniac",
+      "label": "Hardware",
+      "name": "ENIAC",
+      "hw_type": "电子计算机"
+    },
+    {
+      "id": "hw_vacuum_tube",
+      "label": "Hardware",
+      "name": "真空管",
+      "hw_type": "电子元件"
+    },
+    {
+      "id": "principle_computational_efficiency",
+      "label": "Principle",
+      "name": "计算效率提升原理",
+      "description": null
+    },
+    {
+      "id": "principle_technological_evolution_by_components",
+      "label": "Principle",
+      "name": "以元器件更新划分技术代际",
+      "description": null
+    },
+    {
+      "id": "concept_first_generation_computer",
+      "label": "Concept",
+      "name": "第一代计算机",
+      "alias": [
+        "电子管计算机"
+      ],
+      "definition": "20世纪40年代中到50年代末的计算机，逻辑元件采用电子管，存储器件为声延迟线或磁鼓，典型逻辑结构为定点运算。"
+    },
+    {
+      "id": "concept_stored_program",
+      "label": "Concept",
+      "name": "存储程序",
+      "alias": [
+        "stored-program"
+      ],
+      "definition": "将事先编好的程序和原始数据送入主存后才能执行程序，一旦程序启动，计算机能自动完成逐条指令取出和执行的任务。"
+    },
+    {
+      "id": "concept_fixed_point_arithmetic",
+      "label": "Concept",
+      "name": "定点运算",
+      "alias": [],
+      "definition": "第一代计算机中常见的数值计算方式，不支持浮点数处理。"
+    },
+    {
+      "id": "hw_eniac",
+      "label": "Hardware",
+      "name": "ENIAC",
+      "hw_type": "电子管计算机"
+    },
+    {
+      "id": "hw_edvac",
+      "label": "Hardware",
+      "name": "EDVAC",
+      "hw_type": "电子管计算机"
+    },
+    {
+      "id": "hw_edsac",
+      "label": "Hardware",
+      "name": "EDSAC",
+      "hw_type": "电子管计算机"
+    },
+    {
+      "id": "hw_ias_computer",
+      "label": "Hardware",
+      "name": "IAS计算机",
+      "hw_type": "电子管计算机"
+    },
+    {
+      "id": "hw_umvac_1",
+      "label": "Hardware",
+      "name": "UMVAC-1",
+      "hw_type": "电子管计算机"
+    },
+    {
+      "id": "hw_ibm_704",
+      "label": "Hardware",
+      "name": "IBM704",
+      "hw_type": "电子管计算机"
+    },
+    {
+      "id": "principle_stored_program_architecture",
+      "label": "Principle",
+      "name": "存储程序架构",
+      "description": "现代计算机的核心设计思想，即程序与数据统一存放在主存储器中，由控制器自动按序取指并执行。"
+    },
+    {
+      "id": "code_edvac_report",
+      "label": "CodeSnippet",
+      "name": "EDVAC报告",
+      "language": "English",
+      "content": "In March 1945, von Neumann's group published the EDVAC proposal, which introduced the concept of stored-program computing."
+    },
+    {
+      "id": "concept_second_generation_computer",
+      "label": "Concept",
+      "name": "第二代计算机",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_transistor",
+      "label": "Concept",
+      "name": "晶体管",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "hw_magnetic_core_memory",
+      "label": "Hardware",
+      "name": "磁芯存储器",
+      "hw_type": "内存"
+    },
+    {
+      "id": "hw_magnetic_drum",
+      "label": "Hardware",
+      "name": "磁鼓",
+      "hw_type": "外存"
+    },
+    {
+      "id": "hw_magnetic_tape",
+      "label": "Hardware",
+      "name": "磁带",
+      "hw_type": "外存"
+    },
+    {
+      "id": "principle_floating_point_computation",
+      "label": "Principle",
+      "name": "浮点运算",
+      "description": null
+    },
+    {
+      "id": "concept_indexing",
+      "label": "Concept",
+      "name": "变址",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_interrupt",
+      "label": "Concept",
+      "name": "中断",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_i_o_processor",
+      "label": "Concept",
+      "name": "I/O处理器",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_high_level_language",
+      "label": "Concept",
+      "name": "高级语言",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_compilation",
+      "label": "Concept",
+      "name": "编译程序",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "code_tradic",
+      "label": "CodeSnippet",
+      "name": "TRADIC 计算机",
+      "language": "C",
+      "content": "TRADIC（Transistorized Automatic Digital Computer）是1954年由贝尔实验室研制的首台晶体管计算机。"
+    },
+    {
+      "id": "code_tx2",
+      "label": "CodeSnippet",
+      "name": "TX-2 计算机",
+      "language": "C",
+      "content": "TX-2 是麻省理工学院于1957年完成的晶体管计算机，对后续计算机系统设计有重要影响。"
+    },
+    {
+      "id": "code_ibm_7070",
+      "label": "CodeSnippet",
+      "name": "IBM 7070",
+      "language": "C",
+      "content": "IBM 7070 是1955年宣布的全晶体管计算机，标志着第二代计算机的兴起。"
+    },
+    {
+      "id": "code_ibm_1401",
+      "label": "CodeSnippet",
+      "name": "IBM 1401",
+      "language": "C",
+      "content": "IBM 1401 是1959年推出的商用晶体管计算机，以小巧、价廉和面向数据处理著称。"
+    },
+    {
+      "id": "concept_third_generation_computer",
+      "label": "Concept",
+      "name": "第三代计算机",
+      "alias": [
+        "集成电路计算机"
+      ],
+      "definition": "20世纪60年代中到70年代中后期的计算机，以集成电路为逻辑元件和存储器的主要实现技术。"
+    },
+    {
+      "id": "hw_integrated_circuit",
+      "label": "Hardware",
+      "name": "集成电路",
+      "hw_type": "半导体器件"
+    },
+    {
+      "id": "hw_ibm_360_system",
+      "label": "Hardware",
+      "name": "IBM360系统",
+      "hw_type": "通用计算机"
+    },
+    {
+      "id": "hw_cdc_6600",
+      "label": "Hardware",
+      "name": "CDC6600",
+      "hw_type": "大型机"
+    },
+    {
+      "id": "hw_cdc_7600",
+      "label": "Hardware",
+      "name": "CDC7600",
+      "hw_type": "大型机"
+    },
+    {
+      "id": "hw_cyber_series",
+      "label": "Hardware",
+      "name": "CYBER系列",
+      "hw_type": "大型机"
+    },
+    {
+      "id": "hw_cdc_star_100",
+      "label": "Hardware",
+      "name": "CDC STAR-100",
+      "hw_type": "巨型机"
+    },
+    {
+      "id": "hw_illiac_iv",
+      "label": "Hardware",
+      "name": "ILLIACIV",
+      "hw_type": "阵列机（巨型机）"
+    },
+    {
+      "id": "hw_pdp_series",
+      "label": "Hardware",
+      "name": "PDP系列",
+      "hw_type": "小型机"
+    },
+    {
+      "id": "concept_microprogram_control",
+      "label": "Concept",
+      "name": "微程序控制",
+      "alias": [
+        "微码控制"
+      ],
+      "definition": "一种通过微指令序列来实现复杂指令执行的技术，提高了指令系统的灵活性和可维护性。"
+    },
+    {
+      "id": "concept_cache",
+      "label": "Concept",
+      "name": "高速缓存",
+      "alias": [
+        "Cache"
+      ],
+      "definition": "位于CPU与主存之间的高速小容量存储器，用于减少CPU访问主存的延迟。"
+    },
+    {
+      "id": "concept_virtual_memory",
+      "label": "Concept",
+      "name": "虚拟存储器",
+      "alias": [
+        "虚拟内存"
+      ],
+      "definition": "一种内存管理技术，使程序可以使用比物理内存更大的地址空间，通过分页或分段机制实现。"
+    },
+    {
+      "id": "concept_pipeline",
+      "label": "Concept",
+      "name": "流水线技术",
+      "alias": [
+        "指令流水线"
+      ],
+      "definition": "将指令执行过程划分为多个阶段并行处理，以提高指令吞吐率的技术。"
+    },
+    {
+      "id": "concept_operating_system",
+      "label": "Concept",
+      "name": "操作系统",
+      "alias": [
+        "OS"
+      ],
+      "definition": "管理计算机硬件与软件资源的系统软件，提供资源调度、人机通信、输入输出控制等功能。"
+    },
+    {
+      "id": "principle_backward_compatibility",
+      "label": "Principle",
+      "name": "向后兼容性",
+      "description": "新一代计算机系统能够运行旧版本软件的能力，是IBM360系统的重要设计原则之一。"
+    },
+    {
+      "id": "principle_parallelism",
+      "label": "Principle",
+      "name": "并行性",
+      "description": "多个计算单元同时工作以提升整体性能，如ILLIACIV采用64个单元并行操作。"
+    },
+    {
+      "id": "code_ibm_360_intro",
+      "label": "CodeSnippet",
+      "name": "IBM360系统发布介绍",
+      "language": "中文",
+      "content": "1964年IBM公司宣布世界上第一个采用集成电路的通用计算机IBM360系统研制成功，该系统的发布是计算机发展史上具有重要意义的事件。"
+    },
+    {
+      "id": "concept_fourth_generation_computer",
+      "label": "Concept",
+      "name": "第四代计算机",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_vlsi",
+      "label": "Concept",
+      "name": "超大规模集成电路",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_lsi",
+      "label": "Concept",
+      "name": "大规模集成电路",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_microprocessor",
+      "label": "Concept",
+      "name": "微处理器",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_integrated_circuit_density",
+      "label": "Concept",
+      "name": "集成度",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_computing_speed",
+      "label": "Concept",
+      "name": "计算速度",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_price_trend",
+      "label": "Concept",
+      "name": "价格趋势",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_parallel_processing",
+      "label": "Concept",
+      "name": "并行处理技术",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_vector_supercomputer",
+      "label": "Concept",
+      "name": "向量巨型机",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_computer_networking",
+      "label": "Concept",
+      "name": "计算机网络",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_network_computing",
+      "label": "Concept",
+      "name": "网络计算方式",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_pervasive_computing",
+      "label": "Concept",
+      "name": "普适计算",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_intelligent_computing",
+      "label": "Concept",
+      "name": "智能化计算",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_microprocessor",
+      "label": "Hardware",
+      "name": "微处理器",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_vlsi_chip",
+      "label": "Hardware",
+      "name": "VLSI芯片",
+      "hw_type": "集成电路"
+    },
+    {
+      "id": "hw_supercomputer",
+      "label": "Hardware",
+      "name": "巨型机",
+      "hw_type": "高性能计算系统"
+    },
+    {
+      "id": "hw_network",
+      "label": "Hardware",
+      "name": "计算机网络",
+      "hw_type": "通信基础设施"
+    },
+    {
+      "id": "principle_moore_law",
+      "label": "Principle",
+      "name": "摩尔定律",
+      "description": null
+    },
+    {
+      "id": "principle_locality_principle",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": null
+    },
+    {
+      "id": "code_table_1_1",
+      "label": "CodeSnippet",
+      "name": "Intel CPU 芯片性能比较表",
+      "language": "Markdown",
+      "content": "| 芯片名 | 年代 | 集成度 (晶体管) | 主频范围 (MHz) | 线宽 (μm) | 数据总线宽 (位) | 地址总线宽 (位) |\n|--------|------|----------------|---------------|-----------|----------------|----------------|\n| 4004   | 1971 | 2300           | 0.74          | 2         | 4              |                |\n| 8080   | 1974 | 8000           | 4             | 1.5       | 8              | 16             |\n| 8086   | 1978 | 2.9 万         | 4.77          | 1.5       | 16             | 20             |\n| 80286  | 1984 | 13.5 万        | 6~25          | 1~1.5     | 16             | 24             |\n| 80386  | 1985 | 27.5 万        | 20~33         | 1~1.5     | 32             | 32             |\n| 80486  | 1989 | 118.5 万       | 33~100        | 1         | 32             | 32             |\n| Pentium| 1993 | 300 万         | 60~133        | 0.6       | 64             | 32             |\n| Pentium Pro(P6) | 1995 | 550 万 | 150~233 | 0.6 | 64 | 32 |\n| PII(P6 + MMX) | 1997 | 750 万 | 233~400 | 0.35 | 64 | 32 |\n| PIII   | 1999 | 950 万         | 450~1000      | 0.25      | 64             | 32             |\n| P4     | 2000 | 4200 万        | 1500~3800     | 0.18      | 64             | 32             |\n| Core i7| 2010 | 117 000 万      | 3333          | 0.032     | 64             | 64             |"
+    },
+    {
+      "id": "concept_computer",
+      "label": "Concept",
+      "name": "计算机",
+      "alias": [
+        "计算设备",
+        "数据处理装置"
+      ],
+      "definition": "一种能自动对数字化信息进行算术和逻辑运算的高速处理装置。"
+    },
+    {
+      "id": "concept_digital_information",
+      "label": "Concept",
+      "name": "数字化信息",
+      "alias": [
+        "数字数据",
+        "二进制信息"
+      ],
+      "definition": "以离散形式表示的信息，通常用0和1编码，是计算机处理的基本对象。"
+    },
+    {
+      "id": "concept_arithmetic_and_logical_operations",
+      "label": "Concept",
+      "name": "算术和逻辑运算",
+      "alias": [
+        "运算操作",
+        "数据处理操作"
+      ],
+      "definition": "计算机执行的基本操作类型，包括加减乘除等算术运算以及与、或、非等逻辑运算。"
+    },
+    {
+      "id": "concept_automatic_processing",
+      "label": "Concept",
+      "name": "自动处理",
+      "alias": [
+        "自动化处理",
+        "自动执行"
+      ],
+      "definition": "计算机能够无需人工干预连续执行指令序列的能力，是其区别于机械计算器的关键特征。"
+    },
+    {
+      "id": "concept_computer_system",
+      "label": "Concept",
+      "name": "计算机系统",
+      "alias": [
+        "计算系统",
+        "整体系统"
+      ],
+      "definition": "不仅包含看得见的硬件，还包括运行在硬件上的软件，共同构成一个完整的可执行计算环境。"
+    },
+    {
+      "id": "hw_hardware",
+      "label": "Hardware",
+      "name": "硬件",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_software",
+      "label": "Hardware",
+      "name": "软件",
+      "hw_type": "虚拟组件"
+    },
+    {
+      "id": "concept_data_process",
+      "label": "Concept",
+      "name": "数据处理",
+      "alias": [
+        "data process"
+      ],
+      "definition": "计算机系统最基本的功能，包括算术运算（如加、减、乘、除）和逻辑运算（如与、或、非），可处理十进制数据及文字、图形、图像、声音、视频等多媒体信息。"
+    },
+    {
+      "id": "concept_data_storage",
+      "label": "Concept",
+      "name": "数据存储",
+      "alias": [
+        "data storage"
+      ],
+      "definition": "计算机能采用自动工作方式的基本保证，通过各类存储部件实现程序和数据的预先存储与按需调用，分为易失性（如内存）和非易失性（如磁盘）存储器。"
+    },
+    {
+      "id": "concept_data_transfer",
+      "label": "Concept",
+      "name": "数据传送",
+      "alias": [
+        "data transfer"
+      ],
+      "definition": "计算机内部功能部件之间、主机与外部设备之间、不同计算机系统之间的信息交换操作，依赖总线、桥接器等互连部件完成。"
+    },
+    {
+      "id": "concept_computer_system_function",
+      "label": "Concept",
+      "name": "计算机系统基本功能",
+      "alias": [],
+      "definition": "包括数据处理、数据存储和数据传送三大核心功能，最终通过执行指令由控制器协调完成。"
+    },
+    {
+      "id": "concept_instruction_execution",
+      "label": "Concept",
+      "name": "指令执行",
+      "alias": [],
+      "definition": "所有任务的实现基础，计算机通过逐条执行程序中的指令来完成各种操作，受控制器产生的控制信号控制。"
+    },
+    {
+      "id": "concept_computer_characteristics",
+      "label": "Concept",
+      "name": "计算机特性",
+      "alias": [
+        "高速",
+        "通用",
+        "准确",
+        "智能"
+      ],
+      "definition": "计算机具有高速（基于高速电子元器件）、通用（可处理多样化信息并广泛应用于各类问题求解）、准确（强计算与逻辑推理能力）和智能（自动逻辑推理）等特征。"
+    },
+    {
+      "id": "concept_hardware_software",
+      "label": "Concept",
+      "name": "硬件与软件",
+      "alias": [],
+      "definition": "计算机系统由硬件（物理装置，如芯片、板卡、外设）和软件（运行在硬件上的程序、数据及相关文档）两部分组成。"
+    },
+    {
+      "id": "concept_program_data",
+      "label": "Concept",
+      "name": "程序与数据",
+      "alias": [],
+      "definition": "程序是指挥计算机如何操作的指令序列；数据是程序操作的对象。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_alu",
+      "label": "Hardware",
+      "name": "ALU",
+      "hw_type": "运算部件"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "内存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_storage",
+      "label": "Hardware",
+      "name": "外存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_bus",
+      "label": "Hardware",
+      "name": "总线",
+      "hw_type": "互连部件"
+    },
+    {
+      "id": "hw_bridge",
+      "label": "Hardware",
+      "name": "桥接器",
+      "hw_type": "互连部件"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中对数据和指令的访问呈现出时间局部性和空间局部性，是缓存设计的重要依据。"
+    },
+    {
+      "id": "principle_stored_program",
+      "label": "Principle",
+      "name": "存储程序原理",
+      "description": "程序和数据以相同方式存储于同一存储器中，使计算机能够自动读取并执行指令，是冯·诺依曼结构的核心思想。"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "Hello World 程序示例",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "concept_von_neumann_architecture",
+      "label": "Concept",
+      "name": "冯·诺依曼结构",
+      "alias": [
+        "冯诺依曼结构",
+        "Von Neumann Architecture"
+      ],
+      "definition": "计算机体系结构的基本范式，其核心思想包括存储程序、五大基本部件组成、指令与数据统一存储、二进制表示、操作码与地址码分离等。"
+    },
+    {
+      "id": "concept_stored_program",
+      "label": "Concept",
+      "name": "存储程序",
+      "alias": [
+        "存储程序工作方式",
+        "Stored Program"
+      ],
+      "definition": "将程序和数据以相同形式存放在同一存储器中，由控制器自动逐条读取并执行指令的运行机制。"
+    },
+    {
+      "id": "concept_binary_representation",
+      "label": "Concept",
+      "name": "二进制表示",
+      "alias": [
+        "二进制编码",
+        "Binary Encoding"
+      ],
+      "definition": "计算机内部所有信息（包括指令和数据）均以0和1两种状态表示，对应逻辑真与假，是实现数字电路运算的基础。"
+    },
+    {
+      "id": "concept_instruction_format",
+      "label": "Concept",
+      "name": "指令格式",
+      "alias": [
+        "指令结构",
+        "Instruction Structure"
+      ],
+      "definition": "每条机器指令由操作码（Opcode）和地址码（Address Code）两部分组成，分别指明操作类型和操作数地址。"
+    },
+    {
+      "id": "concept_locality_principle",
+      "label": "Concept",
+      "name": "局部性原理",
+      "alias": [
+        "Locality Principle"
+      ],
+      "definition": "程序在执行过程中，对内存的访问表现出时间局部性和空间局部性，是Cache设计的重要理论基础。"
+    },
+    {
+      "id": "hardware_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hardware_alu",
+      "label": "Hardware",
+      "name": "ALU",
+      "hw_type": "算术逻辑部件"
+    },
+    {
+      "id": "hardware_main_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "内存"
+    },
+    {
+      "id": "hardware_cache",
+      "label": "Hardware",
+      "name": "高速缓冲存储器",
+      "hw_type": "缓存"
+    },
+    {
+      "id": "hardware_bus",
+      "label": "Hardware",
+      "name": "总线",
+      "hw_type": "通信介质"
+    },
+    {
+      "id": "hardware_io_controller",
+      "label": "Hardware",
+      "name": "设备控制器",
+      "hw_type": "I/O模块"
+    },
+    {
+      "id": "hardware_register_file",
+      "label": "Hardware",
+      "name": "寄存器堆",
+      "hw_type": "寄存器"
+    },
+    {
+      "id": "hardware_pci_slot",
+      "label": "Hardware",
+      "name": "PCI总线插槽",
+      "hw_type": "扩展接口"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在一段时间内倾向于重复访问相同或邻近的内存位置，分为时间局部性和空间局部性，是Cache优化的核心依据。"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "Hello World 程序示例",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "concept_stored_program",
+      "label": "Concept",
+      "name": "存储程序",
+      "alias": [],
+      "definition": "计算机的工作由存储在其内部的程序控制，是冯·诺依曼结构的重要特征。"
+    },
+    {
+      "id": "concept_flynn_architecture",
+      "label": "Concept",
+      "name": "冯·诺依曼结构",
+      "alias": [
+        "冯诺依曼体系结构"
+      ],
+      "definition": "一种将程序指令和数据存储在同一存储器中的计算机架构，其核心特征为‘存储程序’。"
+    },
+    {
+      "id": "concept_software_crisis",
+      "label": "Concept",
+      "name": "软件危机",
+      "alias": [],
+      "definition": "随着软件规模和复杂性增加，开发过程中出现难以控制的问题，如进度延误、成本超支、质量低下等。"
+    },
+    {
+      "id": "concept_software_engineering",
+      "label": "Concept",
+      "name": "软件工程",
+      "alias": [],
+      "definition": "采用系统化、规范化、可量化的方法来开发、运行和维护软件，以应对软件危机。"
+    },
+    {
+      "id": "concept_system_software",
+      "label": "Concept",
+      "name": "系统软件",
+      "alias": [
+        "系统级软件"
+      ],
+      "definition": "介于计算机硬件与应用程序之间，用于有效、安全地使用和管理计算机资源，并为应用软件提供支持的软件。"
+    },
+    {
+      "id": "concept_application_software",
+      "label": "Concept",
+      "name": "应用软件",
+      "alias": [
+        "应用级软件"
+      ],
+      "definition": "专门为特定任务（如数据处理、科学计算、事务管理等）编写的程序，直接服务于用户需求。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "存储器",
+      "hw_type": "主存"
+    },
+    {
+      "id": "hw_io_device",
+      "label": "Hardware",
+      "name": "输入输出设备",
+      "hw_type": "外设"
+    },
+    {
+      "id": "inst_machine_language",
+      "label": "Instruction",
+      "name": "机器语言",
+      "syntax": null
+    },
+    {
+      "id": "inst_high_level_language",
+      "label": "Instruction",
+      "name": "高级语言",
+      "syntax": null
+    },
+    {
+      "id": "principle_moore_law",
+      "label": "Principle",
+      "name": "摩尔定律",
+      "description": "集成电路上可容纳的晶体管数量每两年翻一番，性能随之提升。"
+    },
+    {
+      "id": "principle_locality_principle",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行时倾向于访问最近使用过的数据或指令，是缓存设计的基础。"
+    },
+    {
+      "id": "concept_program_development_and_execution",
+      "label": "Concept",
+      "name": "程序开发与执行过程",
+      "alias": [],
+      "definition": "程序的开发和执行涉及计算机系统的各个不同层面，体现了计算机系统层次结构的思想。"
+    },
+    {
+      "id": "concept_computer_system_hierarchy",
+      "label": "Concept",
+      "name": "计算机系统层次结构",
+      "alias": [],
+      "definition": "将计算机系统划分为多个抽象层次，每个层次为上层提供服务，同时依赖下层实现功能。"
+    },
+    {
+      "id": "concept_user_program",
+      "label": "Concept",
+      "name": "用户程序",
+      "alias": [
+        "应用程序"
+      ],
+      "definition": "为了解决最终用户的应用问题而编写的程序，也称为应用程序。"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "Hello World 程序",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "code_hello_c",
+      "label": "CodeSnippet",
+      "name": "hello.c 源程序代码",
+      "language": "C",
+      "content": "#include<stdio.h>\n\nint main()\n{\nprintf(\"hello,world\\n\");\n}"
+    },
+    {
+      "id": "concept_text_file",
+      "label": "Concept",
+      "name": "文本文件",
+      "alias": [
+        "text file"
+      ],
+      "definition": "用ASCII码字符或汉字字符表示的文件，可显示和可读。源程序文件都是文本文件。"
+    },
+    {
+      "id": "concept_binary_file",
+      "label": "Concept",
+      "name": "二进制文件",
+      "alias": [
+        "binary file"
+      ],
+      "definition": "以二进制形式存储数据的文件，如机器指令、数据等，不可读，打开后显示为乱码。"
+    },
+    {
+      "id": "concept_preprocessing",
+      "label": "Concept",
+      "name": "预处理阶段",
+      "alias": [],
+      "definition": "对源程序中以#开头的命令（如#include）进行处理，将头文件内容嵌入源程序，输出为.i扩展名的文件。"
+    },
+    {
+      "id": "concept_compilation",
+      "label": "Concept",
+      "name": "编译阶段",
+      "alias": [],
+      "definition": "将预处理后的源程序转换为汇编语言程序，输出为.s扩展名的文件。该过程与具体机器结构相关。"
+    },
+    {
+      "id": "concept_assembly",
+      "label": "Concept",
+      "name": "汇编阶段",
+      "alias": [],
+      "definition": "将汇编语言程序转换为可重定位目标文件（.o），生成二进制格式的机器指令和数据。"
+    },
+    {
+      "id": "concept_linking",
+      "label": "Concept",
+      "name": "链接阶段",
+      "alias": [],
+      "definition": "将多个可重定位目标文件和标准库函数合并成一个可执行目标文件（可执行文件）。"
+    },
+    {
+      "id": "concept_executable_file",
+      "label": "Concept",
+      "name": "可执行文件",
+      "alias": [
+        "executable object file"
+      ],
+      "definition": "由链接器生成的最终可运行的文件，可以直接在操作系统上启动并执行。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_main_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "inst_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq source, destination"
+    },
+    {
+      "id": "inst_call",
+      "label": "Instruction",
+      "name": "call",
+      "syntax": "call function"
+    },
+    {
+      "id": "inst_ret",
+      "label": "Instruction",
+      "name": "ret",
+      "syntax": "ret"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中，对内存的访问具有时间局部性和空间局部性，是缓存设计的重要依据。"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "hello程序输出示例",
+      "language": "txt",
+      "content": "unix> ./hello\nhello, world\nunix>"
+    },
+    {
+      "id": "concept_executable_file",
+      "label": "Concept",
+      "name": "可执行文件",
+      "alias": [
+        "可执行程序",
+        "二进制程序"
+      ],
+      "definition": "存放在磁盘上、可以直接被操作系统加载并执行的程序文件，通常由编译器或链接器生成。"
+    },
+    {
+      "id": "concept_shell",
+      "label": "Concept",
+      "name": "shell",
+      "alias": [
+        "命令行解释器",
+        "外壳程序"
+      ],
+      "definition": "操作系统提供的用户接口，用于接收用户输入的命令并解释执行，是用户与操作系统之间的桥梁。"
+    },
+    {
+      "id": "concept_kernel_service_routine",
+      "label": "Concept",
+      "name": "内核服务例程",
+      "alias": [
+        "系统调用服务例程",
+        "内核服务"
+      ],
+      "definition": "操作系统内核中提供特定功能的函数或过程，供用户程序通过系统调用请求使用，如加载程序、读写文件等。"
+    },
+    {
+      "id": "concept_user_program_execution",
+      "label": "Concept",
+      "name": "用户程序执行",
+      "alias": [
+        "程序启动",
+        "程序运行"
+      ],
+      "definition": "用户程序从被操作系统加载到主存开始，直至完成执行的全过程，依赖于操作系统的支持。"
+    },
+    {
+      "id": "concept_data_flow",
+      "label": "Concept",
+      "name": "数据流动",
+      "alias": [
+        "数据传输",
+        "信息流"
+      ],
+      "definition": "在计算机系统中，数据在CPU、主存、I/O设备之间通过总线和缓冲部件进行传递的过程。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_main_memory",
+      "label": "Hardware",
+      "name": "主存储器",
+      "hw_type": "内存"
+    },
+    {
+      "id": "hw_keyboard",
+      "label": "Hardware",
+      "name": "键盘",
+      "hw_type": "输入设备"
+    },
+    {
+      "id": "hw_display",
+      "label": "Hardware",
+      "name": "显示器",
+      "hw_type": "输出设备"
+    },
+    {
+      "id": "hw_disk",
+      "label": "Hardware",
+      "name": "磁盘",
+      "hw_type": "存储设备"
+    },
+    {
+      "id": "hw_bus",
+      "label": "Hardware",
+      "name": "总线",
+      "hw_type": "通信通道"
+    },
+    {
+      "id": "hw_io_bridge",
+      "label": "Hardware",
+      "name": "I/O桥接器",
+      "hw_type": "I/O控制器"
+    },
+    {
+      "id": "hw_register_bank",
+      "label": "Hardware",
+      "name": "寄存器堆",
+      "hw_type": "CPU内部存储"
+    },
+    {
+      "id": "hw_data_buffer_register",
+      "label": "Hardware",
+      "name": "数据缓冲寄存器",
+      "hw_type": "设备控制器存储"
+    },
+    {
+      "id": "inst_pc",
+      "label": "Instruction",
+      "name": "Program Counter",
+      "syntax": "PC ← 指令地址"
+    },
+    {
+      "id": "inst_read_syscall",
+      "label": "Instruction",
+      "name": "read system call",
+      "syntax": "syscall read"
+    },
+    {
+      "id": "inst_write_syscall",
+      "label": "Instruction",
+      "name": "write system call",
+      "syntax": "syscall write"
+    },
+    {
+      "id": "principle_os_support",
+      "label": "Principle",
+      "name": "操作系统支持原理",
+      "description": "用户程序的启动与执行必须依赖操作系统的支持，包括外壳程序和内核服务例程，以实现资源管理、设备访问和程序加载等功能。"
+    },
+    {
+      "id": "principle_data_flow_in_system",
+      "label": "Principle",
+      "name": "系统内数据流动原理",
+      "description": "程序执行过程中，所有数据的移动都发生在CPU、主存和I/O模块之间，并通过总线和缓冲部件完成，体现了计算机系统中数据流动的基本路径。"
+    },
+    {
+      "id": "concept_instruction",
+      "label": "Concept",
+      "name": "指令",
+      "alias": [
+        "机器指令",
+        "Machine Instruction"
+      ],
+      "definition": "用0和1表示的一串二进制序列，用来指示CPU完成一个特定的原子操作。"
+    },
+    {
+      "id": "concept_machine_code_segment",
+      "label": "Concept",
+      "name": "机器代码段",
+      "alias": [
+        "Machine Code Segment"
+      ],
+      "definition": "可执行目标文件中包含的由机器指令组成的代码区域，是程序执行的实际内容。"
+    },
+    {
+      "id": "concept_execution_process",
+      "label": "Concept",
+      "name": "指令执行过程",
+      "alias": [
+        "Instruction Execution Process"
+      ],
+      "definition": "每条指令从取指、译码、取操作数、运算到结果保存的完整流程。"
+    },
+    {
+      "id": "concept_control_signal",
+      "label": "Concept",
+      "name": "控制信号",
+      "alias": [
+        "Control Signal"
+      ],
+      "definition": "由控制器对指令操作码译码后生成的信号，用于控制数据通路中的各个部件工作。"
+    },
+    {
+      "id": "concept_clock_signal",
+      "label": "Concept",
+      "name": "时钟信号",
+      "alias": [
+        "Clock Signal"
+      ],
+      "definition": "用于定时指令执行过程的周期性电信号，一条指令的执行可能需要一个或多个时钟周期。"
+    },
+    {
+      "id": "concept_pc",
+      "label": "Concept",
+      "name": "程序计数器（PC）",
+      "alias": [
+        "Program Counter",
+        "PC"
+      ],
+      "definition": "存储当前要执行指令地址的寄存器，每次指令执行后更新为下一条指令的地址。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_alu",
+      "label": "Hardware",
+      "name": "ALU",
+      "hw_type": "算术逻辑单元"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_io_controller",
+      "label": "Hardware",
+      "name": "I/O模块",
+      "hw_type": "输入输出模块"
+    },
+    {
+      "id": "hw_display_adapter",
+      "label": "Hardware",
+      "name": "显示适配器",
+      "hw_type": "显示控制器"
+    },
+    {
+      "id": "inst_load_word",
+      "label": "Instruction",
+      "name": "lw",
+      "syntax": "lw $rt, offset($rs)"
+    },
+    {
+      "id": "inst_store_word",
+      "label": "Instruction",
+      "name": "sw",
+      "syntax": "sw $rt, offset($rs)"
+    },
+    {
+      "id": "inst_add",
+      "label": "Instruction",
+      "name": "add",
+      "syntax": "add $rd, $rs, $rt"
+    },
+    {
+      "id": "inst_output",
+      "label": "Instruction",
+      "name": "output",
+      "syntax": "output $reg"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "Hello World 输出程序",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"hello,world\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "code_mips_lw_sw",
+      "label": "CodeSnippet",
+      "name": "MIPS 汇编实现数组交换",
+      "language": "MIPS Assembly",
+      "content": "lw $t0, 0($s0)   # 取第一个元素\nlw $t1, 4($s0)   # 取第二个元素\nsw $t1, 0($s0)   # 存第二个元素到第一个位置\nsw $t0, 4($s0)   # 存第一个元素到第二个位置"
+    },
+    {
+      "id": "code_mips_machine_code",
+      "label": "CodeSnippet",
+      "name": "MIPS lw 指令机器码",
+      "language": "Binary",
+      "content": "1000110001001111000000000000000"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中表现出时间局部性和空间局部性，是缓存设计的重要依据。"
+    },
+    {
+      "id": "concept_computer_system_hierarchy",
+      "label": "Concept",
+      "name": "计算机系统的层次结构",
+      "alias": [
+        "分层结构",
+        "系统层次结构"
+      ],
+      "definition": "传统计算机系统采用分层方式构建，通过向上层用户提供抽象接口，隐藏底层实现细节。"
+    },
+    {
+      "id": "concept_abstraction",
+      "label": "Concept",
+      "name": "抽象",
+      "alias": [
+        "抽象化",
+        "接口抽象"
+      ],
+      "definition": "通过隐藏实现细节，为上层提供简洁的接口，使复杂系统易于理解和使用。"
+    },
+    {
+      "id": "principle_layered_design",
+      "label": "Principle",
+      "name": "分层设计原理",
+      "description": "将复杂系统划分为多个层次，每一层只关注特定功能，并通过明确定义的接口与上下层交互。"
+    },
+    {
+      "id": "concept_application_problem",
+      "label": "Concept",
+      "name": "应用问题",
+      "alias": [],
+      "definition": "用户希望计算机完成或解决的初始任务，通常以自然语言描述。"
+    },
+    {
+      "id": "concept_algorithm",
+      "label": "Concept",
+      "name": "算法",
+      "alias": [
+        "algo-rithm"
+      ],
+      "definition": "对应用问题求解过程的流程化、有限步骤的清晰描述。"
+    },
+    {
+      "id": "concept_program",
+      "label": "Concept",
+      "name": "程序",
+      "alias": [],
+      "definition": "用编程语言描述的、可被计算机执行的指令序列。"
+    },
+    {
+      "id": "concept_high_level_language",
+      "label": "Concept",
+      "name": "高级语言",
+      "alias": [
+        "high-level language"
+      ],
+      "definition": "与具体计算机硬件无关的编程语言，具有良好的可读性和可移植性。"
+    },
+    {
+      "id": "concept_low_level_language",
+      "label": "Concept",
+      "name": "低级语言",
+      "alias": [
+        "low-level language"
+      ],
+      "definition": "与底层计算机结构密切相关的编程语言，如机器语言和汇编语言。"
+    },
+    {
+      "id": "concept_machine_language",
+      "label": "Concept",
+      "name": "机器语言",
+      "alias": [
+        "machine language"
+      ],
+      "definition": "由二进制0/1序列组成的机器指令集合，是计算机硬件唯一能直接理解的语言。"
+    },
+    {
+      "id": "concept_assembly_language",
+      "label": "Concept",
+      "name": "汇编语言",
+      "alias": [
+        "assembly language"
+      ],
+      "definition": "机器语言的符号表示形式，使用助记符替代二进制代码，便于程序员编写和阅读。"
+    },
+    {
+      "id": "concept_programming_language",
+      "label": "Concept",
+      "name": "编程语言",
+      "alias": [
+        "programming language"
+      ],
+      "definition": "用于描述程序逻辑的正式语言，具有严格的语法和语义规则。"
+    },
+    {
+      "id": "concept_language_processor_system",
+      "label": "Concept",
+      "name": "程序设计语言处理系统",
+      "alias": [],
+      "definition": "用于将一种编程语言程序自动转换为另一种语言程序的软件系统。"
+    },
+    {
+      "id": "concept_translator",
+      "label": "Concept",
+      "name": "翻译程序",
+      "alias": [
+        "translator"
+      ],
+      "definition": "将源程序转换为目标程序的程序，是语言处理系统的核心组件。"
+    },
+    {
+      "id": "concept_assembler",
+      "label": "Concept",
+      "name": "汇编程序",
+      "alias": [
+        "assembler"
+      ],
+      "definition": "将汇编语言源程序翻译成机器语言目标程序的工具。"
+    },
+    {
+      "id": "concept_interpreter",
+      "label": "Concept",
+      "name": "解释程序",
+      "alias": [
+        "interpreter"
+      ],
+      "definition": "逐条翻译并立即执行源程序语句的程序。"
+    },
+    {
+      "id": "concept_compiler",
+      "label": "Concept",
+      "name": "编译程序",
+      "alias": [
+        "compiler"
+      ],
+      "definition": "将高级语言源程序翻译成汇编语言或机器语言目标程序的工具。"
+    },
+    {
+      "id": "concept_operating_system",
+      "label": "Concept",
+      "name": "操作系统",
+      "alias": [],
+      "definition": "对计算机底层硬件的抽象，提供一个虚拟机环境供程序员使用。"
+    },
+    {
+      "id": "concept_virtual_machine",
+      "label": "Concept",
+      "name": "虚拟机",
+      "alias": [
+        "virtual machine"
+      ],
+      "definition": "由操作系统提供的、对真实计算机硬件的抽象，使程序员可以像操作一台独立计算机一样工作。"
+    },
+    {
+      "id": "concept_instruction_set_architecture",
+      "label": "Concept",
+      "name": "指令集体系结构",
+      "alias": [
+        "ISA",
+        "体系结构",
+        "系统结构"
+      ],
+      "definition": "软件与硬件之间的接口定义，规定了计算机可执行的所有指令及其格式、寻址方式、寄存器等。"
+    },
+    {
+      "id": "concept_microarchitecture",
+      "label": "Concept",
+      "name": "微体系结构",
+      "alias": [
+        "微架构"
+      ],
+      "definition": "指令集体系结构的具体实现组织，属于硬件层面，软件不可感知。"
+    },
+    {
+      "id": "concept_logic_circuit",
+      "label": "Concept",
+      "name": "逻辑电路",
+      "alias": [],
+      "definition": "实现微体系结构中功能部件的基本电子电路单元。"
+    },
+    {
+      "id": "concept_device_technology",
+      "label": "Concept",
+      "name": "器件技术",
+      "alias": [],
+      "definition": "用于实现逻辑电路的物理制造技术，如CMOS、NMOS等。"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在运行过程中倾向于访问最近使用过的数据和指令，是缓存设计的重要依据。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_alu",
+      "label": "Hardware",
+      "name": "ALU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_bus",
+      "label": "Hardware",
+      "name": "总线",
+      "hw_type": "通信通道"
+    },
+    {
+      "id": "inst_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq source, destination"
+    },
+    {
+      "id": "inst_add",
+      "label": "Instruction",
+      "name": "add",
+      "syntax": "add operand1, operand2"
+    },
+    {
+      "id": "inst_jmp",
+      "label": "Instruction",
+      "name": "jmp",
+      "syntax": "jmp label"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "Hello World 程序",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "concept_final_user",
+      "label": "Concept",
+      "name": "最终用户",
+      "alias": [
+        "end user"
+      ],
+      "definition": "使用应用程序完成特定任务的计算机用户，通过操作系统提供的用户界面与计算机交互，感知到的是简单的人机交互界面和安装的应用程序。"
+    },
+    {
+      "id": "concept_system_administrator",
+      "label": "Concept",
+      "name": "系统管理员",
+      "alias": [
+        "system administrator"
+      ],
+      "definition": "负责配置、管理和维护计算机系统的专业人员，熟悉操作系统功能，能处理硬件/软件安装、账户管理、数据备份与恢复等问题。"
+    },
+    {
+      "id": "concept_application_programmer",
+      "label": "Concept",
+      "name": "应用程序员",
+      "alias": [
+        "application programmer"
+      ],
+      "definition": "使用高级编程语言编写应用软件的程序员，主要关注API、函数库、IDE等开发环境，不需深入底层硬件细节。"
+    },
+    {
+      "id": "concept_system_programmer",
+      "label": "Concept",
+      "name": "系统程序员",
+      "alias": [
+        "system programmer"
+      ],
+      "definition": "设计和开发系统软件（如操作系统、编译器、数据库管理系统）的程序员，需熟悉指令系统、机器结构、汇编语言及直接控制硬件。"
+    },
+    {
+      "id": "concept_transparency",
+      "label": "Concept",
+      "name": "透明",
+      "alias": [
+        "transparency"
+      ],
+      "definition": "在计算机系统中，某些底层概念对上层用户不可见或感觉不到的现象。例如，系统程序员所见的机器级特性对应用程序员是透明的。"
+    },
+    {
+      "id": "concept_layered_architecture",
+      "label": "Concept",
+      "name": "层次化体系结构",
+      "alias": [
+        "layered architecture"
+      ],
+      "definition": "计算机系统由硬件和软件按层次组织的分层结构，不同用户工作在不同层级，看到的系统抽象程度不同。"
+    },
+    {
+      "id": "concept_isa",
+      "label": "Concept",
+      "name": "指令集架构",
+      "alias": [
+        "ISA",
+        "Instruction Set Architecture"
+      ],
+      "definition": "位于硬件与软件交界处的核心部分，定义了计算机的指令格式、寻址方式、数据类型等，是软件执行的基础。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_main_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_io_controller",
+      "label": "Hardware",
+      "name": "I/O控制器",
+      "hw_type": "输入/输出设备"
+    },
+    {
+      "id": "hw_control_register",
+      "label": "Hardware",
+      "name": "控制寄存器",
+      "hw_type": "寄存器"
+    },
+    {
+      "id": "hw_user_visible_register",
+      "label": "Hardware",
+      "name": "用户可见寄存器",
+      "hw_type": "寄存器"
+    },
+    {
+      "id": "inst_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq source, destination"
+    },
+    {
+      "id": "inst_addq",
+      "label": "Instruction",
+      "name": "addq",
+      "syntax": "addq source, destination"
+    },
+    {
+      "id": "inst_jmp",
+      "label": "Instruction",
+      "name": "jmp",
+      "syntax": "jmp label"
+    },
+    {
+      "id": "code_hello_world_c",
+      "label": "CodeSnippet",
+      "name": "Hello World in C",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "code_simple_asm",
+      "label": "CodeSnippet",
+      "name": "Simple Assembly Code",
+      "language": "Assembly",
+      "content": ".text\n.globl _start\n_start:\n    movq $1, %rax\n    movq $1, %rdi\n    syscall"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序运行时对内存访问具有时间局部性和空间局部性，是缓存设计的重要依据。"
+    },
+    {
+      "id": "concept_computer_system",
+      "label": "Concept",
+      "name": "计算机系统",
+      "alias": [],
+      "definition": "一个完整的计算机系统由硬件和软件构成，用于执行计算任务并提供服务。"
+    },
+    {
+      "id": "concept_hardware_performance",
+      "label": "Concept",
+      "name": "硬件性能",
+      "alias": [],
+      "definition": "硬件在执行计算任务时所表现出的效率和速度，是影响整个计算机系统性能的关键因素。"
+    },
+    {
+      "id": "concept_performance_evaluation",
+      "label": "Concept",
+      "name": "性能评价",
+      "alias": [],
+      "definition": "通过测试和分析方法对计算机系统或其组成部分（如硬件）的运行效率进行量化评估的过程。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_bus",
+      "label": "Hardware",
+      "name": "总线",
+      "hw_type": "通信通道"
+    },
+    {
+      "id": "principle_performance_variability",
+      "label": "Principle",
+      "name": "性能可变性原理",
+      "description": "同一套硬件在运行不同类型的软件或使用不同数据集时，测得的性能可能不同，因此性能评价需考虑测试环境的多样性。"
+    },
+    {
+      "id": "concept_throughput",
+      "label": "Concept",
+      "name": "吞吐率",
+      "alias": [
+        "throughput"
+      ],
+      "definition": "在单位时间内所完成的工作量，是衡量系统处理能力的指标。"
+    },
+    {
+      "id": "concept_response_time",
+      "label": "Concept",
+      "name": "响应时间",
+      "alias": [
+        "response time"
+      ],
+      "definition": "从作业提交开始到作业完成所用的时间，反映系统对请求的及时响应能力。"
+    },
+    {
+      "id": "concept_bandwidth",
+      "label": "Concept",
+      "name": "带宽",
+      "alias": [
+        "bandwidth"
+      ],
+      "definition": "单位时间内所传输的信息量，常用于描述数据通信能力。"
+    },
+    {
+      "id": "concept_execution_time",
+      "label": "Concept",
+      "name": "执行时间",
+      "alias": [
+        "execution time"
+      ],
+      "definition": "任务从开始到结束所花费的时间，是衡量程序运行效率的指标之一。"
+    },
+    {
+      "id": "concept_latency",
+      "label": "Concept",
+      "name": "等待时间",
+      "alias": [
+        "latency"
+      ],
+      "definition": "从请求发出到收到响应之间的时间延迟，常用于网络和存储系统中。"
+    },
+    {
+      "id": "principle_performance_tradeoff",
+      "label": "Principle",
+      "name": "性能权衡原则",
+      "description": "不同应用场景下，系统性能关注点不同，需在吞吐率与响应时间之间进行权衡。"
+    },
+    {
+      "id": "concept_performance_evaluation",
+      "label": "Concept",
+      "name": "性能评价",
+      "alias": [],
+      "definition": "通过用户CPU时间等指标对计算机系统执行程序效率的衡量方法"
+    },
+    {
+      "id": "concept_cpu_time",
+      "label": "Concept",
+      "name": "CPU时间",
+      "alias": [
+        "用户CPU时间",
+        "系统CPU时间"
+      ],
+      "definition": "CPU用于执行用户程序代码的时间，包括用户CPU时间和系统CPU时间"
+    },
+    {
+      "id": "concept_user_cpu_time",
+      "label": "Concept",
+      "name": "用户CPU时间",
+      "alias": [],
+      "definition": "真正用于运行用户程序代码的CPU时间"
+    },
+    {
+      "id": "concept_system_cpu_time",
+      "label": "Concept",
+      "name": "系统CPU时间",
+      "alias": [],
+      "definition": "为执行用户程序而需要CPU运行操作系统程序所用的时间"
+    },
+    {
+      "id": "concept_other_time",
+      "label": "Concept",
+      "name": "其他时间",
+      "alias": [],
+      "definition": "等待I/O操作完成或CPU用于执行其他用户程序的时间"
+    },
+    {
+      "id": "concept_clock_cycle",
+      "label": "Concept",
+      "name": "时钟周期",
+      "alias": [
+        "clock cycle",
+        "tick",
+        "clock tick",
+        "clock"
+      ],
+      "definition": "CPU主脉冲信号的宽度，是控制信号同步的基本时间单位"
+    },
+    {
+      "id": "concept_clock_rate",
+      "label": "Concept",
+      "name": "时钟频率",
+      "alias": [
+        "主频"
+      ],
+      "definition": "CPU主脉冲信号的频率，为时钟周期的倒数"
+    },
+    {
+      "id": "concept_cpi",
+      "label": "Concept",
+      "name": "CPI",
+      "alias": [
+        "Cycles Per Instruction"
+      ],
+      "definition": "每条指令平均所需的时钟周期数，反映指令执行效率"
+    },
+    {
+      "id": "concept_program_total_cycles",
+      "label": "Concept",
+      "name": "程序总时钟周期数",
+      "alias": [],
+      "definition": "程序执行过程中所经历的总时钟周期数量"
+    },
+    {
+      "id": "concept_program_instruction_count",
+      "label": "Concept",
+      "name": "程序总指令条数",
+      "alias": [],
+      "definition": "程序中包含的总指令数量"
+    },
+    {
+      "id": "concept_comprehensive_cpi",
+      "label": "Concept",
+      "name": "综合CPI",
+      "alias": [],
+      "definition": "程序中所有指令的平均CPI，由各类指令CPI和比例加权求和得到"
+    },
+    {
+      "id": "concept_performance_ratio",
+      "label": "Concept",
+      "name": "性能比",
+      "alias": [],
+      "definition": "两台计算机性能之比，等于其用户CPU时间之比的倒数"
+    },
+    {
+      "id": "hardware_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hardware_memory",
+      "label": "Hardware",
+      "name": "存储器",
+      "hw_type": "主存"
+    },
+    {
+      "id": "hardware_disk",
+      "label": "Hardware",
+      "name": "磁盘",
+      "hw_type": "外存"
+    },
+    {
+      "id": "hardware_io_device",
+      "label": "Hardware",
+      "name": "输入输出设备",
+      "hw_type": "I/O设备"
+    },
+    {
+      "id": "instruction_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq source, destination"
+    },
+    {
+      "id": "principle_locality_principle",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中倾向于访问局部的数据和指令，是缓存设计的基础"
+    },
+    {
+      "id": "principle_moores_law",
+      "label": "Principle",
+      "name": "摩尔定律",
+      "description": "集成电路上可容纳的晶体管数量约每两年翻一番，推动了计算机性能提升"
+    },
+    {
+      "id": "code_example_1_1",
+      "label": "CodeSnippet",
+      "name": "例1.1 计算机M2时钟频率",
+      "language": "Mathematical",
+      "content": "程序P在机器M1上的时钟周期数 = 10s × 2GHz = 20G\n程序P在机器M2上的时钟周期数 = 1.5 × 20G = 30G\nM2的时钟频率 ≥ 30G / 6s = 5GHz"
+    },
+    {
+      "id": "code_example_1_2",
+      "label": "CodeSnippet",
+      "name": "例1.2 比较代码序列P1与P2",
+      "language": "Mathematical",
+      "content": "P1总指令条数 = 8 + 2 + 2 = 12\nP2总指令条数 = 2 + 5 + 3 = 10\nP1总时钟周期数 = 8×1 + 2×2 + 2×4 = 20\nP2总时钟周期数 = 2×1 + 5×2 + 3×4 = 24\nP1 CPI = 20 / 12 ≈ 1.67\nP2 CPI = 24 / 10 = 2.4\nP1执行更快（因总周期数少）"
+    },
+    {
+      "id": "concept_mips",
+      "label": "Concept",
+      "name": "MIPS",
+      "alias": [
+        "Million Instructions Per Second"
+      ],
+      "definition": "每秒钟执行的百万条指令数，用于衡量计算机执行定点指令的速度。"
+    },
+    {
+      "id": "concept_cpi",
+      "label": "Concept",
+      "name": "CPI",
+      "alias": [
+        "Clocks Per Instruction"
+      ],
+      "definition": "每条指令平均所需的时钟周期数，是衡量指令执行效率的重要指标。"
+    },
+    {
+      "id": "concept_peak_mips",
+      "label": "Concept",
+      "name": "Peak MIPS",
+      "alias": [
+        "峰值MIPS"
+      ],
+      "definition": "通过选取使平均CPI最小的指令组合所计算出的最大MIPS值，常被制造商用作性能宣传，但实际性能通常低于此值。"
+    },
+    {
+      "id": "concept_relative_mips",
+      "label": "Concept",
+      "name": "Relative MIPS",
+      "alias": [
+        "相对MIPS"
+      ],
+      "definition": "被测机器相对于公认参考机型MIPS值的倍数，用于比较不同机器间的性能相对关系。"
+    },
+    {
+      "id": "concept_mflops",
+      "label": "Concept",
+      "name": "MFLOPS",
+      "alias": [
+        "Million FLOating-point operations Per Second"
+      ],
+      "definition": "每秒执行的百万次浮点运算次数，用于衡量计算机浮点操作速度。"
+    },
+    {
+      "id": "concept_gflops",
+      "label": "Concept",
+      "name": "GFLOPS",
+      "alias": [
+        "GigaFLOPS"
+      ],
+      "definition": "每秒执行的十亿次浮点运算次数，是MFLOPS的千倍单位。"
+    },
+    {
+      "id": "concept_tflops",
+      "label": "Concept",
+      "name": "TFLOPS",
+      "alias": [
+        "TeraFLOPS"
+      ],
+      "definition": "每秒执行的万亿次浮点运算次数，常用于高性能计算领域。"
+    },
+    {
+      "id": "concept_pflops",
+      "label": "Concept",
+      "name": "PFLOPS",
+      "alias": [
+        "PetaFLOPS"
+      ],
+      "definition": "每秒执行的千万亿次浮点运算次数，用于描述超级计算机的性能。"
+    },
+    {
+      "id": "concept_eflops",
+      "label": "Concept",
+      "name": "EFLOPS",
+      "alias": [
+        "ExaFLOPS"
+      ],
+      "definition": "每秒执行的百亿亿次浮点运算次数，代表当前最顶级超算的性能水平。"
+    },
+    {
+      "id": "hardware_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "instruction_add",
+      "label": "Instruction",
+      "name": "add",
+      "syntax": "add $rd, $rs, $rt"
+    },
+    {
+      "id": "instruction_mul",
+      "label": "Instruction",
+      "name": "mul",
+      "syntax": "mul $rd, $rs, $rt"
+    },
+    {
+      "id": "instruction_div",
+      "label": "Instruction",
+      "name": "div",
+      "syntax": "div $rd, $rs, $rt"
+    },
+    {
+      "id": "code_example_1_3",
+      "label": "CodeSnippet",
+      "name": "例1.3：程序编译优化前后性能分析",
+      "language": "Mathematical",
+      "content": "已知：\n- 指令比例：A:43%, B:21%, C:12%, D:24%\n- CPI：A:1, B:2, C:2, D:2\n- 主频：50MHz\n\n优化后A类指令减少50% → 新比例：A:27%, B:27%, C:15%, D:31%\n\n计算：\n- 优化前CPI = 43%×1 + 21%×2 + 12%×2 + 24%×2 = 1.57\n- 优化后CPI = 27%×1 + 27%×2 + 15%×2 + 31%×2 = 1.73\n- 优化前MIPS = 50 / 1.57 ≈ 31.8\n- 优化后MIPS = 50 / 1.73 ≈ 28.9\n\n结论：尽管优化后指令总数减少，MIPS反而下降，说明MIPS不能准确反映真实性能。"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中表现出时间局部性和空间局部性，是缓存设计的基础。"
+    },
+    {
+      "id": "principle_moore_law",
+      "label": "Principle",
+      "name": "摩尔定律",
+      "description": "集成电路上可容纳的晶体管数量约每两年翻一倍，推动了计算机性能的持续提升。"
+    },
+    {
+      "id": "concept_benchmark",
+      "label": "Concept",
+      "name": "基准程序",
+      "alias": [
+        "benchmark"
+      ],
+      "definition": "专门用来进行性能评价的一组程序，能够反映机器在运行实际负载时的性能。"
+    },
+    {
+      "id": "concept_performance_evaluation",
+      "label": "Concept",
+      "name": "性能评估",
+      "alias": [
+        "performance evaluation"
+      ],
+      "definition": "通过运行特定程序（如基准程序）来衡量计算机系统在处理实际任务时的表现。"
+    },
+    {
+      "id": "concept_spec",
+      "label": "Concept",
+      "name": "SPEC",
+      "alias": [
+        "Standard Performance Evaluation Corporation"
+      ],
+      "definition": "由多家公司联合提出的标准化性能评测框架，包含标准测试程序、输入数据和报告格式。"
+    },
+    {
+      "id": "concept_specint",
+      "label": "Concept",
+      "name": "SPECint",
+      "alias": [
+        "整数测试程序集"
+      ],
+      "definition": "SPEC基准程序集中用于评估整数运算性能的一组测试程序。"
+    },
+    {
+      "id": "concept_specfp",
+      "label": "Concept",
+      "name": "SPECfp",
+      "alias": [
+        "浮点测试程序集"
+      ],
+      "definition": "SPEC基准程序集中用于评估浮点运算性能的一组测试程序。"
+    },
+    {
+      "id": "concept_spec_cpu2000",
+      "label": "Concept",
+      "name": "SPEC CPU2000",
+      "alias": [
+        "CPU性能测试集"
+      ],
+      "definition": "SPEC基准程序集的一个版本，专注于CPU性能的综合评测。"
+    },
+    {
+      "id": "concept_specweb99",
+      "label": "Concept",
+      "name": "SPECweb99",
+      "alias": [
+        "Web服务器性能测试集"
+      ],
+      "definition": "SPEC基准程序集中用于评估Web服务器性能的一组测试程序。"
+    },
+    {
+      "id": "concept_normalization",
+      "label": "Concept",
+      "name": "归一化",
+      "alias": [
+        "normalization"
+      ],
+      "definition": "将不同机器上的执行时间转换为相对于参考机器的比值，以消除绝对时间差异的影响。"
+    },
+    {
+      "id": "concept_spec_ratio",
+      "label": "Concept",
+      "name": "SPEC比值",
+      "alias": [
+        "SPEC ratio"
+      ],
+      "definition": "测试程序在参考机器（如Sun SPARCstation）上的执行时间与在被测机器上的执行时间之比，比值越大表示性能越好。"
+    },
+    {
+      "id": "concept_weighted_average",
+      "label": "Concept",
+      "name": "加权平均",
+      "alias": [
+        "weighted average"
+      ],
+      "definition": "根据每个程序的使用频度赋予不同权重后计算的平均执行时间，能更准确地反映真实使用场景下的性能。"
+    },
+    {
+      "id": "concept_geometric_mean",
+      "label": "Concept",
+      "name": "几何平均",
+      "alias": [
+        "geometric mean"
+      ],
+      "definition": "对多个程序的执行时间取对数后求算术平均，再还原为指数形式，常用于基准程序性能综合评价。"
+    },
+    {
+      "id": "principle_local_optimization_risk",
+      "label": "Principle",
+      "name": "局部优化风险",
+      "description": "当基准程序中存在极短代码片段时，硬件或编译器可能针对该片段进行特殊优化，导致性能评测结果失真。"
+    },
+    {
+      "id": "code_spec_int_example",
+      "label": "CodeSnippet",
+      "name": "SPECint 测试示例",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    int i, sum = 0;\n    for (i = 0; i < 1000000; i++) {\n        sum += i * i;\n    }\n    printf(\"Sum: %d\\n\", sum);\n    return 0;\n}"
+    },
+    {
+      "id": "code_spec_matrix300_example",
+      "label": "CodeSnippet",
+      "name": "SPECmatrix300 矩阵乘法示例",
+      "language": "C",
+      "content": "void matrix_multiply(float A[100][100], float B[100][100], float C[100][100]) {\n    for (int i = 0; i < 100; i++)\n        for (int j = 0; j < 100; j++)\n            C[i][j] = A[i][j] * B[i][j]; // 99%时间消耗在此行\n}"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "concept_computer_history",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "concept_computer_hierarchy",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "concept_program_development_and_execution",
+      "type": "INCLUDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "concept_computer_performance",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_hierarchy",
+      "target_id": "hw_cpu",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_hierarchy",
+      "target_id": "hw_memory",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_hierarchy",
+      "target_id": "hw_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_development_and_execution",
+      "target_id": "code_hello_world",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "principle_moore_law",
+      "type": "INFLUENCED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_moore_law",
+      "target_id": "hw_cpu",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_performance",
+      "target_id": "hw_cpu",
+      "type": "MEASURED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_performance",
+      "target_id": "hw_memory",
+      "type": "MEASURED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_performance",
+      "target_id": "hw_bus",
+      "type": "MEASURED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_eniac",
+      "target_id": "hw_eniac",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_eniac",
+      "target_id": "hw_vacuum_tube",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_eniac",
+      "target_id": "concept_computing_power",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_war_time_computation",
+      "target_id": "concept_eniac",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_eniac",
+      "target_id": "concept_information_era",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_electronic_computer",
+      "target_id": "concept_eniac",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computing_power",
+      "target_id": "principle_computational_efficiency",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_electronic_computer",
+      "target_id": "principle_technological_evolution_by_components",
+      "type": "DEFINED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_vacuum_tube",
+      "target_id": "principle_technological_evolution_by_components",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_eniac",
+      "target_id": "concept_vacuum_tube",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_eniac",
+      "target_id": "concept_war_time_computation",
+      "type": "DEVELOPED_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_first_generation_computer",
+      "target_id": "hw_eniac",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_first_generation_computer",
+      "target_id": "hw_edvac",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_first_generation_computer",
+      "target_id": "hw_edsac",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_first_generation_computer",
+      "target_id": "hw_ias_computer",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_first_generation_computer",
+      "target_id": "hw_umvac_1",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_first_generation_computer",
+      "target_id": "hw_ibm_704",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "concept_first_generation_computer",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "principle_stored_program_architecture",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "hw_edvac",
+      "type": "DEVELOPED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_edvac",
+      "target_id": "code_edvac_report",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_edsac",
+      "target_id": "concept_stored_program",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_ias_computer",
+      "target_id": "concept_stored_program",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "hw_edsac",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "hw_ias_computer",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "hw_umvac_1",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "hw_ibm_704",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_first_generation_computer",
+      "target_id": "concept_fixed_point_arithmetic",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_eniac",
+      "target_id": "concept_stored_program",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "concept_first_generation_computer",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "principle_stored_program_architecture",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "concept_transistor",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "hw_magnetic_core_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "hw_magnetic_drum",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "hw_magnetic_tape",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "principle_floating_point_computation",
+      "type": "SUPPORTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "concept_indexing",
+      "type": "INTRODUCED",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "concept_interrupt",
+      "type": "INTRODUCED",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "concept_i_o_processor",
+      "type": "INTRODUCED",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "concept_high_level_language",
+      "type": "ENABLED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "concept_compilation",
+      "type": "ENABLED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "hw_magnetic_core_memory",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "hw_magnetic_drum",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "hw_magnetic_tape",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "principle_floating_point_computation",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "concept_indexing",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "concept_interrupt",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "concept_i_o_processor",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_high_level_language",
+      "target_id": "concept_compilation",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_tradic",
+      "target_id": "concept_second_generation_computer",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_tx2",
+      "target_id": "concept_second_generation_computer",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_ibm_7070",
+      "target_id": "concept_second_generation_computer",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_ibm_1401",
+      "target_id": "concept_second_generation_computer",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "concept_transistor",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "concept_second_generation_computer",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "concept_high_level_language",
+      "type": "SPARKED",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_second_generation_computer",
+      "target_id": "concept_compilation",
+      "type": "SPARKED",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "concept_second_generation_computer",
+      "type": "DEVELOPED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "code_tradic",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "code_tx2",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "code_ibm_7070",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transistor",
+      "target_id": "code_ibm_1401",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_third_generation_computer",
+      "target_id": "hw_integrated_circuit",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_integrated_circuit",
+      "target_id": "concept_microprogram_control",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_integrated_circuit",
+      "target_id": "concept_cache",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_integrated_circuit",
+      "target_id": "concept_virtual_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_integrated_circuit",
+      "target_id": "concept_pipeline",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_ibm_360_system",
+      "target_id": "concept_microprogram_control",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_ibm_360_system",
+      "target_id": "concept_cache",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_ibm_360_system",
+      "target_id": "concept_virtual_memory",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_ibm_360_system",
+      "target_id": "concept_pipeline",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_ibm_360_system",
+      "target_id": "concept_operating_system",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_operating_system",
+      "target_id": "hw_ibm_360_system",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_third_generation_computer",
+      "target_id": "concept_operating_system",
+      "type": "DEVELOPED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_third_generation_computer",
+      "target_id": "principle_backward_compatibility",
+      "type": "EMBODIES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_illiac_iv",
+      "target_id": "principle_parallelism",
+      "type": "EMBODIES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cdc_6600",
+      "target_id": "concept_third_generation_computer",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cdc_7600",
+      "target_id": "concept_third_generation_computer",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cyber_series",
+      "target_id": "concept_third_generation_computer",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cdc_star_100",
+      "target_id": "concept_third_generation_computer",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_illiac_iv",
+      "target_id": "concept_third_generation_computer",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_pdp_series",
+      "target_id": "concept_third_generation_computer",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_microprogram_control",
+      "target_id": "concept_pipeline",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cache",
+      "target_id": "concept_virtual_memory",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cache",
+      "target_id": "concept_pipeline",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_operating_system",
+      "target_id": "concept_pipeline",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_operating_system",
+      "target_id": "concept_virtual_memory",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_operating_system",
+      "target_id": "concept_cache",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_operating_system",
+      "target_id": "concept_microprogram_control",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_third_generation_computer",
+      "target_id": "code_ibm_360_intro",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fourth_generation_computer",
+      "target_id": "concept_vlsi",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fourth_generation_computer",
+      "target_id": "concept_lsi",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fourth_generation_computer",
+      "target_id": "concept_microprocessor",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_vlsi",
+      "target_id": "hw_vlsi_chip",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_lsi",
+      "target_id": "hw_vlsi_chip",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_microprocessor",
+      "target_id": "hw_microprocessor",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_integrated_circuit_density",
+      "target_id": "hw_vlsi_chip",
+      "type": "DEPENDED_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computing_speed",
+      "target_id": "hw_cpu",
+      "type": "DEPENDED_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_price_trend",
+      "target_id": "principle_moore_law",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_moore_law",
+      "target_id": "concept_integrated_circuit_density",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_moore_law",
+      "target_id": "concept_computing_speed",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_moore_law",
+      "target_id": "concept_price_trend",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_parallel_processing",
+      "target_id": "hw_supercomputer",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_vector_supercomputer",
+      "target_id": "hw_supercomputer",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_networking",
+      "target_id": "hw_network",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_network_computing",
+      "target_id": "concept_computer_networking",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_pervasive_computing",
+      "target_id": "concept_network_computing",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_intelligent_computing",
+      "target_id": "concept_pervasive_computing",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fourth_generation_computer",
+      "target_id": "code_table_1_1",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "concept_fourth_generation_computer",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_microprocessor",
+      "target_id": "hw_cpu",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_moore_law",
+      "target_id": "concept_fourth_generation_computer",
+      "type": "APPLIES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_integrated_circuit_density",
+      "target_id": "principle_moore_law",
+      "type": "MEASURED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computing_speed",
+      "target_id": "principle_moore_law",
+      "type": "MEASURED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_price_trend",
+      "target_id": "principle_moore_law",
+      "type": "MEASURED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fourth_generation_computer",
+      "target_id": "concept_parallel_processing",
+      "type": "FEATURE",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fourth_generation_computer",
+      "target_id": "concept_computer_networking",
+      "type": "FEATURE",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fourth_generation_computer",
+      "target_id": "concept_intelligent_computing",
+      "type": "FOCUS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fourth_generation_computer",
+      "target_id": "concept_pervasive_computing",
+      "type": "FOCUS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fourth_generation_computer",
+      "target_id": "concept_network_computing",
+      "type": "EVOLVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_network_computing",
+      "target_id": "concept_pervasive_computing",
+      "type": "EVOLVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_pervasive_computing",
+      "target_id": "concept_intelligent_computing",
+      "type": "EVOLVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer",
+      "target_id": "concept_digital_information",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer",
+      "target_id": "concept_arithmetic_and_logical_operations",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer",
+      "target_id": "concept_automatic_processing",
+      "type": "PERFORMS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer",
+      "target_id": "hw_hardware",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "hw_hardware",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "hw_software",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer",
+      "target_id": "concept_computer_system",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer",
+      "target_id": "concept_stored_program",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_automatic_processing",
+      "target_id": "concept_stored_program",
+      "type": "ENABLED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer",
+      "target_id": "concept_automated_execution",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer",
+      "target_id": "concept_mechanical_calculator",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system_function",
+      "target_id": "concept_data_process",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system_function",
+      "target_id": "concept_data_storage",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system_function",
+      "target_id": "concept_data_transfer",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_process",
+      "target_id": "hw_alu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_storage",
+      "target_id": "hw_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_storage",
+      "target_id": "hw_storage",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_transfer",
+      "target_id": "hw_bus",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_transfer",
+      "target_id": "hw_bridge",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_execution",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_execution",
+      "target_id": "hw_alu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_execution",
+      "target_id": "hw_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_execution",
+      "target_id": "hw_bus",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_characteristics",
+      "target_id": "hw_cpu",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_characteristics",
+      "target_id": "hw_alu",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_characteristics",
+      "target_id": "hw_memory",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_characteristics",
+      "target_id": "hw_bus",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_hardware_software",
+      "target_id": "hw_cpu",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_hardware_software",
+      "target_id": "hw_alu",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_hardware_software",
+      "target_id": "hw_memory",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_hardware_software",
+      "target_id": "hw_storage",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_hardware_software",
+      "target_id": "hw_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_hardware_software",
+      "target_id": "hw_bridge",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_data",
+      "target_id": "concept_instruction_execution",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_data",
+      "target_id": "concept_computer_system_function",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "concept_instruction_execution",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "concept_data_storage",
+      "type": "RELATES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_locality",
+      "target_id": "hw_memory",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_locality",
+      "target_id": "hw_bus",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_hello_world",
+      "target_id": "concept_program_data",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_hello_world",
+      "target_id": "concept_instruction_execution",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_alu",
+      "target_id": "concept_data_process",
+      "type": "PERFORMS",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_memory",
+      "target_id": "concept_data_storage",
+      "type": "PERFORMS",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_bus",
+      "target_id": "concept_data_transfer",
+      "type": "PERFORMS",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "concept_instruction_execution",
+      "type": "CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "hw_alu",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "hw_memory",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "hw_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_memory",
+      "target_id": "hw_storage",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_bus",
+      "target_id": "hw_bridge",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "concept_stored_program",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "hardware_cpu",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "hardware_main_memory",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "hardware_io_controller",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "hardware_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "concept_binary_representation",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_format",
+      "target_id": "concept_binary_representation",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cpu",
+      "target_id": "hardware_alu",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cpu",
+      "target_id": "hardware_register_file",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cpu",
+      "target_id": "hardware_bus",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_alu",
+      "target_id": "hardware_cpu",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cache",
+      "target_id": "hardware_main_memory",
+      "type": "OPTIMIZES",
+      "properties": {
+        "optimization_target": "内存访问延迟"
+      }
+    },
+    {
+      "source_id": "hardware_bus",
+      "target_id": "hardware_cpu",
+      "type": "CONNECTS",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_bus",
+      "target_id": "hardware_main_memory",
+      "type": "CONNECTS",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_bus",
+      "target_id": "hardware_io_controller",
+      "type": "CONNECTS",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_io_controller",
+      "target_id": "hardware_bus",
+      "type": "CONNECTS",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_io_controller",
+      "target_id": "hardware_pci_slot",
+      "type": "CONNECTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_locality_principle",
+      "target_id": "hardware_cache",
+      "type": "CAUSES",
+      "properties": {
+        "reason": "Cache利用局部性原理提高访问效率"
+      }
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "concept_instruction_format",
+      "type": "IMPLIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "concept_binary_representation",
+      "type": "REQUIRES",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cpu",
+      "target_id": "concept_stored_program",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "code_hello_world",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_alu",
+      "target_id": "concept_binary_representation",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_alu",
+      "target_id": "concept_instruction_format",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cache",
+      "target_id": "concept_locality_principle",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_bus",
+      "target_id": "principle_locality",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cpu",
+      "target_id": "hardware_cache",
+      "type": "HAS",
+      "properties": {
+        "cache_level": "L1/L2"
+      }
+    },
+    {
+      "source_id": "hardware_cpu",
+      "target_id": "hardware_io_controller",
+      "type": "INTERACTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "hardware_cpu",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "hardware_main_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "hardware_bus",
+      "type": "UTILIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_main_memory",
+      "target_id": "concept_stored_program",
+      "type": "STORES",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cache",
+      "target_id": "hardware_main_memory",
+      "type": "PRECEDES",
+      "properties": {
+        "access_order": "缓存优先于主存"
+      }
+    },
+    {
+      "source_id": "hardware_cpu",
+      "target_id": "hardware_main_memory",
+      "type": "READS_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cpu",
+      "target_id": "hardware_main_memory",
+      "type": "WRITES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_io_controller",
+      "target_id": "hardware_bus",
+      "type": "SEND_DATA_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_bus",
+      "target_id": "hardware_io_controller",
+      "type": "RECEIVES_DATA_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "concept_flynn_architecture",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_flynn_architecture",
+      "target_id": "hw_cpu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_flynn_architecture",
+      "target_id": "hw_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_flynn_architecture",
+      "target_id": "hw_io_device",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "inst_machine_language",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_machine_language",
+      "target_id": "concept_stored_program",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_high_level_language",
+      "target_id": "concept_software_engineering",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_software_crisis",
+      "target_id": "concept_software_engineering",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_software_engineering",
+      "target_id": "concept_system_software",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_software_engineering",
+      "target_id": "concept_application_software",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "hw_cpu",
+      "type": "MANAGES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "hw_memory",
+      "type": "MANAGES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "hw_io_device",
+      "type": "MANAGES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "inst_high_level_language",
+      "type": "PROVIDES_ENVIRONMENT_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_software",
+      "target_id": "inst_high_level_language",
+      "type": "WRITTEN_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "concept_stored_program",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_software",
+      "target_id": "concept_stored_program",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "principle_locality_principle",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_software",
+      "target_id": "principle_locality_principle",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "principle_moore_law",
+      "type": "ENABLED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "principle_moore_law",
+      "type": "ENABLED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_software",
+      "target_id": "principle_moore_law",
+      "type": "ENABLED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "concept_software_engineering",
+      "type": "EMERGED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_software",
+      "target_id": "concept_software_engineering",
+      "type": "EMERGED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "concept_application_software",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_machine_language",
+      "target_id": "inst_high_level_language",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stored_program",
+      "target_id": "concept_system_software",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_software",
+      "target_id": "concept_application_software",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_development_and_execution",
+      "target_id": "concept_computer_system_hierarchy",
+      "type": "RELATED_TO",
+      "properties": {
+        "explanation": "程序开发与执行过程体现了计算机系统层次结构的思想。"
+      }
+    },
+    {
+      "source_id": "concept_program_development_and_execution",
+      "target_id": "code_hello_world",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "explanation": "以简单的hello程序为例介绍程序的开发与执行过程。"
+      }
+    },
+    {
+      "source_id": "concept_user_program",
+      "target_id": "concept_program_development_and_execution",
+      "type": "IS_A",
+      "properties": {
+        "explanation": "用户程序是程序开发与执行过程中的典型代表。"
+      }
+    },
+    {
+      "source_id": "code_hello_world",
+      "target_id": "concept_user_program",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "explanation": "Hello World 程序是一个典型的用户程序示例。"
+      }
+    },
+    {
+      "source_id": "code_hello_c",
+      "target_id": "concept_text_file",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_hello_c",
+      "target_id": "concept_preprocessing",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "concept_compilation",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "concept_assembly",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "concept_linking",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "concept_executable_file",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "code_hello_c",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "inst_call",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "inst_movq",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "concept_binary_file",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_file",
+      "target_id": "hw_cpu",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_file",
+      "target_id": "hw_main_memory",
+      "type": "LOADS_INTO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_file",
+      "target_id": "principle_locality",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "inst_include",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "inst_call",
+      "type": "GENERATED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "inst_movq",
+      "type": "GENERATED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "inst_call",
+      "type": "RESOLVES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_linking",
+      "target_id": "inst_ret",
+      "type": "RESOLVES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_file",
+      "target_id": "code_hello_c",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_text_file",
+      "target_id": "concept_binary_file",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preprocessing",
+      "target_id": "concept_compilation",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compilation",
+      "target_id": "concept_assembly",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly",
+      "target_id": "concept_linking",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_hello_world",
+      "target_id": "concept_executable_file",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_shell",
+      "target_id": "hw_keyboard",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_shell",
+      "target_id": "hw_display",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_shell",
+      "target_id": "concept_kernel_service_routine",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_service_routine",
+      "target_id": "hw_disk",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_service_routine",
+      "target_id": "hw_main_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_service_routine",
+      "target_id": "inst_read_syscall",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_service_routine",
+      "target_id": "inst_write_syscall",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_program_execution",
+      "target_id": "concept_shell",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_program_execution",
+      "target_id": "concept_kernel_service_routine",
+      "type": "REQUIRES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_program_execution",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_program_execution",
+      "target_id": "hw_main_memory",
+      "type": "LOADS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_flow",
+      "target_id": "hw_bus",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_flow",
+      "target_id": "hw_io_bridge",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_flow",
+      "target_id": "hw_register_bank",
+      "type": "STORES_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_flow",
+      "target_id": "hw_data_buffer_register",
+      "type": "STORES_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "inst_pc",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_pc",
+      "target_id": "hw_main_memory",
+      "type": "POINTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_read_syscall",
+      "target_id": "hw_disk",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_write_syscall",
+      "target_id": "hw_display",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_os_support",
+      "target_id": "concept_shell",
+      "type": "APPLIES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_os_support",
+      "target_id": "concept_kernel_service_routine",
+      "type": "APPLIES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_data_flow_in_system",
+      "target_id": "concept_data_flow",
+      "type": "EXPLAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_data_flow_in_system",
+      "target_id": "hw_bus",
+      "type": "UTILIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_data_flow_in_system",
+      "target_id": "hw_io_bridge",
+      "type": "UTILIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_data_flow_in_system",
+      "target_id": "hw_register_bank",
+      "type": "UTILIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_data_flow_in_system",
+      "target_id": "hw_data_buffer_register",
+      "type": "UTILIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_file",
+      "target_id": "hw_disk",
+      "type": "RESIDES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_executable_file",
+      "target_id": "hw_main_memory",
+      "type": "LOADED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "hw_main_memory",
+      "type": "READS_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "hw_display",
+      "type": "WRITES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_keyboard",
+      "target_id": "hw_cpu",
+      "type": "INPUTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "hw_bus",
+      "type": "SEND_DATA_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_bus",
+      "target_id": "hw_io_bridge",
+      "type": "TRANSMITS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_io_bridge",
+      "target_id": "hw_display",
+      "type": "DELIVERS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_disk",
+      "target_id": "hw_main_memory",
+      "type": "READS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_main_memory",
+      "target_id": "hw_cpu",
+      "type": "PROVIDES_DATA_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_code_segment",
+      "target_id": "concept_instruction",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "hw_alu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "hw_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "hw_io_controller",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "hw_display_adapter",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_load_word",
+      "target_id": "concept_instruction",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_store_word",
+      "target_id": "concept_instruction",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_add",
+      "target_id": "concept_instruction",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_output",
+      "target_id": "concept_instruction",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_hello_world",
+      "target_id": "concept_instruction",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "code_mips_lw_sw",
+      "target_id": "inst_load_word",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_mips_lw_sw",
+      "target_id": "inst_store_word",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_mips_machine_code",
+      "target_id": "inst_load_word",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_load_word",
+      "target_id": "concept_control_signal",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_store_word",
+      "target_id": "concept_control_signal",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_add",
+      "target_id": "concept_control_signal",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_output",
+      "target_id": "concept_control_signal",
+      "type": "GENERATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_execution_process",
+      "target_id": "concept_pc",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_execution_process",
+      "target_id": "concept_clock_signal",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_pc",
+      "target_id": "concept_machine_code_segment",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_execution_process",
+      "target_id": "concept_instruction",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "concept_execution_process",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_control_signal",
+      "target_id": "hw_alu",
+      "type": "CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_control_signal",
+      "target_id": "hw_cpu",
+      "type": "CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_control_signal",
+      "target_id": "hw_memory",
+      "type": "CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_control_signal",
+      "target_id": "hw_io_controller",
+      "type": "CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_locality",
+      "target_id": "concept_execution_process",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "concept_machine_code_segment",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_mips_machine_code",
+      "target_id": "concept_instruction",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "concept_control_signal",
+      "type": "PRODUCES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "concept_clock_signal",
+      "type": "TIMED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_load_word",
+      "target_id": "concept_machine_code_segment",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_store_word",
+      "target_id": "concept_machine_code_segment",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_load_word",
+      "target_id": "hw_memory",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_store_word",
+      "target_id": "hw_memory",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_load_word",
+      "target_id": "hw_cpu",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_store_word",
+      "target_id": "hw_cpu",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_output",
+      "target_id": "hw_io_controller",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_output",
+      "target_id": "hw_display_adapter",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "concept_pc",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_pc",
+      "target_id": "concept_execution_process",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_execution_process",
+      "target_id": "concept_clock_signal",
+      "type": "TIMED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_code_segment",
+      "target_id": "code_hello_world",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "code_mips_lw_sw",
+      "target_id": "code_hello_world",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "code_mips_machine_code",
+      "target_id": "code_mips_lw_sw",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "code_mips_lw_sw",
+      "target_id": "code_hello_world",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction",
+      "target_id": "concept_control_signal",
+      "type": "DEVELOPED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_control_signal",
+      "target_id": "concept_instruction",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system_hierarchy",
+      "target_id": "principle_layered_design",
+      "type": "IS_A",
+      "properties": {
+        "explanation": "计算机系统的层次结构是分层设计原理的具体体现。"
+      }
+    },
+    {
+      "source_id": "concept_computer_system_hierarchy",
+      "target_id": "concept_abstraction",
+      "type": "USES",
+      "properties": {
+        "explanation": "层次结构通过抽象机制隐藏底层细节，实现信息屏蔽。"
+      }
+    },
+    {
+      "source_id": "concept_abstraction",
+      "target_id": "concept_computer_system_hierarchy",
+      "type": "PRECEDES",
+      "properties": {
+        "explanation": "抽象是构建层次结构的基础，先有抽象思想，再形成层次系统。"
+      }
+    },
+    {
+      "source_id": "principle_layered_design",
+      "target_id": "concept_computer_system_hierarchy",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "explanation": "分层设计原理被用于实现计算机系统的层次结构。"
+      }
+    },
+    {
+      "source_id": "concept_application_problem",
+      "target_id": "concept_algorithm",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_algorithm",
+      "target_id": "concept_program",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_high_level_language",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_high_level_language",
+      "target_id": "concept_language_processor_system",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_language_processor_system",
+      "target_id": "concept_translator",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_translator",
+      "target_id": "concept_assembler",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_translator",
+      "target_id": "concept_interpreter",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_translator",
+      "target_id": "concept_compiler",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembler",
+      "target_id": "concept_assembly_language",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compiler",
+      "target_id": "concept_high_level_language",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interpreter",
+      "target_id": "concept_high_level_language",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_machine_language",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembly_language",
+      "target_id": "concept_machine_language",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_language",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_set_architecture",
+      "target_id": "concept_machine_language",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_set_architecture",
+      "target_id": "concept_microarchitecture",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_microarchitecture",
+      "target_id": "concept_logic_circuit",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_logic_circuit",
+      "target_id": "concept_device_technology",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_operating_system",
+      "target_id": "concept_virtual_machine",
+      "type": "CREATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_operating_system",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_set_architecture",
+      "target_id": "hw_cpu",
+      "type": "DEPLOYS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_microarchitecture",
+      "target_id": "hw_cpu",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_high_level_language",
+      "target_id": "concept_low_level_language",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_machine_language",
+      "target_id": "concept_assembly_language",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_compiler",
+      "target_id": "concept_interpreter",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_assembler",
+      "target_id": "concept_compiler",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_instruction_set_architecture",
+      "target_id": "concept_microarchitecture",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "code_hello_world",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_movq",
+      "target_id": "concept_machine_language",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_add",
+      "target_id": "concept_machine_language",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_jmp",
+      "target_id": "concept_machine_language",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_algorithm",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_algorithm",
+      "target_id": "principle_locality",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_final_user",
+      "target_id": "hw_cpu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_final_user",
+      "target_id": "hw_main_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_final_user",
+      "target_id": "hw_io_controller",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_final_user",
+      "target_id": "concept_layered_architecture",
+      "type": "WORKS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_final_user",
+      "target_id": "concept_isa",
+      "type": "INTERACTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_administrator",
+      "target_id": "hw_cpu",
+      "type": "CONFIGURES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_administrator",
+      "target_id": "hw_main_memory",
+      "type": "MANAGES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_administrator",
+      "target_id": "hw_io_controller",
+      "type": "MAINTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_administrator",
+      "target_id": "concept_layered_architecture",
+      "type": "WORKS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_administrator",
+      "target_id": "concept_isa",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_programmer",
+      "target_id": "concept_isa",
+      "type": "WORKS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_programmer",
+      "target_id": "concept_transparency",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_programmer",
+      "target_id": "inst_movq",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_programmer",
+      "target_id": "inst_addq",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_programmer",
+      "target_id": "inst_jmp",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_programmer",
+      "target_id": "code_hello_world_c",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "hw_control_register",
+      "type": "DIRECTLY_CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "hw_user_visible_register",
+      "type": "DIRECTLY_CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "inst_movq",
+      "type": "WRITES_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "inst_addq",
+      "type": "WRITES_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "inst_jmp",
+      "type": "WRITES_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "code_simple_asm",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "concept_isa",
+      "type": "WORKS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "concept_transparency",
+      "type": "UNDERSTANDS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_isa",
+      "target_id": "hw_cpu",
+      "type": "DEFINED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_isa",
+      "target_id": "hw_main_memory",
+      "type": "DEFINED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_isa",
+      "target_id": "hw_io_controller",
+      "type": "DEFINED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_isa",
+      "target_id": "inst_movq",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_isa",
+      "target_id": "inst_addq",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_isa",
+      "target_id": "inst_jmp",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_isa",
+      "target_id": "concept_layered_architecture",
+      "type": "CORE_COMPONENT_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_layered_architecture",
+      "target_id": "concept_final_user",
+      "type": "PROVIDES_ABSTRACTION_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_layered_architecture",
+      "target_id": "concept_system_administrator",
+      "type": "PROVIDES_ABSTRACTION_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_layered_architecture",
+      "target_id": "concept_application_programmer",
+      "type": "PROVIDES_ABSTRACTION_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_layered_architecture",
+      "target_id": "concept_system_programmer",
+      "type": "PROVIDES_ABSTRACTION_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transparency",
+      "target_id": "concept_application_programmer",
+      "type": "IS_EXPERIENCED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transparency",
+      "target_id": "concept_system_programmer",
+      "type": "IS_AWARE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_programmer",
+      "target_id": "concept_system_programmer",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "concept_application_programmer",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "concept_system_administrator",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_administrator",
+      "target_id": "concept_system_programmer",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_final_user",
+      "target_id": "concept_system_administrator",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_administrator",
+      "target_id": "concept_final_user",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_application_programmer",
+      "target_id": "code_hello_world_c",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_programmer",
+      "target_id": "code_simple_asm",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_layered_architecture",
+      "target_id": "principle_locality",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "hw_cpu",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "hw_memory",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_computer_system",
+      "target_id": "hw_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_hardware_performance",
+      "target_id": "concept_computer_system",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_hardware_performance",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_performance_variability",
+      "target_id": "concept_performance_evaluation",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_computer_system",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_throughput",
+      "target_id": "concept_bandwidth",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "reason": "两者都涉及单位时间内的量度，但吞吐率强调工作完成量，带宽强调信息传输量。"
+      }
+    },
+    {
+      "source_id": "concept_response_time",
+      "target_id": "concept_execution_time",
+      "type": "EQUIVALENT_TO",
+      "properties": {
+        "context": "在任务执行场景中，响应时间可视为执行时间的一种表现形式。"
+      }
+    },
+    {
+      "source_id": "concept_response_time",
+      "target_id": "concept_latency",
+      "type": "EQUIVALENT_TO",
+      "properties": {
+        "context": "在系统响应层面，响应时间常被等同于延迟（latency）。"
+      }
+    },
+    {
+      "source_id": "concept_throughput",
+      "target_id": "principle_performance_tradeoff",
+      "type": "RELATED_TO",
+      "properties": {
+        "context": "多媒体应用中用户更关注高吞吐率，体现性能权衡中的吞吐优先策略。"
+      }
+    },
+    {
+      "source_id": "concept_response_time",
+      "target_id": "principle_performance_tradeoff",
+      "type": "RELATED_TO",
+      "properties": {
+        "context": "事务处理系统中用户更关注短响应时间，体现性能权衡中的延迟敏感策略。"
+      }
+    },
+    {
+      "source_id": "principle_performance_tradeoff",
+      "target_id": "concept_throughput",
+      "type": "OPTIMIZES",
+      "properties": {
+        "direction": "in multimedia applications"
+      }
+    },
+    {
+      "source_id": "principle_performance_tradeoff",
+      "target_id": "concept_response_time",
+      "type": "OPTIMIZES",
+      "properties": {
+        "direction": "in transaction processing systems"
+      }
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_cpu_time",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpu_time",
+      "target_id": "concept_user_cpu_time",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpu_time",
+      "target_id": "concept_system_cpu_time",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpu_time",
+      "target_id": "concept_other_time",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_cpu_time",
+      "target_id": "hardware_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_clock_cycle",
+      "target_id": "hardware_cpu",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_clock_rate",
+      "target_id": "concept_clock_cycle",
+      "type": "INVERSE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpi",
+      "target_id": "concept_program_total_cycles",
+      "type": "CALCULATED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpi",
+      "target_id": "concept_program_instruction_count",
+      "type": "CALCULATED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_total_cycles",
+      "target_id": "concept_clock_rate",
+      "type": "DIVIDED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_total_cycles",
+      "target_id": "concept_clock_cycle",
+      "type": "MULTIPLIED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_cpu_time",
+      "target_id": "concept_program_total_cycles",
+      "type": "EQUALS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_cpu_time",
+      "target_id": "concept_clock_rate",
+      "type": "DIVIDED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_cpu_time",
+      "target_id": "concept_clock_cycle",
+      "type": "MULTIPLIED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_comprehensive_cpi",
+      "target_id": "concept_cpi",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_comprehensive_cpi",
+      "target_id": "concept_program_instruction_count",
+      "type": "CALCULATED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_comprehensive_cpi",
+      "target_id": "concept_program_total_cycles",
+      "type": "CALCULATED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_ratio",
+      "target_id": "concept_user_cpu_time",
+      "type": "INVERSE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "hardware_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "hardware_disk",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "hardware_io_device",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_other_time",
+      "type": "INCLUDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_cpu_time",
+      "type": "INCLUDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpu_time",
+      "target_id": "concept_performance_evaluation",
+      "type": "CORE_COMPONENT_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_clock_cycle",
+      "target_id": "concept_clock_rate",
+      "type": "INVERSE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpi",
+      "target_id": "concept_clock_cycle",
+      "type": "INTERACTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpi",
+      "target_id": "concept_program_instruction_count",
+      "type": "INTERACTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_total_cycles",
+      "target_id": "concept_program_instruction_count",
+      "type": "MULTIPLIED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_total_cycles",
+      "target_id": "concept_cpi",
+      "type": "MULTIPLIED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "code_example_1_1",
+      "target_id": "concept_user_cpu_time",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_example_1_1",
+      "target_id": "concept_clock_rate",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_example_1_1",
+      "target_id": "concept_program_total_cycles",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_example_1_2",
+      "target_id": "concept_program_instruction_count",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_example_1_2",
+      "target_id": "concept_program_total_cycles",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_example_1_2",
+      "target_id": "concept_cpi",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "principle_locality_principle",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "principle_moores_law",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_comprehensive_cpi",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_clock_rate",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_cpi",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_program_instruction_count",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_user_cpu_time",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_comprehensive_cpi",
+      "target_id": "concept_program_instruction_count",
+      "type": "WEIGHTED_AVERAGE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_comprehensive_cpi",
+      "target_id": "concept_cpi",
+      "type": "WEIGHTED_AVERAGE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpi",
+      "target_id": "concept_program_instruction_count",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpi",
+      "target_id": "concept_clock_cycle",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cpi",
+      "target_id": "concept_program_instruction_count",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_cpu_time",
+      "target_id": "concept_performance_ratio",
+      "type": "INVERSE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_performance_ratio",
+      "type": "BASED_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_comprehensive_cpi",
+      "type": "CALCULATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_clock_rate",
+      "type": "CALCULATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_program_instruction_count",
+      "type": "CALCULATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_program_total_cycles",
+      "type": "CALCULATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_user_cpu_time",
+      "type": "CALCULATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_performance_evaluation",
+      "target_id": "concept_clock_cycle",
+      "type": "CALCULATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_mips",
+      "target_id": "concept_cpi",
+      "type": "CONVERTS_TO",
+      "properties": {
+        "formula": "MIPS = ClockRate / CPI"
+      }
+    },
+    {
+      "source_id": "concept_cpi",
+      "target_id": "concept_mips",
+      "type": "INVERSE_OF",
+      "properties": {
+        "inverse_formula": "CPI = ClockRate / MIPS"
+      }
+    },
+    {
+      "source_id": "concept_peak_mips",
+      "target_id": "concept_mips",
+      "type": "DERIVED_FROM",
+      "properties": {
+        "method": "选择最优指令组合以最小化平均CPI"
+      }
+    },
+    {
+      "source_id": "concept_relative_mips",
+      "target_id": "concept_mips",
+      "type": "DEFINED_BY",
+      "properties": {
+        "reference_machine": "公认参考机型"
+      }
+    },
+    {
+      "source_id": "concept_mflops",
+      "target_id": "concept_mips",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "difference": "MIPS基于指令数量，MFLOPS基于操作次数；MFLOPS更适用于浮点性能评估"
+      }
+    },
+    {
+      "source_id": "concept_gflops",
+      "target_id": "concept_mflops",
+      "type": "EQUIVALENT_TO",
+      "properties": {
+        "scale": "1 GFLOPS = 1000 MFLOPS"
+      }
+    },
+    {
+      "source_id": "concept_tflops",
+      "target_id": "concept_gflops",
+      "type": "EQUIVALENT_TO",
+      "properties": {
+        "scale": "1 TFLOPS = 1000 GFLOPS"
+      }
+    },
+    {
+      "source_id": "concept_pflops",
+      "target_id": "concept_tflops",
+      "type": "EQUIVALENT_TO",
+      "properties": {
+        "scale": "1 PFLOPS = 1000 TFLOPS"
+      }
+    },
+    {
+      "source_id": "concept_eflops",
+      "target_id": "concept_pflops",
+      "type": "EQUIVALENT_TO",
+      "properties": {
+        "scale": "1 EFLOPS = 1000 PFLOPS"
+      }
+    },
+    {
+      "source_id": "concept_mips",
+      "target_id": "hardware_cpu",
+      "type": "USES",
+      "properties": {
+        "context": "衡量CPU执行定点指令的速度"
+      }
+    },
+    {
+      "source_id": "concept_mflops",
+      "target_id": "hardware_cpu",
+      "type": "USES",
+      "properties": {
+        "context": "衡量CPU执行浮点运算的速度"
+      }
+    },
+    {
+      "source_id": "instruction_add",
+      "target_id": "concept_mips",
+      "type": "OPERATES_ON",
+      "properties": {
+        "role": "代表性指令，可反映乘除等复杂运算性能"
+      }
+    },
+    {
+      "source_id": "instruction_mul",
+      "target_id": "concept_mips",
+      "type": "OPERATES_ON",
+      "properties": {
+        "role": "复杂运算，执行时间长于加法"
+      }
+    },
+    {
+      "source_id": "instruction_div",
+      "target_id": "concept_mips",
+      "type": "OPERATES_ON",
+      "properties": {
+        "role": "复杂运算，执行时间长于加法"
+      }
+    },
+    {
+      "source_id": "code_example_1_3",
+      "target_id": "concept_mips",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "purpose": "说明MIPS在指令优化后可能反常下降，揭示其局限性"
+      }
+    },
+    {
+      "source_id": "concept_mips",
+      "target_id": "principle_locality",
+      "type": "RELATED_TO",
+      "properties": {
+        "reason": "MIPS不考虑缓存命中率、数据访问模式等局部性因素"
+      }
+    },
+    {
+      "source_id": "concept_mips",
+      "target_id": "principle_moore_law",
+      "type": "RELATED_TO",
+      "properties": {
+        "context": "Moore定律推动硬件发展，但MIPS无法完全体现软件优化带来的性能提升"
+      }
+    },
+    {
+      "source_id": "concept_mips",
+      "target_id": "concept_cpi",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "dependency": "CPI是计算MIPS的关键输入参数"
+      }
+    },
+    {
+      "source_id": "concept_cpi",
+      "target_id": "concept_mips",
+      "type": "PRECEDES",
+      "properties": {
+        "sequence": "先计算CPI，再求MIPS"
+      }
+    },
+    {
+      "source_id": "concept_mips",
+      "target_id": "concept_mflops",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "dimension": "MIPS衡量整数指令，MFLOPS衡量浮点操作"
+      }
+    },
+    {
+      "source_id": "concept_peak_mips",
+      "target_id": "concept_mips",
+      "type": "CAUSES",
+      "properties": {
+        "effect": "误导用户对真实性能的认知"
+      }
+    },
+    {
+      "source_id": "concept_mips",
+      "target_id": "principle_moore_law",
+      "type": "OPTIMIZES",
+      "properties": {
+        "optimization_target": "通过提高主频和降低CPI来提升MIPS"
+      }
+    },
+    {
+      "source_id": "concept_benchmark",
+      "target_id": "concept_performance_evaluation",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_benchmark",
+      "target_id": "concept_spec",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_spec",
+      "target_id": "concept_specint",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_spec",
+      "target_id": "concept_specfp",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_spec",
+      "target_id": "concept_spec_cpu2000",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_spec",
+      "target_id": "concept_specweb99",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_benchmark",
+      "target_id": "concept_weighted_average",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_benchmark",
+      "target_id": "concept_geometric_mean",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_benchmark",
+      "target_id": "concept_normalization",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_normalization",
+      "target_id": "concept_spec_ratio",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_spec_ratio",
+      "target_id": "concept_benchmark",
+      "type": "CALCULATED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_benchmark",
+      "target_id": "principle_local_optimization_risk",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_local_optimization_risk",
+      "target_id": "concept_specint",
+      "type": "APPLIES_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_local_optimization_risk",
+      "target_id": "concept_spec_matrix300_example",
+      "type": "EXEMPLIFIED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "code_spec_int_example",
+      "target_id": "concept_specint",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_spec_matrix300_example",
+      "target_id": "concept_spec_matrix300_example",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_specint",
+      "target_id": "code_spec_int_example",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_spec_matrix300_example",
+      "target_id": "code_spec_matrix300_example",
+      "type": "OPERATES_ON",
+      "properties": {}
+    }
+  ]
+}

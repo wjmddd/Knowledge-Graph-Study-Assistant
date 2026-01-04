@@ -1,0 +1,5889 @@
+{
+  "metadata": {
+    "chapter_name": "第八章",
+    "chapter_number": 8,
+    "chunk_count": 18,
+    "node_count": 329,
+    "relationship_count": 585
+  },
+  "nodes": [
+    {
+      "id": "concept_von_neumann_architecture",
+      "label": "Concept",
+      "name": "冯·诺依曼结构",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_io_subsystem",
+      "label": "Concept",
+      "name": "I/O子系统",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_system_call",
+      "label": "Concept",
+      "name": "系统调用",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_trap_instruction",
+      "label": "Concept",
+      "name": "陷阱指令",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_kernel_control",
+      "label": "Concept",
+      "name": "操作系统内核控制",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_file",
+      "label": "Concept",
+      "name": "文件",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_io_interface",
+      "label": "Concept",
+      "name": "I/O接口",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_io_port_addressing",
+      "label": "Concept",
+      "name": "I/O端口编址",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_io_control_method",
+      "label": "Concept",
+      "name": "I/O控制方式",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_io_controller",
+      "label": "Hardware",
+      "name": "外设控制器",
+      "hw_type": "I/O接口"
+    },
+    {
+      "id": "inst_trap",
+      "label": "Instruction",
+      "name": "陷阱指令",
+      "syntax": "trap"
+    },
+    {
+      "id": "inst_syscall",
+      "label": "Instruction",
+      "name": "系统调用",
+      "syntax": "syscall"
+    },
+    {
+      "id": "code_io_library_example",
+      "label": "CodeSnippet",
+      "name": "I/O库函数调用示例",
+      "language": "C",
+      "content": "printf(\"Hello, World!\\n\");\nscanf(\"%d\", &num);"
+    },
+    {
+      "id": "concept_io_subsystem",
+      "label": "Concept",
+      "name": "I/O子系统",
+      "alias": [
+        "输入输出子系统"
+      ],
+      "definition": "I/O子系统是计算机系统中负责处理各种形式信息的输入和输出的组件，包括将外部信息（如文字、图表、声音、视频）输入到计算机，以及将计算机内部处理的结果输出给用户。"
+    },
+    {
+      "id": "concept_runtime_system",
+      "label": "Concept",
+      "name": "运行时系统",
+      "alias": [
+        "运行时环境",
+        "运行时"
+      ],
+      "definition": "运行时系统是实现一种编程语言核心行为的软件环境，支持语言的基本低级行为，并提供库函数、类型检查、调试、代码生成与优化等功能，适用于编译型、解释型或嵌入式领域特定语言。"
+    },
+    {
+      "id": "concept_hierarchy",
+      "label": "Concept",
+      "name": "层次结构",
+      "alias": [
+        "分层结构"
+      ],
+      "definition": "层次结构是一种组织方式，将复杂系统划分为多个抽象层级，每一层只与相邻层交互，以降低系统复杂性并提高可维护性。在I/O子系统中，该结构用于组织I/O软件和硬件的协作关系。"
+    },
+    {
+      "id": "concept_asynchrony",
+      "label": "Concept",
+      "name": "异步性",
+      "alias": [],
+      "definition": "异步性指I/O操作不与CPU执行同步进行，而是通过中断机制实现非阻塞的数据传输，允许CPU在等待I/O完成时执行其他任务，从而提升系统效率。"
+    },
+    {
+      "id": "concept_shared_resource",
+      "label": "Concept",
+      "name": "共享性",
+      "alias": [],
+      "definition": "共享性是指多个进程可以共同访问同一组I/O资源，因此必须由操作系统统一调度管理，确保安全性和公平性，防止资源冲突。"
+    },
+    {
+      "id": "concept_complexity",
+      "label": "Concept",
+      "name": "复杂性",
+      "alias": [],
+      "definition": "复杂性指I/O设备控制细节繁多且差异大，若由应用程序直接控制将增加开发难度，因此需由操作系统提供驱动程序来屏蔽底层细节。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_interrupt_controller",
+      "label": "Hardware",
+      "name": "中断控制器",
+      "hw_type": "外设接口"
+    },
+    {
+      "id": "inst_int_0x80",
+      "label": "Instruction",
+      "name": "int $0x80",
+      "syntax": "int $0x80"
+    },
+    {
+      "id": "inst_sysenter",
+      "label": "Instruction",
+      "name": "sysenter",
+      "syntax": "sysenter"
+    },
+    {
+      "id": "inst_push",
+      "label": "Instruction",
+      "name": "push",
+      "syntax": "push %reg"
+    },
+    {
+      "id": "inst_movl",
+      "label": "Instruction",
+      "name": "movl",
+      "syntax": "movl src, dst"
+    },
+    {
+      "id": "inst_cmp",
+      "label": "Instruction",
+      "name": "cmp",
+      "syntax": "cmp src, dst"
+    },
+    {
+      "id": "inst_jbe",
+      "label": "Instruction",
+      "name": "jbe",
+      "syntax": "jbe label"
+    },
+    {
+      "id": "inst_neg",
+      "label": "Instruction",
+      "name": "neg",
+      "syntax": "neg reg"
+    },
+    {
+      "id": "inst_popl",
+      "label": "Instruction",
+      "name": "popl",
+      "syntax": "popl %reg"
+    },
+    {
+      "id": "inst_ret",
+      "label": "Instruction",
+      "name": "ret",
+      "syntax": "ret"
+    },
+    {
+      "id": "code_write_function_asm",
+      "label": "CodeSnippet",
+      "name": "write()封装函数汇编代码",
+      "language": "ASM",
+      "content": "1 write:\n2 push %ebx\n3 movl $4, %eax\n4 movl 8(%esp), %ebx\n5 movl 12(%esp), %ecx\n6 movl 16(%esp), %edx\n7 int $0x80\n8 cmp $-132, %eax\n9 jbe .L1\n10 neg %eax\n11 movl %eax, error\n12 movl $-1, %eax\n13 .L1: popl %ebx\n14 ret"
+    },
+    {
+      "id": "principle_abstraction",
+      "label": "Principle",
+      "name": "抽象原则",
+      "description": "通过将复杂的底层细节隐藏在高层接口之下，使上层应用无需关心具体实现，从而简化编程模型并提高可移植性。"
+    },
+    {
+      "id": "principle_modularity",
+      "label": "Principle",
+      "name": "模块化原则",
+      "description": "将系统划分为独立的功能模块，各模块之间通过明确定义的接口通信，有利于分工协作、测试验证和系统维护。"
+    },
+    {
+      "id": "concept_io_software",
+      "label": "Concept",
+      "name": "I/O软件",
+      "alias": [
+        "输入输出软件",
+        "I/O系统软件"
+      ],
+      "definition": "管理计算机系统中输入输出设备与程序之间数据交换的软件层次，通常分为用户空间和内核空间两部分。"
+    },
+    {
+      "id": "concept_user_space_io",
+      "label": "Concept",
+      "name": "用户空间I/O软件",
+      "alias": [
+        "用户态I/O软件",
+        "上层I/O软件"
+      ],
+      "definition": "位于用户程序中，负责向操作系统发出I/O请求的软件组件，不直接操作硬件。"
+    },
+    {
+      "id": "concept_kernel_space_io",
+      "label": "Concept",
+      "name": "内核空间I/O软件",
+      "alias": [
+        "内核态I/O软件",
+        "底层I/O软件"
+      ],
+      "definition": "运行在操作系统内核中的I/O控制软件，负责具体执行I/O操作并管理硬件设备。"
+    },
+    {
+      "id": "concept_unix_file_model",
+      "label": "Concept",
+      "name": "UNIX文件模型",
+      "alias": [
+        "统一文件抽象",
+        "一切皆文件"
+      ],
+      "definition": "在UNIX系统中，所有I/O操作均通过读写文件实现，所有外设（如终端、网络套接字）都被抽象为文件，提供统一的访问接口。"
+    },
+    {
+      "id": "concept_file_as_byte_sequence",
+      "label": "Concept",
+      "name": "文件作为字节序列",
+      "alias": [],
+      "definition": "文件被定义为一个连续的字节序列，无论其内容是文本还是二进制数据，都以字节为基本单位进行处理。"
+    },
+    {
+      "id": "concept_ascii_file",
+      "label": "Concept",
+      "name": "ASCII文件",
+      "alias": [
+        "文本文件"
+      ],
+      "definition": "文件中的每个字节代表一个可读的ASCII字符，通常由多行组成，每行以换行符 '\\n' 结束。"
+    },
+    {
+      "id": "concept_binary_file",
+      "label": "Concept",
+      "name": "二进制文件",
+      "alias": [],
+      "definition": "文件内容由非ASCII编码的数据组成，不能直接作为字符解释，如可执行文件、目标文件等。"
+    },
+    {
+      "id": "concept_file_descriptor",
+      "label": "Concept",
+      "name": "文件描述符",
+      "alias": [],
+      "definition": "系统返回的非负整数，用于唯一标识一个已打开或创建的文件，后续操作通过该描述符进行。"
+    },
+    {
+      "id": "concept_current_position",
+      "label": "Concept",
+      "name": "当前读写位置",
+      "alias": [],
+      "definition": "表示文件中当前读写操作的偏移量，从文件起始位置开始计算，初始值为0。"
+    },
+    {
+      "id": "concept_eof",
+      "label": "Concept",
+      "name": "文件结束（EOF）",
+      "alias": [],
+      "definition": "当读取操作的位置到达文件末尾时的状态，此时读取将返回0或特殊标记，表示无更多数据可读。"
+    },
+    {
+      "id": "hw_terminal",
+      "label": "Hardware",
+      "name": "终端设备",
+      "hw_type": "输入输出设备"
+    },
+    {
+      "id": "hw_keyboard",
+      "label": "Hardware",
+      "name": "键盘",
+      "hw_type": "输入设备"
+    },
+    {
+      "id": "hw_display",
+      "label": "Hardware",
+      "name": "显示器",
+      "hw_type": "输出设备"
+    },
+    {
+      "id": "hw_network_socket",
+      "label": "Hardware",
+      "name": "网络套接字",
+      "hw_type": "通信设备"
+    },
+    {
+      "id": "inst_open",
+      "label": "Instruction",
+      "name": "open",
+      "syntax": "int open(const char *pathname, int flags, mode_t mode);"
+    },
+    {
+      "id": "inst_create",
+      "label": "Instruction",
+      "name": "create",
+      "syntax": "int creat(const char *pathname, mode_t mode);"
+    },
+    {
+      "id": "inst_lseek",
+      "label": "Instruction",
+      "name": "lseek",
+      "syntax": "off_t lseek(int fd, off_t offset, int whence);"
+    },
+    {
+      "id": "inst_read",
+      "label": "Instruction",
+      "name": "read",
+      "syntax": "ssize_t read(int fd, void *buf, size_t count);"
+    },
+    {
+      "id": "inst_write",
+      "label": "Instruction",
+      "name": "write",
+      "syntax": "ssize_t write(int fd, const void *buf, size_t count);"
+    },
+    {
+      "id": "inst_close",
+      "label": "Instruction",
+      "name": "close",
+      "syntax": "int close(int fd);"
+    },
+    {
+      "id": "principle_unified_io_interface",
+      "label": "Principle",
+      "name": "统一I/O接口原理",
+      "description": "将所有I/O设备抽象为文件，使用户程序对不同设备的操作方式一致，简化编程模型。"
+    },
+    {
+      "id": "principle_file_abstraction",
+      "label": "Principle",
+      "name": "文件抽象原理",
+      "description": "将物理设备和存储资源统一抽象为逻辑上的文件，实现设备无关性。"
+    },
+    {
+      "id": "concept_system_io_functions",
+      "label": "Concept",
+      "name": "系统级I/O函数",
+      "alias": [],
+      "definition": "与I/O操作相关的系统调用的封装函数，用于在UNIX/Linux系统中进行文件读写、打开、关闭等操作。"
+    },
+    {
+      "id": "instruction_creat",
+      "label": "Instruction",
+      "name": "creat",
+      "syntax": "int creat(char *name, mode_t perms);"
+    },
+    {
+      "id": "instruction_open",
+      "label": "Instruction",
+      "name": "open",
+      "syntax": "int open(char *name, int flags, mode_t perms);"
+    },
+    {
+      "id": "instruction_read",
+      "label": "Instruction",
+      "name": "read",
+      "syntax": "ssize_t read(int fd, void *buf, size_t n);"
+    },
+    {
+      "id": "instruction_write",
+      "label": "Instruction",
+      "name": "write",
+      "syntax": "ssize_t write(int fd, const void *buf, size_t n);"
+    },
+    {
+      "id": "instruction_lseek",
+      "label": "Instruction",
+      "name": "lseek",
+      "syntax": "long lseek(int fd, long offset, int origin);"
+    },
+    {
+      "id": "instruction_stat",
+      "label": "Instruction",
+      "name": "stat",
+      "syntax": "int stat(const char *name, struct stat *buf);"
+    },
+    {
+      "id": "instruction_fstat",
+      "label": "Instruction",
+      "name": "fstat",
+      "syntax": "int fstat(int fd, struct stat *buf);"
+    },
+    {
+      "id": "instruction_close",
+      "label": "Instruction",
+      "name": "close",
+      "syntax": "int close(int fd);"
+    },
+    {
+      "id": "hardware_file_descriptor",
+      "label": "Hardware",
+      "name": "文件描述符",
+      "hw_type": "抽象资源"
+    },
+    {
+      "id": "concept_file_metadata",
+      "label": "Concept",
+      "name": "文件元数据",
+      "alias": [
+        "文件属性",
+        "文件信息"
+      ],
+      "definition": "由操作系统内核维护的关于文件的属性信息，包括文件大小、权限、时间戳、设备ID等。"
+    },
+    {
+      "id": "code_stat_struct",
+      "label": "CodeSnippet",
+      "name": "stat结构体定义",
+      "language": "C",
+      "content": "struct stat {\n    dev_t st_dev; /* 包含该文件的文件目录项的设备ID */\n    ino_t st_ino; /* 节点编号，在给定文件系统中能唯一标识该文件 */\n    mode_t st_mode; /* 文件访问权限和文件类型 */\n    nlink_t st_nlink; /* 连接链的数目 */\n    uid_t st_uid; /* 文件拥有者的ID */\n    gid_t st_gid; /* 文件拥有者所在组的组ID */\n    dev_t st_rdev; /* 设备ID，仅对于特殊的块设备和字符设备文件有效 */\n    off_t st_size; /* 普通的磁盘文件的大小，对于特殊块设备和字符设备文件无效 */\n    unsigned long st_blksize; /* 块大小 */\n    unsigned long st_blocks; /* 分配的块数 */\n    time_t st_atime; /* 最近一次访问的时间 */\n    time_t st_mtime; /* 最近一次修改的时间 */\n    time_t st_ctime; /* 最近一次修改文件状态的时间 */\n};"
+    },
+    {
+      "id": "principle_random_access",
+      "label": "Principle",
+      "name": "随机访问",
+      "description": "通过lseek系统调用可以实现对文件任意位置的读写，支持非顺序访问。"
+    },
+    {
+      "id": "principle_block_io_optimization",
+      "label": "Principle",
+      "name": "块I/O优化",
+      "description": "按照物理块大小（如512字节）进行读写可减少系统调用次数，提高I/O效率。"
+    },
+    {
+      "id": "concept_standard_io",
+      "label": "Concept",
+      "name": "C标准I/O库函数",
+      "alias": [
+        "标准I/O函数",
+        "stdio库函数"
+      ],
+      "definition": "C标准I/O库函数是基于系统级I/O函数实现的，将文件抽象为类型为FILE的‘流’模型，通过流缓冲区减少系统调用次数。"
+    },
+    {
+      "id": "concept_system_call",
+      "label": "Concept",
+      "name": "系统调用",
+      "alias": [
+        "内核调用",
+        "系统服务例程"
+      ],
+      "definition": "用户程序通过系统调用进入内核态执行特定操作，每次调用涉及上下文切换，开销较高。"
+    },
+    {
+      "id": "concept_stream_buffering",
+      "label": "Concept",
+      "name": "流缓冲区",
+      "alias": [
+        "缓冲区",
+        "I/O缓冲"
+      ],
+      "definition": "用于缓存文件数据的内存区域，由base、ptr、cnt三个字段描述，可减少对系统调用的依赖。"
+    },
+    {
+      "id": "concept_file_descriptor",
+      "label": "Concept",
+      "name": "文件描述符",
+      "alias": [
+        "fd"
+      ],
+      "definition": "系统级I/O中用于标识打开文件的整数，是内核维护的文件表索引。"
+    },
+    {
+      "id": "concept_file_pointer",
+      "label": "Concept",
+      "name": "文件指针",
+      "alias": [
+        "FILE*",
+        "流指针"
+      ],
+      "definition": "C标准I/O中用于标识文件的指针，指向FILE结构体，包含文件描述符和缓冲区信息。"
+    },
+    {
+      "id": "hardware_iob_array",
+      "label": "Hardware",
+      "name": "_iob 数组",
+      "hw_type": "内存结构"
+    },
+    {
+      "id": "instruction_fillbuf",
+      "label": "Instruction",
+      "name": "_fillbuf",
+      "syntax": "int _fillbuf(FILE *fp)"
+    },
+    {
+      "id": "instruction_flushbuf",
+      "label": "Instruction",
+      "name": "_flushbuf",
+      "syntax": "int _flushbuf(int c, FILE *fp)"
+    },
+    {
+      "id": "instruction_getc",
+      "label": "Instruction",
+      "name": "getc",
+      "syntax": "int getc(FILE *p)"
+    },
+    {
+      "id": "instruction_putc",
+      "label": "Instruction",
+      "name": "putc",
+      "syntax": "int putc(int x, FILE *p)"
+    },
+    {
+      "id": "instruction_fopen",
+      "label": "Instruction",
+      "name": "fopen",
+      "syntax": "FILE *fopen(char *name, char *mode)"
+    },
+    {
+      "id": "instruction_read",
+      "label": "Instruction",
+      "name": "read",
+      "syntax": "ssize_t read(int fd, void *buf, size_t count)"
+    },
+    {
+      "id": "instruction_write",
+      "label": "Instruction",
+      "name": "write",
+      "syntax": "ssize_t write(int fd, const void *buf, size_t count)"
+    },
+    {
+      "id": "instruction_open",
+      "label": "Instruction",
+      "name": "open",
+      "syntax": "int open(const char *pathname, int flags, mode_t mode)"
+    },
+    {
+      "id": "instruction_creat",
+      "label": "Instruction",
+      "name": "creat",
+      "syntax": "int creat(const char *pathname, mode_t mode)"
+    },
+    {
+      "id": "code_stdio_h_snippet",
+      "label": "CodeSnippet",
+      "name": "stdio.h 中的FILE结构与宏定义",
+      "language": "C",
+      "content": "#define NULL 0\n#define EOF (-1)\n#define BUFSIZE 1024\n#define OPEN_MAX 20 /* max #files open at once */\ntypedef struct _iobuf{ int cnt; /* characters left */ char *ptr; /* next character position */ char *base; /* location of buffer */ int flag; /* mode of file access */ int fd; /* file descriptor */ }FILE; extern FILE _iob[OPEN_MAX];\n#define stdin (&_iob[0])\n#define stdout (&_iob[1])\n#define stderr (&_iob[2])\nenum flags{ _READ = 01 /* file open for reading */ _WRITE = 02 /* file open for writing */ _UNBUF = 04 /* file is unbuffered */ _EOF = 010 /* EOF has occurred on this file */ _ERR = 020 /* error occurred on this file */ };"
+    },
+    {
+      "id": "code_fillbuf_impl",
+      "label": "CodeSnippet",
+      "name": "_fillbuf() 函数实现",
+      "language": "C",
+      "content": "#include \"syscalls.h\" /* _fillbuf: allocate and fill input buffer */\nint _fillbuf(FILE *fp) {\n    int bufsize;\n    if((fp->flag & (_READ|_EOF|_ERR)) != _READ) return EOF;\n    bufsize = (fp->flag & _UNBUF) ? 1 : BUFSIZE;\n    if((fp->base == NULL) /* no buffer yet */\n       if((fp->base = (char*)malloc(bufsize)) == NULL) return EOF; /* can't get buffer */\n    fp->ptr = fp->base;\n    fp->cnt = read(fp->fd, fp->ptr, bufsize);\n    if(-fp->cnt < 0){\n        if(fp->cnt == -1) fp->flag |= _EOF;\n        else fp->flag |= _ERR;\n        fp->cnt = 0;\n        return EOF;\n    }\n    return (unsigned char)*fp->ptr++;\n}"
+    },
+    {
+      "id": "code_fopen_impl",
+      "label": "CodeSnippet",
+      "name": "fopen() 函数实现",
+      "language": "C",
+      "content": "#include <fcntl.h>\n#include \"syscalls.h\"\n#define PERMS 0666 /* RW for owner, group, others */\n/* fopen: open files, return file ptr */\nFILE *fopen(char *name, char *mode) {\n    int fd;\n    FILE *fp;\n    if (*mode != 'r' && *mode != 'w' && *mode != 'a') return NULL;\n    for (fp = _iob; fp < _iob + OPEN_MAX; fp++)\n        if ((fp->flag & (_READ | _WRITE)) == 0) break; /* found free slot */\n    if (fp >= _iob + OPEN_MAX) /* no free slots */ return NULL;\n    if (*mode == 'w')\n        fd = creat(name, PERMS);\n    else if (*mode == 'a') {\n        if ((fd = open(name, O_WRONLY, 0)) == -1)\n            fd = creat(name, PERMS);\n        lseek(fd, 0, 2);\n    } else\n        fd = open(name, O_RDONLY, 0);\n    if (fd == -1) return NULL; /* couldn't access name */\n    fp->fd = fd;\n    fp->cnt = 0;\n    fp->base = NULL;\n    fp->flag = (*mode == 'r') ? _READ : _WRITE;\n    return fp;\n}"
+    },
+    {
+      "id": "principle_buffering_optimization",
+      "label": "Principle",
+      "name": "缓冲优化原理",
+      "description": "通过引入流缓冲区，减少对系统调用的频繁访问，从而降低上下文切换开销，提升I/O性能。"
+    },
+    {
+      "id": "principle_context_switch_cost",
+      "label": "Principle",
+      "name": "上下文切换开销",
+      "description": "每次系统调用需进行一次从用户态到内核态的切换，再返回用户态，带来显著性能损耗。"
+    },
+    {
+      "id": "concept_user_space_io",
+      "label": "Concept",
+      "name": "用户空间I/O",
+      "alias": [],
+      "definition": "指在用户程序运行时，通过软件方式发起对输入/输出设备的请求，通常由C标准库或系统调用API实现。"
+    },
+    {
+      "id": "concept_standard_io_library",
+      "label": "Concept",
+      "name": "C标准I/O库",
+      "alias": [
+        "stdio.h",
+        "标准I/O函数库"
+      ],
+      "definition": "C语言中用于处理文件和流输入输出的一组函数集合，如fread、fwrite、fgetc、fputc等。"
+    },
+    {
+      "id": "concept_system_call_api",
+      "label": "Concept",
+      "name": "系统级I/O API",
+      "alias": [
+        "系统调用",
+        "内核接口"
+      ],
+      "definition": "操作系统提供的底层接口，用于用户程序向内核请求I/O操作，如ReadFile、WriteFile等。"
+    },
+    {
+      "id": "concept_high_level_api",
+      "label": "Concept",
+      "name": "高级API函数",
+      "alias": [
+        "抽象API",
+        "组合式API"
+      ],
+      "definition": "由多个基本系统调用组合而成的、用于完成特定功能的高抽象度API，如Windows中的CopyFile()。"
+    },
+    {
+      "id": "concept_file_copy_function",
+      "label": "Concept",
+      "name": "文件复制功能",
+      "alias": [
+        "文件拷贝",
+        "文件传输"
+      ],
+      "definition": "将一个文件的内容完整复制到另一个文件的过程，可通过多种I/O方式实现。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_register_eax",
+      "label": "Hardware",
+      "name": "EAX寄存器",
+      "hw_type": "通用寄存器"
+    },
+    {
+      "id": "hw_register_ebx",
+      "label": "Hardware",
+      "name": "EBX寄存器",
+      "hw_type": "通用寄存器"
+    },
+    {
+      "id": "hw_register_ecx",
+      "label": "Hardware",
+      "name": "ECX寄存器",
+      "hw_type": "通用寄存器"
+    },
+    {
+      "id": "hw_register_edx",
+      "label": "Hardware",
+      "name": "EDX寄存器",
+      "hw_type": "通用寄存器"
+    },
+    {
+      "id": "hw_stack",
+      "label": "Hardware",
+      "name": "栈",
+      "hw_type": "内存结构"
+    },
+    {
+      "id": "inst_int_0x80",
+      "label": "Instruction",
+      "name": "int $0x80",
+      "syntax": "int $0x80"
+    },
+    {
+      "id": "inst_int_0x2e",
+      "label": "Instruction",
+      "name": "int $0x2e",
+      "syntax": "int $0x2e"
+    },
+    {
+      "id": "inst_sysenter",
+      "label": "Instruction",
+      "name": "sysenter",
+      "syntax": "sysenter"
+    },
+    {
+      "id": "inst_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq source, destination"
+    },
+    {
+      "id": "code_file_copy_fread_fwrite",
+      "label": "CodeSnippet",
+      "name": "文件复制 - 使用fread/fwrite",
+      "language": "C",
+      "content": "#include <stdio.h>\n#include <errno.h>\n\nint main (int argc, char *argv[])\n{\n    FILE *srcfile, *dstfile;\n    char buf[BUFISZ];\n    size_t srcsize, dstsize;\n\n    if (argc != 3) {\n        printf(\"usage: copyfile srcfile dstfile\\n\");\n        return 1;\n    }\n    srcfile = fopen(argv[1], \"rb\");\n    if (srcfile == NULL) {\n        perror(argv[1]);\n        return 2;\n    }\n    dstfile = fopen(argv[2], \"wb\");\n    if (dstfile == NULL) {\n        perror(argv[2]);\n        return 3;\n    }\n\n    while ((srcsize = fread(buf, 1, BUFSIZE, srcfile)) > 0) {\n        dstsize = fwrite(buf, 1, srcsize, dstfile);\n        if (dstsize != srcsize) {\n            perror(\"Write Error. \");\n            return 4;\n        }\n    }\n    fclose(srcfile);\n    fclose(dstfile);\n    return 0;\n}"
+    },
+    {
+      "id": "code_file_copy_fgetc_fputc",
+      "label": "CodeSnippet",
+      "name": "文件复制 - 使用fgetc/fputc",
+      "language": "C",
+      "content": "while (!feof(srcfile)) fputc(fgetc(srcfile), dstfile);"
+    },
+    {
+      "id": "principle_parameter_passing",
+      "label": "Principle",
+      "name": "参数传递机制",
+      "description": "系统调用中参数的传递方式，包括通过寄存器或栈地址传递，取决于具体操作系统和架构。"
+    },
+    {
+      "id": "principle_system_call_trap",
+      "label": "Principle",
+      "name": "系统调用陷阱机制",
+      "description": "通过陷阱指令（如int）触发从用户态到内核态的切换，以执行特权操作。"
+    },
+    {
+      "id": "concept_io_request",
+      "label": "Concept",
+      "name": "I/O 请求",
+      "alias": [
+        "输入/输出请求"
+      ],
+      "definition": "用户空间程序发起的、用于请求完成输入或输出操作的系统调用或函数调用。"
+    },
+    {
+      "id": "concept_trap_instruction",
+      "label": "Concept",
+      "name": "陷阱指令",
+      "alias": [
+        "陷入指令",
+        "系统调用指令"
+      ],
+      "definition": "一种特殊的机器指令，用于从用户态切换到内核态，以执行特权操作，如系统调用。"
+    },
+    {
+      "id": "concept_kernel_space",
+      "label": "Concept",
+      "name": "内核空间",
+      "alias": [
+        "内核态",
+        "操作系统空间"
+      ],
+      "definition": "操作系统运行的受保护内存区域，具有最高权限，可访问所有硬件资源。"
+    },
+    {
+      "id": "concept_user_space",
+      "label": "Concept",
+      "name": "用户空间",
+      "alias": [
+        "用户态",
+        "应用空间"
+      ],
+      "definition": "应用程序运行的内存区域，权限受限，不能直接访问硬件。"
+    },
+    {
+      "id": "hw_io_device",
+      "label": "Hardware",
+      "name": "I/O 设备",
+      "hw_type": "机械部件"
+    },
+    {
+      "id": "hw_device_controller",
+      "label": "Hardware",
+      "name": "设备控制器",
+      "hw_type": "电子部件"
+    },
+    {
+      "id": "hw_io_adapter",
+      "label": "Hardware",
+      "name": "I/O 适配器",
+      "hw_type": "电子部件"
+    },
+    {
+      "id": "inst_trap",
+      "label": "Instruction",
+      "name": "trap",
+      "syntax": "trap n"
+    },
+    {
+      "id": "concept_io_device",
+      "label": "Concept",
+      "name": "I/O 设备",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_character_device",
+      "label": "Concept",
+      "name": "字符设备",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_block_device",
+      "label": "Concept",
+      "name": "块设备",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_data_stream",
+      "label": "Concept",
+      "name": "数据流",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_data_block",
+      "label": "Concept",
+      "name": "数据块",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_device_abstraction",
+      "label": "Concept",
+      "name": "设备抽象",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_device_driver",
+      "label": "Concept",
+      "name": "设备驱动程序",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "concept_file_system",
+      "label": "Concept",
+      "name": "文件系统",
+      "alias": [],
+      "definition": null
+    },
+    {
+      "id": "hw_keyboard",
+      "label": "Hardware",
+      "name": "键盘",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_mouse",
+      "label": "Hardware",
+      "name": "鼠标",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_touchscreen",
+      "label": "Hardware",
+      "name": "触摸屏",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_trackball",
+      "label": "Hardware",
+      "name": "跟踪球",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_joystick",
+      "label": "Hardware",
+      "name": "控制杆",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_digitizer",
+      "label": "Hardware",
+      "name": "数字化仪",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_scanner",
+      "label": "Hardware",
+      "name": "扫描仪",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_stylus",
+      "label": "Hardware",
+      "name": "手写笔",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_ocr_reader",
+      "label": "Hardware",
+      "name": "光学字符阅读机",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_display",
+      "label": "Hardware",
+      "name": "显示器",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_printer",
+      "label": "Hardware",
+      "name": "打印机",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_plotter",
+      "label": "Hardware",
+      "name": "绘图仪",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_network_interface",
+      "label": "Hardware",
+      "name": "网络接口",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_modem",
+      "label": "Hardware",
+      "name": "调制解调器",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_dac",
+      "label": "Hardware",
+      "name": "数/模转换器",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_adc",
+      "label": "Hardware",
+      "name": "模/数转换器",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_disk_drive",
+      "label": "Hardware",
+      "name": "磁盘驱动器",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_cd_drive",
+      "label": "Hardware",
+      "name": "光盘驱动器",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_tape_drive",
+      "label": "Hardware",
+      "name": "磁带机",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "principle_device_classification",
+      "label": "Principle",
+      "name": "设备分类原则",
+      "description": null
+    },
+    {
+      "id": "concept_device_controller",
+      "label": "Concept",
+      "name": "设备控制器",
+      "alias": [
+        "I/O控制器",
+        "I/O控制接口",
+        "I/O模块",
+        "I/O接口"
+      ],
+      "definition": "介于外设和I/O总线之间的硬件组件，用于协调主机与外设之间的数据传输、控制和状态管理。"
+    },
+    {
+      "id": "hardware_io_bus",
+      "label": "Hardware",
+      "name": "I/O总线",
+      "hw_type": "系统总线"
+    },
+    {
+      "id": "hardware_disk_controller",
+      "label": "Hardware",
+      "name": "磁盘控制器",
+      "hw_type": "设备控制器"
+    },
+    {
+      "id": "hardware_ethernet_card",
+      "label": "Hardware",
+      "name": "以太网卡",
+      "hw_type": "设备控制器"
+    },
+    {
+      "id": "hardware_usb_controller",
+      "label": "Hardware",
+      "name": "USB控制器",
+      "hw_type": "设备控制器"
+    },
+    {
+      "id": "hardware_ps2_port",
+      "label": "Hardware",
+      "name": "PS/2插座",
+      "hw_type": "外设接口"
+    },
+    {
+      "id": "hardware_usb_port",
+      "label": "Hardware",
+      "name": "USB接口",
+      "hw_type": "外设接口"
+    },
+    {
+      "id": "hardware_pci_express",
+      "label": "Hardware",
+      "name": "PCI-Express",
+      "hw_type": "I/O总线标准"
+    },
+    {
+      "id": "hardware_isa",
+      "label": "Hardware",
+      "name": "ISA",
+      "hw_type": "I/O总线标准"
+    },
+    {
+      "id": "hardware_eisa",
+      "label": "Hardware",
+      "name": "EISA",
+      "hw_type": "I/O总线标准"
+    },
+    {
+      "id": "hardware_pci",
+      "label": "Hardware",
+      "name": "PCI",
+      "hw_type": "I/O总线标准"
+    },
+    {
+      "id": "hardware_agp",
+      "label": "Hardware",
+      "name": "AGP",
+      "hw_type": "I/O总线标准"
+    },
+    {
+      "id": "hardware_pci_x",
+      "label": "Hardware",
+      "name": "PCI-X",
+      "hw_type": "I/O总线标准"
+    },
+    {
+      "id": "hardware_data_buffer_register",
+      "label": "Hardware",
+      "name": "数据缓冲寄存器",
+      "hw_type": "控制器内部寄存器"
+    },
+    {
+      "id": "hardware_status_control_register",
+      "label": "Hardware",
+      "name": "状态/控制寄存器",
+      "hw_type": "控制器内部寄存器"
+    },
+    {
+      "id": "instruction_in",
+      "label": "Instruction",
+      "name": "in",
+      "syntax": "in %reg, %port"
+    },
+    {
+      "id": "instruction_ins",
+      "label": "Instruction",
+      "name": "ins",
+      "syntax": "ins %port, %reg"
+    },
+    {
+      "id": "instruction_out",
+      "label": "Instruction",
+      "name": "out",
+      "syntax": "out %reg, %port"
+    },
+    {
+      "id": "instruction_outs",
+      "label": "Instruction",
+      "name": "outs",
+      "syntax": "outs %port, %reg"
+    },
+    {
+      "id": "principle_data_buffering",
+      "label": "Principle",
+      "name": "数据缓冲原理",
+      "description": "通过引入数据缓冲寄存器，缓解高速主机与低速外设之间的速度差异，实现异步操作。"
+    },
+    {
+      "id": "principle_error_ready_detection",
+      "label": "Principle",
+      "name": "错误与就绪检测原理",
+      "description": "设备控制器具备检测外设状态的能力，并将结果保存在状态寄存器中供CPU查询。"
+    },
+    {
+      "id": "principle_timing_control",
+      "label": "Principle",
+      "name": "定时与控制原理",
+      "description": "根据主机发送的控制信息和定时信号，生成对外设的控制信号，实现精确时序控制。"
+    },
+    {
+      "id": "principle_data_format_conversion",
+      "label": "Principle",
+      "name": "数据格式转换原理",
+      "description": "在外部接口与内部接口之间进行数据格式转换（如串-并、并-串），确保数据兼容性。"
+    },
+    {
+      "id": "concept_io_port",
+      "label": "Concept",
+      "name": "I/O端口",
+      "alias": [
+        "输入/输出端口",
+        "设备端口"
+      ],
+      "definition": "设备控制器中的数据缓冲寄存器、状态/控制寄存器等统称为I/O端口。"
+    },
+    {
+      "id": "concept_data_port",
+      "label": "Concept",
+      "name": "数据端口",
+      "alias": [
+        "数据缓冲寄存器"
+      ],
+      "definition": "I/O端口中用于暂存数据的寄存器，也称为数据缓冲寄存器。"
+    },
+    {
+      "id": "concept_status_control_port",
+      "label": "Concept",
+      "name": "状态/控制端口",
+      "alias": [
+        "状态寄存器",
+        "控制寄存器"
+      ],
+      "definition": "I/O端口中用于存放设备状态或控制信息的寄存器。"
+    },
+    {
+      "id": "concept_io_address_space",
+      "label": "Concept",
+      "name": "I/O地址空间",
+      "alias": [
+        "I/O编址空间"
+      ],
+      "definition": "所有I/O端口编号组成的空间，用于对I/O端口进行寻址。"
+    },
+    {
+      "id": "concept_unified_addressing",
+      "label": "Concept",
+      "name": "统一编址方式",
+      "alias": [
+        "存储器映射方式",
+        "内存映射I/O"
+      ],
+      "definition": "将I/O地址空间与主存地址空间统一编址，I/O端口映射到主存空间的某个地址段上，使用普通访存指令访问。"
+    },
+    {
+      "id": "concept_independent_addressing",
+      "label": "Concept",
+      "name": "独立编址方式",
+      "alias": [
+        "专用I/O编址",
+        "非统一编址"
+      ],
+      "definition": "为I/O端口单独编号，形成独立的I/O地址空间，需使用专门的I/O指令访问。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_device_controller",
+      "label": "Hardware",
+      "name": "设备控制器",
+      "hw_type": "外设接口硬件"
+    },
+    {
+      "id": "hw_bus",
+      "label": "Hardware",
+      "name": "总线",
+      "hw_type": "系统互连总线"
+    },
+    {
+      "id": "inst_in",
+      "label": "Instruction",
+      "name": "in",
+      "syntax": "in al, port"
+    },
+    {
+      "id": "inst_out",
+      "label": "Instruction",
+      "name": "out",
+      "syntax": "out port, al"
+    },
+    {
+      "id": "principle_memory_mapping",
+      "label": "Principle",
+      "name": "存储器映射原理",
+      "description": "将I/O端口映射到主存地址空间中，实现I/O访问与内存访问共用同一套指令和寻址机制。"
+    },
+    {
+      "id": "principle_separate_i_o_space",
+      "label": "Principle",
+      "name": "独立I/O空间原则",
+      "description": "I/O地址空间与主存地址空间分离，通过专用I/O指令区分访问目标。"
+    },
+    {
+      "id": "concept_io_control",
+      "label": "Concept",
+      "name": "I/O控制方式",
+      "alias": [
+        "输入输出控制方式"
+      ],
+      "definition": "计算机系统中用于管理CPU与外设之间数据传输的三种主要方法：程序直接控制、中断控制和DMA控制。"
+    },
+    {
+      "id": "concept_program_direct_control",
+      "label": "Concept",
+      "name": "程序直接控制I/O方式",
+      "alias": [
+        "程序查询",
+        "轮询"
+      ],
+      "definition": "通过CPU不断查询设备状态寄存器来判断外设是否就绪，从而控制数据传输的方式。特点是简单但效率低，因CPU需忙等待。"
+    },
+    {
+      "id": "concept_interrupt_control",
+      "label": "Concept",
+      "name": "中断控制I/O方式",
+      "alias": [
+        "中断驱动I/O"
+      ],
+      "definition": "当外设准备好时，向CPU发送中断请求，CPU暂停当前任务并执行中断服务程序处理I/O操作的方式。支持并行工作，提高系统效率。"
+    },
+    {
+      "id": "concept_dma_control",
+      "label": "Concept",
+      "name": "DMA控制I/O方式",
+      "alias": [
+        "直接存储器访问",
+        "直接内存访问"
+      ],
+      "definition": "使用专门的DMA控制器实现主存与外设之间的数据直接交换，无需CPU参与，仅在初始化和结束时介入，极大降低CPU开销。"
+    },
+    {
+      "id": "hardware_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hardware_main_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "主存储器"
+    },
+    {
+      "id": "hardware_printer_controller",
+      "label": "Hardware",
+      "name": "打印控制器",
+      "hw_type": "设备控制器"
+    },
+    {
+      "id": "hardware_dma_controller",
+      "label": "Hardware",
+      "name": "DMA控制器",
+      "hw_type": "专用I/O控制器"
+    },
+    {
+      "id": "hardware_interrupt_controller",
+      "label": "Hardware",
+      "name": "中断控制器",
+      "hw_type": "可编程中断控制器"
+    },
+    {
+      "id": "hardware_bus",
+      "label": "Hardware",
+      "name": "总线",
+      "hw_type": "系统总线"
+    },
+    {
+      "id": "instruction_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq source, destination"
+    },
+    {
+      "id": "instruction_start",
+      "label": "Instruction",
+      "name": "START",
+      "syntax": "START (control command)"
+    },
+    {
+      "id": "instruction_acknowledge_interrupt",
+      "label": "Instruction",
+      "name": "acknowledge_interrupt",
+      "syntax": "acknowledge_interrupt()"
+    },
+    {
+      "id": "instruction_schedule",
+      "label": "Instruction",
+      "name": "schedule",
+      "syntax": "schedule()"
+    },
+    {
+      "id": "principle_parallelism",
+      "label": "Principle",
+      "name": "并行性原理",
+      "description": "在多任务系统中，CPU与外设可以并行工作，提升整体系统效率。中断和DMA方式均基于此原理。"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中对内存的访问具有时间局部性和空间局部性，因此缓存（cache）能有效减少访存冲突，尤其在DMA场景下保障CPU性能。"
+    },
+    {
+      "id": "code_program_direct_io_example",
+      "label": "CodeSnippet",
+      "name": "程序直接控制I/O示例",
+      "language": "C",
+      "content": "copy_string_to_kernel(strbuf, kernelbuf, n);\nfor (i = 0; i < n; i++) {\n    while (printer_status != READY);\n    *printer_data_port = kernelbuf[i];\n    *printer_control_port = START;\n}\nreturn();"
+    },
+    {
+      "id": "code_interrupt_control_io_example",
+      "label": "CodeSnippet",
+      "name": "中断控制I/O示例",
+      "language": "C",
+      "content": "copy_string_to_kernel(strbuf, kernelbuf, n);\nenable_interrupts();\nwhile (printer_status != READY);\n*printer_data_port = kernbuf[i];\n*printer_control_port = START;\nschedule();"
+    },
+    {
+      "id": "code_dma_control_io_example",
+      "label": "CodeSnippet",
+      "name": "DMA控制I/O示例",
+      "language": "C",
+      "content": "copy_string_to_kernel(strbuf, kernelbuf, n);\ninitialize_DMA();\n*DMA_control_port = START;\nschedule();"
+    },
+    {
+      "id": "concept_io_request",
+      "label": "Concept",
+      "name": "I/O请求",
+      "alias": [],
+      "definition": "用户程序中提出的输入/输出操作请求，需要通过系统调用由内核处理。"
+    },
+    {
+      "id": "concept_system_call",
+      "label": "Concept",
+      "name": "系统调用",
+      "alias": [],
+      "definition": "用户程序向操作系统内核请求服务的接口，用于实现从用户空间到内核空间的切换。"
+    },
+    {
+      "id": "concept_trap_instruction",
+      "label": "Concept",
+      "name": "陷阱指令",
+      "alias": [],
+      "definition": "一种特殊的机器指令，用于触发异常或中断，使处理器从用户模式切换到内核模式。"
+    },
+    {
+      "id": "concept_kernel_space_io_software",
+      "label": "Concept",
+      "name": "内核空间I/O软件",
+      "alias": [],
+      "definition": "运行在操作系统内核中的I/O处理代码，负责管理设备访问和数据传输。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_device",
+      "label": "Hardware",
+      "name": "设备",
+      "hw_type": "I/O设备"
+    },
+    {
+      "id": "inst_trap",
+      "label": "Instruction",
+      "name": "trap",
+      "syntax": "trap"
+    },
+    {
+      "id": "concept_device_independent_io_layer",
+      "label": "Concept",
+      "name": "与设备无关的I/O软件层",
+      "alias": [],
+      "definition": "内核I/O软件的第一层，提供统一的I/O接口，屏蔽底层设备差异。"
+    },
+    {
+      "id": "concept_device_driver_layer",
+      "label": "Concept",
+      "name": "设备驱动程序层",
+      "alias": [],
+      "definition": "内核I/O软件的第二层，直接控制特定硬件设备的驱动程序。"
+    },
+    {
+      "id": "concept_interrupt_service_layer",
+      "label": "Concept",
+      "name": "中断服务程序层",
+      "alias": [],
+      "definition": "内核I/O软件的第三层，响应硬件中断并处理设备事件。"
+    },
+    {
+      "id": "concept_device_independent_io",
+      "label": "Concept",
+      "name": "与设备无关的I/O软件",
+      "alias": [
+        "设备无关I/O层",
+        "通用I/O软件"
+      ],
+      "definition": "内核中负责处理所有外设公共I/O功能的部分，提供统一接口，屏蔽硬件差异，包含缓冲处理、错误报告、文件打开关闭、逻辑块大小抽象等功能。"
+    },
+    {
+      "id": "concept_device_driver_interface",
+      "label": "Concept",
+      "name": "设备驱动程序统一接口",
+      "alias": [
+        "统一驱动接口",
+        "设备驱动规范"
+      ],
+      "definition": "操作系统为所有外设驱动程序定义的标准接口，使新设备驱动可在不修改内核的情况下被加载和使用。"
+    },
+    {
+      "id": "concept_buffering",
+      "label": "Concept",
+      "name": "缓冲区处理",
+      "alias": [
+        "缓冲管理",
+        "数据缓冲"
+      ],
+      "definition": "在内核空间维护缓冲区以存放I/O数据，避免用户空间缓冲区因页面置换而丢失，并利用局部性原理提升性能。"
+    },
+    {
+      "id": "concept_error_reporting",
+      "label": "Concept",
+      "name": "错误报告",
+      "alias": [
+        "错误处理框架",
+        "统一错误返回"
+      ],
+      "definition": "所有I/O操作中发生的错误信息由与设备无关的I/O软件统一收集并返回给用户进程，分为编程错误和I/O操作错误两类。"
+    },
+    {
+      "id": "concept_file_open_close",
+      "label": "Concept",
+      "name": "打开与关闭文件",
+      "alias": [
+        "文件生命周期管理",
+        "文件状态控制"
+      ],
+      "definition": "对文件或设备进行打开/关闭操作时，仅需修改内存中的数据结构，无需执行实际I/O，由设备无关I/O软件处理。"
+    },
+    {
+      "id": "concept_logical_block_size",
+      "label": "Concept",
+      "name": "逻辑块大小处理",
+      "alias": [
+        "统一块大小",
+        "抽象块视图"
+      ],
+      "definition": "为所有块设备或字符设备设置统一的逻辑数据块大小，隐藏底层设备差异，简化高层软件的数据定位逻辑。"
+    },
+    {
+      "id": "hw_kernel_space_buffer",
+      "label": "Hardware",
+      "name": "内核空间缓冲区",
+      "hw_type": "内存区域"
+    },
+    {
+      "id": "hw_cache_memory",
+      "label": "Hardware",
+      "name": "高速缓存RAM",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_inode",
+      "label": "Hardware",
+      "name": "i节点",
+      "hw_type": "文件系统元数据结构"
+    },
+    {
+      "id": "inst_system_call",
+      "label": "Instruction",
+      "name": "system_call",
+      "syntax": "system_call()"
+    },
+    {
+      "id": "inst_fread",
+      "label": "Instruction",
+      "name": "fread",
+      "syntax": "fread(buf, size, num, fp)"
+    },
+    {
+      "id": "inst_fopen",
+      "label": "Instruction",
+      "name": "fopen",
+      "syntax": "fopen(filename, mode)"
+    },
+    {
+      "id": "principle_locality_of_reference",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中倾向于重复访问最近使用过的数据或指令，是缓存设计的重要理论基础。"
+    },
+    {
+      "id": "code_linux_device_file_mapping",
+      "label": "CodeSnippet",
+      "name": "Linux设备文件映射示例",
+      "language": "C",
+      "content": "struct inode {\n    int device_major;  // 主设备号\n    int device_minor;  // 次设备号\n    // ... 其他字段\n};\n\n// 主设备号用于定位设备驱动程序\n// 次设备号作为参数传递给驱动程序确定具体设备"
+    },
+    {
+      "id": "concept_device_driver",
+      "label": "Concept",
+      "name": "设备驱动程序",
+      "alias": [
+        "驱动程序",
+        "I/O驱动"
+      ],
+      "definition": "与设备相关的I/O软件部分，负责控制外设的输入输出操作。"
+    },
+    {
+      "id": "concept_io_control_mode",
+      "label": "Concept",
+      "name": "I/O控制方式",
+      "alias": [
+        "I/O模式",
+        "数据传输方式"
+      ],
+      "definition": "设备进行I/O操作时所采用的控制机制，包括程序直接控制、中断控制和DMA控制等。"
+    },
+    {
+      "id": "concept_program_direct_io",
+      "label": "Concept",
+      "name": "程序直接控制I/O",
+      "alias": [
+        "轮询方式",
+        "忙等待方式"
+      ],
+      "definition": "CPU通过不断查询设备状态端口来判断I/O是否完成，整个过程与外设I/O串行执行。"
+    },
+    {
+      "id": "concept_interrupt_driven_io",
+      "label": "Concept",
+      "name": "中断控制I/O",
+      "alias": [
+        "中断驱动I/O",
+        "中断方式"
+      ],
+      "definition": "外设在完成一个数据或一组数据后向CPU发出中断请求，由中断服务程序处理后续操作，实现CPU与外设并行工作。"
+    },
+    {
+      "id": "concept_dma_io",
+      "label": "Concept",
+      "name": "DMA控制I/O",
+      "alias": [
+        "直接内存访问",
+        "DMA方式"
+      ],
+      "definition": "通过DMA控制器实现外设与主存之间的高速数据传输，无需CPU参与数据搬运，提升系统效率。"
+    },
+    {
+      "id": "hw_device_controller",
+      "label": "Hardware",
+      "name": "设备控制器",
+      "hw_type": "I/O控制器"
+    },
+    {
+      "id": "hw_io_port",
+      "label": "Hardware",
+      "name": "I/O端口",
+      "hw_type": "寄存器接口"
+    },
+    {
+      "id": "hw_dma_controller",
+      "label": "Hardware",
+      "name": "DMA控制器",
+      "hw_type": "专用硬件模块"
+    },
+    {
+      "id": "inst_in",
+      "label": "Instruction",
+      "name": "in",
+      "syntax": "in %reg, %port"
+    },
+    {
+      "id": "inst_out",
+      "label": "Instruction",
+      "name": "out",
+      "syntax": "out %port, %reg"
+    },
+    {
+      "id": "principle_parallelism",
+      "label": "Principle",
+      "name": "并行性原理",
+      "description": "在中断和DMA方式下，CPU与外设可以并行工作，提高系统整体效率。"
+    },
+    {
+      "id": "principle_interrupt_driven",
+      "label": "Principle",
+      "name": "中断驱动原理",
+      "description": "外设完成I/O操作后主动通知CPU，由中断服务程序响应，实现异步处理。"
+    },
+    {
+      "id": "concept_interrupt_response",
+      "label": "Concept",
+      "name": "中断响应",
+      "alias": [],
+      "definition": "CPU通过执行中断隐指令完成的阶段，完全由硬件实现。"
+    },
+    {
+      "id": "concept_interrupt_handling",
+      "label": "Concept",
+      "name": "中断处理",
+      "alias": [],
+      "definition": "CPU执行中断服务程序的过程，完全由软件实现。"
+    },
+    {
+      "id": "concept_interrupt_service_program",
+      "label": "Concept",
+      "name": "中断服务程序",
+      "alias": [],
+      "definition": "处理中断请求的软件程序，包含准备、处理和恢复三个阶段。"
+    },
+    {
+      "id": "concept_preparation_phase",
+      "label": "Concept",
+      "name": "准备阶段",
+      "alias": [],
+      "definition": "中断服务程序的第一个阶段，用于保存断点、现场和旧屏蔽字。"
+    },
+    {
+      "id": "concept_processing_phase",
+      "label": "Concept",
+      "name": "处理阶段",
+      "alias": [],
+      "definition": "中断服务程序的核心阶段，执行具体的中断处理逻辑。"
+    },
+    {
+      "id": "concept_recovery_phase",
+      "label": "Concept",
+      "name": "恢复阶段",
+      "alias": [],
+      "definition": "中断服务程序的最后一个阶段，用于恢复现场和旧屏蔽字。"
+    },
+    {
+      "id": "concept_interrupt_disabled",
+      "label": "Concept",
+      "name": "中断禁止",
+      "alias": [],
+      "definition": "CPU在特定阶段关闭中断，防止被新中断打断。"
+    },
+    {
+      "id": "concept_interrupt_enabled",
+      "label": "Concept",
+      "name": "开中断",
+      "alias": [],
+      "definition": "CPU在允许中断的状态下运行，可响应新的中断请求。"
+    },
+    {
+      "id": "concept_save_context",
+      "label": "Concept",
+      "name": "保护现场",
+      "alias": [],
+      "definition": "在中断发生时保存当前CPU状态（如寄存器值）以便后续恢复。"
+    },
+    {
+      "id": "concept_restore_context",
+      "label": "Concept",
+      "name": "恢复现场",
+      "alias": [],
+      "definition": "在中断返回前将之前保存的CPU状态恢复。"
+    },
+    {
+      "id": "concept_masking_word",
+      "label": "Concept",
+      "name": "屏蔽字",
+      "alias": [],
+      "definition": "控制哪些中断可以被响应的标志位集合。"
+    },
+    {
+      "id": "concept_stack_operation",
+      "label": "Concept",
+      "name": "压栈与出栈",
+      "alias": [],
+      "definition": "通过栈操作实现现场保护与恢复的机制。"
+    },
+    {
+      "id": "concept_i_o_instruction",
+      "label": "Concept",
+      "name": "I/O指令",
+      "alias": [],
+      "definition": "用于访问I/O设备的特殊指令，通常为特权指令。"
+    },
+    {
+      "id": "concept_privileged_instruction",
+      "label": "Concept",
+      "name": "特权指令",
+      "alias": [],
+      "definition": "只能在内核态执行的指令，如开/关中断、I/O操作等。"
+    },
+    {
+      "id": "concept_trap_instruction",
+      "label": "Concept",
+      "name": "陷阱指令",
+      "alias": [],
+      "definition": "触发从用户态进入内核态的系统调用机制，如int $0x80。"
+    },
+    {
+      "id": "concept_system_call",
+      "label": "Concept",
+      "name": "系统调用",
+      "alias": [],
+      "definition": "用户程序请求操作系统提供服务的接口。"
+    },
+    {
+      "id": "concept_dma",
+      "label": "Concept",
+      "name": "DMA",
+      "alias": [],
+      "definition": "直接内存访问技术，允许外设与主存之间直接传输数据，无需CPU干预。"
+    },
+    {
+      "id": "concept_dma_completion_interrupt",
+      "label": "Concept",
+      "name": "DMA完成中断",
+      "alias": [],
+      "definition": "当DMA操作结束后，由DMA控制器向CPU发送的中断信号。"
+    },
+    {
+      "id": "concept_process_scheduling",
+      "label": "Concept",
+      "name": "进程调度",
+      "alias": [],
+      "definition": "操作系统决定哪个进程获得CPU资源的过程。"
+    },
+    {
+      "id": "concept_file_descriptor",
+      "label": "Concept",
+      "name": "文件描述符",
+      "alias": [],
+      "definition": "内核中标识打开文件的整数索引。"
+    },
+    {
+      "id": "concept_block_device",
+      "label": "Concept",
+      "name": "块设备",
+      "alias": [],
+      "definition": "以固定大小的数据块为单位进行读写的存储设备，如磁盘。"
+    },
+    {
+      "id": "concept_cache_hit",
+      "label": "Concept",
+      "name": "高速缓存命中",
+      "alias": [],
+      "definition": "所需数据已在高速缓存中，无需访问慢速存储介质。"
+    },
+    {
+      "id": "concept_cache_miss",
+      "label": "Concept",
+      "name": "高速缓存未命中",
+      "alias": [],
+      "definition": "所需数据不在高速缓存中，需从磁盘读取。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_pic",
+      "label": "Hardware",
+      "name": "可编程中断控制器",
+      "hw_type": "中断控制器"
+    },
+    {
+      "id": "hw_dma_controller",
+      "label": "Hardware",
+      "name": "DMA控制器",
+      "hw_type": "I/O控制器"
+    },
+    {
+      "id": "hw_disk_drive",
+      "label": "Hardware",
+      "name": "磁盘驱动器",
+      "hw_type": "存储设备"
+    },
+    {
+      "id": "hw_main_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "内存"
+    },
+    {
+      "id": "inst_int_0x80",
+      "label": "Instruction",
+      "name": "int $0x80",
+      "syntax": "int $0x80"
+    },
+    {
+      "id": "inst_sysenter",
+      "label": "Instruction",
+      "name": "sysenter",
+      "syntax": "sysenter"
+    },
+    {
+      "id": "inst_cli",
+      "label": "Instruction",
+      "name": "cli",
+      "syntax": "cli"
+    },
+    {
+      "id": "inst_sti",
+      "label": "Instruction",
+      "name": "sti",
+      "syntax": "sti"
+    },
+    {
+      "id": "inst_push",
+      "label": "Instruction",
+      "name": "push",
+      "syntax": "push register"
+    },
+    {
+      "id": "inst_pop",
+      "label": "Instruction",
+      "name": "pop",
+      "syntax": "pop register"
+    },
+    {
+      "id": "inst_out",
+      "label": "Instruction",
+      "name": "out",
+      "syntax": "out port, data"
+    },
+    {
+      "id": "inst_in",
+      "label": "Instruction",
+      "name": "in",
+      "syntax": "in data, port"
+    },
+    {
+      "id": "code_fopen_call",
+      "label": "CodeSnippet",
+      "name": "fopen调用示例",
+      "language": "C",
+      "content": "fp = fopen(\"bin_file.txt\", \"r\");"
+    },
+    {
+      "id": "code_fread_call",
+      "label": "CodeSnippet",
+      "name": "fread调用示例",
+      "language": "C",
+      "content": "n = fread(buf, sizeof(int), BUFSIZE, fp);"
+    },
+    {
+      "id": "code_trap_sequence",
+      "label": "CodeSnippet",
+      "name": "陷阱指令序列",
+      "language": "Assembly",
+      "content": "int $0x80\n; 或 sysenter"
+    },
+    {
+      "id": "concept_standard_io_library",
+      "label": "Concept",
+      "name": "标准I/O库函数",
+      "alias": [
+        "C标准I/O库",
+        "标准I/O函数"
+      ],
+      "definition": "C语言中用于文件和控制台I/O操作的高层抽象函数，如 fopen、fread、fwrite、fclose 等，基于系统调用实现。"
+    },
+    {
+      "id": "concept_system_level_io",
+      "label": "Concept",
+      "name": "系统级I/O函数",
+      "alias": [
+        "UNIX系统调用",
+        "底层I/O函数"
+      ],
+      "definition": "操作系统提供的直接接口，用于执行I/O操作，如 open、read、write、close 等，属于低层次的系统调用。"
+    },
+    {
+      "id": "concept_user_space_io",
+      "label": "Concept",
+      "name": "用户空间I/O软件",
+      "alias": [
+        "用户程序I/O层"
+      ],
+      "definition": "运行在用户态的应用程序中用于发起I/O请求的软件组件，包括标准I/O库和系统调用封装。"
+    },
+    {
+      "id": "concept_synchronous_io",
+      "label": "Concept",
+      "name": "同步I/O",
+      "alias": [
+        "阻塞I/O"
+      ],
+      "definition": "I/O操作必须等待完成才能继续执行，程序在I/O期间处于阻塞状态。"
+    },
+    {
+      "id": "concept_file_metadata",
+      "label": "Concept",
+      "name": "文件元数据",
+      "alias": [
+        "文件属性",
+        "文件信息"
+      ],
+      "definition": "描述文件的额外信息，如权限、大小、创建时间、所有者等，通常无法通过标准I/O库访问。"
+    },
+    {
+      "id": "concept_buffer_overflow",
+      "label": "Concept",
+      "name": "缓冲区溢出",
+      "alias": [
+        "缓冲区溢出漏洞"
+      ],
+      "definition": "当程序向缓冲区写入超出其容量的数据时，导致内存破坏的安全问题，常见于标准I/O库使用不当。"
+    },
+    {
+      "id": "concept_file_locking",
+      "label": "Concept",
+      "name": "文件加锁",
+      "alias": [
+        "文件锁定",
+        "文件互斥"
+      ],
+      "definition": "对文件进行独占访问控制，防止多个进程同时修改同一文件，标准I/O库不提供此功能。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_disk",
+      "label": "Hardware",
+      "name": "磁盘",
+      "hw_type": "存储设备"
+    },
+    {
+      "id": "hw_terminal",
+      "label": "Hardware",
+      "name": "终端",
+      "hw_type": "输入输出设备"
+    },
+    {
+      "id": "hw_network_device",
+      "label": "Hardware",
+      "name": "网络设备",
+      "hw_type": "通信设备"
+    },
+    {
+      "id": "inst_fopen",
+      "label": "Instruction",
+      "name": "fopen",
+      "syntax": "FILE* fopen(const char* filename, const char* mode);"
+    },
+    {
+      "id": "inst_fread",
+      "label": "Instruction",
+      "name": "fread",
+      "syntax": "size_t fread(void* ptr, size_t size, size_t nmemb, FILE* stream);"
+    },
+    {
+      "id": "inst_fwrite",
+      "label": "Instruction",
+      "name": "fwrite",
+      "syntax": "size_t fwrite(const void* ptr, size_t size, size_t nmemb, FILE* stream);"
+    },
+    {
+      "id": "inst_fclose",
+      "label": "Instruction",
+      "name": "fclose",
+      "syntax": "int fclose(FILE* stream);"
+    },
+    {
+      "id": "inst_getc",
+      "label": "Instruction",
+      "name": "getc",
+      "syntax": "int getc(FILE* stream);"
+    },
+    {
+      "id": "inst_putc",
+      "label": "Instruction",
+      "name": "putc",
+      "syntax": "int putc(int c, FILE* stream);"
+    },
+    {
+      "id": "inst_printf",
+      "label": "Instruction",
+      "name": "printf",
+      "syntax": "int printf(const char* format, ...);"
+    },
+    {
+      "id": "inst_scanf",
+      "label": "Instruction",
+      "name": "scanf",
+      "syntax": "int scanf(const char* format, ...);"
+    },
+    {
+      "id": "inst_read",
+      "label": "Instruction",
+      "name": "read",
+      "syntax": "ssize_t read(int fd, void* buf, size_t count);"
+    },
+    {
+      "id": "inst_write",
+      "label": "Instruction",
+      "name": "write",
+      "syntax": "ssize_t write(int fd, const void* buf, size_t count);"
+    },
+    {
+      "id": "inst_open",
+      "label": "Instruction",
+      "name": "open",
+      "syntax": "int open(const char* pathname, int flags, mode_t mode);"
+    },
+    {
+      "id": "inst_close",
+      "label": "Instruction",
+      "name": "close",
+      "syntax": "int close(int fd);"
+    },
+    {
+      "id": "inst_lseek",
+      "label": "Instruction",
+      "name": "lseek",
+      "syntax": "off_t lseek(int fd, off_t offset, int whence);"
+    },
+    {
+      "id": "inst_createfile",
+      "label": "Instruction",
+      "name": "CreateFile",
+      "syntax": "HANDLE CreateFileA(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);"
+    },
+    {
+      "id": "inst_readfile",
+      "label": "Instruction",
+      "name": "ReadFile",
+      "syntax": "BOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped);"
+    },
+    {
+      "id": "inst_writefile",
+      "label": "Instruction",
+      "name": "WriteFile",
+      "syntax": "BOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);"
+    },
+    {
+      "id": "inst_closehandle",
+      "label": "Instruction",
+      "name": "CloseHandle",
+      "syntax": "BOOL CloseHandle(HANDLE hObject);"
+    },
+    {
+      "id": "inst_readconsole",
+      "label": "Instruction",
+      "name": "ReadConsole",
+      "syntax": "BOOL ReadConsole(HANDLE hConsoleInput, LPVOID lpBuffer, DWORD nNumberOfCharsToRead, LPDWORD lpNumberOfCharsRead, PCONSOLE_READ_INPUT_CONTROL lpControl);"
+    },
+    {
+      "id": "inst_writeconsole",
+      "label": "Instruction",
+      "name": "WriteConsole",
+      "syntax": "BOOL WriteConsole(HANDLE hConsoleOutput, const VOID* lpBuffer, DWORD nNumberOfCharsToWrite, LPDWORD lpNumberOfCharsWritten, LPVOID lpReserved);"
+    },
+    {
+      "id": "code_io_function_comparison",
+      "label": "CodeSnippet",
+      "name": "I/O函数对照表代码示例",
+      "language": "C",
+      "content": "/* 示例：使用不同平台I/O函数读取文件 */\n// UNIX/Linux\nint fd = open(\"data.txt\", O_RDONLY);\nchar buffer[1024];\nread(fd, buffer, sizeof(buffer));\n\n// C标准I/O库\nFILE* fp = fopen(\"data.txt\", \"r\");\nfread(buffer, 1, sizeof(buffer), fp);\n\n// Windows\nHANDLE hFile = CreateFileA(\"data.txt\", GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL);\nReadFile(hFile, buffer, sizeof(buffer), &bytesRead, NULL);"
+    },
+    {
+      "id": "principle_higher_abstraction",
+      "label": "Principle",
+      "name": "高抽象层次优势",
+      "description": "高层次抽象（如标准I/O库）简化编程，提高可移植性，但可能牺牲性能与灵活性。"
+    },
+    {
+      "id": "principle_low_level_control",
+      "label": "Principle",
+      "name": "低层次控制需求",
+      "description": "对于特定场景（如网络I/O、安全敏感操作），需要使用系统级I/O以获得更精细的控制能力。"
+    },
+    {
+      "id": "concept_io_operation",
+      "label": "Concept",
+      "name": "I/O操作",
+      "alias": [],
+      "definition": "计算机系统中，进程与外部设备之间进行数据交换的过程。"
+    },
+    {
+      "id": "concept_file",
+      "label": "Concept",
+      "name": "文件",
+      "alias": [],
+      "definition": "操作系统中用于组织和管理数据的抽象实体，是I/O操作的基本单位。"
+    },
+    {
+      "id": "concept_system_call",
+      "label": "Concept",
+      "name": "系统调用",
+      "alias": [],
+      "definition": "操作系统提供给应用程序的接口，用于请求内核执行特权操作，如I/O操作。"
+    },
+    {
+      "id": "concept_library_function",
+      "label": "Concept",
+      "name": "库函数",
+      "alias": [],
+      "definition": "编程语言标准库中提供的函数，封装了系统调用或底层操作，简化程序开发。"
+    },
+    {
+      "id": "concept_trap_instruction",
+      "label": "Concept",
+      "name": "陷阱指令",
+      "alias": [],
+      "definition": "一种特殊的机器指令，用于将处理器从用户态切换到内核态，以处理系统调用或异常。"
+    },
+    {
+      "id": "concept_kernel_mode",
+      "label": "Concept",
+      "name": "内核态",
+      "alias": [],
+      "definition": "CPU运行的一种特权模式，允许执行所有指令，包括对硬件的直接访问。"
+    },
+    {
+      "id": "concept_user_mode",
+      "label": "Concept",
+      "name": "用户态",
+      "alias": [],
+      "definition": "CPU运行的一种非特权模式，限制了对硬件资源的直接访问。"
+    },
+    {
+      "id": "concept_device_driver",
+      "label": "Concept",
+      "name": "设备驱动程序",
+      "alias": [],
+      "definition": "操作系统中用于控制特定硬件设备的软件模块，负责与硬件交互。"
+    },
+    {
+      "id": "concept_interrupt_service_routine",
+      "label": "Concept",
+      "name": "中断服务程序",
+      "alias": [],
+      "definition": "在发生中断时由CPU调用的程序，用于处理外设或硬件事件。"
+    },
+    {
+      "id": "concept_dma",
+      "label": "Concept",
+      "name": "DMA",
+      "alias": [
+        "直接内存访问"
+      ],
+      "definition": "一种允许外设直接与主存交换数据而无需CPU干预的技术。"
+    },
+    {
+      "id": "concept_i_o_port",
+      "label": "Concept",
+      "name": "I/O端口",
+      "alias": [],
+      "definition": "设备控制器中用于与CPU通信的寄存器集合，包括状态端口、控制端口和数据端口。"
+    },
+    {
+      "id": "concept_i_o_addressing",
+      "label": "Concept",
+      "name": "I/O编址方式",
+      "alias": [],
+      "definition": "CPU访问I/O设备的方式，分为独立编址和统一编址两种。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_device_controller",
+      "label": "Hardware",
+      "name": "设备控制器",
+      "hw_type": "外设控制器"
+    },
+    {
+      "id": "hw_main_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "hw_dma_controller",
+      "label": "Hardware",
+      "name": "DMA控制器",
+      "hw_type": "外设控制器"
+    },
+    {
+      "id": "inst_trap",
+      "label": "Instruction",
+      "name": "trap",
+      "syntax": "trap"
+    },
+    {
+      "id": "inst_read",
+      "label": "Instruction",
+      "name": "read",
+      "syntax": "read(port)"
+    },
+    {
+      "id": "inst_write",
+      "label": "Instruction",
+      "name": "write",
+      "syntax": "write(port, data)"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中倾向于重复访问相同或邻近的内存位置，是缓存设计的基础。"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "concept_von_neumann_architecture",
+      "target_id": "concept_io_subsystem",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_system_call",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "concept_trap_instruction",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap_instruction",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap_instruction",
+      "target_id": "concept_kernel_control",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_control",
+      "target_id": "concept_io_subsystem",
+      "type": "CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_file",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_io_interface",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_io_port_addressing",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_io_control_method",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_interface",
+      "target_id": "hw_io_controller",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "code_io_library_example",
+      "target_id": "concept_system_call",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_io_library_example",
+      "target_id": "inst_syscall",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_trap",
+      "target_id": "inst_syscall",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap_instruction",
+      "target_id": "concept_system_call",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_kernel_control",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_hierarchy",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_shared_resource",
+      "type": "HAS_PROPERTY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_complexity",
+      "type": "HAS_PROPERTY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_asynchrony",
+      "type": "HAS_PROPERTY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_runtime_system",
+      "target_id": "concept_abstraction",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_runtime_system",
+      "target_id": "concept_modularity",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "hw_cpu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "hw_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "hw_interrupt_controller",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_int_0x80",
+      "target_id": "concept_io_subsystem",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_sysenter",
+      "target_id": "concept_io_subsystem",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_push",
+      "target_id": "code_write_function_asm",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_movl",
+      "target_id": "code_write_function_asm",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_cmp",
+      "target_id": "code_write_function_asm",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_jbe",
+      "target_id": "code_write_function_asm",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_neg",
+      "target_id": "code_write_function_asm",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_popl",
+      "target_id": "code_write_function_asm",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_ret",
+      "target_id": "code_write_function_asm",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_write_function_asm",
+      "target_id": "concept_io_subsystem",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_runtime_system",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "inst_int_0x80",
+      "type": "CONVERTS_TO",
+      "properties": {
+        "description": "int $0x80 指令触发从用户态到内核态的切换，是系统调用的入口点。"
+      }
+    },
+    {
+      "source_id": "inst_int_0x80",
+      "target_id": "inst_sysenter",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "description": "int $0x80 是软中断指令，而 sysenter 是更高效的系统调用指令，两者均用于陷入内核，但后者性能更高。"
+      }
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "principle_abstraction",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "principle_modularity",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "hw_interrupt_controller",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "hw_cpu",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "CPU 在用户态执行用户程序，当遇到系统调用时才进入内核态处理 I/O 请求。"
+      }
+    },
+    {
+      "source_id": "inst_int_0x80",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_int_0x80",
+      "target_id": "concept_io_subsystem",
+      "type": "CAUSES",
+      "properties": {
+        "description": "执行 int $0x80 指令导致 CPU 从用户态切换到内核态，启动 I/O 处理流程。"
+      }
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "code_write_function_asm",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "code_write_function_asm",
+      "target_id": "inst_movl",
+      "type": "OPERATES_ON",
+      "properties": {
+        "operand": "EAX, EBX, ECX, EDX"
+      }
+    },
+    {
+      "source_id": "code_write_function_asm",
+      "target_id": "inst_int_0x80",
+      "type": "TRIGGERS",
+      "properties": {
+        "description": "int $0x80 指令触发系统调用处理程序 system_call() 的执行。"
+      }
+    },
+    {
+      "source_id": "concept_io_subsystem",
+      "target_id": "concept_runtime_system",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_runtime_system",
+      "target_id": "concept_io_subsystem",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_software",
+      "target_id": "concept_user_space_io",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "description": "I/O软件由用户空间和内核空间两部分组成"
+      }
+    },
+    {
+      "source_id": "concept_io_software",
+      "target_id": "concept_kernel_space_io",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "description": "I/O软件由用户空间和内核空间两部分组成"
+      }
+    },
+    {
+      "source_id": "concept_user_space_io",
+      "target_id": "concept_io_software",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "用户空间I/O软件在前，发起I/O请求；内核空间I/O软件在后，执行实际控制"
+      }
+    },
+    {
+      "source_id": "concept_kernel_space_io",
+      "target_id": "concept_io_software",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "内核空间I/O软件在后，执行实际控制；用户空间I/O软件在前，发起请求"
+      }
+    },
+    {
+      "source_id": "concept_user_space_io",
+      "target_id": "concept_kernel_space_io",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "description": "用户空间I/O软件依赖内核空间I/O软件来完成实际的I/O操作"
+      }
+    },
+    {
+      "source_id": "concept_kernel_space_io",
+      "target_id": "concept_user_space_io",
+      "type": "USES",
+      "properties": {
+        "description": "内核空间I/O软件使用来自用户空间的I/O请求进行处理"
+      }
+    },
+    {
+      "source_id": "concept_unix_file_model",
+      "target_id": "concept_file_as_byte_sequence",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unix_file_model",
+      "target_id": "principle_unified_io_interface",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unix_file_model",
+      "target_id": "principle_file_abstraction",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_as_byte_sequence",
+      "target_id": "hw_keyboard",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_as_byte_sequence",
+      "target_id": "hw_display",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_as_byte_sequence",
+      "target_id": "hw_network_socket",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_as_byte_sequence",
+      "target_id": "hw_terminal",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_ascii_file",
+      "target_id": "concept_file_as_byte_sequence",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_binary_file",
+      "target_id": "concept_file_as_byte_sequence",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_ascii_file",
+      "target_id": "inst_read",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_binary_file",
+      "target_id": "inst_read",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_ascii_file",
+      "target_id": "inst_write",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_binary_file",
+      "target_id": "inst_write",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_descriptor",
+      "target_id": "inst_open",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_descriptor",
+      "target_id": "inst_create",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_descriptor",
+      "target_id": "inst_close",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_current_position",
+      "target_id": "inst_lseek",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_current_position",
+      "target_id": "inst_read",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_current_position",
+      "target_id": "inst_write",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_eof",
+      "target_id": "inst_read",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_open",
+      "target_id": "concept_file_descriptor",
+      "type": "RETURNS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_create",
+      "target_id": "concept_file_descriptor",
+      "type": "RETURNS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_lseek",
+      "target_id": "concept_current_position",
+      "type": "MODIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_read",
+      "target_id": "concept_current_position",
+      "type": "MODIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_write",
+      "target_id": "concept_current_position",
+      "type": "MODIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_close",
+      "target_id": "concept_file_descriptor",
+      "type": "RECLAIMS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_close",
+      "target_id": "concept_current_position",
+      "type": "RESETS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_open",
+      "target_id": "concept_unix_file_model",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_create",
+      "target_id": "concept_unix_file_model",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_read",
+      "target_id": "concept_unix_file_model",
+      "type": "PERFORMS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_write",
+      "target_id": "concept_unix_file_model",
+      "type": "PERFORMS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_close",
+      "target_id": "concept_unix_file_model",
+      "type": "TERMINATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unix_file_model",
+      "target_id": "hw_keyboard",
+      "type": "ABSTRACTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unix_file_model",
+      "target_id": "hw_display",
+      "type": "ABSTRACTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unix_file_model",
+      "target_id": "hw_network_socket",
+      "type": "ABSTRACTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unix_file_model",
+      "target_id": "hw_terminal",
+      "type": "ABSTRACTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_ascii_file",
+      "target_id": "concept_eof",
+      "type": "CAN_CAUSE",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_binary_file",
+      "target_id": "concept_eof",
+      "type": "CAN_CAUSE",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_read",
+      "target_id": "concept_eof",
+      "type": "TRIGGERS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_write",
+      "target_id": "concept_current_position",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_read",
+      "target_id": "concept_current_position",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_lseek",
+      "target_id": "inst_read",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_lseek",
+      "target_id": "inst_write",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_close",
+      "target_id": "inst_read",
+      "type": "FOLLOWS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_close",
+      "target_id": "inst_write",
+      "type": "FOLLOWS",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_open",
+      "target_id": "inst_read",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_open",
+      "target_id": "inst_write",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_create",
+      "target_id": "inst_open",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_create",
+      "target_id": "inst_write",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_descriptor",
+      "target_id": "inst_read",
+      "type": "USED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_descriptor",
+      "target_id": "inst_write",
+      "type": "USED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_descriptor",
+      "target_id": "inst_lseek",
+      "type": "USED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_descriptor",
+      "target_id": "inst_close",
+      "type": "USED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_io_functions",
+      "target_id": "instruction_creat",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_io_functions",
+      "target_id": "instruction_open",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_io_functions",
+      "target_id": "instruction_read",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_io_functions",
+      "target_id": "instruction_write",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_io_functions",
+      "target_id": "instruction_lseek",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_io_functions",
+      "target_id": "instruction_stat",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_io_functions",
+      "target_id": "instruction_fstat",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_io_functions",
+      "target_id": "instruction_close",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_creat",
+      "target_id": "hardware_file_descriptor",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_open",
+      "target_id": "hardware_file_descriptor",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_read",
+      "target_id": "hardware_file_descriptor",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_write",
+      "target_id": "hardware_file_descriptor",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_lseek",
+      "target_id": "hardware_file_descriptor",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_stat",
+      "target_id": "concept_file_metadata",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_fstat",
+      "target_id": "concept_file_metadata",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_close",
+      "target_id": "hardware_file_descriptor",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_creat",
+      "target_id": "concept_file_metadata",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_open",
+      "target_id": "concept_file_metadata",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_read",
+      "target_id": "concept_file_metadata",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_write",
+      "target_id": "concept_file_metadata",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_lseek",
+      "target_id": "concept_file_metadata",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_stat",
+      "target_id": "concept_file_metadata",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_fstat",
+      "target_id": "concept_file_metadata",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_close",
+      "target_id": "concept_file_metadata",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_read",
+      "target_id": "principle_block_io_optimization",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_write",
+      "target_id": "principle_block_io_optimization",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_lseek",
+      "target_id": "principle_random_access",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_metadata",
+      "target_id": "code_stat_struct",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_creat",
+      "target_id": "instruction_open",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_read",
+      "target_id": "instruction_write",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_stat",
+      "target_id": "instruction_fstat",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_open",
+      "target_id": "instruction_creat",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_open",
+      "target_id": "instruction_read",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_open",
+      "target_id": "instruction_write",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_read",
+      "target_id": "instruction_close",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_write",
+      "target_id": "instruction_close",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_lseek",
+      "target_id": "instruction_read",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_lseek",
+      "target_id": "instruction_write",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io",
+      "target_id": "concept_system_call",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "reason": "C标准I/O库函数底层依赖系统调用实现读写操作"
+      }
+    },
+    {
+      "source_id": "concept_standard_io",
+      "target_id": "concept_stream_buffering",
+      "type": "USES",
+      "properties": {
+        "purpose": "通过缓冲区减少系统调用频率"
+      }
+    },
+    {
+      "source_id": "concept_stream_buffering",
+      "target_id": "concept_file_descriptor",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "components": [
+          "base",
+          "ptr",
+          "cnt"
+        ]
+      }
+    },
+    {
+      "source_id": "concept_file_pointer",
+      "target_id": "hardware_iob_array",
+      "type": "DEFINES",
+      "properties": {
+        "definition": "stdin/stdout/stderr 是 _iob 数组中的前三个元素"
+      }
+    },
+    {
+      "source_id": "instruction_getc",
+      "target_id": "concept_stream_buffering",
+      "type": "OPERATES_ON",
+      "properties": {
+        "operation": "修改缓冲区指针和计数器"
+      }
+    },
+    {
+      "source_id": "instruction_getc",
+      "target_id": "instruction_fillbuf",
+      "type": "CALLS",
+      "properties": {
+        "condition": "当缓冲区空（cnt <= 0）时调用_fillbuf()"
+      }
+    },
+    {
+      "source_id": "instruction_fillbuf",
+      "target_id": "instruction_read",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "implementation": "使用read系统调用填充缓冲区"
+      }
+    },
+    {
+      "source_id": "instruction_fopen",
+      "target_id": "instruction_open",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "mode": "读模式"
+      }
+    },
+    {
+      "source_id": "instruction_fopen",
+      "target_id": "instruction_creat",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "mode": "写模式"
+      }
+    },
+    {
+      "source_id": "instruction_fopen",
+      "target_id": "instruction_open",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "mode": "追加模式"
+      }
+    },
+    {
+      "source_id": "concept_standard_io",
+      "target_id": "principle_buffering_optimization",
+      "type": "OPTIMIZES",
+      "properties": {
+        "goal": "减少系统调用次数"
+      }
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "principle_context_switch_cost",
+      "type": "CAUSES",
+      "properties": {
+        "effect": "每次调用导致两次上下文切换，增加延迟"
+      }
+    },
+    {
+      "source_id": "code_stdio_h_snippet",
+      "target_id": "concept_file_pointer",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "example": "FILE结构体定义了文件指针的内部表示"
+      }
+    },
+    {
+      "source_id": "code_fillbuf_impl",
+      "target_id": "instruction_fillbuf",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "example": "_fillbuf函数的具体实现代码"
+      }
+    },
+    {
+      "source_id": "code_fopen_impl",
+      "target_id": "instruction_fopen",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "example": "fopen函数的一种实际实现方式"
+      }
+    },
+    {
+      "source_id": "concept_standard_io",
+      "target_id": "concept_file_pointer",
+      "type": "IS_A",
+      "properties": {
+        "description": "FILE* 是 C 标准 I/O 中对文件的抽象"
+      }
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "concept_file_descriptor",
+      "type": "USES",
+      "properties": {
+        "usage": "系统调用以文件描述符作为参数"
+      }
+    },
+    {
+      "source_id": "concept_stream_buffering",
+      "target_id": "concept_standard_io",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "contrast": "系统级I/O直接使用文件描述符，而标准I/O使用带缓冲的FILE指针"
+      }
+    },
+    {
+      "source_id": "instruction_getc",
+      "target_id": "instruction_read",
+      "type": "PRECEDES",
+      "properties": {
+        "sequence": "首次调用getc会触发read系统调用"
+      }
+    },
+    {
+      "source_id": "instruction_putc",
+      "target_id": "instruction_write",
+      "type": "PRECEDES",
+      "properties": {
+        "sequence": "当缓冲区满或未缓冲时，putc会触发write系统调用"
+      }
+    },
+    {
+      "source_id": "code_stdio_h_snippet",
+      "target_id": "hardware_iob_array",
+      "type": "DEFINES",
+      "properties": {
+        "definition": "_iob数组是FILE结构实例的存储位置"
+      }
+    },
+    {
+      "source_id": "concept_stream_buffering",
+      "target_id": "principle_buffering_optimization",
+      "type": "REALIZES",
+      "properties": {
+        "mechanism": "通过预读取数据到缓冲区，避免重复系统调用"
+      }
+    },
+    {
+      "source_id": "concept_user_space_io",
+      "target_id": "concept_standard_io_library",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_space_io",
+      "target_id": "concept_system_call_api",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_space_io",
+      "target_id": "concept_high_level_api",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_copy_function",
+      "target_id": "code_file_copy_fread_fwrite",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_copy_function",
+      "target_id": "code_file_copy_fgetc_fputc",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_file_copy_fread_fwrite",
+      "target_id": "inst_int_0x80",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_file_copy_fread_fwrite",
+      "target_id": "inst_int_0x2e",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_file_copy_fread_fwrite",
+      "target_id": "inst_sysenter",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "inst_fread",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "inst_fwrite",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "inst_fgetc",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "inst_fputc",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_high_level_api",
+      "target_id": "inst_CopyFile",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_CopyFile",
+      "target_id": "inst_CreateFile",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_CopyFile",
+      "target_id": "inst_ReadFile",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_CopyFile",
+      "target_id": "inst_WriteFile",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_CopyFile",
+      "target_id": "inst_CloseHandle",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call_api",
+      "target_id": "inst_int_0x80",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call_api",
+      "target_id": "inst_int_0x2e",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call_api",
+      "target_id": "inst_sysenter",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_system_call_trap",
+      "target_id": "inst_int_0x80",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_system_call_trap",
+      "target_id": "inst_int_0x2e",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_system_call_trap",
+      "target_id": "inst_sysenter",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_parameter_passing",
+      "target_id": "hw_register_eax",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_parameter_passing",
+      "target_id": "hw_register_ebx",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_parameter_passing",
+      "target_id": "hw_register_ecx",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_parameter_passing",
+      "target_id": "hw_register_edx",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_parameter_passing",
+      "target_id": "hw_stack",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_parameter_passing",
+      "target_id": "inst_int_0x80",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_parameter_passing",
+      "target_id": "inst_int_0x2e",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_parameter_passing",
+      "target_id": "inst_sysenter",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_int_0x80",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_int_0x2e",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_sysenter",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_copy_function",
+      "target_id": "concept_user_space_io",
+      "type": "DEPENDED_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "concept_user_space_io",
+      "type": "DEPENDED_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call_api",
+      "target_id": "concept_user_space_io",
+      "type": "DEPENDED_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_high_level_api",
+      "target_id": "concept_system_call_api",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_fread",
+      "target_id": "inst_fwrite",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_fgetc",
+      "target_id": "inst_fputc",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_int_0x80",
+      "target_id": "inst_int_0x2e",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_int_0x80",
+      "target_id": "inst_sysenter",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_int_0x2e",
+      "target_id": "inst_sysenter",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_register_eax",
+      "target_id": "hw_register_edx",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_register_ebx",
+      "target_id": "hw_register_ecx",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_stack",
+      "target_id": "hw_register_eax",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_request",
+      "target_id": "inst_trap",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_trap",
+      "target_id": "concept_kernel_space",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_space",
+      "target_id": "concept_io_request",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_request",
+      "target_id": "concept_kernel_space",
+      "type": "TRANSFERS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_io_device",
+      "target_id": "hw_device_controller",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_io_device",
+      "target_id": "hw_io_adapter",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_device_controller",
+      "target_id": "concept_kernel_space",
+      "type": "INTERACTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_io_adapter",
+      "target_id": "concept_kernel_space",
+      "type": "INTERACTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_device_controller",
+      "target_id": "hw_io_adapter",
+      "type": "EQUIVALENT_TO",
+      "properties": {
+        "description": "在功能上，设备控制器与 I/O 适配器是同一类硬件组件的不同称呼。"
+      }
+    },
+    {
+      "source_id": "hw_io_device",
+      "target_id": "concept_io_request",
+      "type": "RESPONDS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_space",
+      "target_id": "hw_device_controller",
+      "type": "CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_space",
+      "target_id": "hw_io_adapter",
+      "type": "CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_device",
+      "target_id": "concept_character_device",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_device",
+      "target_id": "concept_block_device",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "concept_data_stream",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_block_device",
+      "target_id": "concept_data_block",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_block_device",
+      "target_id": "hw_disk_drive",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_block_device",
+      "target_id": "hw_cd_drive",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_block_device",
+      "target_id": "hw_tape_drive",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_keyboard",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_mouse",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_touchscreen",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_trackball",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_joystick",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_digitizer",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_scanner",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_stylus",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_ocr_reader",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_display",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_printer",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_plotter",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_network_interface",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_modem",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_dac",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "hw_adc",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "concept_device_abstraction",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_block_device",
+      "target_id": "concept_device_abstraction",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_abstraction",
+      "target_id": "concept_file_system",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_abstraction",
+      "target_id": "concept_device_driver",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_system",
+      "target_id": "concept_device_abstraction",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "concept_device_abstraction",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_device",
+      "target_id": "principle_device_classification",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_device_classification",
+      "target_id": "concept_character_device",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_device_classification",
+      "target_id": "concept_block_device",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "concept_block_device",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_block_device",
+      "target_id": "concept_data_block",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_character_device",
+      "target_id": "concept_data_stream",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_io_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_disk_controller",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_ethernet_card",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_usb_controller",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_io_bus",
+      "target_id": "hardware_pci_express",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_io_bus",
+      "target_id": "hardware_isa",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_io_bus",
+      "target_id": "hardware_eisa",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_io_bus",
+      "target_id": "hardware_pci",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_io_bus",
+      "target_id": "hardware_agp",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_io_bus",
+      "target_id": "hardware_pci_x",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_data_buffer_register",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_status_control_register",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_data_buffering",
+      "target_id": "hardware_data_buffer_register",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_error_ready_detection",
+      "target_id": "hardware_status_control_register",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_timing_control",
+      "target_id": "concept_device_controller",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_data_format_conversion",
+      "target_id": "concept_device_controller",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_ps2_port",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_usb_port",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_usb_port",
+      "target_id": "hardware_usb_controller",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_ps2_port",
+      "target_id": "hardware_usb_port",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "hardware_status_control_register",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_ins",
+      "target_id": "hardware_status_control_register",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_out",
+      "target_id": "hardware_status_control_register",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_outs",
+      "target_id": "hardware_status_control_register",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "hardware_data_buffer_register",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_ins",
+      "target_id": "hardware_data_buffer_register",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_out",
+      "target_id": "hardware_data_buffer_register",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_outs",
+      "target_id": "hardware_data_buffer_register",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "instruction_out",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_ins",
+      "target_id": "instruction_outs",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "instruction_ins",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_out",
+      "target_id": "instruction_outs",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "principle_data_buffering",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "principle_error_ready_detection",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "principle_timing_control",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "principle_data_format_conversion",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_io_bus",
+      "type": "CONNECTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_data_buffer_register",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "hardware_status_control_register",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "principle_data_buffering",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "principle_error_ready_detection",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "principle_timing_control",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "principle_data_format_conversion",
+      "type": "DEFINES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "instruction_out",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_ins",
+      "target_id": "instruction_outs",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "instruction_ins",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_out",
+      "target_id": "instruction_outs",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "instruction_in",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "instruction_ins",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "instruction_out",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_controller",
+      "target_id": "instruction_outs",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "principle_data_buffering",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_out",
+      "target_id": "principle_data_buffering",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "principle_error_ready_detection",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_out",
+      "target_id": "principle_error_ready_detection",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "principle_timing_control",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_out",
+      "target_id": "principle_timing_control",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_in",
+      "target_id": "principle_data_format_conversion",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_out",
+      "target_id": "principle_data_format_conversion",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_port",
+      "target_id": "concept_data_port",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_port",
+      "target_id": "concept_status_control_port",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_port",
+      "target_id": "concept_io_address_space",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "concept_io_address_space",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "concept_io_address_space",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "principle_memory_mapping",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "principle_separate_i_o_space",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "inst_in",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "inst_out",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "inst_in",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "inst_out",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "hw_bus",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "hw_bus",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "hw_device_controller",
+      "type": "ACCESSING",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "hw_device_controller",
+      "type": "ACCESSING",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "concept_io_port",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "concept_io_port",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "concept_data_port",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "concept_status_control_port",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "concept_data_port",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "concept_status_control_port",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "principle_memory_mapping",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "principle_separate_i_o_space",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "concept_io_address_space",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "concept_io_address_space",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "concept_stored_program",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "concept_stored_program",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "hw_alu",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "hw_alu",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "inst_movq",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "inst_movq",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "inst_add",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "inst_add",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "inst_and",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "inst_or",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "inst_test",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "inst_in",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "inst_out",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "hw_cpu",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_unified_addressing",
+      "target_id": "hw_cpu",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_control",
+      "target_id": "concept_program_direct_control",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_control",
+      "target_id": "concept_interrupt_control",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_control",
+      "target_id": "concept_dma_control",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_direct_control",
+      "target_id": "hardware_cpu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_direct_control",
+      "target_id": "hardware_printer_controller",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_direct_control",
+      "target_id": "code_program_direct_io_example",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "hardware_cpu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "hardware_interrupt_controller",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "code_interrupt_control_io_example",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "hardware_dma_controller",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "hardware_main_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "code_dma_control_io_example",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_direct_control",
+      "target_id": "concept_interrupt_control",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "concept_dma_control",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_direct_control",
+      "target_id": "principle_parallelism",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "principle_parallelism",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "principle_parallelism",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "principle_locality",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_cpu",
+      "target_id": "hardware_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_main_memory",
+      "target_id": "hardware_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_printer_controller",
+      "target_id": "hardware_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_dma_controller",
+      "target_id": "hardware_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hardware_interrupt_controller",
+      "target_id": "hardware_bus",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "concept_program_direct_control",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "concept_interrupt_control",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_program_direct_io_example",
+      "target_id": "inst_while",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_interrupt_control_io_example",
+      "target_id": "inst_schedule",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_dma_control_io_example",
+      "target_id": "inst_schedule",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "inst_acknowledge_interrupt",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "inst_acknowledge_interrupt",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "inst_enable_interrupts",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_direct_control",
+      "target_id": "inst_start",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "inst_start",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "inst_start",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "concept_interrupt_control",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_direct_control",
+      "target_id": "principle_locality",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "principle_locality",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "principle_locality",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "concept_program_direct_control",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "concept_interrupt_control",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "concept_program_direct_control",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "concept_program_direct_control",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "concept_interrupt_control",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_direct_control",
+      "target_id": "concept_io_control",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "concept_io_control",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "concept_io_control",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_program_direct_io_example",
+      "target_id": "concept_program_direct_control",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_interrupt_control_io_example",
+      "target_id": "concept_interrupt_control",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_dma_control_io_example",
+      "target_id": "concept_dma_control",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_request",
+      "target_id": "concept_system_call",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "inst_trap",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_trap",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "concept_kernel_space_io_software",
+      "type": "TRANSFERS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_space_io_software",
+      "target_id": "concept_device_independent_io_layer",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_space_io_software",
+      "target_id": "concept_device_driver_layer",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_space_io_software",
+      "target_id": "concept_interrupt_service_layer",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver_layer",
+      "target_id": "hw_device",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_layer",
+      "target_id": "hw_device",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver_layer",
+      "target_id": "concept_device_independent_io_layer",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_layer",
+      "target_id": "concept_device_driver_layer",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_independent_io",
+      "target_id": "concept_device_driver_interface",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_independent_io",
+      "target_id": "concept_buffering",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_independent_io",
+      "target_id": "concept_error_reporting",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_independent_io",
+      "target_id": "concept_file_open_close",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_independent_io",
+      "target_id": "concept_logical_block_size",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver_interface",
+      "target_id": "hw_inode",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_inode",
+      "target_id": "inst_system_call",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_buffering",
+      "target_id": "hw_kernel_space_buffer",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_buffering",
+      "target_id": "hw_cache_memory",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_buffering",
+      "target_id": "principle_locality_of_reference",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_error_reporting",
+      "target_id": "inst_fopen",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_error_reporting",
+      "target_id": "inst_fread",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_logical_block_size",
+      "target_id": "hw_inode",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_independent_io",
+      "target_id": "inst_system_call",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_system_call",
+      "target_id": "concept_device_independent_io",
+      "type": "TRIGGERS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_independent_io",
+      "target_id": "code_linux_device_file_mapping",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cache_memory",
+      "target_id": "concept_buffering",
+      "type": "USED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_kernel_space_buffer",
+      "target_id": "concept_buffering",
+      "type": "PROVIDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_independent_io",
+      "target_id": "hw_inode",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver_interface",
+      "target_id": "concept_device_independent_io",
+      "type": "ENABLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_logical_block_size",
+      "target_id": "concept_device_independent_io",
+      "type": "ABSTRACTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "hw_device_controller",
+      "type": "USES",
+      "properties": {
+        "description": "设备驱动程序通过访问设备控制器中的I/O端口来控制外设。"
+      }
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "hw_io_port",
+      "type": "OPERATES_ON",
+      "properties": {
+        "description": "驱动程序通过读写I/O端口（如控制、状态、数据端口）来管理外设。"
+      }
+    },
+    {
+      "source_id": "concept_program_direct_io",
+      "target_id": "concept_device_driver",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "description": "程序直接控制I/O是设备驱动程序的一种实现方式。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt_driven_io",
+      "target_id": "concept_device_driver",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "description": "中断控制I/O是设备驱动程序的另一种实现方式。"
+      }
+    },
+    {
+      "source_id": "concept_dma_io",
+      "target_id": "concept_device_driver",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "description": "DMA控制I/O是设备驱动程序的第三种实现方式。"
+      }
+    },
+    {
+      "source_id": "concept_program_direct_io",
+      "target_id": "concept_interrupt_driven_io",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "reason": "程序直接控制I/O为串行方式，CPU持续轮询；而中断控制I/O允许CPU并行执行其他任务。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt_driven_io",
+      "target_id": "concept_dma_io",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "reason": "中断控制I/O在每个数据完成后触发中断，而DMA控制I/O仅在整块数据传输完成后触发一次中断。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt_driven_io",
+      "target_id": "principle_interrupt_driven",
+      "type": "EXEMPLIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_io",
+      "target_id": "principle_parallelism",
+      "type": "OPTIMIZES",
+      "properties": {
+        "benefit": "减少CPU干预，实现CPU与外设并行工作，提升系统吞吐量。"
+      }
+    },
+    {
+      "source_id": "inst_in",
+      "target_id": "hw_io_port",
+      "type": "USES",
+      "properties": {
+        "context": "用于从I/O端口读取数据或状态信息。"
+      }
+    },
+    {
+      "source_id": "inst_out",
+      "target_id": "hw_io_port",
+      "type": "USES",
+      "properties": {
+        "context": "用于向I/O端口发送控制命令或数据。"
+      }
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "inst_in",
+      "type": "USES",
+      "properties": {
+        "description": "设备驱动程序中包含in指令以读取设备状态。"
+      }
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "inst_out",
+      "type": "USES",
+      "properties": {
+        "description": "设备驱动程序中包含out指令以发送控制命令。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt_driven_io",
+      "target_id": "hw_device_controller",
+      "type": "GENERATES",
+      "properties": {
+        "event": "中断请求信号",
+        "trigger": "每完成一个数据的I/O操作"
+      }
+    },
+    {
+      "source_id": "concept_dma_io",
+      "target_id": "hw_dma_controller",
+      "type": "USES",
+      "properties": {
+        "description": "DMA控制I/O依赖于DMA控制器完成数据传输。"
+      }
+    },
+    {
+      "source_id": "concept_dma_io",
+      "target_id": "hw_device_controller",
+      "type": "COORDINATES_WITH",
+      "properties": {
+        "role": "外设由设备控制器控制，DMA控制器负责数据搬运。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt_driven_io",
+      "target_id": "concept_dma_io",
+      "type": "PRECEDES",
+      "properties": {
+        "sequence": "在DMA方式中，中断请求发生在整个数据块传输完成后，而中断方式可能在每个数据后发生。"
+      }
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "principle_interrupt_driven",
+      "type": "RELIES_ON",
+      "properties": {
+        "dependency": "驱动程序必须能正确处理中断请求，才能实现中断驱动I/O。"
+      }
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "concept_io_control_mode",
+      "type": "DETERMINES",
+      "properties": {
+        "description": "设备驱动程序的实现方式取决于所采用的I/O控制方式。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt_response",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_handling",
+      "target_id": "concept_interrupt_service_program",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_program",
+      "target_id": "concept_preparation_phase",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_program",
+      "target_id": "concept_processing_phase",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_program",
+      "target_id": "concept_recovery_phase",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preparation_phase",
+      "target_id": "concept_interrupt_disabled",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_recovery_phase",
+      "target_id": "concept_interrupt_disabled",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_disabled",
+      "target_id": "inst_cli",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_enabled",
+      "target_id": "inst_sti",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_save_context",
+      "target_id": "inst_push",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_restore_context",
+      "target_id": "inst_pop",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_masking_word",
+      "target_id": "hw_pic",
+      "type": "MANAGED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_i_o_instruction",
+      "target_id": "inst_out",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_i_o_instruction",
+      "target_id": "inst_in",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_privileged_instruction",
+      "target_id": "inst_cli",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_privileged_instruction",
+      "target_id": "inst_sti",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_privileged_instruction",
+      "target_id": "inst_out",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_privileged_instruction",
+      "target_id": "inst_in",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap_instruction",
+      "target_id": "inst_int_0x80",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap_instruction",
+      "target_id": "inst_sysenter",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "concept_trap_instruction",
+      "type": "TRIGGERED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "code_fopen_call",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "code_fread_call",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma",
+      "target_id": "hw_dma_controller",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma",
+      "target_id": "hw_disk_drive",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma",
+      "target_id": "hw_main_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_completion_interrupt",
+      "target_id": "hw_dma_controller",
+      "type": "GENERATED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_completion_interrupt",
+      "target_id": "concept_interrupt_service_program",
+      "type": "TRIGGERS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process_scheduling",
+      "target_id": "concept_interrupt_service_program",
+      "type": "INVOKES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_file_descriptor",
+      "target_id": "code_fopen_call",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_block_device",
+      "target_id": "hw_disk_drive",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cache_miss",
+      "target_id": "concept_dma",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_cache_hit",
+      "target_id": "concept_dma",
+      "type": "AVOIDS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_disabled",
+      "target_id": "concept_interrupt_service_program",
+      "type": "REQUIRED_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_enabled",
+      "target_id": "concept_interrupt_service_program",
+      "type": "REQUIRED_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preparation_phase",
+      "target_id": "concept_save_context",
+      "type": "INCLUDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_recovery_phase",
+      "target_id": "concept_restore_context",
+      "type": "INCLUDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_preparation_phase",
+      "target_id": "concept_masking_word",
+      "type": "MODIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_recovery_phase",
+      "target_id": "concept_masking_word",
+      "type": "RESTORES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_fopen_call",
+      "target_id": "concept_system_call",
+      "type": "TRIGGERS",
+      "properties": {}
+    },
+    {
+      "source_id": "code_fread_call",
+      "target_id": "concept_system_call",
+      "type": "TRIGGERS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "code_trap_sequence",
+      "type": "EXECUTED_VIA",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_program",
+      "target_id": "concept_interrupt_disabled",
+      "type": "ENTERS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_program",
+      "target_id": "concept_interrupt_enabled",
+      "type": "EXITS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma",
+      "target_id": "concept_interrupt_service_program",
+      "type": "TRIGGERS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_space_io",
+      "target_id": "concept_standard_io_library",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_space_io",
+      "target_id": "concept_system_level_io",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "concept_system_level_io",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "concept_synchronous_io",
+      "type": "HAS_PROPERTY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "concept_file_metadata",
+      "type": "DOES_NOT_SUPPORT",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "concept_file_locking",
+      "type": "DOES_NOT_SUPPORT",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "concept_buffer_overflow",
+      "type": "CAUSES_RISK_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_level_io",
+      "target_id": "concept_standard_io_library",
+      "type": "PROVIDES_BASE_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_level_io",
+      "target_id": "hw_disk",
+      "type": "PERFORMS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_level_io",
+      "target_id": "hw_terminal",
+      "type": "PERFORMS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_level_io",
+      "target_id": "hw_network_device",
+      "type": "PERFORMS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_fopen",
+      "target_id": "inst_open",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_fread",
+      "target_id": "inst_read",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_fwrite",
+      "target_id": "inst_write",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_fclose",
+      "target_id": "inst_close",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_getc",
+      "target_id": "inst_read",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_putc",
+      "target_id": "inst_write",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_printf",
+      "target_id": "inst_write",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_scanf",
+      "target_id": "inst_read",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_createfile",
+      "target_id": "inst_open",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_readfile",
+      "target_id": "inst_read",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_writefile",
+      "target_id": "inst_write",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_closehandle",
+      "target_id": "inst_close",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_readconsole",
+      "target_id": "inst_read",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_writeconsole",
+      "target_id": "inst_write",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "principle_higher_abstraction",
+      "type": "EXEMPLIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_level_io",
+      "target_id": "principle_low_level_control",
+      "type": "EXEMPLIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "concept_user_space_io",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_level_io",
+      "target_id": "concept_user_space_io",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_fopen",
+      "target_id": "concept_standard_io_library",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_read",
+      "target_id": "concept_system_level_io",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "code_io_function_comparison",
+      "target_id": "inst_fopen",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_io_function_comparison",
+      "target_id": "inst_read",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_io_function_comparison",
+      "target_id": "inst_write",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_io_function_comparison",
+      "target_id": "inst_createfile",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_io_function_comparison",
+      "target_id": "inst_readfile",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_io_function_comparison",
+      "target_id": "inst_writefile",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_standard_io_library",
+      "target_id": "concept_system_level_io",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_level_io",
+      "target_id": "concept_standard_io_library",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_operation",
+      "target_id": "concept_file",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_operation",
+      "target_id": "concept_system_call",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_io_operation",
+      "target_id": "concept_library_function",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_library_function",
+      "target_id": "concept_system_call",
+      "type": "DEPENDES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "concept_trap_instruction",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap_instruction",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap_instruction",
+      "target_id": "concept_kernel_mode",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap_instruction",
+      "target_id": "concept_user_mode",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_mode",
+      "target_id": "concept_device_driver",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_mode",
+      "target_id": "concept_interrupt_service_routine",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "hw_device_controller",
+      "type": "CONTROLS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_routine",
+      "target_id": "hw_device_controller",
+      "type": "INTERACTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma",
+      "target_id": "hw_dma_controller",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma",
+      "target_id": "hw_main_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma",
+      "target_id": "concept_device_driver",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_i_o_port",
+      "target_id": "hw_device_controller",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_i_o_port",
+      "target_id": "concept_i_o_addressing",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_i_o_addressing",
+      "target_id": "concept_independent_addressing",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_i_o_addressing",
+      "target_id": "concept_memory_mapped_addressing",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_independent_addressing",
+      "target_id": "concept_i_o_addressing",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_memory_mapped_addressing",
+      "target_id": "concept_i_o_addressing",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "concept_direct_control",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "concept_interrupt_control",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "concept_dma_control",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_direct_control",
+      "target_id": "concept_device_driver",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_control",
+      "target_id": "concept_device_driver",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_dma_control",
+      "target_id": "concept_device_driver",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "inst_read",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_device_driver",
+      "target_id": "inst_write",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_routine",
+      "target_id": "inst_read",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_service_routine",
+      "target_id": "inst_write",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_i_o_port",
+      "target_id": "concept_status_port",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_i_o_port",
+      "target_id": "concept_control_port",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_i_o_port",
+      "target_id": "concept_data_port",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_status_port",
+      "target_id": "hw_device_controller",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_control_port",
+      "target_id": "hw_device_controller",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_data_port",
+      "target_id": "hw_device_controller",
+      "type": "PART_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_principle_locality",
+      "target_id": "concept_dma",
+      "type": "OPTIMIZES",
+      "properties": {}
+    }
+  ]
+}

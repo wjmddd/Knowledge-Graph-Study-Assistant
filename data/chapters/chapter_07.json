@@ -1,0 +1,2937 @@
+{
+  "metadata": {
+    "chapter_name": "第七章",
+    "chapter_number": 7,
+    "chunk_count": 12,
+    "node_count": 158,
+    "relationship_count": 280
+  },
+  "nodes": [
+    {
+      "id": "concept_normal_control_flow",
+      "label": "Concept",
+      "name": "正常控制流",
+      "alias": [],
+      "definition": "程序按指令存放顺序执行，或通过转移类指令跳转到目标地址执行的控制流。"
+    },
+    {
+      "id": "concept_exceptional_control_flow",
+      "label": "Concept",
+      "name": "异常控制流",
+      "alias": [
+        "ECF"
+      ],
+      "definition": "由于内部异常事件或外部中断事件导致程序执行被打断，转去执行操作系统处理程序所形成的意外控制流。"
+    },
+    {
+      "id": "concept_instruction_fetch",
+      "label": "Concept",
+      "name": "指令获取",
+      "alias": [],
+      "definition": "CPU从内存中读取下一条要执行的指令的过程。"
+    },
+    {
+      "id": "concept_program_counter",
+      "label": "Concept",
+      "name": "程序计数器",
+      "alias": [
+        "PC"
+      ],
+      "definition": "存储当前正在执行指令地址的寄存器，用于指示下一条指令的位置。"
+    },
+    {
+      "id": "concept_transfer_instruction",
+      "label": "Concept",
+      "name": "转移类指令",
+      "alias": [],
+      "definition": "改变程序计数器值，使CPU跳转到指定地址执行的指令。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_interrupt_controller",
+      "label": "Hardware",
+      "name": "中断控制器",
+      "hw_type": "外设接口硬件"
+    },
+    {
+      "id": "principle_exception_handling",
+      "label": "Principle",
+      "name": "异常处理机制",
+      "description": "系统必须具备检测、捕获和响应异常与中断的能力，以保证程序执行的稳定性和安全性。"
+    },
+    {
+      "id": "principle_context_switching",
+      "label": "Principle",
+      "name": "上下文切换",
+      "description": "在多任务环境中，保存当前进程状态并恢复另一个进程状态，实现进程间控制权转移的机制。"
+    },
+    {
+      "id": "code_ecf_example",
+      "label": "CodeSnippet",
+      "name": "异常控制流示例",
+      "language": "C",
+      "content": "#include <signal.h>\n#include <stdio.h>\n\nvoid signal_handler(int sig) {\n    printf(\"Received signal %d\\n\", sig);\n}\n\nint main() {\n    signal(SIGINT, signal_handler);\n    while(1);\n    return 0;\n}"
+    },
+    {
+      "id": "concept_program",
+      "label": "Concept",
+      "name": "程序",
+      "alias": [],
+      "definition": "程序是代码和数据的集合，其代码部分是一个机器指令序列，是一种静态的概念。它可以作为目标模块存放在磁盘中，或作为一个存储段存在于一个地址空间中。"
+    },
+    {
+      "id": "concept_process",
+      "label": "Concept",
+      "name": "进程",
+      "alias": [],
+      "definition": "进程是程序的一次运行过程，具有动态含义。它是具有一定独立功能的程序关于某个数据集合的一次运行活动，是操作系统对处理器中程序运行过程的一种抽象。"
+    },
+    {
+      "id": "concept_static",
+      "label": "Concept",
+      "name": "静态",
+      "alias": [],
+      "definition": "描述程序在未运行时的状态，即程序作为文件或存储段存在，不涉及执行过程。"
+    },
+    {
+      "id": "concept_dynamic",
+      "label": "Concept",
+      "name": "动态",
+      "alias": [],
+      "definition": "描述进程在运行时的状态，即程序正在被执行，具有生命周期和资源占用。"
+    },
+    {
+      "id": "concept_virtual_address_space",
+      "label": "Concept",
+      "name": "虚拟地址空间",
+      "alias": [],
+      "definition": "每个进程拥有的私有逻辑地址空间，使得程序员以为自己的程序独占使用存储器。"
+    },
+    {
+      "id": "concept_logical_control_flow",
+      "label": "Concept",
+      "name": "逻辑控制流",
+      "alias": [],
+      "definition": "每个进程拥有独立的执行顺序，使程序员以为自己的程序独占使用处理器。"
+    },
+    {
+      "id": "principle_abstraction",
+      "label": "Principle",
+      "name": "抽象原理",
+      "description": "通过引入进程概念，操作系统为程序提供独立的逻辑控制流和私有的虚拟地址空间，形成一种‘错觉’，从而简化编程与系统管理。"
+    },
+    {
+      "id": "principle_simplicity_through_illusion",
+      "label": "Principle",
+      "name": "通过错觉实现简化",
+      "description": "现代操作系统让程序以为自己独占资源，这种‘错觉’极大简化了编程、编译、链接、共享和加载等过程。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_main_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "主存储器"
+    },
+    {
+      "id": "hw_disk",
+      "label": "Hardware",
+      "name": "磁盘",
+      "hw_type": "外部存储"
+    },
+    {
+      "id": "code_word_example",
+      "label": "CodeSnippet",
+      "name": "Word程序启动示例",
+      "language": "C",
+      "content": "winword.exe"
+    },
+    {
+      "id": "code_task_list_structure",
+      "label": "CodeSnippet",
+      "name": "Linux任务列表结构定义",
+      "language": "C",
+      "content": "struct task_struct {\n    // 进程信息字段\n    struct list_head task_list;\n    // 其他成员...\n};\n\n// 双向循环链表的任务列表\nstruct list_head task_list;"
+    },
+    {
+      "id": "concept_logical_control_flow",
+      "label": "Concept",
+      "name": "逻辑控制流",
+      "alias": [
+        "进程逻辑控制流"
+      ],
+      "definition": "一个进程在执行过程中形成的确定的指令地址序列，其行为不受中断次数或位置影响，始终一致。"
+    },
+    {
+      "id": "concept_concurrency",
+      "label": "Concept",
+      "name": "并发",
+      "alias": [
+        "并发执行"
+      ],
+      "definition": "多个进程的逻辑控制流在时间上交错或重叠，不依赖于处理器核数。"
+    },
+    {
+      "id": "concept_parallelism",
+      "label": "Concept",
+      "name": "并行",
+      "alias": [
+        "并行执行"
+      ],
+      "definition": "并发执行的一个特例，指两个进程在不同的处理器或处理器核上同时运行。"
+    },
+    {
+      "id": "concept_time_slice",
+      "label": "Concept",
+      "name": "时间片",
+      "alias": [
+        "时间片轮转"
+      ],
+      "definition": "连续执行同一个进程的时间段，是处理器调度的基本单位。"
+    },
+    {
+      "id": "concept_context_switching",
+      "label": "Concept",
+      "name": "上下文切换",
+      "alias": [
+        "进程上下文切换"
+      ],
+      "definition": "在时间片结束时，保存当前进程状态并恢复下一个进程状态，以实现进程轮流执行的功能。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "principle_concurrency_vs_parallelism",
+      "label": "Principle",
+      "name": "并发与并行的区别",
+      "description": "并发强调逻辑控制流在时间上的交错，而并行是并发的一种特例，要求实际物理并行执行。"
+    },
+    {
+      "id": "inst_jmp",
+      "label": "Instruction",
+      "name": "jmp",
+      "syntax": "jmp target"
+    },
+    {
+      "id": "inst_ret",
+      "label": "Instruction",
+      "name": "ret",
+      "syntax": "ret"
+    },
+    {
+      "id": "concept_context_switching",
+      "label": "Concept",
+      "name": "进程的上下文切换",
+      "alias": [],
+      "definition": "操作系统通过处理器调度让处理器轮流执行多个进程。实现不同进程中指令交替执行的机制称为进程的上下文切换。"
+    },
+    {
+      "id": "concept_user_context",
+      "label": "Concept",
+      "name": "用户级上下文",
+      "alias": [],
+      "definition": "由用户进程的程序块、数据块、运行时的堆和用户栈（统称为用户堆栈）等组成的用户空间信息。"
+    },
+    {
+      "id": "concept_system_context",
+      "label": "Concept",
+      "name": "系统级上下文",
+      "alias": [],
+      "definition": "由进程标识信息、进程现场信息、进程控制信息和系统内核栈等组成的内核空间信息。"
+    },
+    {
+      "id": "concept_register_context",
+      "label": "Concept",
+      "name": "寄存器上下文",
+      "alias": [
+        "硬件上下文"
+      ],
+      "definition": "处理器中各个寄存器的内容，是上下文切换的重要组成部分。"
+    },
+    {
+      "id": "concept_virtual_address_space",
+      "label": "Concept",
+      "name": "虚拟地址空间",
+      "alias": [],
+      "definition": "用户级上下文地址空间和系统级上下文地址空间一起构成了一个进程的整个存储器映像，即进程的虚拟地址空间。"
+    },
+    {
+      "id": "concept_process_table",
+      "label": "Concept",
+      "name": "进程表",
+      "alias": [],
+      "definition": "记录有关进程信息的内核数据结构之一，用于管理进程状态和属性。"
+    },
+    {
+      "id": "concept_page_table",
+      "label": "Concept",
+      "name": "页表",
+      "alias": [],
+      "definition": "记录进程虚拟地址到物理地址映射关系的内核数据结构。"
+    },
+    {
+      "id": "concept_file_table",
+      "label": "Concept",
+      "name": "文件表",
+      "alias": [],
+      "definition": "记录进程打开文件信息的内核数据结构。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_register",
+      "label": "Hardware",
+      "name": "寄存器",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "主存",
+      "hw_type": "存储器"
+    },
+    {
+      "id": "code_hello_c",
+      "label": "CodeSnippet",
+      "name": "hello.c 程序",
+      "language": "C",
+      "content": "#include <stdio.h>\n\nint main()\n{\n    printf(\"hello,world\\n\");\n}"
+    },
+    {
+      "id": "principle_exceptional_control_flow",
+      "label": "Principle",
+      "name": "异常控制流",
+      "description": "由于处理器调度等事件引起用户进程正常执行被打断，形成突变的控制流，上下文切换机制用于安全处理此类异常控制流。"
+    },
+    {
+      "id": "concept_process",
+      "label": "Concept",
+      "name": "进程",
+      "alias": [
+        "任务"
+      ],
+      "definition": "引入以提供独立的逻辑控制流和私有的地址空间，使程序看似独占存储器。"
+    },
+    {
+      "id": "concept_private_address_space",
+      "label": "Concept",
+      "name": "私有地址空间",
+      "alias": [
+        "虚拟地址空间",
+        "进程虚拟存储空间"
+      ],
+      "definition": "每个进程拥有的独立虚拟内存区域，用于映射代码、数据、堆、栈等，与其它进程隔离。"
+    },
+    {
+      "id": "concept_virtual_address_space",
+      "label": "Concept",
+      "name": "虚拟地址空间",
+      "alias": [
+        "虚拟存储空间"
+      ],
+      "definition": "由操作系统为每个进程提供的抽象内存视图，包含用户空间和内核空间两部分。"
+    },
+    {
+      "id": "concept_kernel_space",
+      "label": "Concept",
+      "name": "内核空间",
+      "alias": [
+        "内核虚拟存储空间"
+      ],
+      "definition": "位于高端地址（如IA-32中0xc000000以上）的虚拟地址区域，用于映射操作系统内核代码、数据、页表、进程控制信息及内核栈等。"
+    },
+    {
+      "id": "concept_user_space",
+      "label": "Concept",
+      "name": "用户空间",
+      "alias": [
+        "进程虚拟存储空间"
+      ],
+      "definition": "虚拟地址空间中供用户程序使用的部分，包括代码、数据、堆、栈和共享库映射区等。"
+    },
+    {
+      "id": "concept_region",
+      "label": "Concept",
+      "name": "区域",
+      "alias": [
+        "内存区域",
+        "vm_area"
+      ],
+      "definition": "虚拟地址空间中连续且已分配页的片段，如只读代码区、可读写数据区、堆区、栈区、共享库映射区等。"
+    },
+    {
+      "id": "concept_page",
+      "label": "Concept",
+      "name": "页面",
+      "alias": [
+        "页",
+        "内存页"
+      ],
+      "definition": "虚拟内存管理的基本单位，通常大小为4KB，是页表映射的最小单元。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_cr3_register",
+      "label": "Hardware",
+      "name": "CR3控制寄存器",
+      "hw_type": "控制寄存器"
+    },
+    {
+      "id": "hw_pgd_table",
+      "label": "Hardware",
+      "name": "页目录表（PDT）",
+      "hw_type": "内存管理结构"
+    },
+    {
+      "id": "inst_movq",
+      "label": "Instruction",
+      "name": "movq",
+      "syntax": "movq source, destination"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中倾向于重复访问最近使用过的数据或指令，支持缓存机制设计。"
+    },
+    {
+      "id": "code_hello_world",
+      "label": "CodeSnippet",
+      "name": "Hello World 程序示例",
+      "language": "C",
+      "content": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "inst_execve",
+      "label": "Instruction",
+      "name": "execve",
+      "syntax": null
+    },
+    {
+      "id": "code_execve_usage",
+      "label": "CodeSnippet",
+      "name": "execve函数调用示例",
+      "language": "C",
+      "content": "int execve(char *filename, char *argv[], char *envp);"
+    },
+    {
+      "id": "code_main_prototype",
+      "label": "CodeSnippet",
+      "name": "main函数原型",
+      "language": "C",
+      "content": "int main(int argc, char **argv, char **envp);"
+    },
+    {
+      "id": "code_main_alternative",
+      "label": "CodeSnippet",
+      "name": "main函数等价原型",
+      "language": "C",
+      "content": "int main(int argc, char *argv[], char *envp());"
+    },
+    {
+      "id": "concept_argc",
+      "label": "Concept",
+      "name": "argc",
+      "alias": [
+        "参数个数"
+      ],
+      "definition": "表示命令行参数的数量，由execve()函数传入main()函数。"
+    },
+    {
+      "id": "concept_argv",
+      "label": "Concept",
+      "name": "argv",
+      "alias": [
+        "参数列表",
+        "命令行参数数组"
+      ],
+      "definition": "一个以null结尾的指针数组，每个元素指向一个命令行参数字符串。argv[0]通常指向可执行文件名。"
+    },
+    {
+      "id": "concept_envp",
+      "label": "Concept",
+      "name": "envp",
+      "alias": [
+        "环境变量列表",
+        "环境变量数组"
+      ],
+      "definition": "一个以null结尾的指针数组，每个元素指向一个形如\"NAME=VALUE\"的环境变量字符串。"
+    },
+    {
+      "id": "concept_loader",
+      "label": "Concept",
+      "name": "loader",
+      "alias": [
+        "加载器"
+      ],
+      "definition": "操作系统中常驻内存的程序，负责在执行可执行目标文件时进行加载处理。"
+    },
+    {
+      "id": "concept_virtual_address_space",
+      "label": "Concept",
+      "name": "virtual address space",
+      "alias": [
+        "虚拟地址空间"
+      ],
+      "definition": "进程所使用的逻辑地址范围，由操作系统管理，支持内存隔离与保护。"
+    },
+    {
+      "id": "concept_stack_layout",
+      "label": "Concept",
+      "name": "stack layout",
+      "alias": [
+        "栈结构",
+        "用户栈组织结构"
+      ],
+      "definition": "在IA-32/Linux系统中，运行新程序的main函数时，用户栈中从栈底到栈顶依次存放环境变量串、命令行参数串、envp指针数组、argv指针数组，以及main函数的三个参数。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "hw_memory",
+      "label": "Hardware",
+      "name": "Memory",
+      "hw_type": "主存"
+    },
+    {
+      "id": "hw_stack",
+      "label": "Hardware",
+      "name": "Stack",
+      "hw_type": "内存区域"
+    },
+    {
+      "id": "concept_exception",
+      "label": "Concept",
+      "name": "异常",
+      "alias": [
+        "exception"
+      ],
+      "definition": "指程序执行过程中发生的、导致控制流被打断的意外事件，通常由CPU内部或外部原因引发。"
+    },
+    {
+      "id": "concept_interrupt",
+      "label": "Concept",
+      "name": "中断",
+      "alias": [
+        "interrupt"
+      ],
+      "definition": "指程序正常执行控制流被外部事件打断的现象，通常由I/O设备完成任务或用户输入触发。"
+    },
+    {
+      "id": "concept_control_flow",
+      "label": "Concept",
+      "name": "逻辑控制流",
+      "alias": [
+        "control flow"
+      ],
+      "definition": "程序在执行过程中指令的顺序执行路径，是进程运行时的基本行为模式。"
+    },
+    {
+      "id": "concept_context_switching",
+      "label": "Concept",
+      "name": "上下文切换",
+      "alias": [
+        "context switching"
+      ],
+      "definition": "操作系统将当前进程的上下文保存，并加载另一个进程的上下文，以实现多任务调度的过程。"
+    },
+    {
+      "id": "concept_kernel_control_path",
+      "label": "Concept",
+      "name": "内核控制路径",
+      "alias": [
+        "kernel control path"
+      ],
+      "definition": "当发生异常或中断时，CPU转入内核态执行的一段独立指令序列，代表当前进程在内核态下的处理流程。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_io_device",
+      "label": "Hardware",
+      "name": "I/O设备",
+      "hw_type": "输入输出设备"
+    },
+    {
+      "id": "principle_different_interpretations",
+      "label": "Principle",
+      "name": "不同体系结构对异常与中断的定义差异",
+      "description": "不同计算机体系结构（如Power-PC、IA-32）对‘异常’和‘中断’的概念定义存在差异，反映了术语使用的多样性。"
+    },
+    {
+      "id": "code_ctrl_c_example",
+      "label": "CodeSnippet",
+      "name": "Ctrl+C中断示例",
+      "language": "C",
+      "content": "/* 用户按下 Ctrl+C 会触发 SIGINT 信号，产生中断 */\n#include <signal.h>\n#include <stdio.h>\n\nvoid handle_sigint(int sig) {\n    printf(\"Received interrupt signal (Ctrl+C)\\n\");\n}\n\nint main() {\n    signal(SIGINT, handle_sigint);\n    while(1);\n    return 0;\n}"
+    },
+    {
+      "id": "concept_interrupt",
+      "label": "Concept",
+      "name": "中断",
+      "alias": [
+        "外中断"
+      ],
+      "definition": "由I/O设备触发的、与当前正在执行的指令无关的异步事件，通过CPU外部的中断请求引脚INTR或NMI发出。"
+    },
+    {
+      "id": "concept_exception",
+      "label": "Concept",
+      "name": "异常",
+      "alias": [
+        "内中断",
+        "内部异常"
+      ],
+      "definition": "处理器在执行一条指令时，由其内部检测到的、与正在执行的指令相关的同步事件。"
+    },
+    {
+      "id": "concept_exception_control_flow",
+      "label": "Concept",
+      "name": "异常控制流",
+      "alias": [],
+      "definition": "由于异常或中断的发生，导致CPU改变指令执行顺序，从用户进程跳转到操作系统中的处理程序执行，再返回用户进程的过程。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_interrupt_request_pin_intr",
+      "label": "Hardware",
+      "name": "INTR",
+      "hw_type": "中断请求引脚"
+    },
+    {
+      "id": "hw_interrupt_request_pin_nmi",
+      "label": "Hardware",
+      "name": "NMI",
+      "hw_type": "非屏蔽中断引脚"
+    },
+    {
+      "id": "inst_iret",
+      "label": "Instruction",
+      "name": "IRET",
+      "syntax": "IRET"
+    },
+    {
+      "id": "principle_asynchronous_event",
+      "label": "Principle",
+      "name": "异步事件原理",
+      "description": "中断是异步发生的事件，不依赖于当前指令的执行状态，由外部设备触发。"
+    },
+    {
+      "id": "principle_synchronous_event",
+      "label": "Principle",
+      "name": "同步事件原理",
+      "description": "异常是同步发生的事件，由处理器在执行某条指令时内部检测到，与该指令直接相关。"
+    },
+    {
+      "id": "code_exception_handling_flow",
+      "label": "CodeSnippet",
+      "name": "异常处理流程示例",
+      "language": "C",
+      "content": "/* 模拟异常发生后跳转至操作系统处理程序 */\nvoid handle_exception() {\n    // 保存上下文\n    save_registers();\n    // 调用操作系统异常处理函数\n    os_exception_handler();\n    // 返回原程序执行点\n    iret();\n}"
+    },
+    {
+      "id": "concept_fault",
+      "label": "Concept",
+      "name": "故障",
+      "alias": [
+        "fault"
+      ],
+      "definition": "在引起故障的指令被启动后但未执行结束时CPU检测到的一类与指令执行相关的意外事件。有些可恢复，有些不可恢复。"
+    },
+    {
+      "id": "concept_trap",
+      "label": "Concept",
+      "name": "陷阱",
+      "alias": [
+        "trap",
+        "自陷",
+        "陷入"
+      ],
+      "definition": "预先安排的异常事件，当执行到陷阱指令时，CPU调出特定程序处理，处理结束后返回到下一条指令继续执行。用于系统调用和程序调试。"
+    },
+    {
+      "id": "concept_abort",
+      "label": "Concept",
+      "name": "终止",
+      "alias": [
+        "abort"
+      ],
+      "definition": "在执行指令过程中发生严重错误（如控制器故障、内存校验错）导致程序无法继续执行，只能终止进程，严重时需重启系统。此类异常随机发生，无法确定具体指令。"
+    },
+    {
+      "id": "hardware_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hardware_memory",
+      "label": "Hardware",
+      "name": "存储器",
+      "hw_type": "主存"
+    },
+    {
+      "id": "hardware_page_table",
+      "label": "Hardware",
+      "name": "页表",
+      "hw_type": "内存管理结构"
+    },
+    {
+      "id": "instruction_movl",
+      "label": "Instruction",
+      "name": "movl",
+      "syntax": "movl $value, address"
+    },
+    {
+      "id": "instruction_sysenter",
+      "label": "Instruction",
+      "name": "sysenter",
+      "syntax": "sysenter"
+    },
+    {
+      "id": "instruction_syscall",
+      "label": "Instruction",
+      "name": "syscall",
+      "syntax": "syscall"
+    },
+    {
+      "id": "instruction_int3",
+      "label": "Instruction",
+      "name": "int 3",
+      "syntax": "int 3"
+    },
+    {
+      "id": "instruction_into",
+      "label": "Instruction",
+      "name": "into",
+      "syntax": "into"
+    },
+    {
+      "id": "instruction_bound",
+      "label": "Instruction",
+      "name": "bound",
+      "syntax": "bound"
+    },
+    {
+      "id": "instruction_int_n",
+      "label": "Instruction",
+      "name": "INT n",
+      "syntax": "INT n"
+    },
+    {
+      "id": "principle_locality",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在运行过程中对内存的访问具有时间局部性和空间局部性，是缓存和虚拟内存设计的基础。"
+    },
+    {
+      "id": "principle_virtual_memory",
+      "label": "Principle",
+      "name": "虚拟内存",
+      "description": "通过分页机制将物理内存抽象为更大的逻辑地址空间，支持多任务并发执行和内存保护。"
+    },
+    {
+      "id": "code_example_7_1",
+      "label": "CodeSnippet",
+      "name": "例7.1 C语言源程序P",
+      "language": "C",
+      "content": "int a[1000];\nint x;\nmain()\n{\n    a[10] = 1;\n    a[1000] = 3;\n    a[10000] = 4;\n}"
+    },
+    {
+      "id": "code_asm_movl_5",
+      "label": "CodeSnippet",
+      "name": "第5行汇编指令",
+      "language": "ASM",
+      "content": "8048300: c7 05 28 90 04 08 01 00 00 00 mov1 $0x1, 0x8049028"
+    },
+    {
+      "id": "code_asm_movl_6",
+      "label": "CodeSnippet",
+      "name": "第6行汇编指令",
+      "language": "ASM",
+      "content": "8048309: c7 05 a0 9f 04 08 03 00 00 00 mov1 $0x3, 0x8049fa0"
+    },
+    {
+      "id": "code_asm_movl_7",
+      "label": "CodeSnippet",
+      "name": "第7行汇编指令",
+      "language": "ASM",
+      "content": "8048313: c7 05 40 2c 05 08 04 00 00 00 mov1 $0x4, 0x8052c40"
+    },
+    {
+      "id": "concept_interrupt",
+      "label": "Concept",
+      "name": "中断",
+      "alias": [
+        "外部中断",
+        "硬件中断"
+      ],
+      "definition": "由外部I/O设备请求处理器进行处理的一种信号，不是由当前执行的指令引起的。CPU在每条指令执行后检查中断请求引脚，若有效则进入中断响应周期。"
+    },
+    {
+      "id": "concept_maskable_interrupt",
+      "label": "Concept",
+      "name": "可屏蔽中断",
+      "alias": [
+        "MASKABLE_INT",
+        "INTR中断"
+      ],
+      "definition": "通过可屏蔽中断请求线INTR向CPU发出的中断，主要来自I/O设备。CPU可通过中断控制器设置屏蔽字来决定是否响应该中断。"
+    },
+    {
+      "id": "concept_nonmaskable_interrupt",
+      "label": "Concept",
+      "name": "不可屏蔽中断",
+      "alias": [
+        "NMI",
+        "NONMASKABLE_INT"
+      ],
+      "definition": "由专门的NMI线路发出的紧急硬件故障中断，如电源掉电或硬件故障。此类中断无法被屏蔽，必须立即响应，以确保系统安全或快速恢复。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "中央处理器"
+    },
+    {
+      "id": "hw_interrupt_controller",
+      "label": "Hardware",
+      "name": "中断控制器",
+      "hw_type": "I/O控制器"
+    },
+    {
+      "id": "hw_intr_pin",
+      "label": "Hardware",
+      "name": "INTR引脚",
+      "hw_type": "中断请求引脚"
+    },
+    {
+      "id": "hw_nmi_pin",
+      "label": "Hardware",
+      "name": "NMI引脚",
+      "hw_type": "不可屏蔽中断引脚"
+    },
+    {
+      "id": "hw_data_bus",
+      "label": "Hardware",
+      "name": "数据总线",
+      "hw_type": "系统总线"
+    },
+    {
+      "id": "code_interrupt_response",
+      "label": "CodeSnippet",
+      "name": "中断响应过程伪代码",
+      "language": "C",
+      "content": "void interrupt_response() {\n    // 保存断点（PC）和机器状态到栈\n    push(PC);\n    push(PS);\n    \n    // 设置关中断状态\n    disable_interrupts();\n    \n    // 从数据总线读取中断类型号\n    int interrupt_type = read_from_data_bus();\n    \n    // 跳转到对应的中断服务程序\n    jump_to_isr(interrupt_type);\n}"
+    },
+    {
+      "id": "concept_exception_and_interrupt_response",
+      "label": "Concept",
+      "name": "异常和中断的响应过程",
+      "alias": [],
+      "definition": "CPU从检测到异常或中断事件，到调出相应的异常或中断处理程序开始执行的整个过程。"
+    },
+    {
+      "id": "concept_protection_mode",
+      "label": "Concept",
+      "name": "保护模式",
+      "alias": [],
+      "definition": "IA-32处理器的一种运行模式，支持分页存储管理、多任务和特权级保护，与实地址模式相对。"
+    },
+    {
+      "id": "concept_real_address_mode",
+      "label": "Concept",
+      "name": "实地址模式",
+      "alias": [],
+      "definition": "Intel为80286及其之后处理器提供的一种8086兼容模式，采用20位地址空间，不支持分页，开机后默认运行在此模式下。"
+    },
+    {
+      "id": "concept_system_call",
+      "label": "Concept",
+      "name": "系统调用",
+      "alias": [],
+      "definition": "操作系统为用户程序提供服务的一种机制，通过陷阱指令（如int $0x80）实现，使用户程序从用户态切换到内核态执行特权操作。"
+    },
+    {
+      "id": "concept_trap_gate",
+      "label": "Concept",
+      "name": "陷阱门",
+      "alias": [],
+      "definition": "一种中断描述符，用于处理内部异常（如缺页、除法错），在进入时不会自动关闭中断标志IF。"
+    },
+    {
+      "id": "concept_interrupt_gate",
+      "label": "Concept",
+      "name": "中断门",
+      "alias": [],
+      "definition": "一种中断描述符，用于处理外部中断，进入时会自动关闭中断标志IF。"
+    },
+    {
+      "id": "concept_task_gate",
+      "label": "Concept",
+      "name": "任务门",
+      "alias": [],
+      "definition": "一种中断描述符，指向TSS段描述符，用于通过任务状态段切换上下文，仅用于双重故障等特殊异常。"
+    },
+    {
+      "id": "concept_privilege_level",
+      "label": "Concept",
+      "name": "特权级",
+      "alias": [],
+      "definition": "CPU执行权限等级，CPL（当前特权级）为0表示内核态，3表示用户态，用于控制对系统资源的访问。"
+    },
+    {
+      "id": "concept_stack_switching",
+      "label": "Concept",
+      "name": "栈切换",
+      "alias": [],
+      "definition": "当发生异常或中断且需从用户态切换到内核态时，将当前用户栈信息保存，并切换至内核栈的过程。"
+    },
+    {
+      "id": "concept_signal_handling",
+      "label": "Concept",
+      "name": "信号处理",
+      "alias": [],
+      "definition": "Linux中异常处理机制，通过向进程发送信号（如SIGSEGV、SIGFPE）来通知错误或异常事件。"
+    },
+    {
+      "id": "concept_interrupt_vector_table",
+      "label": "Concept",
+      "name": "中断向量表",
+      "alias": [],
+      "definition": "实地址模式下存放256个中断向量的固定内存区域（00000H~003FFH），每个向量包含16位段地址和16位偏移地址。"
+    },
+    {
+      "id": "concept_interrupt_descriptor_table",
+      "label": "Concept",
+      "name": "中断描述符表",
+      "alias": [],
+      "definition": "保护模式下用于存放256个中断/异常处理程序入口地址的表，每个表项占8字节，由IDTR寄存器指向。"
+    },
+    {
+      "id": "concept_bios",
+      "label": "Concept",
+      "name": "BIOS",
+      "alias": [],
+      "definition": "基本输入/输出系统，固化在主板ROM芯片中，负责硬件初始化、中断服务程序加载及引导操作系统。"
+    },
+    {
+      "id": "concept_iret_instruction",
+      "label": "Concept",
+      "name": "IRET指令",
+      "alias": [],
+      "definition": "从异常或中断处理程序返回原程序的指令，用于恢复现场（EFLAGS、CS、EIP）并可能切换回用户栈。"
+    },
+    {
+      "id": "concept_sysenter_instruction",
+      "label": "Concept",
+      "name": "SYSENTER指令",
+      "alias": [],
+      "definition": "Intel Pentium II以后引入的快速系统调用指令，用于从用户态快速切换到内核态，提升系统调用效率。"
+    },
+    {
+      "id": "concept_sysexit_instruction",
+      "label": "Concept",
+      "name": "SYSEXIT指令",
+      "alias": [],
+      "definition": "与SYSENTER配对使用的退出系统调用指令，用于从内核态快速返回用户态。"
+    },
+    {
+      "id": "hardware_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用处理器"
+    },
+    {
+      "id": "hardware_idtr",
+      "label": "Hardware",
+      "name": "IDTR",
+      "hw_type": "控制寄存器"
+    },
+    {
+      "id": "hardware_gdtr",
+      "label": "Hardware",
+      "name": "GDTR",
+      "hw_type": "控制寄存器"
+    },
+    {
+      "id": "hardware_tr",
+      "label": "Hardware",
+      "name": "TR",
+      "hw_type": "控制寄存器"
+    },
+    {
+      "id": "hardware_pic",
+      "label": "Hardware",
+      "name": "PIC",
+      "hw_type": "中断控制器"
+    },
+    {
+      "id": "instruction_int",
+      "label": "Instruction",
+      "name": "int",
+      "syntax": "int $n"
+    },
+    {
+      "id": "instruction_int_0x80",
+      "label": "Instruction",
+      "name": "int $0x80",
+      "syntax": "int $0x80"
+    },
+    {
+      "id": "instruction_int_0x2e",
+      "label": "Instruction",
+      "name": "int $0x2e",
+      "syntax": "int $0x2e"
+    },
+    {
+      "id": "instruction_sysenter",
+      "label": "Instruction",
+      "name": "sysenter",
+      "syntax": "sysenter"
+    },
+    {
+      "id": "instruction_sysexit",
+      "label": "Instruction",
+      "name": "sysexit",
+      "syntax": "sysexit"
+    },
+    {
+      "id": "instruction_iret",
+      "label": "Instruction",
+      "name": "iret",
+      "syntax": "iret"
+    },
+    {
+      "id": "instruction_sti",
+      "label": "Instruction",
+      "name": "sti",
+      "syntax": "sti"
+    },
+    {
+      "id": "instruction_cli",
+      "label": "Instruction",
+      "name": "cli",
+      "syntax": "cli"
+    },
+    {
+      "id": "code_system_call_example",
+      "label": "CodeSnippet",
+      "name": "系统调用write封装示例",
+      "language": "assembly",
+      "content": "movl $4, %eax\nmovl $1, %ebx\nmovl $string, %ecx\nmovl $14, %edx\nint $0x80"
+    },
+    {
+      "id": "principle_locality_of_reference",
+      "label": "Principle",
+      "name": "局部性原理",
+      "description": "程序在执行过程中倾向于重复访问相同或邻近的内存位置，是缓存设计的基础。"
+    },
+    {
+      "id": "principle_moore_law",
+      "label": "Principle",
+      "name": "摩尔定律",
+      "description": "集成电路上可容纳的晶体管数量每18个月翻一番，推动了计算机性能的持续提升。"
+    },
+    {
+      "id": "concept_process",
+      "label": "Concept",
+      "name": "进程",
+      "alias": [],
+      "definition": "具有一定独立功能的程序关于某个数据集的一次运行活动，每个进程都有其独立的逻辑控制流和私有的虚拟地址空间。"
+    },
+    {
+      "id": "concept_logical_control_flow",
+      "label": "Concept",
+      "name": "逻辑控制流",
+      "alias": [],
+      "definition": "进程执行过程中指令的顺序执行路径，是确定的，不受中断位置影响。"
+    },
+    {
+      "id": "concept_exceptional_control_flow",
+      "label": "Concept",
+      "name": "异常控制流",
+      "alias": [],
+      "definition": "由于异常、中断或信号等原因导致的控制流非正常转移，是并发执行的基本机制。"
+    },
+    {
+      "id": "concept_context_switching",
+      "label": "Concept",
+      "name": "上下文切换",
+      "alias": [],
+      "definition": "操作系统将当前进程从处理器上换下，把另一个进程换上处理器执行的过程，实现异常控制流的关键机制。"
+    },
+    {
+      "id": "concept_kernel_control_path",
+      "label": "Concept",
+      "name": "内核控制路径",
+      "alias": [],
+      "definition": "在异常或中断发生时，内核执行的特定代码序列，不代表一个进程，而是代表当前进程在内核态下的执行路径。"
+    },
+    {
+      "id": "hw_cpu",
+      "label": "Hardware",
+      "name": "CPU",
+      "hw_type": "通用硬件"
+    },
+    {
+      "id": "inst_trap",
+      "label": "Instruction",
+      "name": "陷阱指令",
+      "syntax": "trap"
+    },
+    {
+      "id": "principle_concurrency",
+      "label": "Principle",
+      "name": "并发执行原理",
+      "description": "通过异常控制流实现多个任务在时间上交错执行，形成并发效果。"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "concept_normal_control_flow",
+      "target_id": "concept_program_counter",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_normal_control_flow",
+      "target_id": "concept_transfer_instruction",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_normal_control_flow",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "concept_normal_control_flow",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "principle_exception_handling",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "hw_cpu",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "hw_interrupt_controller",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "principle_context_switching",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "hw_interrupt_controller",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "concept_program_counter",
+      "type": "MANIPULATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program_counter",
+      "target_id": "concept_normal_control_flow",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_transfer_instruction",
+      "target_id": "concept_normal_control_flow",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_ecf_example",
+      "target_id": "concept_exceptional_control_flow",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_ecf_example",
+      "target_id": "inst_signal",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_signal",
+      "target_id": "concept_exceptional_control_flow",
+      "type": "TRIGGERS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_static",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "concept_dynamic",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "concept_program",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "hw_cpu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "hw_main_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "hw_disk",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "code_word_example",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "code_task_list_structure",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_virtual_address_space",
+      "target_id": "concept_process",
+      "type": "ASSOCIATED_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_logical_control_flow",
+      "target_id": "concept_process",
+      "type": "ASSOCIATED_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_abstraction",
+      "target_id": "concept_virtual_address_space",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_abstraction",
+      "target_id": "concept_logical_control_flow",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_simplicity_through_illusion",
+      "target_id": "principle_abstraction",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "concept_program",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_static",
+      "target_id": "concept_dynamic",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_process",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "concept_program",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "hw_main_memory",
+      "type": "RUNS_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "hw_disk",
+      "type": "STORED_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "principle_abstraction",
+      "type": "REALIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_program",
+      "target_id": "concept_process",
+      "type": "CAN_GIVE_RISE_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "code_task_list_structure",
+      "type": "DEFINED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "code_task_list_structure",
+      "target_id": "concept_process",
+      "type": "DEPICTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_logical_control_flow",
+      "target_id": "concept_concurrency",
+      "type": "PRECEDES",
+      "properties": {
+        "reason": "并发是多个逻辑控制流在时间上交错的结果"
+      }
+    },
+    {
+      "source_id": "concept_parallelism",
+      "target_id": "concept_concurrency",
+      "type": "IS_A",
+      "properties": {
+        "explanation": "并行是并发的一种特殊形式"
+      }
+    },
+    {
+      "source_id": "concept_logical_control_flow",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES_ON",
+      "properties": {
+        "context": "进程的逻辑控制流由CPU逐条执行指令形成"
+      }
+    },
+    {
+      "source_id": "concept_time_slice",
+      "target_id": "concept_logical_control_flow",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "explanation": "一个进程的逻辑控制流由多个时间片组成"
+      }
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "concept_logical_control_flow",
+      "type": "ENABLES",
+      "properties": {
+        "explanation": "上下文切换机制保证了逻辑控制流在被打断后能从断点继续执行"
+      }
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "concept_time_slice",
+      "type": "MANAGES",
+      "properties": {
+        "explanation": "每个时间片结束时触发上下文切换，切换到下一个进程"
+      }
+    },
+    {
+      "source_id": "concept_concurrency",
+      "target_id": "concept_parallelism",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "explanation": "并发不要求物理并行，而并行必须在多核/多处理器上实现"
+      }
+    },
+    {
+      "source_id": "inst_jmp",
+      "target_id": "concept_logical_control_flow",
+      "type": "OPERATES_ON",
+      "properties": {
+        "explanation": "跳转指令（如jmp）改变控制流地址序列，影响逻辑控制流"
+      }
+    },
+    {
+      "source_id": "inst_ret",
+      "target_id": "concept_logical_control_flow",
+      "type": "OPERATES_ON",
+      "properties": {
+        "explanation": "返回指令（ret）用于函数调用返回，影响控制流路径"
+      }
+    },
+    {
+      "source_id": "concept_logical_control_flow",
+      "target_id": "principle_concurrency_vs_parallelism",
+      "type": "ILLUSTRATES",
+      "properties": {
+        "explanation": "图7.1展示了并发与并行的差异，说明并发不一定并行"
+      }
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "concept_user_context",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "concept_system_context",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "concept_register_context",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_user_context",
+      "target_id": "concept_virtual_address_space",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_context",
+      "target_id": "concept_virtual_address_space",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_virtual_address_space",
+      "target_id": "concept_user_context",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_virtual_address_space",
+      "target_id": "concept_system_context",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_context",
+      "target_id": "concept_process_table",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_context",
+      "target_id": "concept_page_table",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_context",
+      "target_id": "concept_file_table",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "hw_register",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "hw_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "code_hello_c",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "principle_exceptional_control_flow",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_register_context",
+      "target_id": "hw_register",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_register_context",
+      "target_id": "concept_context_switching",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "concept_process_table",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "concept_page_table",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "concept_file_table",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_context_switching",
+      "target_id": "code_hello_c",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "concept_private_address_space",
+      "type": "PROVIDES",
+      "properties": {
+        "description": "进程的引入为应用程序提供了私有的地址空间。"
+      }
+    },
+    {
+      "source_id": "concept_private_address_space",
+      "target_id": "concept_virtual_address_space",
+      "type": "IS_A",
+      "properties": {
+        "description": "私有地址空间即第6章介绍的虚拟地址空间。"
+      }
+    },
+    {
+      "source_id": "concept_virtual_address_space",
+      "target_id": "concept_kernel_space",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "description": "虚拟地址空间由内核空间和用户空间组成。"
+      }
+    },
+    {
+      "source_id": "concept_virtual_address_space",
+      "target_id": "concept_user_space",
+      "type": "COMPOSED_OF",
+      "properties": {
+        "description": "虚拟地址空间由内核空间和用户空间组成。"
+      }
+    },
+    {
+      "source_id": "concept_user_space",
+      "target_id": "concept_region",
+      "type": "CONTAINS",
+      "properties": {
+        "description": "用户空间被组织成多个区域的集合。"
+      }
+    },
+    {
+      "source_id": "concept_region",
+      "target_id": "concept_page",
+      "type": "DIVISIBLE_INTO",
+      "properties": {
+        "description": "每个区域可划分为大小相等的页面。"
+      }
+    },
+    {
+      "source_id": "concept_kernel_space",
+      "target_id": "hw_cr3_register",
+      "type": "USES",
+      "properties": {
+        "description": "当处理器运行对应进程时，内核会将页目录表首地址传送到CR3寄存器中。"
+      }
+    },
+    {
+      "source_id": "hw_cr3_register",
+      "target_id": "hw_pgd_table",
+      "type": "POINTS_TO",
+      "properties": {
+        "description": "CR3寄存器指向第一级页表（页目录表）的首地址。"
+      }
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES_ON",
+      "properties": {
+        "description": "进程由CPU执行。"
+      }
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "principle_locality",
+      "type": "RELIES_ON",
+      "properties": {
+        "description": "进程的高效运行依赖于局部性原理，支持缓存优化。"
+      }
+    },
+    {
+      "source_id": "concept_user_space",
+      "target_id": "inst_movq",
+      "type": "OPERATES_ON",
+      "properties": {
+        "description": "movq指令在用户空间中操作寄存器或内存。"
+      }
+    },
+    {
+      "source_id": "concept_private_address_space",
+      "target_id": "code_hello_world",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": "hello.c程序展示了私有地址空间中的典型应用。"
+      }
+    },
+    {
+      "source_id": "concept_kernel_space",
+      "target_id": "concept_process",
+      "type": "PROTECTS",
+      "properties": {
+        "description": "内核空间保护系统资源，用户程序无法直接访问。"
+      }
+    },
+    {
+      "source_id": "concept_user_space",
+      "target_id": "concept_kernel_space",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "description": "用户空间与内核空间在权限、用途和地址范围上形成对比。"
+      }
+    },
+    {
+      "source_id": "concept_region",
+      "target_id": "concept_process",
+      "type": "MANAGED_BY",
+      "properties": {
+        "description": "Linux通过vm_area链表管理用户空间中的各个区域。"
+      }
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "hw_pgd_table",
+      "type": "REFERENCES",
+      "properties": {
+        "description": "进程通过mm结构中的pgd字段引用页目录表。"
+      }
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "principle_locality",
+      "type": "OPTIMIZES",
+      "properties": {
+        "description": "利用局部性原理优化虚拟内存访问性能。"
+      }
+    },
+    {
+      "source_id": "concept_region",
+      "target_id": "concept_page",
+      "type": "IMPLEMENTED_BY",
+      "properties": {
+        "description": "区域由页面构成，是虚拟内存管理的基础。"
+      }
+    },
+    {
+      "source_id": "concept_kernel_space",
+      "target_id": "concept_user_space",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "内核空间在虚拟地址空间中位于高地址，用户空间在低地址。"
+      }
+    },
+    {
+      "source_id": "inst_execve",
+      "target_id": "concept_loader",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_execve",
+      "target_id": "concept_argc",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_execve",
+      "target_id": "concept_argv",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_execve",
+      "target_id": "concept_envp",
+      "type": "OPERATES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_argc",
+      "target_id": "code_main_prototype",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_argv",
+      "target_id": "code_main_prototype",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_envp",
+      "target_id": "code_main_prototype",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_argv",
+      "target_id": "code_main_alternative",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_envp",
+      "target_id": "code_main_alternative",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_argc",
+      "target_id": "code_main_alternative",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_loader",
+      "target_id": "concept_virtual_address_space",
+      "type": "MODIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_loader",
+      "target_id": "hw_memory",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stack_layout",
+      "target_id": "hw_stack",
+      "type": "ORGANIZED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stack_layout",
+      "target_id": "concept_envp",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stack_layout",
+      "target_id": "concept_argv",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stack_layout",
+      "target_id": "concept_argc",
+      "type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stack_layout",
+      "target_id": "code_main_prototype",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stack_layout",
+      "target_id": "code_main_alternative",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_virtual_address_space",
+      "target_id": "hw_cpu",
+      "type": "RUNS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_loader",
+      "target_id": "inst_execve",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_argc",
+      "target_id": "concept_argv",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_argc",
+      "target_id": "concept_envp",
+      "type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_argv",
+      "target_id": "concept_envp",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "code_execve_usage",
+      "target_id": "inst_execve",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_main_prototype",
+      "target_id": "code_main_alternative",
+      "type": "EQUIVALENT_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_loader",
+      "target_id": "concept_virtual_address_space",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_virtual_address_space",
+      "target_id": "concept_stack_layout",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stack_layout",
+      "target_id": "hw_cpu",
+      "type": "EXECUTES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "hw_cpu",
+      "type": "CAUSES",
+      "properties": {
+        "description": "异常通常由CPU内部或外部的意外事件引发，如非法指令、除零错误等。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_io_device",
+      "type": "CAUSES",
+      "properties": {
+        "description": "I/O设备完成任务后会发出中断请求，通知CPU进行后续处理。"
+      }
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "concept_control_flow",
+      "type": "BREAKS",
+      "properties": {
+        "description": "异常会打断程序正常的逻辑控制流。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "concept_control_flow",
+      "type": "BREAKS",
+      "properties": {
+        "description": "中断也会打断程序的正常执行控制流。"
+      }
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "concept_kernel_control_path",
+      "type": "TRIGGERS",
+      "properties": {
+        "description": "异常发生后，CPU转到内核控制路径执行处理程序。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "concept_kernel_control_path",
+      "type": "TRIGGERS",
+      "properties": {
+        "description": "中断发生后，CPU同样转入内核控制路径执行处理代码。"
+      }
+    },
+    {
+      "source_id": "concept_kernel_control_path",
+      "target_id": "concept_context_switching",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "reason": "上下文切换后CPU执行另一个用户进程，而内核控制路径执行的是非进程性的内核代码，不涉及完整进程上下文。"
+      }
+    },
+    {
+      "source_id": "concept_kernel_control_path",
+      "target_id": "concept_exception",
+      "type": "IS_A",
+      "properties": {
+        "description": "内核控制路径是异常处理的一种具体表现形式。"
+      }
+    },
+    {
+      "source_id": "concept_kernel_control_path",
+      "target_id": "concept_interrupt",
+      "type": "IS_A",
+      "properties": {
+        "description": "内核控制路径也是中断处理的体现形式之一。"
+      }
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "principle_different_interpretations",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": "不同体系结构对异常的定义不同，例如Power-PC与IA-32的差异。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "principle_different_interpretations",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": "中断在不同架构中可能被赋予不同的语义，如Power-PC将其作为通用控制流中断概念。"
+      }
+    },
+    {
+      "source_id": "code_ctrl_c_example",
+      "target_id": "concept_interrupt",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "description": "用户按下 Ctrl+C 是一种典型的中断触发方式，对应SIGINT信号。"
+      }
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "hw_cpu",
+      "type": "USES",
+      "properties": {
+        "description": "CPU负责检测并响应异常事件，如非法操作或系统调用。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_io_device",
+      "type": "USES",
+      "properties": {
+        "description": "I/O设备通过中断机制向CPU报告任务完成状态。"
+      }
+    },
+    {
+      "source_id": "concept_control_flow",
+      "target_id": "concept_exception",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "异常发生在程序正常控制流执行期间。"
+      }
+    },
+    {
+      "source_id": "concept_control_flow",
+      "target_id": "concept_interrupt",
+      "type": "PRECEDES",
+      "properties": {
+        "description": "中断也发生在正常控制流执行过程中。"
+      }
+    },
+    {
+      "source_id": "concept_kernel_control_path",
+      "target_id": "concept_context_switching",
+      "type": "OPTIMIZES",
+      "properties": {
+        "description": "相比完整的上下文切换，内核控制路径更轻量，上下文信息更少，因此效率更高。"
+      }
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_cpu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "hw_cpu",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_interrupt_request_pin_intr",
+      "type": "TRIGGERED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_interrupt_request_pin_nmi",
+      "type": "TRIGGERED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "concept_exception_control_flow",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "concept_exception_control_flow",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "principle_synchronous_event",
+      "type": "EXEMPLIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "principle_asynchronous_event",
+      "type": "EXEMPLIFIES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "concept_interrupt",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "hw_cpu",
+      "type": "GENERATED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_iret",
+      "target_id": "concept_exception_control_flow",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_iret",
+      "target_id": "concept_exception",
+      "type": "USED_TO_RETURN_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_iret",
+      "target_id": "concept_interrupt",
+      "type": "USED_TO_RETURN_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "code_exception_handling_flow",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "code_exception_handling_flow",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "concept_interrupt",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "concept_exception",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "concept_interrupt",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "concept_exception",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "concept_interrupt",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "concept_exception",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception",
+      "target_id": "concept_interrupt",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "concept_exception",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "concept_exception",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "concept_exception",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_abort",
+      "target_id": "concept_exception",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "instruction_movl",
+      "type": "CAUSES",
+      "properties": {
+        "condition": "当访问非法地址或缺页时"
+      }
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "hardware_page_table",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "principle_virtual_memory",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "principle_locality",
+      "type": "OPTIMIZES",
+      "properties": {
+        "context": "缺页恢复效率"
+      }
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "instruction_sysenter",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "instruction_syscall",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "instruction_int3",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "instruction_into",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "instruction_bound",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "instruction_int_n",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "code_example_7_1",
+      "type": "RELATED_TO",
+      "properties": {
+        "context": "演示陷阱在系统调用中的应用"
+      }
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "principle_system_call",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_abort",
+      "target_id": "hardware_cpu",
+      "type": "CAUSES",
+      "properties": {
+        "condition": "控制器故障或内存校验错"
+      }
+    },
+    {
+      "source_id": "concept_abort",
+      "target_id": "principle_virtual_memory",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "contrast": "虚拟内存允许恢复，而终止不可恢复"
+      }
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "concept_trap",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "contrast": "故障是偶然发生的异常，陷阱是预先安排的异常"
+      }
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "concept_abort",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "contrast": "故障可部分恢复，终止不可恢复"
+      }
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "concept_abort",
+      "type": "CONTRASTS_WITH",
+      "properties": {
+        "contrast": "陷阱是可控的，终止是灾难性的"
+      }
+    },
+    {
+      "source_id": "instruction_movl",
+      "target_id": "concept_fault",
+      "type": "TRIGGERS",
+      "properties": {
+        "context": "数据访问时可能引发缺页或越界"
+      }
+    },
+    {
+      "source_id": "instruction_int3",
+      "target_id": "concept_trap",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_sysenter",
+      "target_id": "concept_trap",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_syscall",
+      "target_id": "concept_trap",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_example_7_1",
+      "target_id": "instruction_movl",
+      "type": "DERIVED_FROM",
+      "properties": {}
+    },
+    {
+      "source_id": "code_asm_movl_5",
+      "target_id": "concept_fault",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "context": "可恢复的缺页故障"
+      }
+    },
+    {
+      "source_id": "code_asm_movl_6",
+      "target_id": "concept_fault",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "context": "非缺页但越界访问"
+      }
+    },
+    {
+      "source_id": "code_asm_movl_7",
+      "target_id": "concept_abort",
+      "type": "EXAMPLE_OF",
+      "properties": {
+        "context": "不可恢复的地址越界"
+      }
+    },
+    {
+      "source_id": "principle_virtual_memory",
+      "target_id": "concept_fault",
+      "type": "ENABLES",
+      "properties": {
+        "mechanism": "页故障处理"
+      }
+    },
+    {
+      "source_id": "principle_locality",
+      "target_id": "concept_fault",
+      "type": "OPTIMIZES",
+      "properties": {
+        "effect": "减少缺页频率"
+      }
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "code_example_7_1",
+      "type": "USED_IN",
+      "properties": {
+        "example": "系统调用示例"
+      }
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "code_asm_movl_5",
+      "type": "CAUSES",
+      "properties": {
+        "detail": "首次访问a[10]导致缺页"
+      }
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "code_asm_movl_6",
+      "type": "CAUSES",
+      "properties": {
+        "detail": "数组越界访问a[1000]"
+      }
+    },
+    {
+      "source_id": "concept_abort",
+      "target_id": "code_asm_movl_7",
+      "type": "CAUSES",
+      "properties": {
+        "detail": "地址0x8052c40超出合法范围"
+      }
+    },
+    {
+      "source_id": "concept_fault",
+      "target_id": "principle_virtual_memory",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap",
+      "target_id": "principle_system_call",
+      "type": "RELIES_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_cpu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_intr_pin",
+      "type": "TRIGGERED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_nmi_pin",
+      "type": "TRIGGERED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_maskable_interrupt",
+      "target_id": "hw_intr_pin",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_nonmaskable_interrupt",
+      "target_id": "hw_nmi_pin",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_maskable_interrupt",
+      "target_id": "hw_interrupt_controller",
+      "type": "MANAGED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_nonmaskable_interrupt",
+      "target_id": "hw_interrupt_controller",
+      "type": "MANAGED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_data_bus",
+      "type": "CONVERTS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "code_interrupt_response",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_maskable_interrupt",
+      "target_id": "concept_interrupt",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_nonmaskable_interrupt",
+      "target_id": "concept_interrupt",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_maskable_interrupt",
+      "target_id": "concept_nonmaskable_interrupt",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "concept_interrupt",
+      "type": "RESPONDS_TO",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "code_interrupt_response",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_cpu",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "code_interrupt_response",
+      "target_id": "concept_interrupt",
+      "type": "DEMONSTRATES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt",
+      "target_id": "hw_cpu",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_protection_mode",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_real_address_mode",
+      "type": "CONTRASTS_WITH",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_system_call",
+      "type": "IS_A",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_trap_gate",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_interrupt_gate",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_task_gate",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_privilege_level",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_stack_switching",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_signal_handling",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_interrupt_vector_table",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_interrupt_descriptor_table",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_bios",
+      "type": "DEPENDED_ON_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_iret_instruction",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_sysenter_instruction",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "concept_sysexit_instruction",
+      "type": "OPTIMIZES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "hardware_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "hardware_idtr",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "hardware_gdtr",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "hardware_tr",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "hardware_pic",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "instruction_int",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "instruction_int_0x80",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "instruction_int_0x2e",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "instruction_sysenter",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "instruction_sysexit",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "instruction_iret",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "instruction_sti",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "instruction_cli",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exception_and_interrupt_response",
+      "target_id": "code_system_call_example",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_protection_mode",
+      "target_id": "concept_interrupt_descriptor_table",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_real_address_mode",
+      "target_id": "concept_interrupt_vector_table",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "instruction_int_0x80",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "instruction_sysenter",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "instruction_iret",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_system_call",
+      "target_id": "instruction_sysexit",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_trap_gate",
+      "target_id": "concept_privilege_level",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_interrupt_gate",
+      "target_id": "concept_privilege_level",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_task_gate",
+      "target_id": "concept_privilege_level",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stack_switching",
+      "target_id": "hardware_tr",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_stack_switching",
+      "target_id": "hardware_cpu",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_signal_handling",
+      "target_id": "concept_exception_and_interrupt_response",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_iret_instruction",
+      "target_id": "concept_stack_switching",
+      "type": "REVERSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_sysenter_instruction",
+      "target_id": "concept_privilege_level",
+      "type": "CHANGES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_sysenter_instruction",
+      "target_id": "hardware_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_sysexit_instruction",
+      "target_id": "concept_privilege_level",
+      "type": "CHANGES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_sysexit_instruction",
+      "target_id": "hardware_cpu",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_int",
+      "target_id": "concept_system_call",
+      "type": "USED_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_int_0x80",
+      "target_id": "concept_system_call",
+      "type": "USED_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_int_0x2e",
+      "target_id": "concept_system_call",
+      "type": "USED_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_sysenter",
+      "target_id": "concept_system_call",
+      "type": "USED_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_sysexit",
+      "target_id": "concept_system_call",
+      "type": "USED_FOR",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_iret",
+      "target_id": "concept_exception_and_interrupt_response",
+      "type": "USED_TO_EXIT",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_sti",
+      "target_id": "concept_exception_and_interrupt_response",
+      "type": "USED_TO_ENABLE_INTERRUPTS",
+      "properties": {}
+    },
+    {
+      "source_id": "instruction_cli",
+      "target_id": "concept_exception_and_interrupt_response",
+      "type": "USED_TO_DISABLE_INTERRUPTS",
+      "properties": {}
+    },
+    {
+      "source_id": "code_system_call_example",
+      "target_id": "instruction_int_0x80",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "code_system_call_example",
+      "target_id": "concept_system_call",
+      "type": "EXAMPLE_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_locality_of_reference",
+      "target_id": "concept_cache",
+      "type": "APPLIED_IN",
+      "properties": {}
+    },
+    {
+      "source_id": "principle_moore_law",
+      "target_id": "concept_cpu_performance",
+      "type": "EXPLAINS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "concept_logical_control_flow",
+      "type": "COMPOSED_OF",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_process",
+      "target_id": "concept_exceptional_control_flow",
+      "type": "USES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "concept_context_switching",
+      "type": "IMPLEMENTED_BY",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "hw_cpu",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "source_id": "hw_cpu",
+      "target_id": "inst_trap",
+      "type": "EXECUTES",
+      "properties": {}
+    },
+    {
+      "source_id": "inst_trap",
+      "target_id": "concept_kernel_control_path",
+      "type": "TRIGGERS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_control_path",
+      "target_id": "concept_exceptional_control_flow",
+      "type": "REPRESENTS",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "principle_concurrency",
+      "type": "BASED_ON",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_logical_control_flow",
+      "target_id": "concept_exceptional_control_flow",
+      "type": "PRECEDES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "concept_process",
+      "type": "CAUSES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_kernel_control_path",
+      "target_id": "inst_trap",
+      "type": "HANDLES",
+      "properties": {}
+    },
+    {
+      "source_id": "concept_exceptional_control_flow",
+      "target_id": "concept_context_switching",
+      "type": "DEPENDS_ON",
+      "properties": {}
+    }
+  ]
+}
