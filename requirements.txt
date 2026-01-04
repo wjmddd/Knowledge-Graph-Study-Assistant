@@ -1,29 +1,38 @@
+# ===============================
+# 知识图谱问答系统 - 依赖列表
+# ===============================
+
 # 核心依赖
-openai>=1.0.0
-instructor>=1.0.0
-pydantic>=2.0.0
+openai>=1.0.0          # OpenAI API 客户端 (用于 Embedding 和 LLM)
+instructor>=1.0.0      # Pydantic 结构化输出
+pydantic>=2.0.0        # 数据验证
+
+# 图数据库
+neo4j>=5.0.0           # Neo4j Python 驱动
+
+# 向量数据库
+chromadb>=0.4.0        # ChromaDB 本地向量存储
+
+# Web 界面
+streamlit>=1.30.0      # Streamlit Web 应用
 
 # 环境配置
-python-dotenv>=1.0.0
+python-dotenv>=1.0.0   # 环境变量管理
 
-# PDF 解析 (可选)
-pdfplumber>=0.10.0
+# PDF 解析 (知识抽取阶段使用)
+pdfplumber>=0.10.0     # PDF 文本提取
 
-# 图数据库 (可选)
-neo4j>=5.0.0
+# ===============================
+# 可选依赖 (后续迭代使用)
+# ===============================
 
-# 向量数据库 (可选)
-chromadb>=0.4.0
+# Agent 框架 (Phase 2 升级到 LangChain)
+# langchain>=0.1.0
+# langchain-openai>=0.0.5
 
-# Agent 框架 (可选)
-langchain>=0.1.0
-langchain-openai>=0.0.5
+# 本地 Embedding 模型 (如果不使用 OpenAI)
+# sentence-transformers>=2.2.0
 
-# Web 界面 (可选)
-streamlit>=1.30.0
-fastapi>=0.100.0
-uvicorn>=0.20.0
-
-# 向量化 (可选)
-sentence-transformers>=2.2.0
-
+# API 后端 (如果需要提供 REST API)
+# fastapi>=0.100.0
+# uvicorn>=0.20.0
