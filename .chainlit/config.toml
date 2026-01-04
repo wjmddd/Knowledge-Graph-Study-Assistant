@@ -1,0 +1,78 @@
+# Chainlit 配置文件
+
+[project]
+# 是否启用遥测
+enable_telemetry = false
+
+# 会话超时时间（秒）
+session_timeout = 3600
+
+# 是否缓存第三方文件
+cache = false
+
+[features]
+# 启用 Prompt Playground
+prompt_playground = false
+
+# 启用多模态上传
+multi_modal = false
+
+# 启用 LaTeX 渲染
+latex = true
+
+# 启用语音输入（实验性）
+speech_to_text = false
+
+# 启用不安全的图片链接（用于知识图谱可视化）
+unsafe_allow_html = true
+
+# 显示审核信息
+show_readme_as_default = false
+
+[UI]
+# 应用名称
+name = "计算机系统基础 - 智能学习助手"
+
+# 显示 GitHub 链接
+show_github_link = false
+
+# 默认主题 ("light" 或 "dark")
+default_theme = "light"
+
+# 折叠消息
+default_collapse_content = false
+
+# 自定义 CSS 文件
+# custom_css = "/public/custom.css"
+
+# 是否隐藏 Chainlit 水印（需要付费版）
+# hide_cot = true
+
+[UI.theme]
+# 主题颜色配置
+
+[UI.theme.light]
+# 浅色主题 - 学术风格
+background = "#F5F7FA"
+paper = "#FFFFFF"
+
+[UI.theme.light.primary]
+main = "#2563EB"
+dark = "#1D4ED8"
+light = "#3B82F6"
+
+[UI.theme.dark]
+# 深色主题 - 护眼模式
+background = "#0F172A"
+paper = "#1E293B"
+
+[UI.theme.dark.primary]
+main = "#60A5FA"
+dark = "#3B82F6"
+light = "#93C5FD"
+
+[meta]
+# 元数据
+generated_by = "Knowledge Graph Study Assistant"
+version = "2.0"
+
