@@ -10,9 +10,6 @@ pydantic>=2.0.0        # 数据验证
 # 图数据库
 neo4j>=5.0.0           # Neo4j Python 驱动
 
-# 向量数据库
-chromadb>=0.4.0        # ChromaDB 本地向量存储
-
 # Web 界面
 streamlit>=1.30.0      # Streamlit Web 应用
 
@@ -23,12 +20,18 @@ python-dotenv>=1.0.0   # 环境变量管理
 pdfplumber>=0.10.0     # PDF 文本提取
 
 # ===============================
-# 可选依赖 (后续迭代使用)
+# Phase 2: LangChain Agent 
 # ===============================
+langchain>=0.3.0       # LangChain 核心
+langchain-openai>=0.2.0  # LangChain OpenAI 集成
+langchain-core>=0.3.0  # LangChain Core
 
-# Agent 框架 (Phase 2 升级到 LangChain)
-# langchain>=0.1.0
-# langchain-openai>=0.0.5
+# 可视化
+pyvis>=0.3.0           # 图谱可视化
+
+# ===============================
+# 可选依赖
+# ===============================
 
 # 本地 Embedding 模型 (如果不使用 OpenAI)
 # sentence-transformers>=2.2.0

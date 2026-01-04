@@ -11,7 +11,8 @@ from neo4j import GraphDatabase
 # 添加项目根目录
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from config.settings import NEO4J_CONFIG
+# 从配置文件导入术语映射和工具函数
+from config.settings import NEO4J_CONFIG, TERM_MAPPINGS, get_term_variants
 
 
 class GraphQuery:
@@ -54,15 +55,21 @@ class GraphQuery:
         return self.driver is not None
     
     # ==========================================
-    # 1. 概念查询
+    # 1. 概念查询 (优化版：支持中英文智能匹配)
     # ==========================================
     
     def get_concept(self, name: str) -> Optional[Dict[str, Any]]:
         """
-        根据名称获取概念详情
+        根据名称获取概念详情（支持中英文智能匹配）
+        
+        优化点：
+        1. 查询所有语义层节点类型（Concept, Hardware, Instruction, Principle）
+        2. 支持大小写不敏感
+        3. 支持中英文自动转换
+        4. 支持别名匹配
         
         Args:
-            name: 概念名称
+            name: 概念名称（中文或英文）
             
         Returns:
             概念信息字典，包含定义、别名等
@@ -70,11 +77,53 @@ class GraphQuery:
         if not self.driver:
             return None
         
+        # 获取术语的所有变体
+        variants = get_term_variants(name)
+        
+        # 查询所有语义层节点类型
         query = """
-        MATCH (c:Concept)
-        WHERE c.name = $name OR $name IN c.alias
+        MATCH (c)
+        WHERE (c:Concept OR c:Hardware OR c:Instruction OR c:Principle OR c:CodeSnippet)
+          AND (
+              toLower(c.name) IN $variants
+              OR ANY(v IN $variants WHERE toLower(c.name) CONTAINS v)
+              OR ANY(a IN coalesce(c.alias, []) WHERE toLower(a) IN $variants)
+          )
         RETURN c.id as id, c.name as name, c.definition as definition, 
-               c.alias as alias, c.label as label
+               c.alias as alias, labels(c)[0] as label
+        LIMIT 1
+        """
+        
+        # 转小写用于匹配
+        variants_lower = [v.lower() for v in variants]
+        
+        with self.driver.session() as session:
+            result = session.run(query, variants=variants_lower)
+            record = result.single()
+            if record:
+                return dict(record)
+        
+        # 如果精确匹配失败，尝试模糊搜索
+        return self._fuzzy_get_concept(name)
+    
+    def _fuzzy_get_concept(self, name: str) -> Optional[Dict[str, Any]]:
+        """模糊匹配概念（兜底）"""
+        if not self.driver:
+            return None
+        
+        query = """
+        MATCH (c)
+        WHERE (c:Concept OR c:Hardware OR c:Instruction OR c:Principle)
+          AND (
+              toLower(c.name) CONTAINS toLower($name)
+              OR toLower(c.definition) CONTAINS toLower($name)
+          )
+        RETURN c.id as id, c.name as name, c.definition as definition, 
+               c.alias as alias, labels(c)[0] as label
+        ORDER BY 
+            CASE WHEN toLower(c.name) = toLower($name) THEN 0
+                 WHEN toLower(c.name) STARTS WITH toLower($name) THEN 1
+                 ELSE 2 END
         LIMIT 1
         """
         
@@ -87,7 +136,7 @@ class GraphQuery:
     
     def search_concepts(self, keyword: str, limit: int = 10) -> List[Dict[str, Any]]:
         """
-        模糊搜索概念
+        模糊搜索概念（优化版）
         
         Args:
             keyword: 搜索关键词
@@ -99,18 +148,26 @@ class GraphQuery:
         if not self.driver:
             return []
         
+        # 获取术语的所有变体
+        variants = get_term_variants(keyword)
+        variants_lower = [v.lower() for v in variants]
+        
         query = """
-        MATCH (c:Concept)
-        WHERE c.name CONTAINS $keyword 
-           OR c.definition CONTAINS $keyword
-           OR ANY(a IN c.alias WHERE a CONTAINS $keyword)
-        RETURN c.id as id, c.name as name, c.definition as definition, c.alias as alias
+        MATCH (c)
+        WHERE (c:Concept OR c:Hardware OR c:Instruction OR c:Principle OR c:CodeSnippet)
+          AND (
+              ANY(v IN $variants WHERE toLower(c.name) CONTAINS v)
+              OR ANY(v IN $variants WHERE toLower(c.definition) CONTAINS v)
+              OR ANY(a IN coalesce(c.alias, []) WHERE ANY(v IN $variants WHERE toLower(a) CONTAINS v))
+          )
+        RETURN c.id as id, c.name as name, c.definition as definition, 
+               c.alias as alias, labels(c)[0] as label
         LIMIT $limit
         """
         
         results = []
         with self.driver.session() as session:
-            result = session.run(query, keyword=keyword, limit=limit)
+            result = session.run(query, variants=variants_lower, limit=limit)
             for record in result:
                 results.append(dict(record))
         return results
@@ -126,7 +183,7 @@ class GraphQuery:
         direction: str = "both"
     ) -> List[Dict[str, Any]]:
         """
-        获取概念的相关关系
+        获取概念的相关关系（支持中英文智能匹配）
         
         Args:
             concept_name: 概念名称
@@ -138,6 +195,10 @@ class GraphQuery:
         """
         if not self.driver:
             return []
+        
+        # 获取术语变体
+        variants = get_term_variants(concept_name)
+        variants_lower = [v.lower() for v in variants]
         
         # 构建查询
         if direction == "out":
@@ -152,8 +213,12 @@ class GraphQuery:
             pattern = pattern.replace("[r]", f"[r:{relation_type}]")
         
         query = f"""
-        MATCH (c:Concept)
-        WHERE c.name = $name OR $name IN c.alias
+        MATCH (c)
+        WHERE (c:Concept OR c:Hardware OR c:Instruction OR c:Principle)
+          AND (
+              toLower(c.name) IN $variants
+              OR ANY(a IN coalesce(c.alias, []) WHERE toLower(a) IN $variants)
+          )
         MATCH {pattern}
         RETURN c.name as source, type(r) as relation_type, 
                related.name as target, related.definition as target_definition,
@@ -163,7 +228,7 @@ class GraphQuery:
         
         results = []
         with self.driver.session() as session:
-            result = session.run(query, name=concept_name)
+            result = session.run(query, variants=variants_lower)
             for record in result:
                 results.append(dict(record))
         return results
@@ -190,7 +255,7 @@ class GraphQuery:
         max_depth: int = 5
     ) -> List[List[str]]:
         """
-        查找学习路径 (沿 DEPENDS_ON 回溯前置知识)
+        查找学习路径 (沿 DEPENDS_ON 回溯前置知识)，支持中英文智能匹配
         
         Args:
             target_concept: 目标概念
@@ -202,9 +267,17 @@ class GraphQuery:
         if not self.driver:
             return []
         
+        # 获取术语变体
+        variants = get_term_variants(target_concept)
+        variants_lower = [v.lower() for v in variants]
+        
         query = f"""
-        MATCH (target:Concept)
-        WHERE target.name = $name OR $name IN target.alias
+        MATCH (target)
+        WHERE (target:Concept OR target:Hardware OR target:Instruction OR target:Principle)
+          AND (
+              toLower(target.name) IN $variants
+              OR ANY(a IN coalesce(target.alias, []) WHERE toLower(a) IN $variants)
+          )
         MATCH path = (target)-[:DEPENDS_ON*1..{max_depth}]->(prereq)
         RETURN [n IN nodes(path) | n.name] as learning_path
         ORDER BY length(path)
@@ -213,7 +286,7 @@ class GraphQuery:
         
         paths = []
         with self.driver.session() as session:
-            result = session.run(query, name=target_concept)
+            result = session.run(query, variants=variants_lower)
             for record in result:
                 paths.append(record["learning_path"])
         return paths
@@ -261,7 +334,12 @@ class GraphQuery:
     
     def get_concept_sources(self, concept_name: str) -> List[Dict[str, Any]]:
         """
-        获取概念的文本来源 (通过 MENTIONS 关系)
+        获取概念的文本来源（支持所有语义层节点类型和智能别名匹配）
+        
+        查询策略：
+        1. 先尝试通过 MENTIONS 关系查找
+        2. 如果没有 MENTIONS，尝试通过节点的 source_chunk 属性
+        3. 如果还没有，尝试在 TextChunk 内容中搜索
         
         Returns:
             来源列表，包含章节、内容等
@@ -269,10 +347,67 @@ class GraphQuery:
         if not self.driver:
             return []
         
-        query = """
-        MATCH (c:Concept)
-        WHERE c.name = $name OR $name IN c.alias
+        # 获取术语变体
+        variants = get_term_variants(concept_name)
+        variants_lower = [v.lower() for v in variants]
+        
+        results = []
+        
+        # 策略1: 通过 MENTIONS 关系查找（支持所有语义层节点类型）
+        query1 = """
+        MATCH (c)
+        WHERE (c:Concept OR c:Hardware OR c:Instruction OR c:Principle OR c:CodeSnippet)
+          AND (
+              toLower(c.name) IN $variants
+              OR ANY(a IN coalesce(c.alias, []) WHERE toLower(a) IN $variants)
+          )
         MATCH (chunk:TextChunk)-[:MENTIONS]->(c)
+        OPTIONAL MATCH (section:Section)-[:CONTAINS]->(chunk)
+        OPTIONAL MATCH (chapter:Chapter)-[:CONTAINS]->(section)
+        RETURN chunk.content as content, chunk.id as chunk_id,
+               section.title as section, chapter.title as chapter,
+               c.name as concept_name
+        LIMIT 5
+        """
+        
+        with self.driver.session() as session:
+            result = session.run(query1, variants=variants_lower)
+            for record in result:
+                results.append(dict(record))
+        
+        if results:
+            return results
+        
+        # 策略2: 通过节点的 source_chunk 属性查找
+        query2 = """
+        MATCH (c)
+        WHERE (c:Concept OR c:Hardware OR c:Instruction OR c:Principle OR c:CodeSnippet)
+          AND (
+              toLower(c.name) IN $variants
+              OR ANY(a IN coalesce(c.alias, []) WHERE toLower(a) IN $variants)
+          )
+          AND c.source_chunk IS NOT NULL
+        MATCH (chunk:TextChunk {id: c.source_chunk})
+        OPTIONAL MATCH (section:Section)-[:CONTAINS]->(chunk)
+        OPTIONAL MATCH (chapter:Chapter)-[:CONTAINS]->(section)
+        RETURN chunk.content as content, chunk.id as chunk_id,
+               section.title as section, chapter.title as chapter,
+               c.name as concept_name
+        LIMIT 5
+        """
+        
+        with self.driver.session() as session:
+            result = session.run(query2, variants=variants_lower)
+            for record in result:
+                results.append(dict(record))
+        
+        if results:
+            return results
+        
+        # 策略3: 在 TextChunk 内容中搜索概念名称
+        query3 = """
+        MATCH (chunk:TextChunk)
+        WHERE ANY(v IN $variants WHERE toLower(chunk.content) CONTAINS v)
         OPTIONAL MATCH (section:Section)-[:CONTAINS]->(chunk)
         OPTIONAL MATCH (chapter:Chapter)-[:CONTAINS]->(section)
         RETURN chunk.content as content, chunk.id as chunk_id,
@@ -280,11 +415,11 @@ class GraphQuery:
         LIMIT 5
         """
         
-        results = []
         with self.driver.session() as session:
-            result = session.run(query, name=concept_name)
+            result = session.run(query3, variants=variants_lower)
             for record in result:
                 results.append(dict(record))
+        
         return results
     
     # ==========================================

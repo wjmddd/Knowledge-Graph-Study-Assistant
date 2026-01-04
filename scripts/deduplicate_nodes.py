@@ -6,183 +6,24 @@
 """
 
 import json
-import re
 import sys
 from pathlib import Path
-from typing import List, Dict, Set, Tuple
+from typing import List, Dict, Tuple
 from collections import defaultdict
 
 # 添加项目根目录
 sys.path.insert(0, str(Path(__file__).parent.parent))
+
+# 从配置文件导入术语映射和工具函数
+from config.settings import TERM_MAPPINGS, ALIAS_TO_CANONICAL, normalize_term
 
 # ========== 配置 ==========
 INPUT_FILE = "graph_data_all_flat.json"  # 合并后的完整图谱
 OUTPUT_FILE = "graph_data_rule_deduped.json"  # 规则去重后的输出
 # ==========================
 
-# ==========================================
-# 1. 中英文计算机术语对照表 (针对《计算机系统基础》优化)
-# ==========================================
-TERM_MAPPINGS = {
-    # ========== 硬件组件 ==========
-    "cpu": ["中央处理器", "处理器", "central processing unit", "CPU"],
-    "alu": ["算术逻辑单元", "运算器", "arithmetic logic unit", "ALU"],
-    "cu": ["控制单元", "控制器", "control unit"],
-    "pc": ["程序计数器", "program counter", "PC"],
-    "ir": ["指令寄存器", "instruction register", "IR"],
-    "mar": ["存储器地址寄存器", "memory address register", "MAR"],
-    "mdr": ["存储器数据寄存器", "memory data register", "MDR"],
-    "psw": ["程序状态字", "program status word", "PSW"],
-    "cache": ["缓存", "高速缓存", "高速缓冲存储器", "Cache"],
-    "ram": ["内存", "主存", "随机存取存储器", "主存储器", "random access memory", "RAM"],
-    "rom": ["只读存储器", "read only memory", "ROM"],
-    "sram": ["静态随机存取存储器", "static ram", "SRAM"],
-    "dram": ["动态随机存取存储器", "dynamic ram", "DRAM"],
-    "register": ["寄存器"],
-    "bus": ["总线"],
-    "mmu": ["内存管理单元", "memory management unit", "MMU"],
-    "tlb": ["转换后备缓冲器", "页表缓存", "translation lookaside buffer", "TLB"],
-    "gpu": ["图形处理器", "graphics processing unit", "GPU"],
-    "ssd": ["固态硬盘", "solid state drive", "SSD"],
-    "hdd": ["机械硬盘", "硬盘驱动器", "hard disk drive", "HDD"],
-    
-    # ========== 数据表示 ==========
-    "two's complement": ["补码", "二进制补码", "2的补码"],
-    "one's complement": ["反码", "1的补码"],
-    "sign magnitude": ["原码", "符号-数值", "符号数值"],
-    "floating point": ["浮点数", "浮点", "浮点表示"],
-    "ieee 754": ["ieee754", "ieee 754标准", "浮点标准"],
-    "mantissa": ["尾数", "有效数字"],
-    "exponent": ["阶码", "指数"],
-    "bias": ["偏置", "移码"],
-    "big endian": ["大端", "大端法", "大端序"],
-    "little endian": ["小端", "小端法", "小端序"],
-    "sign extension": ["符号扩展"],
-    "zero extension": ["零扩展"],
-    "overflow": ["溢出", "上溢"],
-    "underflow": ["下溢"],
-    
-    # ========== 指令与程序 ==========
-    "instruction": ["指令"],
-    "opcode": ["操作码", "op码"],
-    "operand": ["操作数"],
-    "immediate": ["立即数"],
-    "program": ["程序"],
-    "process": ["进程"],
-    "thread": ["线程"],
-    "isa": ["指令集架构", "instruction set architecture", "ISA"],
-    "risc": ["精简指令集", "RISC"],
-    "cisc": ["复杂指令集", "CISC"],
-    "x86": ["x86架构", "x86指令集"],
-    "mips": ["mips架构", "MIPS"],
-    
-    # ========== 存储层次 ==========
-    "locality": ["局部性", "局部性原理"],
-    "temporal locality": ["时间局部性"],
-    "spatial locality": ["空间局部性"],
-    "cache hit": ["缓存命中", "命中"],
-    "cache miss": ["缓存未命中", "缓存缺失", "未命中"],
-    "hit rate": ["命中率"],
-    "miss rate": ["缺失率", "未命中率"],
-    "write back": ["写回", "回写"],
-    "write through": ["写直达", "直写"],
-    "lru": ["最近最少使用", "least recently used", "LRU"],
-    
-    # ========== 虚拟存储 ==========
-    "virtual memory": ["虚拟内存", "虚拟存储器", "虚存"],
-    "virtual address": ["虚拟地址", "逻辑地址", "VA"],
-    "physical address": ["物理地址", "实地址", "PA"],
-    "page": ["页", "页面"],
-    "page table": ["页表"],
-    "page fault": ["缺页", "页故障", "缺页异常"],
-    "page frame": ["页框", "物理页"],
-    "segmentation": ["分段"],
-    "paging": ["分页"],
-    
-    # ========== 流水线 ==========
-    "pipeline": ["流水线"],
-    "fetch": ["取指", "取指令"],
-    "decode": ["译码", "解码"],
-    "execute": ["执行"],
-    "memory access": ["访存", "存储器访问"],
-    "write back": ["写回"],
-    "hazard": ["冒险", "冲突"],
-    "data hazard": ["数据冒险", "数据冲突"],
-    "control hazard": ["控制冒险", "控制冲突"],
-    "structural hazard": ["结构冒险", "结构冲突"],
-    "forwarding": ["转发", "旁路"],
-    "stall": ["停顿", "阻塞"],
-    "branch prediction": ["分支预测"],
-    
-    # ========== 程序转换 ==========
-    "compiler": ["编译器", "编译程序"],
-    "assembler": ["汇编器", "汇编程序"],
-    "linker": ["链接器", "链接程序"],
-    "loader": ["加载器", "装载器", "装入程序"],
-    "preprocessor": ["预处理器"],
-    "source code": ["源代码", "源程序"],
-    "object code": ["目标代码", "目标程序"],
-    "executable": ["可执行文件", "可执行程序"],
-    
-    # ========== 系统结构 ==========
-    "von neumann": ["冯·诺依曼", "冯诺依曼", "冯·诺伊曼", "冯诺伊曼"],
-    "stored program": ["存储程序", "存储程序原理"],
-    "operating system": ["操作系统", "os", "OS"],
-    "kernel": ["内核"],
-    "system call": ["系统调用"],
-    "interrupt": ["中断"],
-    "exception": ["异常"],
-    "trap": ["陷阱", "陷入"],
-    
-    # ========== I/O ==========
-    "io": ["输入输出", "i/o", "I/O"],
-    "dma": ["直接存储器存取", "direct memory access", "DMA"],
-    "polling": ["轮询", "查询"],
-    "interrupt driven": ["中断驱动"],
-    
-    # ========== 其他 ==========
-    "stack": ["栈", "堆栈"],
-    "heap": ["堆"],
-    "amdahl's law": ["阿姆达尔定律", "amdahl定律"],
-    "moore's law": ["摩尔定律", "moore定律"],
-    "cpi": ["每条指令周期数", "cycles per instruction", "CPI"],
-    "mips": ["每秒百万条指令", "million instructions per second"],
-    "throughput": ["吞吐率", "吞吐量"],
-    "latency": ["延迟", "时延"],
-}
-
-# 构建反向索引: 任意别名 -> 标准名称
-ALIAS_TO_CANONICAL = {}
-for canonical, aliases in TERM_MAPPINGS.items():
-    ALIAS_TO_CANONICAL[canonical.lower()] = canonical
-    for alias in aliases:
-        ALIAS_TO_CANONICAL[alias.lower()] = canonical
-
-
-def normalize_name(name: str) -> str:
-    """
-    标准化节点名称
-    1. 转小写
-    2. 移除空格和特殊字符
-    3. 查找标准名称
-    """
-    if not name:
-        return name
-    
-    # 清理名称
-    clean_name = name.lower().strip()
-    clean_name = re.sub(r'[·\-_\s]+', '', clean_name)  # 移除 · - _ 空格
-    
-    # 查找是否有对应的标准名称
-    if clean_name in ALIAS_TO_CANONICAL:
-        return ALIAS_TO_CANONICAL[clean_name]
-    
-    # 尝试原始名称（带空格）
-    original_lower = name.lower().strip()
-    if original_lower in ALIAS_TO_CANONICAL:
-        return ALIAS_TO_CANONICAL[original_lower]
-    
-    return name  # 未找到映射，返回原名
+# 为了兼容性，创建别名
+normalize_name = normalize_term
 
 
 def find_duplicate_candidates(nodes: List[dict]) -> List[Tuple[dict, dict, str]]:
