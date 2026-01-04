@@ -1,12 +1,11 @@
 """
 构建向量数据库
-将教材的文本块嵌入到 ChromaDB 中
+将教材的文本块向量化并存入 Neo4j
 
 用法: python scripts/build_vector_store.py
 """
 
 import sys
-import json
 import time
 from pathlib import Path
 from typing import List, Dict
@@ -14,7 +13,7 @@ from typing import List, Dict
 # 添加项目根目录
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from config.settings import MD_INPUT_DIR, CHROMA_DB_DIR
+from config.settings import MD_INPUT_DIR
 from src.pipeline.parser import parse_markdown_with_context
 from src.retrieval.vector_store import VectorStore
 
@@ -46,87 +45,58 @@ def load_text_chunks_from_md(md_dir: Path) -> List[Dict]:
     return chunks
 
 
-def load_text_chunks_from_json(json_file: Path) -> List[Dict]:
-    """
-    从已构建的知识图谱 JSON 加载 TextChunk 节点
-    """
-    chunks = []
-    
-    if not json_file.exists():
-        print(f"⚠️ 文件不存在: {json_file}")
-        return chunks
-    
-    with open(json_file, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    # 查找 TextChunk 节点
-    nodes = data.get("nodes", [])
-    for node in nodes:
-        if node.get("label") == "TextChunk":
-            content = node.get("content", "")
-            if content and len(content) > 50:  # 过滤太短的
-                chunks.append({
-                    "content": content,
-                    "chapter": node.get("chapter_id", "未知").replace("chapter_", "第").replace("_", " "),
-                    "section": "未知",
-                    "chunk_id": node.get("id", "")
-                })
-    
-    return chunks
-
-
 def build_vector_store(
-    source: str = "md",
     clear_existing: bool = False,
-    batch_size: int = 20
+    batch_size: int = 10
 ) -> None:
     """
     构建向量存储
     
     Args:
-        source: 数据来源 ("md" 或 "json")
-        clear_existing: 是否清空已有数据
+        clear_existing: 是否清空已有向量
         batch_size: 每批处理的文档数量
     """
     print("=" * 60)
-    print("🔧 构建向量数据库 (ChromaDB)")
+    print("🔧 构建向量数据库 (Neo4j 向量索引)")
     print("=" * 60)
     
     # 1. 初始化向量存储
-    print(f"\n📂 向量数据库路径: {CHROMA_DB_DIR}")
+    print(f"\n📂 连接 Neo4j...")
     store = VectorStore()
     
+    if not store.is_connected():
+        print("❌ 无法连接到 Neo4j，请确保 Neo4j 已启动")
+        return
+    
+    # 2. 创建向量索引
+    print("\n📇 创建向量索引...")
+    store.create_vector_index()
+    
     existing_count = store.count()
-    print(f"   已有文档数: {existing_count}")
+    print(f"   已有向量化文档: {existing_count}")
     
     if clear_existing and existing_count > 0:
-        confirm = input("⚠️  是否清空已有数据? (y/N): ")
+        confirm = input("⚠️  是否清空已有向量? (y/N): ")
         if confirm.lower() == 'y':
             store.clear()
             print("   ✓ 已清空")
     
-    # 2. 加载文本块
-    print(f"\n📖 加载文本块 (来源: {source})...")
-    
-    if source == "md":
-        chunks = load_text_chunks_from_md(MD_INPUT_DIR)
-    else:
-        # 尝试从 JSON 加载
-        json_file = Path("graph_data_final.json")
-        if not json_file.exists():
-            json_file = Path("graph_data_all_flat.json")
-        chunks = load_text_chunks_from_json(json_file)
+    # 3. 加载文本块
+    print(f"\n📖 加载 Markdown 文本块...")
+    chunks = load_text_chunks_from_md(MD_INPUT_DIR)
     
     if not chunks:
         print("❌ 未找到任何文本块")
+        store.close()
         return
     
     print(f"   总计: {len(chunks)} 个文本块")
     
-    # 3. 批量添加到向量库
+    # 4. 批量添加到向量库
     print(f"\n🔄 生成向量并存储 (批次大小: {batch_size})...")
     
     total_batches = (len(chunks) - 1) // batch_size + 1
+    total_success = 0
     
     for i in range(0, len(chunks), batch_size):
         batch = chunks[i:i + batch_size]
@@ -139,19 +109,19 @@ def build_vector_store(
             {
                 "chapter": c["chapter"],
                 "section": c["section"],
-                "chunk_id": c["chunk_id"]
             }
             for c in batch
         ]
         ids = [c["chunk_id"] for c in batch]
         
         try:
-            store.add_documents(
+            success = store.add_documents(
                 documents=documents,
                 metadatas=metadatas,
                 ids=ids
             )
-            print("✓")
+            total_success += success
+            print(f"✓ ({success}/{len(batch)})")
         except Exception as e:
             print(f"✗ 错误: {e}")
         
@@ -159,17 +129,26 @@ def build_vector_store(
         if batch_num < total_batches:
             time.sleep(1)
     
-    # 4. 验证
+    # 5. 验证
     print(f"\n📊 构建完成!")
-    print(f"   文档总数: {store.count()}")
+    print(f"   成功向量化: {total_success} 个文档")
+    print(f"   当前向量总数: {store.count()}")
     
     # 测试搜索
     print("\n🔍 测试搜索 '什么是补码'...")
-    results = store.search("什么是补码", top_k=3)
-    for i, r in enumerate(results):
-        print(f"\n   [{i+1}] 距离: {r['distance']:.4f}")
-        print(f"       章节: {r['metadata'].get('chapter', '未知')}")
-        print(f"       内容: {r['document'][:100]}...")
+    try:
+        results = store.search("什么是补码", top_k=3)
+        if results:
+            for i, r in enumerate(results):
+                print(f"\n   [{i+1}] 分数: {r.get('score', 0):.4f}")
+                print(f"       章节: {r['metadata'].get('chapter', '未知')}")
+                print(f"       内容: {r['document'][:80]}...")
+        else:
+            print("   未找到结果")
+    except Exception as e:
+        print(f"   搜索测试失败: {e}")
+    
+    store.close()
     
     print("\n" + "=" * 60)
     print("✅ 向量数据库构建完成!")
@@ -179,29 +158,22 @@ def build_vector_store(
 def main():
     import argparse
     
-    parser = argparse.ArgumentParser(description="构建向量数据库")
-    parser.add_argument(
-        "--source",
-        choices=["md", "json"],
-        default="md",
-        help="数据来源: md (Markdown文件) 或 json (知识图谱JSON)"
-    )
+    parser = argparse.ArgumentParser(description="构建 Neo4j 向量数据库")
     parser.add_argument(
         "--clear",
         action="store_true",
-        help="清空已有数据"
+        help="清空已有向量"
     )
     parser.add_argument(
         "--batch-size",
         type=int,
-        default=20,
-        help="批处理大小"
+        default=10,
+        help="批处理大小 (默认10，避免API限流)"
     )
     
     args = parser.parse_args()
     
     build_vector_store(
-        source=args.source,
         clear_existing=args.clear,
         batch_size=args.batch_size
     )
@@ -209,4 +181,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
