@@ -10,3 +10,12 @@ reports
 kepler-results
 __pycache__/
 venv
+data/chat_history
+
+# 环境变量（敏感信息）
+.env
+.env.local
+.env.*.local
+
+# 日志目录
+logs/

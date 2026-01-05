@@ -9,21 +9,14 @@ from typing import List, Dict, Any, Optional
 from dataclasses import dataclass, field
 from datetime import datetime
 import json
-import logging
 import time
 
 # 添加项目根目录
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-# ==========================================
-# 日志配置
-# ==========================================
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%H:%M:%S'
-)
-logger = logging.getLogger("Agent")
+# 使用统一的日志系统
+from config.logger import get_logger
+logger = get_logger("Agent")
 
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, ToolMessage

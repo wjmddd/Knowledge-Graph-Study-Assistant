@@ -114,7 +114,7 @@ class KnowledgeGraphVisualizer:
         max_nodes: int = 50
     ) -> Optional[str]:
         """
-        可视化概念的邻域图
+        可视化概念的邻域图（支持模糊匹配）
         
         Args:
             concept_name: 中心概念名称
@@ -127,24 +127,34 @@ class KnowledgeGraphVisualizer:
         if not self.graph_query.is_connected():
             return None
         
-        # 查询邻域
+        # 先使用 get_concept 获取标准化的概念（支持模糊匹配）
+        concept = self.graph_query.get_concept(concept_name)
+        if not concept:
+            print(f"⚠️ 未找到概念: {concept_name}")
+            return None
+        
+        actual_name = concept.get("name", concept_name)
+        print(f"📊 正在可视化概念: {actual_name}")
+        
+        # 使用精确名称查询邻域
         query = """
         MATCH path = (center)-[*1..%d]-(neighbor)
-        WHERE center.name CONTAINS $name OR center.name =~ ('(?i).*' + $name + '.*')
+        WHERE center.name = $name
         WITH center, neighbor, relationships(path) as rels, nodes(path) as path_nodes
         UNWIND path_nodes as n
         UNWIND rels as r
         WITH DISTINCT n, r
+        WHERE n.name IS NOT NULL
         RETURN 
             collect(DISTINCT {
-                id: id(n), 
+                id: elementId(n), 
                 name: n.name, 
                 label: labels(n)[0],
                 definition: n.definition
             }) as nodes,
             collect(DISTINCT {
-                source: id(startNode(r)),
-                target: id(endNode(r)),
+                source: elementId(startNode(r)),
+                target: elementId(endNode(r)),
                 type: type(r)
             }) as relationships
         LIMIT %d
@@ -152,7 +162,7 @@ class KnowledgeGraphVisualizer:
         
         try:
             with self.graph_query.driver.session() as session:
-                result = session.run(query, name=concept_name)
+                result = session.run(query, name=actual_name)
                 record = result.single()
                 
                 if not record:
@@ -170,25 +180,26 @@ class KnowledgeGraphVisualizer:
                 # 添加节点
                 node_id_map = {}
                 for node in nodes:
-                    if node["id"] is None:
+                    node_id = node.get("id")
+                    if not node_id:
                         continue
                     
-                    node_id = str(node["id"])
-                    node_id_map[node["id"]] = node_id
+                    node_id_map[node_id] = node_id
                     
-                    label = node.get("label", "default")
-                    name = node.get("name", "未知")
-                    definition = node.get("definition", "")
+                    label = node.get("label") or "default"
+                    name = node.get("name") or "未知"  # 处理 None 值
+                    definition = node.get("definition") or ""
                     
                     color = NODE_COLORS.get(label, NODE_COLORS["default"])
                     
-                    # 中心节点特殊处理
-                    is_center = concept_name.lower() in name.lower()
+                    # 中心节点特殊处理（使用标准化后的名称）
+                    is_center = actual_name and name and actual_name.lower() == name.lower()
                     size = 30 if is_center else 20
                     
                     title = f"<b>{name}</b><br/>类型: {label}"
                     if definition:
-                        title += f"<br/><br/>{definition[:200]}..."
+                        def_text = definition[:200] + "..." if len(definition) > 200 else definition
+                        title += f"<br/><br/>{def_text}"
                     
                     net.add_node(
                         node_id,
@@ -233,7 +244,7 @@ class KnowledgeGraphVisualizer:
         concept_name: str
     ) -> Optional[str]:
         """
-        可视化学习路径
+        可视化学习路径（支持模糊匹配）
         
         Args:
             concept_name: 目标概念
@@ -244,30 +255,38 @@ class KnowledgeGraphVisualizer:
         if not self.graph_query.is_connected():
             return None
         
+        # 先获取标准化的概念名称
+        concept = self.graph_query.get_concept(concept_name)
+        if not concept:
+            return None
+        
+        actual_name = concept.get("name", concept_name)
+        
         # 查询学习路径
         query = """
         MATCH path = (target)<-[:DEPENDS_ON*1..5]-(prereq)
-        WHERE target.name CONTAINS $name
+        WHERE target.name = $name
         WITH nodes(path) as path_nodes, relationships(path) as rels
         UNWIND path_nodes as n
         UNWIND rels as r
         WITH DISTINCT n, r
+        WHERE n.name IS NOT NULL
         RETURN 
             collect(DISTINCT {
-                id: id(n), 
+                id: elementId(n), 
                 name: n.name, 
                 label: labels(n)[0]
             }) as nodes,
             collect(DISTINCT {
-                source: id(startNode(r)),
-                target: id(endNode(r)),
+                source: elementId(startNode(r)),
+                target: elementId(endNode(r)),
                 type: type(r)
             }) as relationships
         """
         
         try:
             with self.graph_query.driver.session() as session:
-                result = session.run(query, name=concept_name)
+                result = session.run(query, name=actual_name)
                 record = result.single()
                 
                 if not record or not record["nodes"]:
@@ -279,26 +298,19 @@ class KnowledgeGraphVisualizer:
                 # 创建网络
                 net = self.create_network()
                 
-                # 计算节点层级 (用于布局)
-                node_levels = {}
-                # 目标概念在最右边
-                for node in nodes:
-                    if concept_name.lower() in node.get("name", "").lower():
-                        node_levels[node["id"]] = 0
-                
                 # 添加节点
                 node_id_map = {}
                 for node in nodes:
-                    if node["id"] is None:
+                    node_id = node.get("id")
+                    if not node_id:
                         continue
                     
-                    node_id = str(node["id"])
-                    node_id_map[node["id"]] = node_id
+                    node_id_map[node_id] = node_id
                     
-                    name = node.get("name", "未知")
-                    label = node.get("label", "default")
+                    name = node.get("name") or "未知"
+                    label = node.get("label") or "default"
                     
-                    is_target = concept_name.lower() in name.lower()
+                    is_target = actual_name and name and actual_name.lower() == name.lower()
                     color = "#F44336" if is_target else NODE_COLORS.get(label, NODE_COLORS["default"])
                     
                     net.add_node(
@@ -312,13 +324,13 @@ class KnowledgeGraphVisualizer:
                 
                 # 添加边
                 for rel in relationships:
-                    if rel["source"] is None or rel["target"] is None:
+                    source_id = rel.get("source")
+                    target_id = rel.get("target")
+                    
+                    if not source_id or not target_id:
                         continue
                     
-                    source_id = node_id_map.get(rel["source"])
-                    target_id = node_id_map.get(rel["target"])
-                    
-                    if source_id and target_id:
+                    if source_id in node_id_map and target_id in node_id_map:
                         net.add_edge(
                             source_id,
                             target_id,

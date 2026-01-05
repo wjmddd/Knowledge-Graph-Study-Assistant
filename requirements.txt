@@ -10,14 +10,14 @@ pydantic>=2.0.0        # 数据验证
 # 图数据库
 neo4j>=5.0.0           # Neo4j Python 驱动
 
-# Web 界面
-streamlit>=1.30.0      # Streamlit Web 应用
-
 # 环境配置
 python-dotenv>=1.0.0   # 环境变量管理
 
-# PDF 解析 (知识抽取阶段使用)
-pdfplumber>=0.10.0     # PDF 文本提取
+# 日志
+loguru>=0.7.0          # 现代日志库
+
+# PDF 解析 (知识抽取阶段使用，可选)
+# pdfplumber>=0.10.0   # PDF 文本提取
 
 # ===============================
 # Phase 2: LangChain Agent 

@@ -1,13 +1,18 @@
 """
 Chainlit 前端应用 - 增强版
 专业的聊天界面，集成知识图谱问答 Agent
-支持：思考过程可视化、图谱展示、智能追问
+
+模块化设计：
+- app/services/history.py - 对话历史管理
+- app/services/graph_service.py - 图谱查询服务
+- app/services/recommendation.py - 智能推荐
 """
 
 import sys
 import asyncio
+import webbrowser
 from pathlib import Path
-from typing import List, Dict, Optional
+from datetime import datetime
 
 # 添加项目根目录
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -15,307 +20,28 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import chainlit as cl
 
 from src.agent.langchain_agent import LangChainAgent, AgentResponse
-from src.retrieval.graph_query import get_graph_query
+
+# 导入服务模块
+from app.services import (
+    # 历史记录
+    save_conversation,
+    list_conversations,
+    # 图谱服务
+    get_graph_stats,
+    query_concept_detail,
+    generate_concept_graph_text,
+    generate_interactive_graph,
+    GRAPH_VIZ_DIR,
+    # 推荐
+    get_related_questions,
+    extract_main_concept,
+)
 
 
 # ==========================================
 # 全局 Agent 实例
 # ==========================================
 agent: LangChainAgent = None
-
-
-# ==========================================
-# 图谱可视化辅助函数
-# ==========================================
-
-def generate_concept_graph_text(concept_name: str, max_relations: int = 8) -> Optional[str]:
-    """
-    生成概念相关的图谱关系文本描述
-    
-    Args:
-        concept_name: 中心概念名称
-        max_relations: 最大关系数
-        
-    Returns:
-        Markdown 格式的关系描述
-    """
-    try:
-        graph = get_graph_query()
-        if not graph.is_connected():
-            return None
-        
-        # 获取概念信息
-        concept = graph.get_concept(concept_name)
-        if not concept:
-            return None
-        
-        actual_name = concept.get("name", concept_name)
-        
-        # 获取相关关系
-        relations = graph.get_relations(actual_name, direction="both")
-        if not relations:
-            return None
-        
-        # 关系类型 emoji 映射
-        rel_emoji = {
-            "COMPOSED_OF": "🔧",
-            "CONTAINS": "📦",
-            "DEPENDS_ON": "⬅️",
-            "IS_A": "📂",
-            "USES": "🔗",
-            "CONTRASTS_WITH": "⚖️",
-            "IMPLEMENTED_BY": "⚙️",
-            "PRECEDES": "➡️",
-            "RELATED_TO": "🔄",
-        }
-        
-        # 按关系类型分组
-        grouped = {}
-        for rel in relations[:max_relations]:
-            rel_type = rel.get("relation_type", "RELATED")
-            target = rel.get("target", "")
-            if rel_type not in grouped:
-                grouped[rel_type] = []
-            if target and target not in grouped[rel_type]:
-                grouped[rel_type].append(target)
-        
-        # 生成 Markdown
-        lines = []
-        lines.append(f"```")
-        lines.append(f"        ┌─────────────┐")
-        lines.append(f"        │  {actual_name:^9}  │")
-        lines.append(f"        └──────┬──────┘")
-        lines.append(f"               │")
-        
-        for rel_type, targets in list(grouped.items())[:4]:
-            emoji = rel_emoji.get(rel_type, "•")
-            rel_name = rel_type.replace("_", " ").lower()
-            targets_str = ", ".join(targets[:3])
-            if len(targets) > 3:
-                targets_str += f" (+{len(targets)-3})"
-            lines.append(f"    {emoji} {rel_name}: {targets_str}")
-        
-        lines.append(f"```")
-        
-        return "\n".join(lines)
-        
-    except Exception as e:
-        print(f"生成图谱文本失败: {e}")
-        return None
-
-
-def generate_concept_graph_html(concept_name: str, max_nodes: int = 15) -> Optional[str]:
-    """
-    生成概念相关的局部知识图谱 HTML
-    
-    Args:
-        concept_name: 中心概念名称
-        max_nodes: 最大节点数
-        
-    Returns:
-        HTML 字符串，或 None（如果无法生成）
-    """
-    try:
-        from pyvis.network import Network
-        
-        graph = get_graph_query()
-        if not graph.is_connected():
-            return None
-        
-        # 获取概念信息
-        concept = graph.get_concept(concept_name)
-        if not concept:
-            return None
-        
-        actual_name = concept.get("name", concept_name)
-        
-        # 获取相关关系
-        relations = graph.get_relations(actual_name, direction="both")
-        if not relations:
-            return None
-        
-        # 创建网络图
-        net = Network(
-            height="300px",
-            width="100%",
-            bgcolor="#1a1a2e",
-            font_color="white",
-            directed=True
-        )
-        
-        # 节点颜色映射
-        color_map = {
-            "Hardware": "#e74c3c",
-            "Concept": "#3498db",
-            "Instruction": "#2ecc71",
-            "Principle": "#9b59b6",
-            "CodeSnippet": "#f39c12",
-        }
-        
-        # 添加中心节点
-        center_label = concept.get("label", "Concept")
-        net.add_node(
-            actual_name,
-            label=actual_name,
-            color=color_map.get(center_label, "#3498db"),
-            size=30,
-            font={"size": 14, "color": "white"},
-            borderWidth=3,
-            borderWidthSelected=5
-        )
-        
-        # 添加相关节点和边
-        added_nodes = {actual_name}
-        for i, rel in enumerate(relations[:max_nodes]):
-            target = rel.get("target")
-            rel_type = rel.get("relation_type", "RELATED")
-            target_label = rel.get("target_label", "Concept")
-            
-            if target and target not in added_nodes:
-                net.add_node(
-                    target,
-                    label=target,
-                    color=color_map.get(target_label, "#95a5a6"),
-                    size=20,
-                    font={"size": 12, "color": "white"}
-                )
-                added_nodes.add(target)
-            
-            if target:
-                # 简化关系名称
-                short_rel = rel_type.replace("_", " ").title()
-                if len(short_rel) > 12:
-                    short_rel = short_rel[:10] + ".."
-                
-                net.add_edge(
-                    actual_name,
-                    target,
-                    label=short_rel,
-                    color="#666",
-                    font={"size": 9, "color": "#aaa"}
-                )
-        
-        # 配置物理布局
-        net.set_options("""
-        {
-            "physics": {
-                "enabled": true,
-                "solver": "forceAtlas2Based",
-                "forceAtlas2Based": {
-                    "gravitationalConstant": -50,
-                    "centralGravity": 0.01,
-                    "springLength": 100
-                },
-                "stabilization": {"iterations": 100}
-            },
-            "interaction": {
-                "hover": true,
-                "tooltipDelay": 200
-            }
-        }
-        """)
-        
-        # 生成 HTML
-        html = net.generate_html()
-        return html
-        
-    except Exception as e:
-        print(f"生成图谱失败: {e}")
-        return None
-
-
-def get_related_questions(concept_name: str, current_query: str) -> List[str]:
-    """
-    基于知识图谱生成推荐追问
-    
-    Args:
-        concept_name: 当前概念
-        current_query: 当前问题
-        
-    Returns:
-        推荐问题列表
-    """
-    questions = []
-    
-    try:
-        graph = get_graph_query()
-        if not graph.is_connected():
-            return questions
-        
-        # 获取概念
-        concept = graph.get_concept(concept_name)
-        if not concept:
-            return questions
-        
-        actual_name = concept.get("name", concept_name)
-        
-        # 获取相关关系
-        relations = graph.get_relations(actual_name, direction="both")
-        
-        # 基于关系类型生成问题
-        seen_targets = set()
-        for rel in relations[:10]:
-            target = rel.get("target")
-            rel_type = rel.get("relation_type", "")
-            
-            if not target or target in seen_targets:
-                continue
-            seen_targets.add(target)
-            
-            # 根据关系类型生成问题
-            if rel_type == "COMPOSED_OF":
-                questions.append(f"{target}是什么？")
-            elif rel_type == "DEPENDS_ON":
-                questions.append(f"为什么需要{target}？")
-            elif rel_type == "IS_A":
-                questions.append(f"{target}有哪些类型？")
-            elif rel_type == "CONTRASTS_WITH":
-                questions.append(f"{actual_name}和{target}有什么区别？")
-            elif rel_type in ["USES", "IMPLEMENTED_BY"]:
-                questions.append(f"{target}是如何工作的？")
-            
-            if len(questions) >= 3:
-                break
-        
-        # 如果问题不够，添加通用追问
-        if len(questions) < 3:
-            fallback = [
-                f"学习{actual_name}需要什么基础？",
-                f"{actual_name}的应用场景有哪些？",
-                f"{actual_name}的工作原理是什么？"
-            ]
-            for q in fallback:
-                if q not in questions and len(questions) < 3:
-                    questions.append(q)
-        
-        return questions[:3]
-        
-    except Exception as e:
-        print(f"生成推荐问题失败: {e}")
-        return []
-
-
-def extract_main_concept(query: str, tool_calls: List[Dict]) -> Optional[str]:
-    """从查询或工具调用中提取主要概念"""
-    # 从工具调用中提取
-    for tc in tool_calls:
-        input_data = tc.get("input", {})
-        if isinstance(input_data, dict):
-            for key in ["concept_name", "concept_a", "query"]:
-                if key in input_data:
-                    return input_data[key]
-    
-    # 从查询中提取（简单方法）
-    keywords = ["什么是", "是什么", "什么叫", "解释", "介绍"]
-    for kw in keywords:
-        if kw in query:
-            # 提取关键词后面的概念
-            idx = query.find(kw)
-            concept = query[idx + len(kw):].strip().rstrip("？?。.")
-            if concept:
-                return concept
-    
-    return None
 
 
 # ==========================================
@@ -327,11 +53,14 @@ async def on_chat_start():
     """聊天开始时初始化"""
     global agent
     
-    # 初始化 Agent
     agent = LangChainAgent()
     
-    # 设置欢迎消息
-    welcome_message = """
+    # 获取系统状态
+    stats = get_graph_stats()
+    neo4j_status = "🟢 已连接" if "error" not in stats else "🔴 未连接"
+    node_count = sum(stats.get("nodes", {}).values()) if "nodes" in stats else 0
+    
+    welcome_message = f"""
 # 🎓 计算机系统基础 - 智能学习助手
 
 欢迎使用基于**知识图谱**的智能问答系统！
@@ -344,21 +73,29 @@ async def on_chat_start():
 | 🔧 组成结构 | CPU由什么组成？ |
 | 📚 学习路径 | 学习流水线需要什么基础？ |
 | ⚖️ 概念对比 | RISC和CISC有什么区别？ |
-| 🔗 概念关系 | 虚拟内存和页表有什么关系？ |
+
+## 🔍 特殊命令：
+
+| 命令 | 说明 |
+|------|------|
+| `/graph 概念名` | 查询概念的图谱关系（文本） |
+| `/viz 概念名` | 🎨 **交互式图谱**（可拖拽缩放！） |
+| `/stats` | 查看知识图谱统计 |
+| `/history` | 查看历史对话列表 |
+| `/help` | 显示帮助信息 |
 
 ---
 
-> 📚 **知识来源**：《计算机系统基础》教材 (第1-8章)
-> 
-> 🔧 **技术栈**：Neo4j 知识图谱 + LangChain Agent + 向量检索
+> 📊 **系统状态**: Neo4j {neo4j_status} | 知识节点: {node_count} 个
 
 """
     
     await cl.Message(content=welcome_message).send()
     
     # 存储会话信息
-    cl.user_session.set("session_id", cl.context.session.id)
-    cl.user_session.set("question_history", [])
+    session_id = cl.context.session.id
+    cl.user_session.set("session_id", session_id)
+    cl.user_session.set("messages", [])
 
 
 @cl.on_message
@@ -370,27 +107,242 @@ async def on_message(message: cl.Message):
         agent = LangChainAgent()
     
     session_id = cl.user_session.get("session_id", "default")
+    content = message.content.strip()
+    
+    # ==========================================
+    # 处理特殊命令
+    # ==========================================
+    
+    # /graph 命令 - 查询概念图谱（文本）
+    if content.startswith("/graph"):
+        await handle_graph_command(content)
+        return
+    
+    # /viz 命令 - 生成交互式图谱可视化
+    if content.startswith("/viz"):
+        await handle_viz_command(content)
+        return
+    
+    # /stats 命令 - 查看统计
+    if content == "/stats":
+        await handle_stats_command()
+        return
+    
+    # /history 命令 - 查看历史对话
+    if content == "/history":
+        await handle_history_command()
+        return
+    
+    # /help 命令
+    if content == "/help":
+        await handle_help_command()
+        return
+    
+    # ==========================================
+    # 正常问答处理
+    # ==========================================
+    await handle_chat(content, session_id)
+
+
+@cl.on_chat_end
+async def on_chat_end():
+    """聊天结束时清理"""
+    global agent
+    
+    if agent:
+        session_id = cl.user_session.get("session_id", "default")
+        agent.clear_history(session_id)
+
+
+@cl.on_settings_update
+async def on_settings_update(settings):
+    """设置更新回调"""
+    pass
+
+
+# ==========================================
+# 命令处理函数
+# ==========================================
+
+async def handle_graph_command(content: str):
+    """处理 /graph 命令"""
+    parts = content.split(maxsplit=1)
+    if len(parts) > 1:
+        concept = parts[1].strip()
+        await cl.Message(content=f"🔍 正在查询 **{concept}** 的图谱信息...").send()
+        result = query_concept_detail(concept)
+        await cl.Message(content=result + f"\n\n💡 **提示**: 使用 `/viz {concept}` 可以查看交互式图谱").send()
+    else:
+        await cl.Message(content="用法: `/graph 概念名`\n例如: `/graph CPU`").send()
+
+
+async def handle_viz_command(content: str):
+    """处理 /viz 命令 - 生成交互式图谱"""
+    parts = content.split(maxsplit=1)
+    if len(parts) > 1:
+        concept = parts[1].strip()
+        await cl.Message(content=f"🎨 正在生成 **{concept}** 的交互式图谱...").send()
+        
+        # 在后台生成图谱
+        filepath = await asyncio.get_event_loop().run_in_executor(
+            None,
+            lambda: generate_interactive_graph(concept)
+        )
+        
+        if filepath:
+            # 使用绝对路径
+            abs_path = str(Path(filepath).absolute())
+            file_url = f"file:///{abs_path.replace(chr(92), '/')}"
+            
+            result = f"""
+## 🎨 交互式图谱已生成
+
+**概念**: {concept}
+
+📁 **文件位置**: `{filepath}`
+
+### 查看方式
+
+1. **自动打开** (推荐)：正在尝试用浏览器打开...
+
+2. **手动打开**: 复制以下路径到浏览器地址栏:
+```
+{file_url}
+```
+
+3. **文件管理器**: 双击打开文件 `{abs_path}`
+
+---
+
+⚠️ **注意**: 图谱文件使用 Pyvis 生成，支持:
+- 🖱️ 拖拽移动节点
+- 🔍 滚轮缩放
+- 📌 悬停查看详情
+- 🎯 点击聚焦节点
+"""
+            await cl.Message(content=result).send()
+            
+            # 尝试自动打开浏览器
+            try:
+                webbrowser.open(file_url)
+            except Exception as e:
+                await cl.Message(content=f"⚠️ 自动打开浏览器失败，请手动打开文件").send()
+        else:
+            await cl.Message(content=f"❌ 未找到概念 **{concept}**，请检查名称是否正确\n\n💡 提示: 使用 `/graph {concept}` 查看相似概念").send()
+    else:
+        await cl.Message(content="用法: `/viz 概念名`\n例如: `/viz CPU`\n\n这将生成一个交互式的图谱可视化HTML文件").send()
+
+
+async def handle_stats_command():
+    """处理 /stats 命令"""
+    stats = get_graph_stats()
+    if "error" in stats:
+        await cl.Message(content=f"❌ 获取统计失败: {stats['error']}").send()
+    else:
+        nodes = stats.get("nodes", {})
+        rels = stats.get("relationships", {})
+        total_nodes = sum(nodes.values())
+        total_rels = sum(rels.values())
+        
+        result = f"""
+## 📊 知识图谱统计
+
+### 节点统计 (共 {total_nodes} 个)
+| 类型 | 数量 |
+|------|------|
+"""
+        for node_type, count in sorted(nodes.items(), key=lambda x: -x[1]):
+            result += f"| {node_type} | {count} |\n"
+        
+        result += f"""
+### 关系统计 (共 {total_rels} 条)
+| 类型 | 数量 |
+|------|------|
+"""
+        for rel_type, count in sorted(rels.items(), key=lambda x: -x[1])[:10]:
+            result += f"| {rel_type} | {count} |\n"
+        
+        if len(rels) > 10:
+            result += f"| ... | 还有 {len(rels) - 10} 种关系类型 |\n"
+        
+        await cl.Message(content=result).send()
+
+
+async def handle_history_command():
+    """处理 /history 命令"""
+    conversations = list_conversations()
+    if not conversations:
+        await cl.Message(content="📭 暂无历史对话记录").send()
+    else:
+        result = "## 📜 历史对话\n\n"
+        for i, conv in enumerate(conversations[:10], 1):
+            updated = conv.get("updated_at", "")[:10]
+            count = conv.get("message_count", 0)
+            title = conv.get("title", "未知")
+            result += f"{i}. **{title}** ({count}条消息, {updated})\n"
+        await cl.Message(content=result).send()
+
+
+async def handle_help_command():
+    """处理 /help 命令"""
+    help_text = """
+## 📚 帮助信息
+
+### 问答功能
+直接输入问题即可，例如：
+- 什么是CPU？
+- Cache的工作原理是什么？
+- SRAM和DRAM有什么区别？
+
+### 特殊命令
+| 命令 | 说明 |
+|------|------|
+| `/graph 概念名` | 查询概念的图谱关系（文本形式） |
+| `/viz 概念名` | 🎨 生成**交互式图谱**（推荐！） |
+| `/stats` | 查看知识图谱统计信息 |
+| `/history` | 查看历史对话列表 |
+| `/help` | 显示此帮助信息 |
+
+### 示例
+```
+/graph CPU      # 文本形式查看 CPU 相关信息
+/viz CPU        # 生成交互式图谱可视化
+/viz 缓存       # 生成缓存概念的可视化图谱
+/stats
+```
+
+### 交互式图谱功能
+使用 `/viz` 命令可以生成交互式图谱，支持：
+- 🖱️ 拖拽节点调整布局
+- 🔍 滚轮缩放画布
+- 📌 悬停查看节点详情
+- 🎯 点击节点聚焦
+"""
+    await cl.Message(content=help_text).send()
+
+
+# ==========================================
+# 问答处理
+# ==========================================
+
+async def handle_chat(content: str, session_id: str):
+    """处理正常问答"""
+    global agent
     
     try:
-        # ==========================================
         # 步骤1: 显示思考过程
-        # ==========================================
         async with cl.Step(name="🔍 理解问题", type="llm") as step:
-            step.output = f"正在分析问题：「{message.content}」"
+            step.output = f"正在分析问题：「{content}」"
         
-        # ==========================================
-        # 步骤2: 工具调用（带进度显示）
-        # ==========================================
+        # 步骤2: 工具调用
         async with cl.Step(name="🛠️ 检索知识库", type="tool") as step:
             step.output = "正在调用知识图谱和向量检索..."
             
-            # 调用 Agent（在线程池中执行避免阻塞）
             response: AgentResponse = await asyncio.get_event_loop().run_in_executor(
                 None,
-                lambda: agent.chat(message.content, session_id)
+                lambda: agent.chat(content, session_id)
             )
             
-            # 更新步骤输出
             if response.tool_calls:
                 tool_info = []
                 for tc in response.tool_calls:
@@ -405,28 +357,18 @@ async def on_message(message: cl.Message):
             else:
                 step.output = "✓ 使用通用知识回答"
         
-        # ==========================================
         # 步骤3: 生成回答
-        # ==========================================
         async with cl.Step(name="💬 生成回答", type="llm") as step:
             step.output = "正在组织答案..."
         
-        # ==========================================
         # 构建最终回复
-        # ==========================================
         answer_parts = []
+        answer_parts.append(response.answer)
         
-        # 主要回答（美化格式）
-        formatted_answer = format_answer(response.answer)
-        answer_parts.append(formatted_answer)
-        
-        # ==========================================
-        # 添加知识图谱可视化（简化版）
-        # ==========================================
-        main_concept = extract_main_concept(message.content, response.tool_calls)
+        # 添加知识图谱可视化
+        main_concept = extract_main_concept(content, response.tool_calls)
         
         if main_concept and response.sources:
-            # 生成图谱关系的文本描述
             graph_text = generate_concept_graph_text(main_concept)
             if graph_text:
                 answer_parts.append("\n\n---\n\n")
@@ -434,9 +376,7 @@ async def on_message(message: cl.Message):
                 answer_parts.append(f"*以 **{main_concept}** 为中心的概念关联：*\n\n")
                 answer_parts.append(graph_text)
         
-        # ==========================================
         # 添加来源信息
-        # ==========================================
         if response.sources:
             answer_parts.append("\n\n---\n\n")
             answer_parts.append("<details>\n<summary>📚 <b>参考来源</b> (点击展开)</summary>\n\n")
@@ -451,97 +391,29 @@ async def on_message(message: cl.Message):
             answer_parts.append("\n</details>")
         
         # 发送主消息
-        msg = cl.Message(content="".join(answer_parts))
-        await msg.send()
+        await cl.Message(content="".join(answer_parts)).send()
         
-        # ==========================================
         # 添加智能追问建议
-        # ==========================================
         if main_concept:
-            related_questions = get_related_questions(main_concept, message.content)
+            related_questions = get_related_questions(main_concept, content)
             
             if related_questions:
-                # 使用文本方式显示推荐问题（更兼容）
                 follow_up_parts = []
                 follow_up_parts.append("\n\n---\n\n")
                 follow_up_parts.append("### 🎯 继续探索\n")
-                follow_up_parts.append("*基于知识图谱推荐的相关问题，点击可复制：*\n\n")
+                follow_up_parts.append("*基于知识图谱推荐的相关问题：*\n\n")
                 
                 for i, q in enumerate(related_questions, 1):
                     follow_up_parts.append(f"**{i}.** `{q}`\n\n")
                 
-                follow_up_msg = cl.Message(content="".join(follow_up_parts))
-                await follow_up_msg.send()
+                await cl.Message(content="".join(follow_up_parts)).send()
         
-        # 记录问题历史
-        history = cl.user_session.get("question_history", [])
-        history.append(message.content)
-        cl.user_session.set("question_history", history[-10:])
+        # 保存对话历史
+        messages = cl.user_session.get("messages", [])
+        messages.append({"role": "user", "content": content, "timestamp": datetime.now().isoformat()})
+        messages.append({"role": "assistant", "content": response.answer, "timestamp": datetime.now().isoformat()})
+        cl.user_session.set("messages", messages)
+        save_conversation(session_id, messages)
         
     except Exception as e:
-        error_msg = cl.Message(content=f"❌ 抱歉，处理您的问题时出现错误：{str(e)}")
-        await error_msg.send()
-
-
-def format_answer(answer: str) -> str:
-    """
-    美化答案格式
-    - 高亮核心定义
-    - 优化列表格式
-    """
-    import re
-    
-    # 如果已经有知识库未找到的提示，保持原样
-    if "⚠️ **提示**" in answer:
-        return answer
-    
-    # 高亮定义（"XXX是..." 或 "定义：..."）
-    answer = re.sub(
-        r'(定义[：:]\s*)([^。\n]+[。])',
-        r'\1**\2**',
-        answer
-    )
-    
-    # 为核心概念添加 emoji
-    concept_emojis = {
-        "CPU": "🖥️ CPU",
-        "ALU": "🔢 ALU",
-        "缓存": "💾 缓存",
-        "Cache": "💾 Cache",
-        "内存": "📦 内存",
-        "寄存器": "📝 寄存器",
-        "流水线": "⚡ 流水线",
-        "指令": "📋 指令",
-        "总线": "🚌 总线",
-    }
-    
-    for term, emoji_term in concept_emojis.items():
-        # 只替换标题中的（避免过度替换）
-        answer = re.sub(
-            rf'^(#+\s*)({term})',
-            rf'\1{emoji_term}',
-            answer,
-            flags=re.MULTILINE
-        )
-    
-    return answer
-
-
-@cl.on_chat_end
-async def on_chat_end():
-    """聊天结束时清理"""
-    global agent
-    
-    if agent:
-        session_id = cl.user_session.get("session_id", "default")
-        agent.clear_history(session_id)
-
-
-# ==========================================
-# 设置面板
-# ==========================================
-
-@cl.on_settings_update
-async def on_settings_update(settings):
-    """设置更新回调"""
-    pass
+        await cl.Message(content=f"❌ 抱歉，处理您的问题时出现错误：{str(e)}").send()

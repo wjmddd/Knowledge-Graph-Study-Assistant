@@ -2,10 +2,17 @@
 全局配置
 包含 LLM、Neo4j、ChromaDB、OpenAI Embedding 等配置
 以及中英文术语映射表
+
+配置优先级: 环境变量 > 默认值
 """
 
+import os
 import re
 from pathlib import Path
+from dotenv import load_dotenv
+
+# 加载 .env 文件
+load_dotenv()
 
 # ================= 项目路径 =================
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -13,50 +20,48 @@ DATA_DIR = PROJECT_ROOT / "data"
 MD_INPUT_DIR = PROJECT_ROOT / "md"
 CHAPTER_OUTPUT_DIR = DATA_DIR / "chapters"
 CHROMA_DB_DIR = DATA_DIR / "chroma_db"
+LOG_DIR = PROJECT_ROOT / "logs"
 
 # 确保目录存在
 DATA_DIR.mkdir(exist_ok=True)
 CHAPTER_OUTPUT_DIR.mkdir(exist_ok=True)
 CHROMA_DB_DIR.mkdir(exist_ok=True)
+LOG_DIR.mkdir(exist_ok=True)
 
-# ================= LLM 配置 (用于问答生成) =================
-# 推荐使用 DeepSeek 官方 API (更稳定、更便宜)
-# 获取 Key: https://platform.deepseek.com
-
+# ================= LLM 配置 =================
+# 从环境变量读取（必须配置 .env 文件）
 CLIENT_CONFIG = {
-    # === 方案1: DeepSeek 官方 (推荐) ===
-    # "api_key": "sk-xxx",  # 替换为你的 DeepSeek API Key
-    # "base_url": "https://api.deepseek.com/v1",
-    # "model": "deepseek-chat"
-    
-    # === 方案2: SiliconFlow 免费模型 ===
-    "api_key": "sk-pGezF366dyAXhRktmeRXkWs4XEQ8h5TH8xUb9vyDl2pSFP0I",
-    "base_url": "https://sg.uiuiapi.com/v1",
-    "model": "qwen3-30b-a3b-instruct-2507"  
+    "api_key": os.getenv("LLM_API_KEY", ""),
+    "base_url": os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"),
+    "model": os.getenv("LLM_MODEL", "gpt-3.5-turbo")
 }
 
 # ================= OpenAI Embedding 配置 =================
-# 用于向量检索，需要 OpenAI API Key
-# 获取 Key: https://platform.openai.com
-
 OPENAI_CONFIG = {
-    "api_key": "sk-pGezF366dyAXhRktmeRXkWs4XEQ8h5TH8xUb9vyDl2pSFP0I",  # 替换为你的 OpenAI API Key
-    "base_url": "https://sg.uiuiapi.com/v1",  # 或使用代理地址
-    "embedding_model": "text-embedding-3-small",
-    "embedding_dimensions": 1536  # text-embedding-3-small 默认维度
+    "api_key": os.getenv("OPENAI_API_KEY", os.getenv("LLM_API_KEY", "")),
+    "base_url": os.getenv("OPENAI_BASE_URL", os.getenv("LLM_BASE_URL", "https://api.openai.com/v1")),
+    "embedding_model": os.getenv("EMBEDDING_MODEL", "text-embedding-3-small"),
+    "embedding_dimensions": 1536
 }
 
 # ================= Neo4j 配置 =================
 NEO4J_CONFIG = {
-    "uri": "neo4j://localhost:7687",  # 单机版用 bolt://
-    "user": "neo4j",
-    "password": "F9rSd7UAt2FkkNU"  # 替换为你的密码
+    "uri": os.getenv("NEO4J_URI", "neo4j://localhost:7687"),
+    "user": os.getenv("NEO4J_USER", "neo4j"),
+    "password": os.getenv("NEO4J_PASSWORD", "")
 }
 
 # ================= ChromaDB 配置 =================
 CHROMA_CONFIG = {
     "collection_name": "textchunks",
     "persist_directory": str(CHROMA_DB_DIR)
+}
+
+# ================= 应用配置 =================
+APP_CONFIG = {
+    "port": int(os.getenv("APP_PORT", "8000")),
+    "log_level": os.getenv("LOG_LEVEL", "INFO"),
+    "debug": os.getenv("DEBUG", "false").lower() == "true"
 }
 
 # ================= 知识抽取配置 =================
@@ -68,16 +73,15 @@ CHUNK_SIZE = 1000  # 每个切片的大致字符数
 
 # ================= 问答系统配置 =================
 QA_CONFIG = {
-    "max_context_chunks": 5,  # 最多检索多少个文本块
-    "max_graph_results": 10,  # 最多返回多少个图谱结果
-    "similarity_threshold": 0.7,  # 向量相似度阈值
-    "temperature": 0.1,  # LLM 生成温度 (越低越确定)
-    "max_tokens": 2000  # 最大生成长度
+    "max_context_chunks": 5,
+    "max_graph_results": 10,
+    "similarity_threshold": 0.7,
+    "temperature": 0.1,
+    "max_tokens": 2000
 }
 
 # ================= Agent 提示词配置 =================
 
-# 答案生成系统提示词
 ANSWER_SYSTEM_PROMPT = """你是一个《计算机系统基础》课程的智能学习助手。
 
 ## 核心原则【最重要】
@@ -95,10 +99,8 @@ ANSWER_SYSTEM_PROMPT = """你是一个《计算机系统基础》课程的智能
 - 结合之前的对话上下文理解用户问题
 - 如果用户说"它"、"这个"等代词，要联系上下文"""
 
-# 工具选择系统提示词
 TOOL_SELECTION_SYSTEM_PROMPT = "你是一个知识检索助手。你必须调用工具来检索知识库，不能直接回答问题。"
 
-# 工具选择用户提示词模板 (使用 {query} 作为占位符)
 TOOL_SELECTION_USER_PROMPT = """请根据用户问题选择合适的工具进行知识检索。
 
 用户问题: {query}
@@ -113,7 +115,6 @@ TOOL_SELECTION_USER_PROMPT = """请根据用户问题选择合适的工具进行
 
 请立即调用工具。"""
 
-# 用户问题模板 (包含检索结果)
 USER_QUERY_WITH_CONTEXT_TEMPLATE = """【知识库检索结果】
 {context}
 
@@ -122,7 +123,6 @@ USER_QUERY_WITH_CONTEXT_TEMPLATE = """【知识库检索结果】
 
 请基于上述检索结果回答我的问题。"""
 
-# 知识库未找到时的系统提示词
 FALLBACK_SYSTEM_PROMPT = """你是一个《计算机系统基础》课程的智能学习助手。
 
 ⚠️ 注意：知识库中没有找到与用户问题相关的内容。
@@ -135,7 +135,6 @@ FALLBACK_SYSTEM_PROMPT = """你是一个《计算机系统基础》课程的智�
 
 请直接回答用户的问题。"""
 
-# 知识库未找到的提示前缀
 KB_NOT_FOUND_PREFIX = """⚠️ **提示**：知识库中未找到与您的问题直接相关的内容，以下回答基于AI的通用知识：
 
 ---
@@ -143,8 +142,7 @@ KB_NOT_FOUND_PREFIX = """⚠️ **提示**：知识库中未找到与您的问�
 """
 
 # ==========================================
-# 中英文计算机术语对照表 (针对《计算机系统基础》优化)
-# 用于：节点去重、智能查询匹配
+# 中英文计算机术语对照表
 # ==========================================
 TERM_MAPPINGS = {
     # ========== 硬件组件 ==========
@@ -285,48 +283,69 @@ for _canonical, _aliases in TERM_MAPPINGS.items():
 def normalize_term(name: str) -> str:
     """
     标准化术语名称
-    1. 转小写
-    2. 移除空格和特殊字符
-    3. 查找标准名称
     """
     if not name:
         return name
     
-    # 清理名称
     clean_name = name.lower().strip()
-    clean_name = re.sub(r'[·\-_\s]+', '', clean_name)  # 移除 · - _ 空格
+    clean_name = re.sub(r'[·\-_\s]+', '', clean_name)
     
-    # 查找是否有对应的标准名称
     if clean_name in ALIAS_TO_CANONICAL:
         return ALIAS_TO_CANONICAL[clean_name]
     
-    # 尝试原始名称（带空格）
     original_lower = name.lower().strip()
     if original_lower in ALIAS_TO_CANONICAL:
         return ALIAS_TO_CANONICAL[original_lower]
     
-    return name  # 未找到映射，返回原名
+    return name
 
 
 def get_term_variants(term: str) -> list:
     """
     获取术语的所有变体（中英文转换）
-    
-    Args:
-        term: 输入术语
-        
-    Returns:
-        该术语的所有已知变体列表
     """
     term_lower = term.lower().strip()
     variants = [term, term_lower, term.upper()]
     
-    # 查找映射表
     for key, values in TERM_MAPPINGS.items():
         all_forms = [key] + [v.lower() for v in values]
         if term_lower in all_forms or any(term_lower in f for f in all_forms):
             variants.extend([key] + values)
             break
     
-    # 去重
     return list(set(variants))
+
+
+# ==========================================
+# 配置验证
+# ==========================================
+
+def validate_config():
+    """验证关键配置是否存在"""
+    errors = []
+    
+    if not CLIENT_CONFIG["api_key"] or CLIENT_CONFIG["api_key"].startswith("sk-your"):
+        errors.append("LLM_API_KEY 未配置")
+    
+    if not NEO4J_CONFIG["password"] or NEO4J_CONFIG["password"] == "your-neo4j-password":
+        errors.append("NEO4J_PASSWORD 未配置")
+    
+    return errors
+
+
+def print_config_summary():
+    """打印配置摘要（隐藏敏感信息）"""
+    def mask(s: str) -> str:
+        if not s or len(s) < 8:
+            return "***"
+        return s[:4] + "***" + s[-4:]
+    
+    print("=" * 50)
+    print("📋 配置摘要")
+    print("=" * 50)
+    print(f"LLM API: {CLIENT_CONFIG['base_url']}")
+    print(f"LLM Model: {CLIENT_CONFIG['model']}")
+    print(f"LLM Key: {mask(CLIENT_CONFIG['api_key'])}")
+    print(f"Neo4j: {NEO4J_CONFIG['uri']}")
+    print(f"日志级别: {APP_CONFIG['log_level']}")
+    print("=" * 50)
